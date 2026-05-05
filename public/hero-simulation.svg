@@ -1,0 +1,14 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#1B1B1B"/>
+  <path d="M0 532L1280 326V720H0V532Z" fill="#333"/>
+  <g opacity=".35" stroke="#777"><path d="M0 620L1280 410"/><path d="M0 680L1280 470"/><path d="M180 720L800 300"/><path d="M380 720L1000 300"/><path d="M580 720L1200 300"/></g>
+  <path d="M182 476H998V580H182V476Z" fill="#515151" stroke="#E2AB19" stroke-width="8"/>
+  <path d="M300 318H584V472H300V318Z" fill="#747474" stroke="#111" stroke-width="8"/>
+  <path d="M716 272H960V476H716V272Z" fill="#696969" stroke="#111" stroke-width="8"/>
+  <path d="M220 456L1064 318" stroke="#E2AB19" stroke-width="12"/>
+  <path d="M412 300V238H840V264" stroke="#E2AB19" stroke-width="10"/>
+  <circle cx="415" cy="300" r="16" fill="#E2AB19"/><circle cx="840" cy="264" r="16" fill="#E2AB19"/>
+  <rect x="356" y="348" width="166" height="72" fill="#262626"/><rect x="772" y="324" width="120" height="96" fill="#262626"/>
+  <path d="M1050 290L1110 312L1050 334V290Z" fill="#E2AB19"/>
+  <text x="52" y="96" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="42" font-weight="700">Factory flow model</text>
+</svg>

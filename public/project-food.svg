@@ -1,0 +1,9 @@
+<svg width="900" height="650" viewBox="0 0 900 650" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="650" fill="#232323"/>
+  <rect x="92" y="170" width="716" height="128" fill="#595959" stroke="#111" stroke-width="8"/>
+  <rect x="130" y="352" width="614" height="92" fill="#595959" stroke="#111" stroke-width="8"/>
+  <path d="M146 234H762" stroke="#E2AB19" stroke-width="12"/><path d="M192 398H698" stroke="#E2AB19" stroke-width="12"/>
+  <rect x="258" y="106" width="132" height="94" fill="#777"/><rect x="526" y="274" width="146" height="128" fill="#777"/>
+  <circle cx="390" cy="234" r="22" fill="#E2AB19"/><circle cx="560" cy="398" r="22" fill="#E2AB19"/>
+  <text x="72" y="88" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="38" font-weight="700">Protein bar manufacturing</text>
+</svg>

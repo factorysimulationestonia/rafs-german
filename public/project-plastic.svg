@@ -1,0 +1,9 @@
+<svg width="900" height="650" viewBox="0 0 900 650" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="650" fill="#3D3D3D"/>
+  <g stroke="#666" opacity=".45"><path d="M0 90H900"/><path d="M0 190H900"/><path d="M0 290H900"/><path d="M0 390H900"/><path d="M0 490H900"/><path d="M0 590H900"/><path d="M120 0V650"/><path d="M260 0V650"/><path d="M400 0V650"/><path d="M540 0V650"/><path d="M680 0V650"/><path d="M820 0V650"/></g>
+  <rect x="132" y="382" width="618" height="92" fill="#5D5D5D" stroke="#111" stroke-width="6"/>
+  <path d="M90 344H780" stroke="#E2AB19" stroke-width="10"/><path d="M292 338L322 160H488L522 338" stroke="#E2AB19" stroke-width="8"/>
+  <rect x="326" y="154" width="132" height="94" fill="#242424"/><rect x="560" y="236" width="168" height="122" fill="#777" stroke="#111" stroke-width="6"/>
+  <rect x="612" y="278" width="74" height="42" fill="#111"/><circle cx="210" cy="428" r="18" fill="#E2AB19"/><circle cx="622" cy="428" r="18" fill="#E2AB19"/>
+  <text x="60" y="88" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="38" font-weight="700">Assembly production</text>
+</svg>

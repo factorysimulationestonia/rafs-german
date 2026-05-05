@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", Helvetica, Arial, sans-serif;
+  --font-display: "Space Grotesk", Helvetica, Arial, sans-serif;
+  --color-fs-accent: #e2ab19;
+  --color-fs-panel: #262626;
+  --color-fs-line: rgba(226, 171, 25, 0.72);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: "Space Grotesk", Helvetica, Arial, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Space Grotesk", Helvetica, Arial, sans-serif;
+  }
+}
