@@ -8,9 +8,12 @@ const darkSurfaceClass =
 const h2Class = 'mb-10 text-[clamp(2.7rem,6vw,5.6rem)] leading-none font-normal';
 const h3Class = 'mb-5 text-[clamp(1.35rem,2vw,2rem)] leading-tight font-bold';
 const liClass = 'mb-4 text-[clamp(1rem,1.45vw,1.28rem)] leading-snug';
+const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const basePathPrefix = basePath === '/' ? '' : basePath.replace(/\/$/, '');
+const assetPath = (path) => `${basePath}${path.replace(/^\//, '')}`;
 const iconMask = {
-  WebkitMask: 'url(/check.svg) center / contain no-repeat',
-  mask: 'url(/check.svg) center / contain no-repeat'
+  WebkitMask: `url(${assetPath('/check.svg')}) center / contain no-repeat`,
+  mask: `url(${assetPath('/check.svg')}) center / contain no-repeat`
 };
 
 const content = {
@@ -197,12 +200,26 @@ const content = {
 const anchors = ['projects', 'services', 'contact', 'about'];
 const languages = ['et', 'en'];
 
+const getPathWithoutBase = () => {
+  const { pathname } = window.location;
+
+  if (!basePathPrefix) {
+    return pathname;
+  }
+
+  if (pathname === basePathPrefix) {
+    return '/';
+  }
+
+  return pathname.startsWith(`${basePathPrefix}/`) ? pathname.slice(basePathPrefix.length) : pathname;
+};
+
 const getLanguageFromPath = () => {
-  const language = window.location.pathname.split('/').filter(Boolean)[0];
+  const language = getPathWithoutBase().split('/').filter(Boolean)[0];
   return languages.includes(language) ? language : 'et';
 };
 
-const getLanguagePath = (language, hash = window.location.hash) => `/${language}/${hash || ''}`;
+const getLanguagePath = (language, hash = window.location.hash) => `${basePath}${language}/${hash || ''}`;
 const partners = [
   { name: 'EML', logo: '/logo-partner-eml.png' },
   { name: 'AI & Robotics Estonia', logo: '/logo-partner-aire.jpg', bare: true, large: true },
@@ -240,7 +257,7 @@ function App() {
   const navItems = useMemo(() => t.nav.map((label, index) => ({ label, href: getLanguagePath(language, `#${anchors[index]}`) })), [language, t]);
 
   useEffect(() => {
-    if (!languages.includes(window.location.pathname.split('/').filter(Boolean)[0])) {
+    if (!languages.includes(getPathWithoutBase().split('/').filter(Boolean)[0])) {
       window.history.replaceState(null, '', getLanguagePath(language, ''));
     }
 
@@ -265,9 +282,9 @@ function App() {
 
     const origin = window.location.origin;
     const headLinks = [
-      ['canonical', language, `${origin}/${language}/`],
-      ['alternate', 'et', `${origin}/et/`],
-      ['alternate', 'en', `${origin}/en/`]
+      ['canonical', language, `${origin}${getLanguagePath(language, '')}`],
+      ['alternate', 'et', `${origin}${getLanguagePath('et', '')}`],
+      ['alternate', 'en', `${origin}${getLanguagePath('en', '')}`]
     ];
 
     document.querySelectorAll('link[data-language-link="true"]').forEach((link) => link.remove());
@@ -293,7 +310,7 @@ function App() {
     <div className={`min-h-screen ${darkSurfaceClass} text-white`}>
       <header className="sticky top-0 z-20 flex min-h-16 items-center justify-between gap-8 border-b-3 border-fs-accent bg-black/92 px-6 py-3 backdrop-blur lg:min-h-20 lg:px-[7vw]">
         <a className="inline-flex items-center gap-3 no-underline" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
-          <img className="block h-auto w-26 lg:w-32" src="/logo.png" alt="" aria-hidden="true" />
+          <img className="block h-auto w-26 lg:w-32" src={assetPath('/logo.png')} alt="" aria-hidden="true" />
           <span className="text-lg leading-none font-bold tracking-normal text-white sm:text-xl lg:text-2xl">
             Factory Simulation
           </span>
@@ -327,15 +344,15 @@ function App() {
             aria-label={t.languageLabel}
             title={t.languageLabel}
           >
-            <img className="h-5 w-7 object-cover" src={t.flagSrc} alt="" aria-hidden="true" />
+            <img className="h-5 w-7 object-cover" src={assetPath(t.flagSrc)} alt="" aria-hidden="true" />
           </button>
         </nav>
       </header>
 
       <main id="top">
         <section className="relative grid min-h-[560px] items-center overflow-hidden bg-black px-5 py-20 sm:px-8 lg:aspect-video lg:min-h-0 lg:px-[10vw]">
-          <video className="absolute inset-0 h-full w-full object-contain object-center" poster="/hero-simulation.svg" autoPlay muted loop playsInline>
-            <source src="/hero-video.webm" type="video/webm" />
+          <video className="absolute inset-0 h-full w-full object-contain object-center" poster={assetPath('/hero-simulation.svg')} autoPlay muted loop playsInline>
+            <source src={assetPath('/hero-video.webm')} type="video/webm" />
           </video>
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#000_0%,rgba(0,0,0,0.88)_28%,rgba(0,0,0,0.48)_58%,rgba(0,0,0,0.12)_100%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,0,0,0.32)_0%,transparent_24%,transparent_76%,rgba(0,0,0,0.26)_100%)]" />
@@ -372,7 +389,7 @@ function App() {
                   </div>
                   <IconList items={project.points} />
                 </div>
-                <img className="aspect-[1/0.78] w-full object-cover" src={project.image} alt="" />
+                <img className="aspect-[1/0.78] w-full object-cover" src={assetPath(project.image)} alt="" />
               </article>
             ))}
           </div>
@@ -445,7 +462,7 @@ function App() {
               <div className="my-7 grid grid-cols-2 items-center gap-4.5 lg:grid-cols-4" aria-label={t.partnersTitle}>
                 {partners.map((partner) => (
                   <div className={`flex min-h-32 items-center justify-center p-2 ${partner.bare ? 'bg-transparent' : 'bg-white'}`} key={partner.name}>
-                    <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain`} src={partner.logo} alt={partner.name} />
+                    <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain`} src={assetPath(partner.logo)} alt={partner.name} />
                   </div>
                 ))}
               </div>
@@ -459,7 +476,7 @@ function App() {
       </main>
 
       <footer className={`grid items-center gap-8 border-t border-fs-line px-6 py-10 lg:grid-cols-[180px_1fr_auto] lg:px-[7vw] ${darkSurfaceClass}`}>
-        <img className="w-40" src="/logo.png" alt="Factory Simulation" />
+        <img className="w-40" src={assetPath('/logo.png')} alt="Factory Simulation" />
         <div>
           <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
           <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
