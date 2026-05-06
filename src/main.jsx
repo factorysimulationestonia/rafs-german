@@ -38,7 +38,7 @@ const content = {
     projects: [
       {
         title: 'Plastitööstus',
-        image: '/project-plastic.svg',
+        image: '/project-plastic.png',
         points: [
           'Koosteliini simulatsioon - pistikupesade kokkupanek, testimine ja pakendamine modelleeritud.',
           'Uue testeri integreerimine - mõju tootmisele hinnatud enne investeeringut.',
@@ -48,7 +48,7 @@ const content = {
       },
       {
         title: 'Rasketööstus',
-        image: '/project-heavy.svg',
+        image: '/project-heavy.png',
         points: [
           '3D laserskaneerimine - 18 000 m2 tootmishoone jäädvustati digitaalselt.',
           'Punktipilvest DWG alusplaan - täpne mõõdistuspõhine joonis projekteerimiseks.',
@@ -135,7 +135,7 @@ const content = {
     projects: [
       {
         title: 'Plastics production',
-        image: '/project-plastic.svg',
+        image: '/project-plastic.png',
         points: [
           'Earlier project start - planning began long before equipment arrival.',
           'Unified stakeholder view - one accurate 3D model for engineers and management.',
@@ -145,7 +145,7 @@ const content = {
       },
       {
         title: 'Heavy industry',
-        image: '/project-heavy.svg',
+        image: '/project-heavy.png',
         points: [
           'Up to 50% faster robot programming - programs built and tested virtually.',
           'Higher program quality and safety - reachability and collisions validated before deployment.',
