@@ -25,7 +25,7 @@ const content = {
     heroPrefix: 'Simulatsioonide',
     heroRest:
       'abil loome tootmisest dünaamilise ülevaate, mis aitab vähendada riske, optimeerida protsesse ja teha teadlikumaid otsuseid.',
-    heroButton: 'Räägime projektist',
+    heroButton: 'Räägime projektist :)',
     heroSecondary: 'Vaata teenuseid',
     projectsTitle: 'Projektid',
     projectIntro:
