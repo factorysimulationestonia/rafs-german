@@ -306,6 +306,25 @@ function App() {
     window.history.pushState(null, '', getLanguagePath(nextLanguage));
   };
 
+  const handleContactSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const description = formData.get('description');
+    const subject = language === 'et' ? 'Uus projektipäring' : 'New project inquiry';
+    const body = [
+      `${t.form.name}: ${name}`,
+      `${t.form.email}: ${email}`,
+      '',
+      `${t.form.description}:`,
+      description
+    ].join('\n');
+
+    window.location.href = `mailto:info@factorysimulation.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <div className={`min-h-screen ${darkSurfaceClass} text-white`}>
       <header className="sticky top-0 z-20 flex min-h-16 items-center justify-between gap-8 border-b-3 border-fs-accent bg-black/92 px-6 py-3 backdrop-blur lg:min-h-20 lg:px-[7vw]">
@@ -419,7 +438,7 @@ function App() {
               <h2 className={h2Class}>{t.contactTitle}</h2>
               <p className="text-[clamp(1.5rem,3vw,2.4rem)] leading-tight">{t.contactText}</p>
             </div>
-            <form className="grid gap-4.5" action="mailto:info@factorysimulation.eu" method="post" encType="text/plain">
+            <form className="grid gap-4.5" onSubmit={handleContactSubmit}>
               <label className="grid gap-2">
                 {t.form.name}
                 <input className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black" name="name" autoComplete="name" required />
