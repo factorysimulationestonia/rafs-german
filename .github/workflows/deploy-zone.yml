@@ -37,11 +37,18 @@ jobs:
 
       - name: Deploy to Zone via FTPS
         run: |
+          REMOTE_DIR="${{ secrets.ZONE_FTP_SERVER_DIR }}"
+
+          if [ -z "$REMOTE_DIR" ] || [ "$REMOTE_DIR" = "/" ] || [ "$REMOTE_DIR" = "." ]; then
+            echo "ZONE_FTP_SERVER_DIR must point to the website folder, for example /htdocs/."
+            exit 1
+          fi
+
           lftp -u "${{ secrets.ZONE_FTP_USERNAME }}","${{ secrets.ZONE_FTP_PASSWORD }}" "${{ secrets.ZONE_FTP_SERVER }}" <<EOF
           set ftp:ssl-force true
           set ftp:ssl-protect-data true
           set ssl:verify-certificate true
           set ssl:check-hostname false
-          mirror --reverse --delete --verbose ./dist/ "${{ secrets.ZONE_FTP_SERVER_DIR }}"
+          mirror --reverse --verbose ./dist/ "$REMOTE_DIR"
           bye
           EOF
