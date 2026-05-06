@@ -10,6 +10,8 @@ const h3Class = 'mb-5 text-[clamp(1.35rem,2vw,2rem)] leading-tight font-bold';
 const liClass = 'mb-4 text-[clamp(1rem,1.45vw,1.28rem)] leading-snug';
 const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const basePathPrefix = basePath === '/' ? '' : basePath.replace(/\/$/, '');
+const buildCommit = import.meta.env.VITE_COMMIT_SHA || '5ba3d0d';
+const lastUpdated = import.meta.env.VITE_LAST_UPDATED || '2026-05-06';
 const assetPath = (path) => `${basePath}${path.replace(/^\//, '')}`;
 const iconMask = {
   WebkitMask: `url(${assetPath('/check.svg')}) center / contain no-repeat`,
@@ -25,7 +27,7 @@ const content = {
     heroPrefix: 'Simulatsioonide',
     heroRest:
       'abil loome tootmisest dünaamilise ülevaate, mis aitab vähendada riske, optimeerida protsesse ja teha teadlikumaid otsuseid.',
-    heroButton: 'Räägime projektist :)',
+    heroButton: 'Räägime projektist',
     heroSecondary: 'Vaata teenuseid',
     projectsTitle: 'Projektid',
     projectIntro:
@@ -499,6 +501,7 @@ function App() {
         <div>
           <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
           <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
+          <p className="m-0 text-xs text-white/45">Last updated {lastUpdated} · {buildCommit}</p>
         </div>
         <p className="m-0 text-white/70">Factory Simulation & Digital Twin solutions</p>
       </footer>
