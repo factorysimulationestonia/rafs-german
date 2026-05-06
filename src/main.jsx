@@ -22,11 +22,14 @@ const content = {
   et: {
     languageLabel: 'Switch to English',
     flagSrc: '/en-flag.svg',
-    heroHeadline: 'Kontseptsioonist kindlama investeerimisotsuseni',
+    heroHeadline: 'Kontseptsioonist kindla investeerimisotsuseni',
     nav: ['Projektid', 'Teenused', 'Kontakt', 'Meist'],
-    heroPrefix: 'Simulatsioonide',
-    heroRest:
-      'abil loome tootmisest dünaamilise ülevaate, mis aitab vähendada riske, optimeerida protsesse ja teha teadlikumaid otsuseid.',
+    heroSubline: {
+      start: 'Simulatsioonide abil loome tootmisest dünaamilise ülevaate, mis aitab ',
+      benefits: 'vähendada riske, optimeerida protsesse',
+      middle: ' ja teha ',
+      decisions: 'teadlikke otsuseid'
+    },
     heroButton: 'Räägime projektist',
     heroSecondary: 'Vaata teenuseid',
     projectsTitle: 'Projektid',
@@ -108,24 +111,30 @@ const content = {
     ],
     partnersTitle: 'Partnerid ja võrgustik',
     reseller: 'Ametlik edasimüüja ja integratsioonipartner',
+    wheelmeText: 'Wheel.me on maailma esimene autonoomne ratas, mis muudab iga objekti mobiilseks robotiks',
+    wheelmePrompt: 'Uuri, kuidas wheel.me lahendus sobitub sinu ettevõtte vajadustega',
+    wheelmeButton: 'Võta ühendust',
     contacts: 'Kontakt'
   },
   en: {
     languageLabel: 'Vaheta eesti keelele',
     flagSrc: '/ee-flag.svg',
-    heroHeadline: 'From concept to a more confident investment decision',
+    heroHeadline: 'From concept to a confident investment decision',
     nav: ['Projects', 'Services', 'Contact', 'About'],
-    heroPrefix: 'With simulations',
-    heroRest:
-      'we create a dynamic view of production that helps reduce risk, optimize processes and make more informed decisions.',
-    heroButton: 'Discuss a project',
+    heroSubline: {
+      start: 'With simulations we create a dynamic view of production that helps ',
+      benefits: 'reduce risk, optimize processes',
+      middle: ' and make ',
+      decisions: 'informed decisions'
+    },
+    heroButton: 'Discuss your project',
     heroSecondary: 'View services',
     projectsTitle: 'Projects',
     projectIntro:
       'Selected examples where simulations and digital twins helped validate production plans before physical changes.',
     projects: [
       {
-        title: 'Elevator parts assembly',
+        title: 'Plastics production',
         image: '/project-plastic.svg',
         points: [
           'Earlier project start - planning began long before equipment arrival.',
@@ -135,7 +144,7 @@ const content = {
         ]
       },
       {
-        title: 'Robot cell automation',
+        title: 'Heavy industry',
         image: '/project-heavy.svg',
         points: [
           'Up to 50% faster robot programming - programs built and tested virtually.',
@@ -145,7 +154,7 @@ const content = {
         ]
       },
       {
-        title: 'Protein bar manufacturing process',
+        title: 'Food industry',
         image: '/project-food.svg',
         points: [
           '95% robot utilization - optimized task sequencing boosted equipment use.',
@@ -195,6 +204,9 @@ const content = {
     ],
     partnersTitle: 'Partners and network',
     reseller: 'Official reseller and integration partner',
+    wheelmeText: 'Wheel.me is the world’s first autonomous wheel, which transforms any object into a mobile robot',
+    wheelmePrompt: 'Find out how wheel.me’s solution fits into your business needs',
+    wheelmeButton: 'Contact us',
     contacts: 'Contacts'
   }
 };
@@ -331,7 +343,7 @@ function App() {
     <div className={`min-h-screen ${darkSurfaceClass} text-white`}>
       <header className="sticky top-0 z-20 flex min-h-16 items-center justify-between gap-8 border-b-3 border-fs-accent bg-black/92 px-6 py-3 backdrop-blur lg:min-h-20 lg:px-[7vw]">
         <a className="inline-flex items-center gap-3 no-underline" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
-          <img className="block h-auto w-26 lg:w-32" src={assetPath('/logo.png')} alt="" aria-hidden="true" />
+          <img className="block h-auto w-26 lg:w-32" src={assetPath('/logo.svg')} alt="" aria-hidden="true" />
           <span className="text-lg leading-none font-bold tracking-normal text-white sm:text-xl lg:text-2xl">
             Factory Simulation
           </span>
@@ -382,7 +394,10 @@ function App() {
               {t.heroHeadline}
             </h1>
             <p className="mb-8 max-w-2xl text-left text-[clamp(1.05rem,1.55vw,1.45rem)] leading-snug text-white/82">
-              <span className="text-fs-accent">{t.heroPrefix}</span> {t.heroRest}
+              {t.heroSubline.start}
+              <span className="text-fs-accent">{t.heroSubline.benefits}</span>
+              {t.heroSubline.middle}
+              <span className="text-fs-accent">{t.heroSubline.decisions}</span>.
             </p>
             <div className="flex flex-wrap gap-3.5">
               <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline" href="#contact">
@@ -402,15 +417,15 @@ function App() {
           </div>
           <div className="grid gap-18">
             {t.projects.map((project, index) => (
-              <article className="grid items-start gap-8 border-b border-fs-line pb-16 lg:grid-cols-[minmax(360px,0.85fr)_minmax(320px,1fr)] lg:gap-[7vw]" key={project.title}>
-                <div className="grid gap-7 lg:grid-cols-[minmax(290px,0.58fr)_1fr]">
+              <article className="grid items-start gap-8 border-b border-fs-line pb-16 lg:grid-cols-[minmax(440px,1fr)_minmax(260px,0.58fr)] lg:gap-[5vw] xl:grid-cols-[minmax(560px,1fr)_minmax(300px,0.58fr)]" key={project.title}>
+                <div className="grid gap-7 lg:grid-cols-[minmax(190px,0.38fr)_minmax(260px,1fr)] xl:grid-cols-[minmax(230px,0.42fr)_minmax(320px,1fr)]">
                   <div>
                     <p className="mb-3 font-bold text-fs-accent">0{index + 1}</p>
                     <h3 className={h3Class}>{project.title}</h3>
                   </div>
                   <IconList items={project.points} />
                 </div>
-                <img className="aspect-[1/0.78] w-full object-cover" src={assetPath(project.image)} alt="" />
+                <img className="aspect-[4/5] w-full object-cover xl:aspect-[3/4]" src={assetPath(project.image)} alt="" />
               </article>
             ))}
           </div>
@@ -488,16 +503,27 @@ function App() {
                 ))}
               </div>
               <h3 className={h3Class}>{t.reseller}</h3>
-              <p className="text-[clamp(1rem,1.45vw,1.25rem)] leading-snug text-white/92">
-                AMR lahendus, mis muudab objekti mobiilseks robotiks - <a className="underline" href="https://wheel.me/" target="_blank" rel="noreferrer">wheel.me</a>
-              </p>
+              <div className="grid gap-5 sm:grid-cols-[8rem_1fr] sm:items-start">
+                <a className="flex h-32 items-center justify-center bg-white p-2" href="https://wheel.me/" target="_blank" rel="noreferrer" aria-label="wheel.me">
+                  <img className="max-h-28 w-full object-contain" src={assetPath('/logo-partner-wheelme.png')} alt="wheel.me" />
+                </a>
+                <div>
+                  <p className="mb-3 text-[clamp(1rem,1.45vw,1.25rem)] leading-snug text-white/92">
+                    <span className="text-fs-accent">Wheel.me</span>{t.wheelmeText.replace('Wheel.me', '')}
+                  </p>
+                  <p className="mb-5 text-base leading-snug text-white/70">{t.wheelmePrompt}</p>
+                  <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent px-5 py-3 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href="#contact">
+                    {t.wheelmeButton}
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </main>
 
       <footer className={`grid items-center gap-8 border-t border-fs-line px-6 py-10 lg:grid-cols-[180px_1fr_auto] lg:px-[7vw] ${darkSurfaceClass}`}>
-        <img className="w-40" src={assetPath('/logo.png')} alt="Factory Simulation" />
+        <img className="w-40" src={assetPath('/logo.svg')} alt="Factory Simulation" />
         <div>
           <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
           <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
