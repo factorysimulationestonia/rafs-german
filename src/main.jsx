@@ -22,7 +22,7 @@ const content = {
   et: {
     languageLabel: 'Switch to English',
     flagSrc: '/en-flag.svg',
-    heroHeadline: 'Simuleeri enne, planeeri kindlamalt.',
+    heroHeadline: 'Kontseptsioonist kindlama investeerimisotsuseni',
     nav: ['Projektid', 'Teenused', 'Kontakt', 'Meist'],
     heroPrefix: 'Simulatsioonide',
     heroRest:
@@ -113,7 +113,7 @@ const content = {
   en: {
     languageLabel: 'Vaheta eesti keelele',
     flagSrc: '/ee-flag.svg',
-    heroHeadline: 'Simulate first, plan with confidence.',
+    heroHeadline: 'From concept to a more confident investment decision',
     nav: ['Projects', 'Services', 'Contact', 'About'],
     heroPrefix: 'With simulations',
     heroRest:
