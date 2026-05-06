@@ -1,0 +1,46 @@
+name: Deploy to Zone
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: zone-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          BASE_PATH: /
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy to Zone via FTPS
+        run: |
+          lftp -u "${{ secrets.ZONE_FTP_USERNAME }}","${{ secrets.ZONE_FTP_PASSWORD }}" "${{ secrets.ZONE_FTP_SERVER }}" <<EOF
+          set ftp:ssl-force true
+          set ftp:ssl-protect-data true
+          set ssl:verify-certificate true
+          mirror --reverse --delete --verbose ./dist/ "${{ secrets.ZONE_FTP_SERVER_DIR }}"
+          bye
+          EOF
