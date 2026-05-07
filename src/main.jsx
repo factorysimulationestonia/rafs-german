@@ -23,7 +23,7 @@ const content = {
     languageLabel: 'Switch to English',
     flagSrc: '/en-flag.svg',
     heroHeadline: 'Kontseptsioonist kindla investeerimisotsuseni',
-    nav: ['Projektid', 'Teenused', 'Meist', 'Uudised & blogi', 'Wheel.me'],
+    nav: ['Projektid', 'Teenused', 'Meist', 'Uudised', 'Wheel.me'],
     heroSubline: {
       start: 'Simulatsioonide abil loome tootmisest dünaamilise ülevaate, mis aitab ',
       benefits: 'vähendada riske, optimeerida protsesse',
@@ -141,6 +141,7 @@ const content = {
     wheelmeText: 'Wheel.me on maailma esimene autonoomne ratas, mis muudab iga objekti mobiilseks robotiks',
     wheelmePrompt: 'Uuri, kuidas wheel.me lahendus sobitub sinu ettevõtte vajadustega',
     wheelmeButton: 'Võta ühendust',
+    wheelmeLearnMore: 'Uuri lähemalt',
     wheelmePage: {
       title: 'Wheel.me autonoomne siselogistika',
       breadcrumb: 'Wheel.me',
@@ -167,13 +168,14 @@ const content = {
       images: {
         hero: '/wheelme/wheelme_0792.jpg',
         detail: '/wheelme/_dsc3066.jpg',
-        concept: '/wheelme/wheelme1.png'
+        concept: '/wheelme/wheelme1.png',
+        power: '/wheelme/power station close by.jpg'
       }
     },
     contacts: 'Kontakt',
-    blogTitle: 'Uudised & blogi',
+    blogTitle: 'Uudised',
     breadcrumbHome: 'Avaleht',
-    breadcrumbBlog: 'Blogi',
+    breadcrumbBlog: 'Uudised',
     blogIntro:
       'Lühikesed lood simulatsioonidest, tootmise planeerimisest, partnerlustest ja projektidest, kus oleme kaasatud olnud.',
     blogPosts: [
@@ -341,6 +343,7 @@ const content = {
     wheelmeText: 'Wheel.me is the world’s first autonomous wheel, which transforms any object into a mobile robot',
     wheelmePrompt: 'Find out how wheel.me’s solution fits into your business needs',
     wheelmeButton: 'Contact us',
+    wheelmeLearnMore: 'Learn more',
     wheelmePage: {
       title: 'Wheel.me autonomous internal logistics',
       breadcrumb: 'Wheel.me',
@@ -367,13 +370,14 @@ const content = {
       images: {
         hero: '/wheelme/wheelme_0792.jpg',
         detail: '/wheelme/_dsc3066.jpg',
-        concept: '/wheelme/wheelme1.png'
+        concept: '/wheelme/wheelme1.png',
+        power: '/wheelme/power station close by.jpg'
       }
     },
     contacts: 'Contacts',
-    blogTitle: 'News & Blog',
+    blogTitle: 'News',
     breadcrumbHome: 'Home',
-    breadcrumbBlog: 'Blog',
+    breadcrumbBlog: 'News',
     blogIntro:
       'Short updates on simulations, production planning, partnerships and use cases where we have been involved.',
     blogPosts: [
@@ -619,7 +623,45 @@ function BlogPage({ t, language }) {
   );
 }
 
-function WheelmePage({ t, language }) {
+function InstagramIcon() {
+  return (
+    <svg className="size-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="2" />
+      <circle cx="16.8" cy="7.2" r="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+function TiktokIcon() {
+  return (
+    <svg className="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M15.8 3c.4 2.6 1.8 4.2 4.2 4.5v3.3a7.7 7.7 0 0 1-4.2-1.3v5.9c0 3.2-2.2 5.6-5.5 5.6A5.3 5.3 0 0 1 5 15.7c0-3.4 2.8-5.8 6.2-5.3v3.4c-1.4-.4-2.8.4-2.8 1.9a1.9 1.9 0 0 0 2 1.9c1.2 0 2.1-.8 2.1-2.3V3h3.3Z" />
+    </svg>
+  );
+}
+
+const socialLinks = [
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/factory-simulation/', Icon: LinkedinIcon },
+  { name: 'Instagram', href: 'https://www.instagram.com/factorysimulation', Icon: InstagramIcon },
+  { name: 'TikTok', href: 'https://www.tiktok.com/@factorysimulation', Icon: TiktokIcon }
+];
+
+function ZoomImage({ src, className = '', imageClassName = '', onOpenImage }) {
+  return (
+    <button className={`relative block cursor-zoom-in border-0 bg-transparent p-0 ${className}`} type="button" onClick={() => onOpenImage(src)}>
+      <img className={imageClassName} src={assetPath(src)} alt="" />
+      <span className="absolute right-2 bottom-2 grid size-8 place-items-center text-black drop-shadow-[0_1px_2px_rgba(255,255,255,0.65)]" aria-hidden="true">
+        <svg className="size-4.5" viewBox="0 0 24 24" fill="none">
+          <path d="m20 20-4.2-4.2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <circle cx="10.8" cy="10.8" r="5.8" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      </span>
+    </button>
+  );
+}
+
+function WheelmePage({ t, language, onContactClick, onOpenImage }) {
   return (
     <>
       <section className={`${sectionClass} pb-12 lg:pb-20`}>
@@ -639,7 +681,7 @@ function WheelmePage({ t, language }) {
             <p className="mb-8 text-[clamp(1.15rem,1.75vw,1.55rem)] leading-relaxed text-white/78">{t.wheelmePage.intro}</p>
             <p className="mb-6 max-w-2xl text-[clamp(1.15rem,1.75vw,1.55rem)] leading-relaxed text-white/78">{t.wheelmePage.resellerText}</p>
             <div className="flex flex-wrap items-center gap-4">
-              <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline transition hover:bg-white" href={getPagePath(language, 'home', '#contact')}>
+              <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline transition hover:bg-white" href={getPagePath(language, 'home', '#contact')} onClick={onContactClick}>
                 {t.wheelmePage.ctaButton}
               </a>
               <div className="inline-flex min-h-12 items-center gap-3 border border-white/18 bg-black/50 px-4 py-2">
@@ -670,9 +712,16 @@ function WheelmePage({ t, language }) {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-[minmax(0,0.4fr)_minmax(0,0.4fr)]">
-          <img className="aspect-[4/5] w-full object-cover" src={assetPath(t.wheelmePage.images.detail)} alt="" />
-          <img className="h-full min-h-80 w-full object-cover" src={assetPath(t.wheelmePage.images.concept)} alt="" />
+        <div className="mt-14 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {[t.wheelmePage.images.detail, t.wheelmePage.images.concept, t.wheelmePage.images.power].map((image) => (
+            <ZoomImage
+              className="w-full"
+              imageClassName={`aspect-[4/3] max-h-72 w-full object-cover ${image === t.wheelmePage.images.concept ? 'object-bottom' : ''}`}
+              src={image}
+              onOpenImage={onOpenImage}
+              key={image}
+            />
+          ))}
         </div>
       </section>
 
@@ -683,7 +732,7 @@ function WheelmePage({ t, language }) {
             <p className="max-w-3xl text-[clamp(1.1rem,1.6vw,1.45rem)] leading-snug">{t.wheelmePage.ctaText}</p>
           </div>
           <div className="flex flex-wrap items-center gap-4 lg:justify-end">
-            <a className="inline-flex min-h-14 items-center justify-center bg-black px-6 py-3 font-bold text-white no-underline" href={getPagePath(language, 'home', '#contact')}>
+            <a className="inline-flex min-h-14 items-center justify-center bg-black px-6 py-3 font-bold text-white no-underline" href={getPagePath(language, 'home', '#contact')} onClick={onContactClick}>
               {t.wheelmePage.ctaButton}
             </a>
             <div className="inline-flex min-h-14 items-center gap-3 border border-black/35 px-4 py-2">
@@ -789,6 +838,16 @@ function App() {
     window.history.pushState(null, '', getPagePath(nextLanguage, route, route === 'home' ? window.location.hash : ''));
   };
 
+  const navigateToContact = (event) => {
+    event.preventDefault();
+    setMenuOpen(false);
+    setRoute('home');
+    window.history.pushState(null, '', getPagePath(language, 'home', '#contact'));
+    window.setTimeout(() => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }, 0);
+  };
+
   const handleContactSubmit = (event) => {
     event.preventDefault();
 
@@ -860,7 +919,7 @@ function App() {
           <a
             className="mt-3 inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent bg-fs-accent px-4 py-2 font-bold text-black no-underline transition hover:bg-white lg:mt-0"
             href={getPagePath(language, 'home', '#contact')}
-            onClick={() => setMenuOpen(false)}
+            onClick={navigateToContact}
           >
             {t.contactButton}
           </a>
@@ -869,7 +928,7 @@ function App() {
 
       <main id="top">
         {route === 'wheelme' ? (
-          <WheelmePage t={t} language={language} />
+          <WheelmePage t={t} language={language} onContactClick={navigateToContact} onOpenImage={setLightboxImage} />
         ) : route === 'blog' ? (
           <BlogPage t={t} language={language} />
         ) : (
@@ -988,17 +1047,17 @@ function App() {
                 ))}
               </div>
               <h3 className={h3Class}>{t.reseller}</h3>
-              <div className="grid gap-5 sm:grid-cols-[8rem_1fr] sm:items-start lg:max-w-3xl">
-                <a className="flex h-32 items-center justify-center bg-white p-2" href="https://wheel.me/" target="_blank" rel="noreferrer" aria-label="wheel.me">
-                  <img className="max-h-28 w-full object-contain" src={assetPath('/logo-partner-wheelme.png')} alt="wheel.me" />
+              <div className="grid gap-5 sm:grid-cols-[12rem_1fr] sm:items-start lg:max-w-4xl">
+                <a className="flex h-48 items-center justify-center border border-white/18 bg-black/50 p-4" href={getPagePath(language, 'wheelme')} aria-label="wheel.me">
+                  <img className="max-h-30 w-full object-contain" src={assetPath('/wheelme/wheel.me_logo_white.png')} alt="wheel.me" />
                 </a>
                 <div>
                   <p className="mb-3 text-[clamp(1rem,1.45vw,1.25rem)] leading-snug text-white/92">
                     <span className="text-fs-accent">Wheel.me</span>{t.wheelmeText.replace('Wheel.me', '')}
                   </p>
                   <p className="mb-5 text-base leading-snug text-white/70">{t.wheelmePrompt}</p>
-                  <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent px-5 py-3 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href="#contact">
-                    {t.wheelmeButton}
+                  <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent px-5 py-3 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href={getPagePath(language, 'wheelme')}>
+                    {t.wheelmeLearnMore}
                   </a>
                 </div>
               </div>
@@ -1038,9 +1097,25 @@ function App() {
         <div>
           <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
           <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
-          <p className="m-0 text-xs text-white/45">Last updated {lastUpdated} · {buildCommit}</p>
+          <div className="mt-4 flex gap-2" aria-label="Social media">
+            {socialLinks.map(({ name, href, Icon }) => (
+              <a
+                className="grid size-8 place-items-center border border-fs-accent/55 text-fs-accent transition hover:border-white/70 hover:text-white"
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={name}
+                key={name}
+              >
+                <Icon />
+              </a>
+            ))}
+          </div>
         </div>
-        <p className="m-0 text-white/70">Factory Simulation & Digital Twin solutions</p>
+        <div>
+          <p className="m-0 text-white/70">Factory Simulation & Digital Twin solutions</p>
+          <p className="mt-2 mb-0 text-xs text-white/45">Last updated {lastUpdated} · {buildCommit}</p>
+        </div>
       </footer>
       <ImageLightbox image={lightboxImage} onClose={() => setLightboxImage(null)} />
     </div>
