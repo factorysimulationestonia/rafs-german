@@ -23,7 +23,7 @@ const content = {
     languageLabel: 'Switch to English',
     flagSrc: '/en-flag.svg',
     heroHeadline: 'Kontseptsioonist kindla investeerimisotsuseni',
-    nav: ['Projektid', 'Teenused', 'Kontakt', 'Meist', 'Uudised & blogi'],
+    nav: ['Projektid', 'Teenused', 'Meist', 'Uudised & blogi'],
     heroSubline: {
       start: 'Simulatsioonide abil loome tootmisest dünaamilise ülevaate, mis aitab ',
       benefits: 'vähendada riske, optimeerida protsesse',
@@ -32,6 +32,7 @@ const content = {
     },
     heroButton: 'Räägime projektist',
     heroSecondary: 'Vaata teenuseid',
+    contactButton: 'Võta ühendust',
     projectsTitle: 'Projektid',
     projectIntro:
       'Valik näiteid, kus simulatsioonid ja dünaamilised simulatsioonid on aidanud tootmist enne füüsilisi muudatusi valideerida.',
@@ -43,7 +44,7 @@ const content = {
           'Koosteliini simulatsioon - pistikupesade kokkupanek, testimine ja pakendamine modelleeritud.',
           'Uue testeri integreerimine - mõju tootmisele hinnatud enne investeeringut.',
           'Tsükliaja analüüs - simuleeritud mitmeid tootmisstsenaariume.',
-          'Parem sisend hinnapäringuks - tugevam alus seadmetarnijate pakkumisteks.'
+          'Parem sisend hinnapäringuks – tugev alus seadmetarnijate pakkumisteks.'
         ]
       },
       {
@@ -131,7 +132,7 @@ const content = {
     aboutTitle: 'Meist',
     teamTitle: 'Meeskond',
     team: [
-      { name: 'Steven', role: 'Tegevjuht', credentials: 'Mehaanikainsener (BSc)', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
+      { name: 'Steven', role: 'Tegevjuht', credentials: 'Mehaanikainsener (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
       { name: 'Hans', role: 'Simulatsiooniinsener', credentials: 'Tööstustehnika ja juhtimine (MSc)' },
       { name: 'Markus', role: 'Projektijuht', credentials: 'Robootika ja automaatikainsener (MSc)' }
     ],
@@ -145,35 +146,52 @@ const content = {
     breadcrumbHome: 'Avaleht',
     breadcrumbBlog: 'Blogi',
     blogIntro:
-      'Lühikesed lood simulatsioonidest, tootmise planeerimisest, partnerlustest ja projektidest, kus virtuaalne valideerimine aitab teha kindlamaid otsuseid.',
+      'Lühikesed lood simulatsioonidest, tootmise planeerimisest, partnerlustest ja projektidest, kus virtuaalne valideerimine aitab teha kindlad otsused.',
     blogPosts: [
       {
-        title: 'Millal tasub tootmisliini enne investeeringut simuleerida?',
-        category: 'Planeerimine',
-        image: '/project-plastic.png',
+        title: 'Tööstusrobotite programmeerimise ja masinnägemise koolitus',
+        category: 'Koolitus',
+        date: '19.02 · 26.02 · 05.03 · 12.04',
+        sortDate: '2026-04-12',
+        image: '/blog/news1.jpg',
         excerpt:
-          'Simulatsioon aitab hinnata tootmismahte, pudelikaelu ja seadmete mõju enne, kui füüsilised muudatused muutuvad kalliks.'
+          'Läbisime praktilise koolitusprogrammi teemadel tööstusrobotite programmeerimine (offline & online) ning masinnägemise lahenduste rakendamine tootmises. Koolitus keskendus robotite programmeerimisele ja vision-süsteemide kasutamisele automatiseeritud tootmisprotsessides.'
       },
       {
-        title: '3D laserskaneerimine annab tehase planeerimisele täpse lähtepunkti',
-        category: '3D mudelid',
-        image: '/project-heavy.png',
+        title: 'Smart Industry konverents 2026',
+        category: 'Konverents',
+        date: '19.03',
+        sortDate: '2026-03-19',
+        image: '/blog/news2.jpg',
         excerpt:
-          'Olemasoleva tootmiskeskkonna mõõdistuspõhine mudel loob parema aluse paigutuste, logistika ja uute seadmete kavandamiseks.'
+          'Osalesime Smart Industry konverentsil, kus arutati tööstuse digitaliseerimise, automatiseerimise ja tulevikulahenduste teemadel. Üritusel kuulutati välja ka „Aasta Tehas 2026“.'
       },
       {
-        title: 'AGV ja AMR lahendused vajavad enne kasutuselevõttu head voomudelit',
-        category: 'Laologistika',
-        image: '/project-logistics.png',
+        title: 'wheel.me tehasekülastus ja koolitus Norras',
+        category: 'Partnerlus',
+        date: '06.04 – 07.04',
+        sortDate: '2026-04-07',
+        image: '/blog/news3.jpeg',
         excerpt:
-          'Autonoomse transpordi väärtus ei tule ainult kiirusest, vaid sellest, kuidas liikumised sobituvad kogu tootmisvooga.'
+          'Külastasime wheel.me tootmisüksust Norras ning osalesime tehnilisel koolitusel autonoomsete mobiilsete robotlahenduste teemal. Tutvusime süsteemide praktiliste kasutusvõimaluste, seadistamise ja erinevate tööstuslike rakendustega.'
       },
       {
-        title: 'Digitaalne mudel aitab keerulist tootmist lihtsalt selgitada',
-        category: 'Use case',
-        image: '/project-pellet.png',
+        title: 'Soome–Eesti masinatööstuse seminar',
+        category: 'Seminar',
+        date: '22.04',
+        sortDate: '2026-04-22',
+        image: '/blog/news4.jpeg',
         excerpt:
-          '3D ülevaade muudab protsessid arusaadavamaks nii juhtkonnale, tootmisele kui ka partneritele.'
+          'Osalesime Soome ja Eesti lehtmetallipäevade raames toimunud masinatööstuse seminaril ja võrgustumisüritusel. Päeva jooksul arutati koostöövõimalusi, tööstuse arengusuundi ning jagati praktilisi kogemusi tootmisvaldkonnast.'
+      },
+      {
+        title: 'Eesti Masinatööstuse Liidu 90. aastapäeva üritus',
+        category: 'Võrgustik',
+        date: '06.05',
+        sortDate: '2026-05-06',
+        image: '/blog/news5.jpg',
+        excerpt:
+          'Osalesime Eesti Masinatööstuse Liidu 90. aastapäeva üritusel, kus kohtusid EML-i liikmed, partnerid ning valdkonna esindajad. Üritus keskendus sektori arengule ja koostööle.'
       }
     ]
   },
@@ -181,7 +199,7 @@ const content = {
     languageLabel: 'Vaheta eesti keelele',
     flagSrc: '/ee-flag.svg',
     heroHeadline: 'From concept to a confident investment decision',
-    nav: ['Projects', 'Services', 'Contact', 'About', 'News & Blog'],
+    nav: ['Projects', 'Services', 'About', 'News & Blog'],
     heroSubline: {
       start: 'With simulations we create a dynamic view of production that helps ',
       benefits: 'reduce risk, optimize processes',
@@ -190,6 +208,7 @@ const content = {
     },
     heroButton: 'Discuss your project',
     heroSecondary: 'View services',
+    contactButton: 'Contact us',
     projectsTitle: 'Projects',
     projectIntro:
       'Selected examples where simulations and dynamic simulations helped validate production plans before physical changes.',
@@ -284,7 +303,7 @@ const content = {
     aboutTitle: 'About',
     teamTitle: 'Team',
     team: [
-      { name: 'Steven', role: 'CEO', credentials: 'Mechanical engineer (BSc)', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
+      { name: 'Steven', role: 'CEO', credentials: 'Mechanical engineer (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
       { name: 'Hans', role: 'Simulation engineer', credentials: 'Industrial engineering and management (MSc)' },
       { name: 'Markus', role: 'Project manager', credentials: 'Robotics and automation engineer (MSc)' }
     ],
@@ -301,38 +320,55 @@ const content = {
       'Short updates on simulations, production planning, partnerships and use cases where virtual validation helps teams make more confident decisions.',
     blogPosts: [
       {
-        title: 'When should a production line be simulated before investment?',
-        category: 'Planning',
-        image: '/project-plastic.png',
+        title: 'Industrial robot programming and machine vision training',
+        category: 'Training',
+        date: '19.02 · 26.02 · 05.03 · 12.04',
+        sortDate: '2026-04-12',
+        image: '/blog/news1.jpg',
         excerpt:
-          'Simulation helps evaluate volumes, bottlenecks and equipment impact before physical changes become expensive.'
+          'We completed a practical training program covering industrial robot programming (offline and online) and the application of machine vision solutions in production. The training focused on robot programming and the use of vision systems in automated production processes.'
       },
       {
-        title: '3D laser scanning creates a reliable starting point for factory planning',
-        category: '3D models',
-        image: '/project-heavy.png',
+        title: 'Smart Industry Conference 2026',
+        category: 'Conference',
+        date: '19.03',
+        sortDate: '2026-03-19',
+        image: '/blog/news2.jpg',
         excerpt:
-          'A measurement-based model of the existing production environment gives layout, logistics and equipment planning a stronger foundation.'
+          'We attended the Smart Industry conference, where industrial digitalization, automation and future solutions were discussed. The event also included the announcement of “Factory of the Year 2026”.'
       },
       {
-        title: 'AGV and AMR solutions need a strong flow model before deployment',
-        category: 'Warehouse logistics',
-        image: '/project-logistics.png',
+        title: 'wheel.me factory visit and training in Norway',
+        category: 'Partnership',
+        date: '06.04 – 07.04',
+        sortDate: '2026-04-07',
+        image: '/blog/news3.jpeg',
         excerpt:
-          'The value of autonomous transport comes not only from speed, but from how well movement fits the full production flow.'
+          'We visited wheel.me’s production facility in Norway and took part in technical training on autonomous mobile robot solutions. The visit covered practical use cases, configuration and different industrial applications.'
       },
       {
-        title: 'A digital model makes complex production easier to explain',
-        category: 'Use case',
-        image: '/project-pellet.png',
+        title: 'Finnish–Estonian machinery industry seminar',
+        category: 'Seminar',
+        date: '22.04',
+        sortDate: '2026-04-22',
+        image: '/blog/news4.jpeg',
         excerpt:
-          'A 3D overview makes processes easier to understand for management, production teams and partners.'
+          'We participated in a machinery industry seminar and networking event held as part of the Finnish and Estonian Sheet Metal Days. The day focused on cooperation opportunities, industry development trends and practical production experience.'
+      },
+      {
+        title: '90th anniversary event of the Federation of Estonian Engineering Industry',
+        category: 'Network',
+        date: '06.05',
+        sortDate: '2026-05-06',
+        image: '/blog/news5.jpg',
+        excerpt:
+          'We attended the 90th anniversary event of the Federation of Estonian Engineering Industry, bringing together EML members, partners and industry representatives. The event focused on sector development and cooperation.'
       }
     ]
   }
 };
 
-const anchors = ['projects', 'services', 'contact', 'about', 'blog'];
+const anchors = ['projects', 'services', 'about', 'blog'];
 const languages = ['et', 'en'];
 
 const getPathWithoutBase = () => {
@@ -501,20 +537,23 @@ function BlogPage({ t, language }) {
       </div>
 
       <div className="grid gap-8 xl:grid-cols-2">
-        {t.blogPosts.map((post, index) => (
+        {[...t.blogPosts].sort((first, second) => second.sortDate.localeCompare(first.sortDate)).map((post, index) => (
           <article
-            className="grid overflow-hidden bg-white text-black shadow-2xl shadow-black/25 md:grid-cols-[0.95fr_1.05fr]"
+            className="grid overflow-hidden bg-white text-black shadow-2xl shadow-black/25 md:grid-cols-[0.95fr_minmax(0,1.05fr)]"
             key={post.title}
           >
             <div className="flex min-h-80 flex-col justify-between p-7 sm:p-9">
               <div>
-                <p className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent">{post.category}</p>
+                <div className="mb-6 grid gap-1 text-xs font-bold uppercase tracking-[0.18em]">
+                  <p className="m-0 text-fs-accent">{post.category}</p>
+                  <p className="m-0 text-fs-panel/45">{post.date}</p>
+                </div>
                 <h2 className="mb-6 text-[clamp(1.25rem,2vw,1.85rem)] leading-tight font-bold text-fs-panel">{post.title}</h2>
                 <p className="text-base leading-relaxed text-fs-panel/78">{post.excerpt}</p>
               </div>
               <p className="mt-10 text-sm font-bold text-fs-panel/45">0{index + 1}</p>
             </div>
-            <img className="h-full min-h-72 w-full object-cover" src={assetPath(post.image)} alt="" />
+            <img className="block h-full min-h-72 w-full object-cover" src={assetPath(post.image)} alt="" />
           </article>
         ))}
       </div>
@@ -535,7 +574,8 @@ function App() {
         const anchor = anchors[index];
         return {
           label,
-          href: anchor === 'blog' ? getPagePath(language, 'blog') : getPagePath(language, 'home', `#${anchor}`)
+          href: anchor === 'blog' ? getPagePath(language, 'blog') : getPagePath(language, 'home', `#${anchor}`),
+          featured: anchor === 'blog'
         };
       }),
     [language, t]
@@ -629,7 +669,7 @@ function App() {
       <header className="sticky top-0 z-20 flex min-h-16 items-center justify-between gap-8 border-b-3 border-fs-accent bg-black/92 px-6 py-3 backdrop-blur lg:min-h-20 lg:px-[7vw]">
         <a className="inline-flex items-center gap-3 no-underline" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
           <img className="block h-auto w-26 lg:w-32" src={assetPath('/logo.svg')} alt="" aria-hidden="true" />
-          <span className="text-lg leading-none font-bold tracking-normal text-white sm:text-xl lg:text-2xl">
+          <span className="text-lg leading-none font-bold italic tracking-normal text-white sm:text-xl lg:text-2xl">
             Factory Simulation
           </span>
         </a>
@@ -651,7 +691,16 @@ function App() {
           aria-label="Main navigation"
         >
           {navItems.map((item) => (
-            <a className="flex min-h-10 items-center py-3 no-underline transition hover:text-fs-accent lg:py-0" key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+            <a
+              className={`flex min-h-10 items-center py-3 no-underline transition hover:text-fs-accent lg:py-0 ${
+                item.featured
+                  ? 'relative text-white after:absolute after:right-0 after:bottom-2.5 after:left-0 after:h-px after:bg-gradient-to-r after:from-fs-accent after:via-fs-accent/70 after:to-transparent lg:after:bottom-1'
+                  : ''
+              }`}
+              key={item.href}
+              href={item.href}
+              onClick={() => setMenuOpen(false)}
+            >
               {item.label}
             </a>
           ))}
@@ -664,6 +713,13 @@ function App() {
           >
             <img className="h-5 w-7 object-cover" src={assetPath(t.flagSrc)} alt="" aria-hidden="true" />
           </button>
+          <a
+            className="mt-3 inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent bg-fs-accent px-4 py-2 font-bold text-black no-underline transition hover:bg-white lg:mt-0"
+            href={getPagePath(language, 'home', '#contact')}
+            onClick={() => setMenuOpen(false)}
+          >
+            {t.contactButton}
+          </a>
         </nav>
       </header>
 
@@ -738,6 +794,72 @@ function App() {
           </div>
         </section>
 
+        <section className={`${sectionClass} min-h-[76vh] ${darkSurfaceClass}`} id="about">
+          <h2 className={h2Class}>{t.aboutTitle}</h2>
+          <div className="max-w-7xl">
+            <h3 className={h3Class}>{t.teamTitle}</h3>
+            <div className="grid max-w-5xl gap-8 md:grid-cols-3 md:justify-between">
+              {t.team.map((person) => (
+                <article className="group md:max-w-64" key={person.name}>
+                  <div className="mb-5 aspect-[4/5] max-w-48 overflow-hidden border border-fs-accent/35 bg-fs-panel sm:max-w-56 md:max-w-none">
+                    {person.image ? (
+                      <img className="h-full w-full object-cover grayscale transition duration-300 group-hover:grayscale-0" src={assetPath(person.image)} alt={person.name} />
+                    ) : (
+                      <div className="grid h-full place-items-center bg-fs-accent/10 text-fs-accent">
+                        <PersonIcon />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex items-start justify-between gap-4 border-t border-fs-line pt-4">
+                    <div>
+                      <h4 className="mb-1 text-2xl font-semibold leading-tight text-white">{person.name}</h4>
+                      <p className="mb-2 text-base font-medium leading-snug text-fs-accent">{person.role}</p>
+                      <p className="m-0 text-sm leading-snug text-white/72">{person.credentials}</p>
+                    </div>
+                    {person.linkedin && (
+                      <a
+                        className="grid size-8 shrink-0 place-items-center border border-fs-accent/55 text-fs-accent transition hover:border-white/70 hover:text-white"
+                        href={person.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`${person.name} LinkedIn`}
+                      >
+                        <LinkedinIcon />
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-20 border-t border-fs-line pt-14 lg:mt-28 lg:pt-18">
+              <h3 className={h3Class}>{t.partnersTitle}</h3>
+              <div className="my-7 grid grid-cols-2 items-center gap-4.5 lg:grid-cols-4" aria-label={t.partnersTitle}>
+                {partners.map((partner) => (
+                  <div className={`flex min-h-32 items-center justify-center p-2 ${partner.bare ? 'bg-transparent' : 'bg-white'}`} key={partner.name}>
+                    <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain`} src={assetPath(partner.logo)} alt={partner.name} />
+                  </div>
+                ))}
+              </div>
+              <h3 className={h3Class}>{t.reseller}</h3>
+              <div className="grid gap-5 sm:grid-cols-[8rem_1fr] sm:items-start lg:max-w-3xl">
+                <a className="flex h-32 items-center justify-center bg-white p-2" href="https://wheel.me/" target="_blank" rel="noreferrer" aria-label="wheel.me">
+                  <img className="max-h-28 w-full object-contain" src={assetPath('/logo-partner-wheelme.png')} alt="wheel.me" />
+                </a>
+                <div>
+                  <p className="mb-3 text-[clamp(1rem,1.45vw,1.25rem)] leading-snug text-white/92">
+                    <span className="text-fs-accent">Wheel.me</span>{t.wheelmeText.replace('Wheel.me', '')}
+                  </p>
+                  <p className="mb-5 text-base leading-snug text-white/70">{t.wheelmePrompt}</p>
+                  <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent px-5 py-3 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href="#contact">
+                    {t.wheelmeButton}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="bg-fs-accent px-5 py-20 text-black sm:px-8 lg:px-[10vw] lg:py-34" id="contact">
           <div className="grid items-start gap-10 lg:grid-cols-[minmax(260px,0.8fr)_minmax(320px,560px)] lg:gap-[8vw]">
             <div>
@@ -759,67 +881,6 @@ function App() {
               </label>
               <button className="min-h-14 w-32 cursor-pointer border-0 bg-black text-fs-accent" type="submit">{t.form.send}</button>
             </form>
-          </div>
-        </section>
-
-        <section className={`${sectionClass} min-h-[76vh] ${darkSurfaceClass}`} id="about">
-          <h2 className={h2Class}>{t.aboutTitle}</h2>
-          <div className="grid max-w-6xl gap-12 lg:grid-cols-[minmax(280px,0.72fr)_1fr] lg:gap-[8vw]">
-            <div>
-              <h3 className={h3Class}>{t.teamTitle}</h3>
-              <div className="grid gap-4">
-                {t.team.map((person) => (
-                  <article className="grid grid-cols-[4.25rem_1fr] items-center gap-5" key={person.name}>
-                    <div className="grid size-17 place-items-center rounded-full border border-fs-accent/60 bg-fs-accent/12 text-fs-accent">
-                      <PersonIcon />
-                    </div>
-                    <div>
-                      <div className="mb-1 flex items-center gap-2">
-                        <h4 className="text-xl font-semibold leading-tight text-white">{person.name}</h4>
-                        {person.linkedin && (
-                          <a
-                            className="grid size-5 place-items-center border border-fs-accent/55 text-fs-accent transition hover:border-white/70 hover:text-white"
-                            href={person.linkedin}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label={`${person.name} LinkedIn`}
-                          >
-                            <LinkedinIcon />
-                          </a>
-                        )}
-                      </div>
-                      <p className="mb-1 text-base font-medium leading-snug text-fs-accent">{person.role}</p>
-                      <p className="m-0 text-sm leading-snug text-white/72">{person.credentials}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className={h3Class}>{t.partnersTitle}</h3>
-              <div className="my-7 grid grid-cols-2 items-center gap-4.5 lg:grid-cols-4" aria-label={t.partnersTitle}>
-                {partners.map((partner) => (
-                  <div className={`flex min-h-32 items-center justify-center p-2 ${partner.bare ? 'bg-transparent' : 'bg-white'}`} key={partner.name}>
-                    <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain`} src={assetPath(partner.logo)} alt={partner.name} />
-                  </div>
-                ))}
-              </div>
-              <h3 className={h3Class}>{t.reseller}</h3>
-              <div className="grid gap-5 sm:grid-cols-[8rem_1fr] sm:items-start">
-                <a className="flex h-32 items-center justify-center bg-white p-2" href="https://wheel.me/" target="_blank" rel="noreferrer" aria-label="wheel.me">
-                  <img className="max-h-28 w-full object-contain" src={assetPath('/logo-partner-wheelme.png')} alt="wheel.me" />
-                </a>
-                <div>
-                  <p className="mb-3 text-[clamp(1rem,1.45vw,1.25rem)] leading-snug text-white/92">
-                    <span className="text-fs-accent">Wheel.me</span>{t.wheelmeText.replace('Wheel.me', '')}
-                  </p>
-                  <p className="mb-5 text-base leading-snug text-white/70">{t.wheelmePrompt}</p>
-                  <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent px-5 py-3 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href="#contact">
-                    {t.wheelmeButton}
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
           </>
