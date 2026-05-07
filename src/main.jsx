@@ -23,7 +23,7 @@ const content = {
     languageLabel: 'Switch to English',
     flagSrc: '/en-flag.svg',
     heroHeadline: 'Kontseptsioonist kindla investeerimisotsuseni',
-    nav: ['Projektid', 'Teenused', 'Meist', 'Uudised & blogi'],
+    nav: ['Projektid', 'Teenused', 'Meist', 'Uudised & blogi', 'Wheel.me'],
     heroSubline: {
       start: 'Simulatsioonide abil loome tootmisest dünaamilise ülevaate, mis aitab ',
       benefits: 'vähendada riske, optimeerida protsesse',
@@ -133,7 +133,7 @@ const content = {
     teamTitle: 'Meeskond',
     team: [
       { name: 'Steven', role: 'Tegevjuht', credentials: 'Mehaanikainsener (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
-      { name: 'Hans', role: 'Simulatsiooniinsener', credentials: 'Tööstustehnika ja juhtimine (MSc)' },
+      { name: 'Hans', role: 'Simulatsiooniinsener', credentials: 'Tööstustehnika ja juhtimine (MSc)', image: '/team/hans.jpg', linkedin: 'https://www.linkedin.com/in/hjerikson/'  },
       { name: 'Markus', role: 'Projektijuht', credentials: 'Robootika ja automaatikainsener (MSc)' }
     ],
     partnersTitle: 'Partnerid ja võrgustik',
@@ -141,6 +141,35 @@ const content = {
     wheelmeText: 'Wheel.me on maailma esimene autonoomne ratas, mis muudab iga objekti mobiilseks robotiks',
     wheelmePrompt: 'Uuri, kuidas wheel.me lahendus sobitub sinu ettevõtte vajadustega',
     wheelmeButton: 'Võta ühendust',
+    wheelmePage: {
+      title: 'Wheel.me autonoomne siselogistika',
+      breadcrumb: 'Wheel.me',
+      resellerText: 'Factory Simulation on esimene ametlik Wheel.me edasimüüja ja integratsioonipartner Eestis.',
+      intro:
+        'Wheel.me autonoomne mobiilsete robotite lahendus võimaldab muuta olemasolevad kärud, riiulid, tööpingid ja muud siselogistika seadmed nutikateks iseliikuvateks robotiteks.',
+      paragraphs: [
+        'Süsteem aitab automatiseerida materjalide transporti tootmises ja laos ilma keerukate konveierite või spetsiaalsete AMR-kärude vajaduseta.',
+        'Wheel.me robotid liiguvad autonoomselt eelnevalt kaardistatud keskkonnas, väldivad takistusi ning võimaldavad luua paindliku ja skaleeritava siselogistika lahenduse. Süsteem sobib tootmisettevõtetele, kes soovivad vähendada manuaalset transporti, optimeerida töövooge ja parandada materjalivoo stabiilsust.',
+        'Koos simulatsioonide ja tootmisanalüüsiga aitab Wheel.me valideerida autonoomse siselogistika mõju enne investeeringu tegemist.'
+      ],
+      benefitsTitle: 'Lahendus võimaldab',
+      benefits: [
+        'Automatiseerida olemasolevad kärud ja platvormid',
+        'Vähendada käsitsi transpordile kuluvat aega',
+        'Suurendada tootmisvoo stabiilsust ja läbilaskevõimet',
+        'Kiiresti ümber seadistada logistilisi protsesse',
+        'Testida ja laiendada lahendust etapiviisiliselt'
+      ],
+      ctaTitle: 'Uuri, kuidas Wheel.me sinu tootmisse sobib',
+      ctaText: 'Räägime läbi materjalivoo, kitsaskohad ja sobiva pilootprojekti ulatuse.',
+      ctaButton: 'Räägi spetsialistiga',
+      authorizedReseller: 'Ametlik edasimüüja',
+      images: {
+        hero: '/wheelme/wheelme_0792.jpg',
+        detail: '/wheelme/_dsc3066.jpg',
+        concept: '/wheelme/wheelme1.png'
+      }
+    },
     contacts: 'Kontakt',
     blogTitle: 'Uudised & blogi',
     breadcrumbHome: 'Avaleht',
@@ -162,7 +191,7 @@ const content = {
         category: 'Konverents',
         date: '19.03',
         sortDate: '2026-03-19',
-        image: '/blog/news2.jpg',
+        image: '/blog/news2.png',
         excerpt:
           'Osalesime Smart Industry konverentsil, kus arutati tööstuse digitaliseerimise, automatiseerimise ja tulevikulahenduste teemadel. Üritusel kuulutati välja ka „Aasta Tehas 2026“.'
       },
@@ -199,7 +228,7 @@ const content = {
     languageLabel: 'Vaheta eesti keelele',
     flagSrc: '/ee-flag.svg',
     heroHeadline: 'From concept to a confident investment decision',
-    nav: ['Projects', 'Services', 'About', 'News & Blog'],
+    nav: ['Projects', 'Services', 'About', 'News & Blog', 'Wheel.me'],
     heroSubline: {
       start: 'With simulations we create a dynamic view of production that helps ',
       benefits: 'reduce risk, optimize processes',
@@ -304,7 +333,7 @@ const content = {
     teamTitle: 'Team',
     team: [
       { name: 'Steven', role: 'CEO', credentials: 'Mechanical engineer (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
-      { name: 'Hans', role: 'Simulation engineer', credentials: 'Industrial engineering and management (MSc)' },
+      { name: 'Hans', role: 'Simulation engineer', credentials: 'Industrial engineering and management (MSc)', image: '/team/hans.jpg' },
       { name: 'Markus', role: 'Project manager', credentials: 'Robotics and automation engineer (MSc)' }
     ],
     partnersTitle: 'Partners and network',
@@ -312,6 +341,35 @@ const content = {
     wheelmeText: 'Wheel.me is the world’s first autonomous wheel, which transforms any object into a mobile robot',
     wheelmePrompt: 'Find out how wheel.me’s solution fits into your business needs',
     wheelmeButton: 'Contact us',
+    wheelmePage: {
+      title: 'Wheel.me autonomous internal logistics',
+      breadcrumb: 'Wheel.me',
+      resellerText: 'Factory Simulation is the first official Wheel.me reseller and integration partner in Estonia.',
+      intro:
+        'Wheel.me’s autonomous mobile robot solution makes it possible to turn existing carts, racks, workbenches and other internal logistics equipment into smart self-driving robots.',
+      paragraphs: [
+        'The system helps automate material transport in production and warehouses without complex conveyors or dedicated AMR carts.',
+        'Wheel.me robots move autonomously in a pre-mapped environment, avoid obstacles and make it possible to create a flexible and scalable internal logistics solution. The system is designed for manufacturing companies that want to reduce manual transport, optimize workflows and improve material-flow stability.',
+        'Combined with simulation and production analysis, Wheel.me helps validate the impact of autonomous internal logistics before making an investment.'
+      ],
+      benefitsTitle: 'The solution helps you',
+      benefits: [
+        'Automate existing carts and platforms',
+        'Reduce time spent on manual transport',
+        'Increase production-flow stability and throughput',
+        'Quickly reconfigure logistics processes',
+        'Test and scale the solution step by step'
+      ],
+      ctaTitle: 'Find out whether Wheel.me fits your production',
+      ctaText: 'Let’s review your material flow, bottlenecks and the right scope for a pilot project.',
+      ctaButton: 'Talk to a specialist',
+      authorizedReseller: 'Authorized reseller',
+      images: {
+        hero: '/wheelme/wheelme_0792.jpg',
+        detail: '/wheelme/_dsc3066.jpg',
+        concept: '/wheelme/wheelme1.png'
+      }
+    },
     contacts: 'Contacts',
     blogTitle: 'News & Blog',
     breadcrumbHome: 'Home',
@@ -333,7 +391,7 @@ const content = {
         category: 'Conference',
         date: '19.03',
         sortDate: '2026-03-19',
-        image: '/blog/news2.jpg',
+        image: '/blog/news2.png',
         excerpt:
           'We attended the Smart Industry conference, where industrial digitalization, automation and future solutions were discussed. The event also included the announcement of “Factory of the Year 2026”.'
       },
@@ -368,7 +426,7 @@ const content = {
   }
 };
 
-const anchors = ['projects', 'services', 'about', 'blog'];
+const anchors = ['projects', 'services', 'about', 'blog', 'wheelme'];
 const languages = ['et', 'en'];
 
 const getPathWithoutBase = () => {
@@ -392,11 +450,11 @@ const getLanguageFromPath = () => {
 
 const getRouteFromPath = () => {
   const page = getPathWithoutBase().split('/').filter(Boolean)[1];
-  return page === 'blog' ? 'blog' : 'home';
+  return ['blog', 'wheelme'].includes(page) ? page : 'home';
 };
 
 const getPagePath = (language, page = 'home', hash = '') => {
-  const pagePath = page === 'blog' ? 'blog/' : '';
+  const pagePath = page === 'blog' || page === 'wheelme' ? `${page}/` : '';
   return `${basePath}${language}/${pagePath}${hash || ''}`;
 };
 
@@ -561,6 +619,84 @@ function BlogPage({ t, language }) {
   );
 }
 
+function WheelmePage({ t, language }) {
+  return (
+    <>
+      <section className={`${sectionClass} pb-12 lg:pb-20`}>
+        <nav className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-white/45" aria-label="Breadcrumb">
+          <a className="text-white/55 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'home')}>
+            {t.breadcrumbHome}
+          </a>
+          <span className="text-fs-accent" aria-hidden="true">
+            /
+          </span>
+          <span className="text-fs-accent">{t.wheelmePage.breadcrumb}</span>
+        </nav>
+
+        <div className="grid items-start gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(340px,42vw)] xl:gap-[6vw]">
+          <div className="min-w-0">
+            <h1 className="mb-7 text-[clamp(2.8rem,5.4vw,5.8rem)] leading-none font-normal">{t.wheelmePage.title}</h1>
+            <p className="mb-8 text-[clamp(1.15rem,1.75vw,1.55rem)] leading-relaxed text-white/78">{t.wheelmePage.intro}</p>
+            <p className="mb-6 max-w-2xl text-[clamp(1.15rem,1.75vw,1.55rem)] leading-relaxed text-white/78">{t.wheelmePage.resellerText}</p>
+            <div className="flex flex-wrap items-center gap-4">
+              <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline transition hover:bg-white" href={getPagePath(language, 'home', '#contact')}>
+                {t.wheelmePage.ctaButton}
+              </a>
+              <div className="inline-flex min-h-12 items-center gap-3 border border-white/18 bg-black/50 px-4 py-2">
+                <img className="h-5 w-auto" src={assetPath('/wheelme/wheel.me_logo_white.png')} alt="wheel.me" />
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-white/68">{t.wheelmePage.authorizedReseller}</span>
+              </div>
+            </div>
+          </div>
+          <div className="relative mx-auto w-full max-w-xl xl:max-w-none">
+            <img className="aspect-[4/5] max-h-[72vh] w-full object-cover shadow-2xl shadow-black/35 xl:aspect-[5/6]" src={assetPath(t.wheelmePage.images.hero)} alt="" />
+            <div className="absolute right-5 bottom-5 bg-black/82 p-4 backdrop-blur">
+              <img className="h-8 w-auto" src={assetPath('/wheelme/wheel.me_logo_white.png')} alt="wheel.me" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 pb-20 sm:px-8 lg:px-[10vw] lg:pb-32">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.72fr)] lg:gap-[7vw]">
+          <div className="grid gap-6 text-[clamp(1.05rem,1.45vw,1.28rem)] leading-relaxed text-white/78">
+            {t.wheelmePage.paragraphs.map((paragraph) => (
+              <p className="m-0" key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+          <div className="border-t-4 border-fs-accent bg-fs-panel p-7">
+            <h2 className="mb-6 text-[clamp(1.5rem,2.3vw,2.25rem)] leading-tight font-bold">{t.wheelmePage.benefitsTitle}</h2>
+            <IconList items={t.wheelmePage.benefits} itemClassName="mb-1 text-base leading-snug text-white/82" />
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-5 md:grid-cols-[minmax(0,0.4fr)_minmax(0,0.4fr)]">
+          <img className="aspect-[4/5] w-full object-cover" src={assetPath(t.wheelmePage.images.detail)} alt="" />
+          <img className="h-full min-h-80 w-full object-cover" src={assetPath(t.wheelmePage.images.concept)} alt="" />
+        </div>
+      </section>
+
+      <section className="bg-fs-accent px-5 py-16 text-black sm:px-8 lg:px-[10vw] lg:py-24">
+        <div className="flex flex-col items-start gap-8 lg:grid-cols-[1fr_auto]">
+          <div>
+            <h2 className="mb-4 text-[clamp(2.2rem,4vw,4.5rem)] leading-none font-normal max-w-4xl">{t.wheelmePage.ctaTitle}</h2>
+            <p className="max-w-3xl text-[clamp(1.1rem,1.6vw,1.45rem)] leading-snug">{t.wheelmePage.ctaText}</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-4 lg:justify-end">
+            <a className="inline-flex min-h-14 items-center justify-center bg-black px-6 py-3 font-bold text-white no-underline" href={getPagePath(language, 'home', '#contact')}>
+              {t.wheelmePage.ctaButton}
+            </a>
+            <div className="inline-flex min-h-14 items-center gap-3 border border-black/35 px-4 py-2">
+              <img className="h-7 w-auto invert" src={assetPath('/wheelme/wheel.me_logo_white.png')} alt="wheel.me" />
+              <span className="text-xs font-bold uppercase tracking-[0.14em] text-black/70">{t.wheelmePage.authorizedReseller}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
 function App() {
   const [language, setLanguage] = useState(getLanguageFromPath);
   const [route, setRoute] = useState(getRouteFromPath);
@@ -574,7 +710,7 @@ function App() {
         const anchor = anchors[index];
         return {
           label,
-          href: anchor === 'blog' ? getPagePath(language, 'blog') : getPagePath(language, 'home', `#${anchor}`),
+          href: anchor === 'blog' || anchor === 'wheelme' ? getPagePath(language, anchor) : getPagePath(language, 'home', `#${anchor}`),
           featured: anchor === 'blog'
         };
       }),
@@ -597,7 +733,11 @@ function App() {
   useEffect(() => {
     document.documentElement.lang = language;
     document.title =
-      route === 'blog'
+      route === 'wheelme'
+        ? language === 'et'
+          ? 'Wheel.me autonoomne siselogistika | Factory Simulation'
+          : 'Wheel.me autonomous internal logistics | Factory Simulation'
+        : route === 'blog'
         ? language === 'et'
           ? 'Uudised & blogi | Factory Simulation'
           : 'News & Blog | Factory Simulation'
@@ -609,7 +749,11 @@ function App() {
     if (description) {
       description.setAttribute(
         'content',
-        route === 'blog'
+        route === 'wheelme'
+          ? language === 'et'
+            ? 'Wheel.me autonoomne mobiilsete robotite lahendus tootmise ja lao siselogistika automatiseerimiseks.'
+            : 'Wheel.me autonomous mobile robot solution for automating internal logistics in production and warehouses.'
+          : route === 'blog'
           ? language === 'et'
             ? 'Factory Simulationi uudised, blogipostitused ja lood tootmise simulatsioonidest.'
             : 'Factory Simulation news, blog posts and stories about production simulation.'
@@ -724,7 +868,9 @@ function App() {
       </header>
 
       <main id="top">
-        {route === 'blog' ? (
+        {route === 'wheelme' ? (
+          <WheelmePage t={t} language={language} />
+        ) : route === 'blog' ? (
           <BlogPage t={t} language={language} />
         ) : (
           <>
