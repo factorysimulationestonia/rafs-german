@@ -175,7 +175,7 @@ const content = {
     breadcrumbHome: 'Avaleht',
     breadcrumbBlog: 'Blogi',
     blogIntro:
-      'Lühikesed lood simulatsioonidest, tootmise planeerimisest, partnerlustest ja projektidest, kus virtuaalne valideerimine aitab teha kindlad otsused.',
+      'Lühikesed lood simulatsioonidest, tootmise planeerimisest, partnerlustest ja projektidest, kus oleme kaasatud olnud.',
     blogPosts: [
       {
         title: 'Tööstusrobotite programmeerimise ja masinnägemise koolitus',
@@ -375,7 +375,7 @@ const content = {
     breadcrumbHome: 'Home',
     breadcrumbBlog: 'Blog',
     blogIntro:
-      'Short updates on simulations, production planning, partnerships and use cases where virtual validation helps teams make more confident decisions.',
+      'Short updates on simulations, production planning, partnerships and use cases where we have been involved.',
     blogPosts: [
       {
         title: 'Industrial robot programming and machine vision training',
