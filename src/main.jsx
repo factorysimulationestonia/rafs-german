@@ -23,7 +23,7 @@ const content = {
     languageLabel: 'Switch to English',
     flagSrc: '/en-flag.svg',
     heroHeadline: 'Kontseptsioonist kindla investeerimisotsuseni',
-    nav: ['Projektid', 'Teenused', 'Kontakt', 'Meist'],
+    nav: ['Projektid', 'Teenused', 'Kontakt', 'Meist', 'Uudised & blogi'],
     heroSubline: {
       start: 'Simulatsioonide abil loome tootmisest dünaamilise ülevaate, mis aitab ',
       benefits: 'vähendada riske, optimeerida protsesse',
@@ -34,7 +34,7 @@ const content = {
     heroSecondary: 'Vaata teenuseid',
     projectsTitle: 'Projektid',
     projectIntro:
-      'Valik näiteid, kus simulatsioonid ja digitaalsed kaksikud on aidanud tootmist enne füüsilisi muudatusi valideerida.',
+      'Valik näiteid, kus simulatsioonid ja dünaamilised simulatsioonid on aidanud tootmist enne füüsilisi muudatusi valideerida.',
     projects: [
       {
         title: 'Plastitööstus',
@@ -50,20 +50,46 @@ const content = {
         title: 'Rasketööstus',
         image: '/project-heavy.png',
         points: [
-          '3D laserskaneerimine - 18 000 m2 tootmishoone jäädvustati digitaalselt.',
-          'Punktipilvest DWG alusplaan - täpne mõõdistuspõhine joonis projekteerimiseks.',
-          'Paigutuse planeerimine - mudeli põhjal koostatud tootmisalad, põhiplaanid ja lõiked.',
-          'Tehase simulatsioon - seadmete paigutused ja logistika stsenaariumid testiti virtuaalselt.'
+          '3D laserskaneerimine – kogu 18 000 m² tootmishoone jäädvustati digitaalselt.',
+          'Punktipilvest DWG alusplaan – olemasoleva hoone täpne mõõdistuspõhine joonis, kasutatav projekteerimises',
+          'Paigutuse planeerimine – mudeli põhjal koostatud tootmisalad, põhiplaanid ja lõiked.',
+          'Tehase simulatsioon – erinevad seadmete paigutused ja logistika stsenaariumid testiti virtuaalselt.',
+          'Väiksem ümberpaigutuse risk – kiirem planeerimine ja paremad otsused enne füüsilist paigaldust.'
         ]
       },
       {
         title: 'Toiduainetööstus',
-        image: '/project-food.svg',
+        image: '/project-food.png',
+        imageOverlay: '/project-food2.png',
         points: [
-          '95% robotite kasutus - optimeeritud tööjärjekord tõstis seadmete kasutust.',
-          '35-lt 38 ühikuni - läbilase kasvas ilma uute seadmeteta.',
-          '40-lt 120 pakini - pudelikaela eemaldamine kolmekordistas pakendamise võimekust.',
-          '+20% operaatori tootlikkus - parem töökoormuse jaotus vähendas ooteaega.'
+          'Pidev materjalivoog – tootmisprotsess modelleeriti nii, et vähendada ooteaegu ja suurendada läbilaskevõimet.',
+          'Automatiseerimine – manuaalsed etapid asendati, et vähendada tööjõu vajadust ja tõsta efektiivsust.',
+          'Pudelikohad – analüüsi käigus tuvastati kriitilised etapid ja määrati vajalikud puhvrite mahud.',
+          'Protsessi tasakaalustamine – vähendati varieeruvust ja saavutati ühtlasem tsükliaeg.',
+          'Virtuaalne testimine – loodi mudel, kus saab kiiresti muuta parameetreid ja läbi proovida erinevaid stsenaariume.'
+        ]
+      },
+      {
+        title: 'Laologistika',
+        image: '/project-logistics.png',
+        points: [
+          'Läbilaskevõime kasv – tootmismaht suureneb, kuna voog on stabiilsem ja katkestusi on vähem, mitte lihtsalt kiirem transport.',
+          'AGV/AMR liikumisteekond väheneb – transport muutub otsesemaks ja efektiivsemaks, väheneb tarbetu liikumine ja edasi-tagasi käimine.',
+          'Operaatorite hõive kasv – vähem ootamist protsesside vahel, rohkem väärtust loovat tööd.',
+          'Laotöötaja hõive kasv – töö jaotub ühtlasemalt, vähem seisakuid ja käsitsi liikumist.',
+          'Tasakaalustatum protsess – vähem katkestusi ja ootamist, sujuvam materjalivoog kogu liini ulatuses.'
+        ]
+      },
+      {
+        title: 'Puidutööstus',
+        image: '/project-pellet.png',
+        imageOverlays: ['/project-pellet2.png', '/project-pellet3.png'],
+        points: [
+          '3D laserskaneerimine – kogu pelletitehas jäädvustatud täpse digitaalse mudelina.',
+          'Punktipilvest 3D mudeliks – tootmisruumide täpne ruumiline esitus.',
+          'Visuaalne ülevaade tootmisest – keerukad protsessid muudetud 3D-s lihtsalt mõistetavaks.',
+          'Digitaalse kaksiku alus – platvorm edasiseks optimeerimiseks ja targemateks tootmisotsusteks.',
+          'Tootmisandmete integreerimise alus – katla, kuivatuse ja liinikiiruste andmed on ühendatavad 3D mudeliga.'
         ]
       }
     ],
@@ -73,7 +99,7 @@ const content = {
         title: 'Tehase ja tootmisvoo simulatsioon',
         main: true,
         points: [
-          'Digitaalne kaksik tootmise tegelikust loogikast',
+          'Digitaalne mudel tootmise tegelikust loogikast',
           'Läbilaske, järjekordade ja tsükliaegade analüüs',
           'Otsused enne füüsilist ümberkorraldust'
         ]
@@ -105,7 +131,7 @@ const content = {
     aboutTitle: 'Meist',
     teamTitle: 'Meeskond',
     team: [
-      { name: 'Steven', role: 'Tegevjuht', credentials: 'Mehaanikainsener (BSc)' },
+      { name: 'Steven', role: 'Tegevjuht', credentials: 'Mehaanikainsener (BSc)', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
       { name: 'Hans', role: 'Simulatsiooniinsener', credentials: 'Tööstustehnika ja juhtimine (MSc)' },
       { name: 'Markus', role: 'Projektijuht', credentials: 'Robootika ja automaatikainsener (MSc)' }
     ],
@@ -114,13 +140,48 @@ const content = {
     wheelmeText: 'Wheel.me on maailma esimene autonoomne ratas, mis muudab iga objekti mobiilseks robotiks',
     wheelmePrompt: 'Uuri, kuidas wheel.me lahendus sobitub sinu ettevõtte vajadustega',
     wheelmeButton: 'Võta ühendust',
-    contacts: 'Kontakt'
+    contacts: 'Kontakt',
+    blogTitle: 'Uudised & blogi',
+    breadcrumbHome: 'Avaleht',
+    breadcrumbBlog: 'Blogi',
+    blogIntro:
+      'Lühikesed lood simulatsioonidest, tootmise planeerimisest, partnerlustest ja projektidest, kus virtuaalne valideerimine aitab teha kindlamaid otsuseid.',
+    blogPosts: [
+      {
+        title: 'Millal tasub tootmisliini enne investeeringut simuleerida?',
+        category: 'Planeerimine',
+        image: '/project-plastic.png',
+        excerpt:
+          'Simulatsioon aitab hinnata tootmismahte, pudelikaelu ja seadmete mõju enne, kui füüsilised muudatused muutuvad kalliks.'
+      },
+      {
+        title: '3D laserskaneerimine annab tehase planeerimisele täpse lähtepunkti',
+        category: '3D mudelid',
+        image: '/project-heavy.png',
+        excerpt:
+          'Olemasoleva tootmiskeskkonna mõõdistuspõhine mudel loob parema aluse paigutuste, logistika ja uute seadmete kavandamiseks.'
+      },
+      {
+        title: 'AGV ja AMR lahendused vajavad enne kasutuselevõttu head voomudelit',
+        category: 'Laologistika',
+        image: '/project-logistics.png',
+        excerpt:
+          'Autonoomse transpordi väärtus ei tule ainult kiirusest, vaid sellest, kuidas liikumised sobituvad kogu tootmisvooga.'
+      },
+      {
+        title: 'Digitaalne mudel aitab keerulist tootmist lihtsalt selgitada',
+        category: 'Use case',
+        image: '/project-pellet.png',
+        excerpt:
+          '3D ülevaade muudab protsessid arusaadavamaks nii juhtkonnale, tootmisele kui ka partneritele.'
+      }
+    ]
   },
   en: {
     languageLabel: 'Vaheta eesti keelele',
     flagSrc: '/ee-flag.svg',
     heroHeadline: 'From concept to a confident investment decision',
-    nav: ['Projects', 'Services', 'Contact', 'About'],
+    nav: ['Projects', 'Services', 'Contact', 'About', 'News & Blog'],
     heroSubline: {
       start: 'With simulations we create a dynamic view of production that helps ',
       benefits: 'reduce risk, optimize processes',
@@ -131,7 +192,7 @@ const content = {
     heroSecondary: 'View services',
     projectsTitle: 'Projects',
     projectIntro:
-      'Selected examples where simulations and digital twins helped validate production plans before physical changes.',
+      'Selected examples where simulations and dynamic simulations helped validate production plans before physical changes.',
     projects: [
       {
         title: 'Plastics production',
@@ -155,12 +216,37 @@ const content = {
       },
       {
         title: 'Food industry',
-        image: '/project-food.svg',
+        image: '/project-food.png',
+        imageOverlay: '/project-food2.png',
         points: [
-          '95% robot utilization - optimized task sequencing boosted equipment use.',
-          '35 to 38 units throughput - output increased without new machinery.',
-          '40 to 120 packs - packaging performance tripled after bottleneck removal.',
-          '+20% operator productivity - better workload balance reduced idle time.'
+          'Continuous material flow – the production process was modeled to reduce waiting times and increase throughput.',
+          'Automation – manual steps were replaced to reduce labor needs and improve efficiency.',
+          'Bottlenecks – critical process steps were identified and the required buffer sizes were defined.',
+          'Process balancing – variation was reduced and a more consistent cycle time was achieved.',
+          'Virtual testing – a model was created where parameters can be changed quickly and different scenarios can be tested.'
+        ]
+      },
+      {
+        title: 'Warehouse logistics',
+        image: '/project-logistics.png',
+        points: [
+          'Throughput increase – production volume rises because the flow is more stable and interruptions are reduced, not simply because transport is faster.',
+          'Shorter AGV/AMR travel paths – transport becomes more direct and efficient, reducing unnecessary movement and back-and-forth travel.',
+          'Higher operator utilization – less waiting between process steps and more value-adding work.',
+          'Higher warehouse worker utilization – work is distributed more evenly, with fewer stoppages and less manual movement.',
+          'More balanced process – fewer interruptions and waiting periods, creating a smoother material flow across the full line.'
+        ]
+      },
+      {
+        title: 'Pellet factory',
+        image: '/project-pellet.png',
+        imageOverlays: ['/project-pellet2.png', '/project-pellet3.png'],
+        points: [
+          '3D laser scanning – the entire pellet factory was captured as an accurate digital model.',
+          'Point cloud to 3D model – an accurate spatial representation of the production areas.',
+          'Visual production overview – complex processes were made easy to understand in 3D.',
+          'Digital twin foundation – a platform for further optimization and smarter production decisions.',
+          'Production data integration foundation – boiler, drying and line-speed data can be connected to the 3D model.'
         ]
       }
     ],
@@ -169,7 +255,7 @@ const content = {
       {
         title: 'Factory and production flow simulation',
         main: true,
-        points: ['Digital twin of real production logic', 'Throughput, queue and cycle-time analysis', 'Confident decisions before physical changes']
+        points: ['Digital model of real production logic', 'Throughput, queue and cycle-time analysis', 'Confident decisions before physical changes']
       },
       {
         title: 'Factory layout planning',
@@ -198,7 +284,7 @@ const content = {
     aboutTitle: 'About',
     teamTitle: 'Team',
     team: [
-      { name: 'Steven', role: 'CEO', credentials: 'Mechanical engineer (BSc)' },
+      { name: 'Steven', role: 'CEO', credentials: 'Mechanical engineer (BSc)', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
       { name: 'Hans', role: 'Simulation engineer', credentials: 'Industrial engineering and management (MSc)' },
       { name: 'Markus', role: 'Project manager', credentials: 'Robotics and automation engineer (MSc)' }
     ],
@@ -207,11 +293,46 @@ const content = {
     wheelmeText: 'Wheel.me is the world’s first autonomous wheel, which transforms any object into a mobile robot',
     wheelmePrompt: 'Find out how wheel.me’s solution fits into your business needs',
     wheelmeButton: 'Contact us',
-    contacts: 'Contacts'
+    contacts: 'Contacts',
+    blogTitle: 'News & Blog',
+    breadcrumbHome: 'Home',
+    breadcrumbBlog: 'Blog',
+    blogIntro:
+      'Short updates on simulations, production planning, partnerships and use cases where virtual validation helps teams make more confident decisions.',
+    blogPosts: [
+      {
+        title: 'When should a production line be simulated before investment?',
+        category: 'Planning',
+        image: '/project-plastic.png',
+        excerpt:
+          'Simulation helps evaluate volumes, bottlenecks and equipment impact before physical changes become expensive.'
+      },
+      {
+        title: '3D laser scanning creates a reliable starting point for factory planning',
+        category: '3D models',
+        image: '/project-heavy.png',
+        excerpt:
+          'A measurement-based model of the existing production environment gives layout, logistics and equipment planning a stronger foundation.'
+      },
+      {
+        title: 'AGV and AMR solutions need a strong flow model before deployment',
+        category: 'Warehouse logistics',
+        image: '/project-logistics.png',
+        excerpt:
+          'The value of autonomous transport comes not only from speed, but from how well movement fits the full production flow.'
+      },
+      {
+        title: 'A digital model makes complex production easier to explain',
+        category: 'Use case',
+        image: '/project-pellet.png',
+        excerpt:
+          'A 3D overview makes processes easier to understand for management, production teams and partners.'
+      }
+    ]
   }
 };
 
-const anchors = ['projects', 'services', 'contact', 'about'];
+const anchors = ['projects', 'services', 'contact', 'about', 'blog'];
 const languages = ['et', 'en'];
 
 const getPathWithoutBase = () => {
@@ -233,7 +354,17 @@ const getLanguageFromPath = () => {
   return languages.includes(language) ? language : 'et';
 };
 
-const getLanguagePath = (language, hash = window.location.hash) => `${basePath}${language}/${hash || ''}`;
+const getRouteFromPath = () => {
+  const page = getPathWithoutBase().split('/').filter(Boolean)[1];
+  return page === 'blog' ? 'blog' : 'home';
+};
+
+const getPagePath = (language, page = 'home', hash = '') => {
+  const pagePath = page === 'blog' ? 'blog/' : '';
+  return `${basePath}${language}/${pagePath}${hash || ''}`;
+};
+
+const getLanguagePath = (language, hash = window.location.hash) => getPagePath(language, 'home', hash);
 const partners = [
   { name: 'EML', logo: '/logo-partner-eml.png' },
   { name: 'AI & Robotics Estonia', logo: '/logo-partner-aire.jpg', bare: true, large: true },
@@ -254,6 +385,27 @@ function IconList({ items, itemClassName = liClass, iconClassName = 'bg-fs-accen
   );
 }
 
+function ProjectPointList({ items }) {
+  return (
+    <ul className="m-0 grid list-none gap-4 p-0">
+      {items.map((item) => {
+        const [lead, ...rest] = item.split(/\s+[–-]\s+/);
+        const detail = rest.join(' – ');
+
+        return (
+          <li className="grid grid-cols-[1.35rem_1fr] gap-3 text-[clamp(1rem,1.35vw,1.18rem)] leading-snug" key={item}>
+            <span className="mt-0.5 size-5 bg-fs-accent" style={iconMask} aria-hidden="true" />
+            <span>
+              <span className="mb-1 block font-bold text-fs-accent">{lead}</span>
+              {detail && <span className="block text-white/88">{detail}</span>}
+            </span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 function PersonIcon() {
   return (
     <svg className="size-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -263,42 +415,175 @@ function PersonIcon() {
   );
 }
 
+function LinkedinIcon() {
+  return (
+    <svg className="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M6.9 8.8H3.5v11h3.4v-11ZM5.2 7.3c1.1 0 1.8-.7 1.8-1.7S6.3 4 5.2 4s-1.8.7-1.8 1.7.7 1.6 1.8 1.6ZM20.5 13.5c0-3.3-1.8-4.9-4.1-4.9-1.9 0-2.8 1-3.2 1.8V8.8H9.8v11h3.4v-6.1c0-1.6.3-3.1 2.2-3.1 1.8 0 1.8 1.7 1.8 3.2v6h3.4v-6.3Z" />
+    </svg>
+  );
+}
+
+function ProjectImage({ project, onOpenImage }) {
+  const overlays = project.imageOverlays || (project.imageOverlay ? [project.imageOverlay] : []);
+
+  return (
+    <div className="relative w-full">
+      <button className="block w-full cursor-zoom-in border-0 bg-transparent p-0" type="button" onClick={() => onOpenImage(project.image)}>
+        <img className="aspect-[4/5] max-h-60 w-full object-cover sm:max-h-72 md:max-h-96 lg:max-h-none xl:aspect-[3/4]" src={assetPath(project.image)} alt="" />
+        <span className="absolute right-2 bottom-2 grid size-8 place-items-center text-black drop-shadow-[0_1px_2px_rgba(255,255,255,0.65)]" aria-hidden="true">
+          <svg className="size-4.5" viewBox="0 0 24 24" fill="none">
+            <path d="m20 20-4.2-4.2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <circle cx="10.8" cy="10.8" r="5.8" stroke="currentColor" strokeWidth="2" />
+          </svg>
+        </span>
+      </button>
+      {overlays.map((image, overlayIndex) => (
+        <button
+          className={`absolute w-2/3 cursor-zoom-in border-0 bg-transparent p-0 shadow-2xl sm:w-3/4 ${
+            overlayIndex === 0 ? '-top-3 -right-2 sm:-top-6 sm:-right-5 lg:-top-8 lg:-right-8' : '-right-2 -bottom-3 sm:-right-5 sm:-bottom-6 lg:-right-8 lg:-bottom-8'
+          }`}
+          type="button"
+          onClick={() => onOpenImage(image)}
+          key={image}
+        >
+          <img className="w-full object-cover" src={assetPath(image)} alt="" />
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function ImageLightbox({ image, onClose }) {
+  useEffect(() => {
+    if (!image) {
+      return undefined;
+    }
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [image, onClose]);
+
+  if (!image) {
+    return null;
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/90 p-4" role="dialog" aria-modal="true" onClick={onClose}>
+      <button className="absolute top-3 right-6 grid size-11 place-items-center border border-white/40 bg-black/60 text-3xl leading-none text-white" type="button" aria-label="Close image" onClick={onClose}>
+        ×
+      </button>
+      <img className="max-h-[92vh] max-w-[92vw] object-contain" src={assetPath(image)} alt="" onClick={(event) => event.stopPropagation()} />
+    </div>
+  );
+}
+
+function BlogPage({ t, language }) {
+  return (
+    <section className={`${sectionClass} min-h-[calc(100vh-5rem)]`}>
+      <div className="mb-14 max-w-4xl">
+        <nav className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-white/45" aria-label="Breadcrumb">
+          <a className="text-white/55 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'home')}>
+            {t.breadcrumbHome}
+          </a>
+          <span className="text-fs-accent" aria-hidden="true">
+            /
+          </span>
+          <span className="text-fs-accent">{t.breadcrumbBlog}</span>
+        </nav>
+        <h1 className={h2Class}>{t.blogTitle}</h1>
+        <p className="max-w-3xl text-[clamp(1.05rem,1.7vw,1.35rem)] leading-relaxed text-white/72">{t.blogIntro}</p>
+      </div>
+
+      <div className="grid gap-8 xl:grid-cols-2">
+        {t.blogPosts.map((post, index) => (
+          <article
+            className="grid overflow-hidden bg-white text-black shadow-2xl shadow-black/25 md:grid-cols-[0.95fr_1.05fr]"
+            key={post.title}
+          >
+            <div className="flex min-h-80 flex-col justify-between p-7 sm:p-9">
+              <div>
+                <p className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent">{post.category}</p>
+                <h2 className="mb-6 text-[clamp(1.25rem,2vw,1.85rem)] leading-tight font-bold text-fs-panel">{post.title}</h2>
+                <p className="text-base leading-relaxed text-fs-panel/78">{post.excerpt}</p>
+              </div>
+              <p className="mt-10 text-sm font-bold text-fs-panel/45">0{index + 1}</p>
+            </div>
+            <img className="h-full min-h-72 w-full object-cover" src={assetPath(post.image)} alt="" />
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const [language, setLanguage] = useState(getLanguageFromPath);
+  const [route, setRoute] = useState(getRouteFromPath);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState(null);
   const t = content[language];
   const nextLanguage = language === 'et' ? 'en' : 'et';
-  const navItems = useMemo(() => t.nav.map((label, index) => ({ label, href: getLanguagePath(language, `#${anchors[index]}`) })), [language, t]);
+  const navItems = useMemo(
+    () =>
+      t.nav.map((label, index) => {
+        const anchor = anchors[index];
+        return {
+          label,
+          href: anchor === 'blog' ? getPagePath(language, 'blog') : getPagePath(language, 'home', `#${anchor}`)
+        };
+      }),
+    [language, t]
+  );
 
   useEffect(() => {
     if (!languages.includes(getPathWithoutBase().split('/').filter(Boolean)[0])) {
       window.history.replaceState(null, '', getLanguagePath(language, ''));
     }
 
-    const onPopState = () => setLanguage(getLanguageFromPath());
+    const onPopState = () => {
+      setLanguage(getLanguageFromPath());
+      setRoute(getRouteFromPath());
+    };
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = language === 'et' ? 'Factory Simulation | Tootmise simulatsioonid' : 'Factory Simulation | Digital Twin Solutions';
+    document.title =
+      route === 'blog'
+        ? language === 'et'
+          ? 'Uudised & blogi | Factory Simulation'
+          : 'News & Blog | Factory Simulation'
+        : language === 'et'
+          ? 'Factory Simulation | Tootmise simulatsioonid'
+          : 'Factory Simulation | Digital Twin Solutions';
 
     const description = document.querySelector('meta[name="description"]');
     if (description) {
       description.setAttribute(
         'content',
-        language === 'et'
-          ? 'Factory Simulation loob tootmisest dünaamilise ülevaate simulatsioonide ja digitaalsete kaksikute abil.'
-          : 'Factory Simulation creates a dynamic view of production with simulations and digital twins.'
+        route === 'blog'
+          ? language === 'et'
+            ? 'Factory Simulationi uudised, blogipostitused ja lood tootmise simulatsioonidest.'
+            : 'Factory Simulation news, blog posts and stories about production simulation.'
+          : language === 'et'
+            ? 'Factory Simulation loob tootmisest dünaamilise ülevaate simulatsioonide ja digitaalsete kaksikute abil.'
+            : 'Factory Simulation creates a dynamic view of production with simulations and digital twins.'
       );
     }
 
     const origin = window.location.origin;
     const headLinks = [
-      ['canonical', language, `${origin}${getLanguagePath(language, '')}`],
-      ['alternate', 'et', `${origin}${getLanguagePath('et', '')}`],
-      ['alternate', 'en', `${origin}${getLanguagePath('en', '')}`]
+      ['canonical', language, `${origin}${getPagePath(language, route)}`],
+      ['alternate', 'et', `${origin}${getPagePath('et', route)}`],
+      ['alternate', 'en', `${origin}${getPagePath('en', route)}`]
     ];
 
     document.querySelectorAll('link[data-language-link="true"]').forEach((link) => link.remove());
@@ -312,12 +597,12 @@ function App() {
       link.dataset.languageLink = 'true';
       document.head.appendChild(link);
     });
-  }, [language]);
+  }, [language, route]);
 
   const switchLanguage = () => {
     setLanguage(nextLanguage);
     setMenuOpen(false);
-    window.history.pushState(null, '', getLanguagePath(nextLanguage));
+    window.history.pushState(null, '', getPagePath(nextLanguage, route, route === 'home' ? window.location.hash : ''));
   };
 
   const handleContactSubmit = (event) => {
@@ -383,6 +668,10 @@ function App() {
       </header>
 
       <main id="top">
+        {route === 'blog' ? (
+          <BlogPage t={t} language={language} />
+        ) : (
+          <>
         <section className="relative grid min-h-[560px] items-center overflow-hidden bg-black px-5 py-20 sm:px-8 lg:aspect-video lg:min-h-0 lg:px-[10vw]">
           <video className="absolute inset-0 h-full w-full object-contain object-center" poster={assetPath('/hero-simulation.svg')} autoPlay muted loop playsInline>
             <source src={assetPath('/hero-video.webm')} type="video/webm" />
@@ -423,9 +712,9 @@ function App() {
                     <p className="mb-3 font-bold text-fs-accent">0{index + 1}</p>
                     <h3 className={h3Class}>{project.title}</h3>
                   </div>
-                  <IconList items={project.points} />
+                  <ProjectPointList items={project.points} />
                 </div>
-                <img className="aspect-[4/5] w-full object-cover xl:aspect-[3/4]" src={assetPath(project.image)} alt="" />
+                <ProjectImage project={project} onOpenImage={setLightboxImage} />
               </article>
             ))}
           </div>
@@ -485,7 +774,20 @@ function App() {
                       <PersonIcon />
                     </div>
                     <div>
-                      <h4 className="mb-1 text-xl font-semibold leading-tight text-white">{person.name}</h4>
+                      <div className="mb-1 flex items-center gap-2">
+                        <h4 className="text-xl font-semibold leading-tight text-white">{person.name}</h4>
+                        {person.linkedin && (
+                          <a
+                            className="grid size-5 place-items-center border border-fs-accent/55 text-fs-accent transition hover:border-white/70 hover:text-white"
+                            href={person.linkedin}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`${person.name} LinkedIn`}
+                          >
+                            <LinkedinIcon />
+                          </a>
+                        )}
+                      </div>
                       <p className="mb-1 text-base font-medium leading-snug text-fs-accent">{person.role}</p>
                       <p className="m-0 text-sm leading-snug text-white/72">{person.credentials}</p>
                     </div>
@@ -520,6 +822,8 @@ function App() {
             </div>
           </div>
         </section>
+          </>
+        )}
       </main>
 
       <footer className={`grid items-center gap-8 border-t border-fs-line px-6 py-10 lg:grid-cols-[180px_1fr_auto] lg:px-[7vw] ${darkSurfaceClass}`}>
@@ -531,6 +835,7 @@ function App() {
         </div>
         <p className="m-0 text-white/70">Factory Simulation & Digital Twin solutions</p>
       </footer>
+      <ImageLightbox image={lightboxImage} onClose={() => setLightboxImage(null)} />
     </div>
   );
 }
