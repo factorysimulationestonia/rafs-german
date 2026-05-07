@@ -981,7 +981,7 @@ function App() {
           </div>
         </section>
 
-        <section className={sectionClass} id="services">
+        <section className="px-5 pt-10 pb-20 sm:px-8 lg:px-[10vw] lg:pt-8 lg:pb-36" id="services">
           <div className="mb-14 max-w-4xl">
             <h2 className={h2Class}>{t.servicesTitle}</h2>
           </div>
