@@ -756,6 +756,7 @@ function App() {
         const anchor = anchors[index];
         return {
           label,
+          anchor,
           href: anchor === 'blog' || anchor === 'wheelme' ? getPagePath(language, anchor) : getPagePath(language, 'home', `#${anchor}`)
         };
       }),
@@ -834,15 +835,17 @@ function App() {
     window.history.pushState(null, '', getPagePath(nextLanguage, route, route === 'home' ? window.location.hash : ''));
   };
 
-  const navigateToContact = (event) => {
+  const navigateToHomeSection = (event, sectionId) => {
     event.preventDefault();
     setMenuOpen(false);
     setRoute('home');
-    window.history.pushState(null, '', getPagePath(language, 'home', '#contact'));
+    window.history.pushState(null, '', getPagePath(language, 'home', `#${sectionId}`));
     window.setTimeout(() => {
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     }, 0);
   };
+
+  const navigateToContact = (event) => navigateToHomeSection(event, 'contact');
 
   const handleContactSubmit = (event) => {
     event.preventDefault();
@@ -894,7 +897,14 @@ function App() {
               className="flex min-h-10 items-center py-3 no-underline transition hover:text-fs-accent lg:py-0"
               key={item.href}
               href={item.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={(event) => {
+                if (item.anchor === 'blog' || item.anchor === 'wheelme') {
+                  setMenuOpen(false);
+                  return;
+                }
+
+                navigateToHomeSection(event, item.anchor);
+              }}
             >
               {item.label}
             </a>
