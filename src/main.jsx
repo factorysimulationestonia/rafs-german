@@ -35,7 +35,7 @@ const content = {
     contactButton: 'Võta ühendust',
     projectsTitle: 'Projektid',
     projectIntro:
-      'Valik näiteid, kus simulatsioonid ja dünaamilised simulatsioonid on aidanud tootmist enne füüsilisi muudatusi valideerida.',
+      'Valik näiteid, kus simulatsioonid on aidanud tootmist enne füüsilisi muudatusi valideerida.',
     projects: [
       {
         title: 'Plastitööstus',
@@ -134,7 +134,7 @@ const content = {
     team: [
       { name: 'Steven', role: 'Tegevjuht', credentials: 'Mehaanikainsener (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
       { name: 'Hans', role: 'Simulatsiooniinsener', credentials: 'Tööstustehnika ja juhtimine (MSc)', image: '/team/hans.jpg', linkedin: 'https://www.linkedin.com/in/hjerikson/'  },
-      { name: 'Markus', role: 'Projektijuht', credentials: 'Robootika ja automaatikainsener (MSc)' }
+      { name: 'Markus', role: 'Projektiinsener', credentials: 'Robootika ja automaatikainsener (MSc)' }
     ],
     partnersTitle: 'Partnerid ja võrgustik',
     reseller: 'Ametlik edasimüüja ja integratsioonipartner',
@@ -145,7 +145,7 @@ const content = {
     wheelmePage: {
       title: 'Wheel.me autonoomne siselogistika',
       breadcrumb: 'Wheel.me',
-      resellerText: 'Factory Simulation on esimene ametlik Wheel.me edasimüüja ja integratsioonipartner Eestis.',
+      resellerText: 'Factory Simulation on ametlik Wheel.me edasimüüja ja integratsioonipartner Eestis.',
       intro:
         'Wheel.me autonoomne mobiilsete robotite lahendus võimaldab muuta olemasolevad kärud, riiulid, tööpingid ja muud siselogistika seadmed nutikateks iseliikuvateks robotiteks.',
       paragraphs: [
@@ -242,7 +242,7 @@ const content = {
     contactButton: 'Contact us',
     projectsTitle: 'Projects',
     projectIntro:
-      'Selected examples where simulations and dynamic simulations helped validate production plans before physical changes.',
+      'Selected examples where simulations helped validate production plans before physical changes.',
     projects: [
       {
         title: 'Plastics production',
@@ -336,7 +336,7 @@ const content = {
     team: [
       { name: 'Steven', role: 'CEO', credentials: 'Mechanical engineer (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
       { name: 'Hans', role: 'Simulation engineer', credentials: 'Industrial engineering and management (MSc)', image: '/team/hans.jpg' },
-      { name: 'Markus', role: 'Project manager', credentials: 'Robotics and automation engineer (MSc)' }
+      { name: 'Markus', role: 'Project engineer', credentials: 'Robotics and automation engineer (MSc)' }
     ],
     partnersTitle: 'Partners and network',
     reseller: 'Official reseller and integration partner',
@@ -347,7 +347,7 @@ const content = {
     wheelmePage: {
       title: 'Wheel.me autonomous internal logistics',
       breadcrumb: 'Wheel.me',
-      resellerText: 'Factory Simulation is the first official Wheel.me reseller and integration partner in Estonia.',
+      resellerText: 'Factory Simulation is the official Wheel.me reseller and integration partner in Estonia.',
       intro:
         'Wheel.me’s autonomous mobile robot solution makes it possible to turn existing carts, racks, workbenches and other internal logistics equipment into smart self-driving robots.',
       paragraphs: [
@@ -692,9 +692,6 @@ function WheelmePage({ t, language, onContactClick, onOpenImage }) {
           </div>
           <div className="relative mx-auto w-full max-w-xl xl:max-w-none">
             <img className="aspect-[4/5] max-h-[72vh] w-full object-cover shadow-2xl shadow-black/35 xl:aspect-[5/6]" src={assetPath(t.wheelmePage.images.hero)} alt="" />
-            <div className="absolute right-5 bottom-5 bg-black/82 p-4 backdrop-blur">
-              <img className="h-8 w-auto" src={assetPath('/wheelme/wheel.me_logo_white.png')} alt="wheel.me" />
-            </div>
           </div>
         </div>
       </section>
@@ -759,8 +756,7 @@ function App() {
         const anchor = anchors[index];
         return {
           label,
-          href: anchor === 'blog' || anchor === 'wheelme' ? getPagePath(language, anchor) : getPagePath(language, 'home', `#${anchor}`),
-          featured: anchor === 'blog'
+          href: anchor === 'blog' || anchor === 'wheelme' ? getPagePath(language, anchor) : getPagePath(language, 'home', `#${anchor}`)
         };
       }),
     [language, t]
@@ -895,11 +891,7 @@ function App() {
         >
           {navItems.map((item) => (
             <a
-              className={`flex min-h-10 items-center py-3 no-underline transition hover:text-fs-accent lg:py-0 ${
-                item.featured
-                  ? 'relative text-white after:absolute after:right-0 after:bottom-2.5 after:left-0 after:h-px after:bg-gradient-to-r after:from-fs-accent after:via-fs-accent/70 after:to-transparent lg:after:bottom-1'
-                  : ''
-              }`}
+              className="flex min-h-10 items-center py-3 no-underline transition hover:text-fs-accent lg:py-0"
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
