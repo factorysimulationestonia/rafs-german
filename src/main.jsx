@@ -23,6 +23,7 @@ const content = {
     languageLabel: 'Switch to English',
     flagSrc: '/en-flag.svg',
     heroHeadline: 'Kontseptsioonist kindla investeerimisotsuseni',
+    heroHeadlineMobile: <>Kontseptsioonist kindla investeerimis-<br />otsuseni</>,
     nav: ['Projektid', 'Teenused', 'Meist', 'Uudised', 'Wheel.me'],
     heroSubline: {
       start: 'Simulatsioonide abil loome tootmisest dünaamilise ülevaate, mis aitab ',
@@ -230,6 +231,7 @@ const content = {
     languageLabel: 'Vaheta eesti keelele',
     flagSrc: '/ee-flag.svg',
     heroHeadline: 'From concept to a confident investment decision',
+    heroHeadlineMobile: 'From concept to a confident investment decision',
     nav: ['Projects', 'Services', 'About', 'News & Blog', 'Wheel.me'],
     heroSubline: {
       start: 'With simulations we create a dynamic view of production that helps ',
@@ -935,15 +937,16 @@ function App() {
           <BlogPage t={t} language={language} />
         ) : (
           <>
-        <section className="relative grid min-h-[560px] items-center overflow-hidden bg-black px-5 py-20 sm:px-8 lg:aspect-video lg:min-h-0 lg:px-[10vw]">
-          <video className="absolute inset-0 h-full w-full object-contain object-center" poster={assetPath('/hero-simulation.svg')} autoPlay muted loop playsInline>
+        <section className="relative grid min-h-[680px] items-end overflow-hidden bg-black px-5 pt-20 pb-16 sm:px-8 lg:aspect-video lg:min-h-0 lg:items-center lg:px-[10vw] lg:py-20">
+          <video className="absolute inset-0 h-full w-full object-cover object-right" poster={assetPath('/hero-simulation.svg')} autoPlay muted loop playsInline>
             <source src={assetPath('/hero-video.webm')} type="video/webm" />
           </video>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#000_0%,rgba(0,0,0,0.88)_28%,rgba(0,0,0,0.48)_58%,rgba(0,0,0,0.12)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,0,0,0.32)_0%,transparent_24%,transparent_76%,rgba(0,0,0,0.26)_100%)]" />
-          <div className="relative z-10 max-w-4xl pt-10 lg:w-1/2">
-            <h1 className="mb-5 text-left text-[clamp(2.3rem,4.8vw,5.4rem)] leading-[1.02] font-semibold">
-              {t.heroHeadline}
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,#000_0%,rgba(0,0,0,0.9)_18%,rgba(0,0,0,0.5)_42%,rgba(0,0,0,0.06)_72%)] lg:bg-[linear-gradient(90deg,#000_0%,rgba(0,0,0,0.88)_28%,rgba(0,0,0,0.48)_58%,rgba(0,0,0,0.12)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,0,0,0.24)_0%,transparent_38%,transparent_72%,rgba(0,0,0,0.28)_100%)]" />
+          <div className="relative z-10 w-[84vw] max-w-[26rem] sm:max-w-2xl lg:w-1/2 lg:max-w-4xl">
+            <h1 className="mb-5 text-left text-[clamp(1.75rem,9.4vw,3rem)] leading-[1.02] font-semibold lg:text-[clamp(2.3rem,4.8vw,5.4rem)]">
+              <span className="lg:hidden">{t.heroHeadlineMobile}</span>
+              <span className="hidden lg:inline">{t.heroHeadline}</span>
             </h1>
             <p className="mb-8 max-w-2xl text-left text-[clamp(1.05rem,1.55vw,1.45rem)] leading-snug text-white/82">
               {t.heroSubline.start}
