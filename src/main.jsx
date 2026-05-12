@@ -790,7 +790,7 @@ function App() {
           ? 'Uudised & blogi | Factory Simulation'
           : 'News & Blog | Factory Simulation'
         : language === 'et'
-          ? 'Factory Simulation | Tootmise simulatsioonid'
+          ? 'Factory Simulation | Tootmise simulatsioonid ja tehase planeerimine'
           : 'Factory Simulation | Digital Twin Solutions';
 
     const description = document.querySelector('meta[name="description"]');
@@ -806,8 +806,8 @@ function App() {
             ? 'Factory Simulationi uudised, blogipostitused ja lood tootmise simulatsioonidest.'
             : 'Factory Simulation news, blog posts and stories about production simulation.'
           : language === 'et'
-            ? 'Factory Simulation loob tootmisest dünaamilise ülevaate simulatsioonide ja digitaalsete kaksikute abil.'
-            : 'Factory Simulation creates a dynamic view of production with simulations and digital twins.'
+            ? 'Tootmise simuleerimine, tehase paigutuse planeerimine ja digitaalsed mudelid Eesti tööstusettevõtetele.'
+            : 'Factory Simulation creates a dynamic view of production with simulations and digital models.'
       );
     }
 
