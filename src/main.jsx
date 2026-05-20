@@ -98,7 +98,7 @@ const content = {
     servicesTitle: 'Teenused',
     services: [
       {
-        title: 'Tehase ja tootmisvoo simulatsioon',
+        title: 'Tootmisvoo simulatsioon',
         main: true,
         points: [
           'Digitaalne mudel tootmise tegelikust loogikast',
@@ -127,6 +127,16 @@ const content = {
         points: ['Mis-juhtub-kui analüüs enne ostuotsust', 'Seadmete, inimeste ja graafikute võrdlus', 'Selgem sisend RFQ-deks ja juhtimisotsusteks']
       }
     ],
+    featuredService: {
+      title: 'Töökorralduse ja paigutuse valideerimine',
+      image: '/analysis1.png',
+      imageAlt: 'AutoCAD joonise ja 3D paigutuse võrdlus tõstuki manööverdusanalüüsiga',
+      points: [
+        'Detailne liikumisanalüüs tõstukitele ja tõsteseadmetele',
+        'Sõidukipõhine pöörderaadiuse, koormaga liikumise ja vaba ruumi kontroll',
+        'Liikumisstsenaariumide võrdlus enne paigutuse või seadmete muutmist'
+      ]
+    },
     contactTitle: 'Teeme koostööd!',
     contactText: 'Alates varajasest kontseptsioonist kuni valideeritud tehase planeeringuni.',
     form: { name: 'Nimi', email: 'E-mail', description: 'Projekti kirjeldus', send: 'Saada' },
@@ -305,7 +315,7 @@ const content = {
     servicesTitle: 'Services',
     services: [
       {
-        title: 'Factory and production flow simulation',
+        title: 'Production Flow Simulation',
         main: true,
         points: ['Digital model of real production logic', 'Throughput, queue and cycle-time analysis', 'Confident decisions before physical changes']
       },
@@ -330,6 +340,16 @@ const content = {
         points: ['What-if analysis before purchasing', 'Compare equipment, people and schedules', 'Clearer RFQ and management inputs']
       }
     ],
+    featuredService: {
+      title: 'Operational Layout Validation',
+      image: '/analysis1.png',
+      imageAlt: 'AutoCAD drawing and 3D layout comparison with forklift maneuverability analysis',
+      points: [
+        'Detailed maneuverability studies for forklifts, reach trucks and lifters',
+        'Vehicle-specific turning radius, load handling and clearance validation',
+        'Compare movement scenarios before changing layouts or equipment'
+      ]
+    },
     contactTitle: 'Let’s work together!',
     contactText: 'From early-stage concept to validated factory plan.',
     form: { name: 'Name', email: 'E-mail', description: 'Project description', send: 'Send' },
@@ -1002,6 +1022,16 @@ function App() {
               </article>
             ))}
           </div>
+          <article className="mt-4.5 overflow-hidden border-t-4 border-fs-accent bg-fs-panel text-white">
+            <img className="aspect-[16/7] w-full bg-black object-cover" src={assetPath(t.featuredService.image)} alt={t.featuredService.imageAlt} />
+            <div className="grid gap-6 p-7 sm:p-9 lg:grid-cols-[minmax(280px,0.82fr)_minmax(360px,1fr)] lg:items-start lg:p-10">
+              <div>
+                <p className="mb-3 text-sm font-bold uppercase tracking-[0.14em] text-fs-accent">2D + 3D</p>
+                <h3 className="m-0 text-[clamp(1.55rem,2.6vw,2.7rem)] leading-tight font-bold">{t.featuredService.title}</h3>
+              </div>
+              <IconList items={t.featuredService.points} itemClassName="mb-1 text-base leading-snug text-white/84" iconClassName="bg-fs-accent" />
+            </div>
+          </article>
         </section>
 
         <section className={`${sectionClass} min-h-[76vh] ${darkSurfaceClass}`} id="about">
