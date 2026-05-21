@@ -41,10 +41,11 @@ const content = {
       resultsTitle: 'Otsingu tulemused',
       loading: 'Otsime tulemusi...',
       noResults: 'Kahjuks ei leitud sinu otsingule vastavaid tulemusi. Proovi uuesti teise märksõnaga.',
-      homeLink: 'Tagasi avalehele',
-      servicesLink: 'Vaata teenuseid',
-      projectsLink: 'Vaata projekte',
-      blogLink: 'Loe uudiseid'
+      blogLink: 'Loe teisi uudiseid',
+      latestTitle: 'Vaata meie viimaseid uudiseid',
+      readMore: 'Loe edasi',
+      contactTitle: 'Ei leidnud vastust?',
+      contactText: 'Saada oma küsimus meile otse ja vaatame koos, kuidas saame aidata.'
     },
     projectsTitle: 'Projektid',
     projectIntro:
@@ -271,10 +272,11 @@ const content = {
       resultsTitle: 'Search results',
       loading: 'Searching results...',
       noResults: 'We are sorry, but nothing was found for your search terms. Please try again with different terms.',
-      homeLink: 'Back to home',
-      servicesLink: 'View services',
-      projectsLink: 'View projects',
-      blogLink: 'Read news'
+      blogLink: 'Read  more news',
+      latestTitle: 'Check out our latest news',
+      readMore: 'Read more',
+      contactTitle: "Didn't find the answer?",
+      contactText: 'Send your question directly to us and we will look at how we can help.'
     },
     projectsTitle: 'Projects',
     projectIntro:
@@ -734,8 +736,9 @@ function HeaderSearch({ label, placeholder, initialValue = '', onSearch, onOpenC
   );
 }
 
-function SearchPage({ t, language, query, onHomeSectionClick }) {
+function SearchPage({ t, language, query, onContactSubmit }) {
   const [loading, setLoading] = useState(true);
+  const latestPosts = useMemo(() => [...t.blogPosts].sort((first, second) => second.sortDate.localeCompare(first.sortDate)).slice(0, 2), [t.blogPosts]);
 
   useEffect(() => {
     setLoading(true);
@@ -767,23 +770,56 @@ function SearchPage({ t, language, query, onHomeSectionClick }) {
         </div>
       ) : (
         <>
-          <div className="border-y border-fs-line py-8">
+          <div className="flex min-h-64 items-center border-y border-fs-line py-12 sm:py-16">
             <p className="m-0 max-w-5xl text-[clamp(1.15rem,1.8vw,1.55rem)] leading-snug text-white">{t.search.noResults}</p>
           </div>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent px-4 py-2 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href={getPagePath(language)}>
-              {t.search.homeLink}
-            </a>
-            <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent px-4 py-2 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href={getPagePath(language, 'home', '#services')} onClick={(event) => onHomeSectionClick(event, 'services')}>
-              {t.search.servicesLink}
-            </a>
-            <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent px-4 py-2 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href={getPagePath(language, 'home', '#projects')} onClick={(event) => onHomeSectionClick(event, 'projects')}>
-              {t.search.projectsLink}
-            </a>
-            <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent px-4 py-2 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href={getPagePath(language, 'blog')}>
-              {t.search.blogLink}
-            </a>
-          </div>
+          <section className="mt-16">
+            <h2 className="mb-5 text-[clamp(1.45rem,2.4vw,2.4rem)] leading-tight font-bold">{t.search.latestTitle}</h2>
+            <div className="grid gap-4 md:grid-cols-3">
+                {latestPosts.map((post) => (
+                  <article className="grid overflow-hidden bg-white text-black md:grid-rows-[11rem_1fr]" key={post.title}>
+                    <img className="h-44 w-full object-cover md:h-full" src={assetPath(post.image)} alt="" />
+                    <div className="flex min-h-52 flex-col justify-between p-5">
+                      <div>
+                        <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-fs-accent">{post.category} · {post.date}</p>
+                        <h3 className="mb-3 text-lg leading-tight font-bold text-fs-panel">{post.title}</h3>
+                        <p className="line-clamp-3 text-sm leading-snug text-fs-panel/72">{post.excerpt}</p>
+                      </div>
+                      <a className="mt-5 w-fit font-bold text-fs-panel no-underline transition hover:text-fs-accent" href={getPagePath(language, 'blog')}>
+                        {t.search.readMore}
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              <a className="flex min-h-72 flex-col justify-between border-t-4 border-fs-accent bg-fs-panel p-6 text-white no-underline transition hover:bg-fs-accent hover:text-black" href={getPagePath(language, 'blog')}>
+                <span className="text-sm font-bold uppercase tracking-[0.16em] opacity-70">{t.blogTitle}</span>
+                <span className="text-[clamp(1.45rem,2.4vw,2.2rem)] leading-tight font-bold">{t.search.blogLink}</span>
+              </a>
+            </div>
+          </section>
+          <section className="mt-16 border-t border-fs-line pt-10">
+            <div className="grid gap-8 lg:grid-cols-[minmax(260px,0.8fr)_minmax(320px,560px)] lg:gap-[8vw]">
+              <div>
+                <h2 className="mb-3 text-[clamp(1.8rem,3.2vw,3.6rem)] leading-tight font-normal">{t.search.contactTitle}</h2>
+                <p className="text-[clamp(1.1rem,1.7vw,1.45rem)] leading-snug text-white/74">{t.search.contactText}</p>
+              </div>
+              <form className="grid gap-4" onSubmit={onContactSubmit}>
+                <label className="grid gap-2 text-sm font-bold text-white/82">
+                  {t.form.name}
+                  <input className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black" name="name" autoComplete="name" required />
+                </label>
+                <label className="grid gap-2 text-sm font-bold text-white/82">
+                  {t.form.email}
+                  <input className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black" type="email" name="email" autoComplete="email" required />
+                </label>
+                <label className="grid gap-2 text-sm font-bold text-white/82">
+                  {t.form.description}
+                  <textarea className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black" name="description" rows="5" required />
+                </label>
+                <button className="min-h-12 w-28 cursor-pointer border-0 bg-fs-accent font-bold text-black transition hover:bg-white" type="submit">{t.form.send}</button>
+              </form>
+            </div>
+          </section>
         </>
       )}
     </section>
@@ -1169,7 +1205,7 @@ function App() {
 
       <main id="top">
         {searchQuery ? (
-          <SearchPage t={t} language={language} query={searchQuery} onHomeSectionClick={navigateToHomeSection} />
+          <SearchPage t={t} language={language} query={searchQuery} onContactSubmit={handleContactSubmit} />
         ) : route === 'wheelme' ? (
           <WheelmePage t={t} language={language} onContactClick={navigateToContact} onOpenImage={setLightboxImage} />
         ) : route === 'blog' ? (
