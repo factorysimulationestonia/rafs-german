@@ -1075,11 +1075,7 @@ function App() {
       return;
     }
 
-    setMenuOpen(false);
-    setRoute('home');
-    setSearchQuery(query);
-    window.history.pushState(null, '', getSearchPath(language, query));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.location.href = getSearchPath(language, query);
   };
 
   const handleContactSubmit = (event) => {
