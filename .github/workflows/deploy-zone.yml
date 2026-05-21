@@ -52,6 +52,7 @@ jobs:
           set ftp:ssl-protect-data true
           set ssl:verify-certificate true
           set ssl:check-hostname false
-          mirror --reverse --verbose --ignore-time ./dist/ "$REMOTE_DIR"
+          mirror --reverse --verbose --delete ./dist/ "$REMOTE_DIR"
+          put -O "$REMOTE_DIR" ./dist/index.html
           bye
           EOF
