@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -34,6 +34,18 @@ const content = {
     heroButton: 'Räägime projektist',
     heroSecondary: 'Vaata teenuseid',
     contactButton: 'Võta ühendust',
+    search: {
+      label: 'Otsi',
+      placeholder: 'Otsi...',
+      breadcrumb: 'Otsing',
+      resultsTitle: 'Otsingu tulemused',
+      loading: 'Otsime tulemusi...',
+      noResults: 'Kahjuks ei leitud sinu otsingule vastavaid tulemusi. Proovi uuesti teise märksõnaga.',
+      homeLink: 'Tagasi avalehele',
+      servicesLink: 'Vaata teenuseid',
+      projectsLink: 'Vaata projekte',
+      blogLink: 'Loe uudiseid'
+    },
     projectsTitle: 'Projektid',
     projectIntro:
       'Valik näiteid, kus simulatsioonid on aidanud tootmist enne füüsilisi muudatusi valideerida.',
@@ -252,6 +264,18 @@ const content = {
     heroButton: 'Discuss your project',
     heroSecondary: 'View services',
     contactButton: 'Contact us',
+    search: {
+      label: 'Search',
+      placeholder: 'Search for...',
+      breadcrumb: 'Search',
+      resultsTitle: 'Search results',
+      loading: 'Searching results...',
+      noResults: 'We are sorry, but nothing was found for your search terms. Please try again with different terms.',
+      homeLink: 'Back to home',
+      servicesLink: 'View services',
+      projectsLink: 'View projects',
+      blogLink: 'Read news'
+    },
     projectsTitle: 'Projects',
     projectIntro:
       'Selected examples where simulations helped validate production plans before physical changes.',
@@ -479,10 +503,14 @@ const getRouteFromPath = () => {
   return ['blog', 'wheelme'].includes(page) ? page : 'home';
 };
 
+const getSearchQuery = () => new URLSearchParams(window.location.search).get('q')?.trim() || '';
+
 const getPagePath = (language, page = 'home', hash = '') => {
   const pagePath = page === 'blog' || page === 'wheelme' ? `${page}/` : '';
   return `${basePath}${language}/${pagePath}${hash || ''}`;
 };
+
+const getSearchPath = (language, query) => `${getPagePath(language)}?q=${encodeURIComponent(query.trim())}`;
 
 const getLanguagePath = (language, hash = window.location.hash) => getPagePath(language, 'home', hash);
 const partners = [
@@ -600,6 +628,165 @@ function ImageLightbox({ image, onClose }) {
       </button>
       <img className="max-h-[92vh] max-w-[92vw] object-contain" src={assetPath(image)} alt="" onClick={(event) => event.stopPropagation()} />
     </div>
+  );
+}
+
+function SearchIcon({ className = 'size-5' }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="m20 20-4.2-4.2" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+      <circle cx="10.8" cy="10.8" r="5.8" stroke="currentColor" strokeWidth="2.4" />
+    </svg>
+  );
+}
+
+function HeaderSearch({ label, placeholder, initialValue = '', onSearch, onOpenChange, alwaysOpen = false, keepOpenWithValue = false }) {
+  const [open, setOpen] = useState(alwaysOpen || (keepOpenWithValue && Boolean(initialValue)));
+  const [value, setValue] = useState(initialValue);
+  const inputRef = useRef(null);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    setValue(initialValue);
+    setOpen(alwaysOpen || (keepOpenWithValue && Boolean(initialValue)));
+  }, [alwaysOpen, initialValue, keepOpenWithValue]);
+
+  useEffect(() => {
+    onOpenChange?.(open);
+  }, [onOpenChange, open]);
+
+  useEffect(() => {
+    if (open) {
+      inputRef.current?.focus();
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    const closeSearch = () => {
+      if (!alwaysOpen) {
+        setOpen(false);
+      }
+    };
+
+    const onPointerDown = (event) => {
+      if (!formRef.current?.contains(event.target)) {
+        closeSearch();
+      }
+    };
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeSearch();
+      }
+    };
+
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [alwaysOpen, open]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!open && !alwaysOpen) {
+      setOpen(true);
+      return;
+    }
+
+    onSearch(value);
+    if (!alwaysOpen) {
+      setOpen(false);
+    }
+  };
+
+  return (
+    <form
+      ref={formRef}
+      className={`flex min-h-11 items-center overflow-hidden border border-fs-accent/70 transition-[max-width,border-color] duration-200 ease-out lg:min-h-10 ${
+        alwaysOpen ? 'w-full max-w-full' : open ? 'w-full max-w-full lg:max-w-[min(42rem,58vw)]' : 'w-10 max-w-10'
+      }`}
+      role="search"
+      onSubmit={handleSubmit}
+    >
+      {(open || alwaysOpen) && (
+        <input
+          ref={inputRef}
+          className="min-w-0 flex-1 border-0 bg-transparent px-3 py-2 text-sm normal-case text-white outline-none placeholder:text-white/45"
+          type="search"
+          name="q"
+          value={value}
+          placeholder={placeholder}
+          aria-label={label}
+          onChange={(event) => setValue(event.target.value)}
+        />
+      )}
+      <button className="grid size-10 shrink-0 place-items-center text-fs-accent transition hover:bg-fs-accent hover:text-black" type="submit" aria-label={label} title={label}>
+        <SearchIcon />
+      </button>
+    </form>
+  );
+}
+
+function SearchPage({ t, language, query, onHomeSectionClick }) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    const delay = 1000 + Math.floor(Math.random() * 1000);
+    const timer = window.setTimeout(() => setLoading(false), delay);
+
+    return () => window.clearTimeout(timer);
+  }, [query]);
+
+  return (
+    <section className={`${sectionClass} min-h-[calc(100vh-5rem)]`}>
+      <nav className="mb-5 flex items-center gap-2 text-sm font-bold text-white/45" aria-label="Breadcrumb">
+        <a className="text-white/55 no-underline transition hover:text-fs-accent" href={getPagePath(language)}>
+          {t.breadcrumbHome}
+        </a>
+        <span className="text-fs-accent" aria-hidden="true">
+          /
+        </span>
+        <span className="text-fs-accent">{t.search.breadcrumb}</span>
+      </nav>
+      <h1 className="mb-8 min-w-0 text-[clamp(2rem,4.6vw,4.2rem)] leading-none font-normal">
+        {t.search.resultsTitle}:{' '}
+        <span className="inline-block max-w-full overflow-hidden text-ellipsis whitespace-nowrap align-bottom">{query}</span>
+      </h1>
+      {loading ? (
+        <div className="flex min-h-36 items-center gap-4 border-y border-fs-line py-8">
+          <span className="size-8 animate-spin rounded-full border-3 border-fs-accent/25 border-t-fs-accent" aria-hidden="true" />
+          <p className="m-0 text-[clamp(1.15rem,1.8vw,1.55rem)] leading-snug text-white">{t.search.loading}</p>
+        </div>
+      ) : (
+        <>
+          <div className="border-y border-fs-line py-8">
+            <p className="m-0 max-w-5xl text-[clamp(1.15rem,1.8vw,1.55rem)] leading-snug text-white">{t.search.noResults}</p>
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent px-4 py-2 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href={getPagePath(language)}>
+              {t.search.homeLink}
+            </a>
+            <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent px-4 py-2 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href={getPagePath(language, 'home', '#services')} onClick={(event) => onHomeSectionClick(event, 'services')}>
+              {t.search.servicesLink}
+            </a>
+            <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent px-4 py-2 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href={getPagePath(language, 'home', '#projects')} onClick={(event) => onHomeSectionClick(event, 'projects')}>
+              {t.search.projectsLink}
+            </a>
+            <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent px-4 py-2 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href={getPagePath(language, 'blog')}>
+              {t.search.blogLink}
+            </a>
+          </div>
+        </>
+      )}
+    </section>
   );
 }
 
@@ -768,7 +955,9 @@ function WheelmePage({ t, language, onContactClick, onOpenImage }) {
 function App() {
   const [language, setLanguage] = useState(getLanguageFromPath);
   const [route, setRoute] = useState(getRouteFromPath);
+  const [searchQuery, setSearchQuery] = useState(getSearchQuery);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [desktopSearchOpen, setDesktopSearchOpen] = useState(Boolean(getSearchQuery()));
   const [lightboxImage, setLightboxImage] = useState(null);
   const t = content[language];
   const nextLanguage = language === 'et' ? 'en' : 'et';
@@ -793,6 +982,7 @@ function App() {
     const onPopState = () => {
       setLanguage(getLanguageFromPath());
       setRoute(getRouteFromPath());
+      setSearchQuery(getSearchQuery());
     };
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
@@ -801,7 +991,11 @@ function App() {
   useEffect(() => {
     document.documentElement.lang = language;
     document.title =
-      route === 'wheelme'
+      searchQuery
+        ? language === 'et'
+          ? `Otsingu tulemused: ${searchQuery} | Factory Simulation`
+          : `Search results: ${searchQuery} | Factory Simulation`
+        : route === 'wheelme'
         ? language === 'et'
           ? 'Wheel.me autonoomne siselogistika | Factory Simulation'
           : 'Wheel.me autonomous internal logistics | Factory Simulation'
@@ -817,7 +1011,11 @@ function App() {
     if (description) {
       description.setAttribute(
         'content',
-        route === 'wheelme'
+        searchQuery
+          ? language === 'et'
+            ? `Otsingu tulemused märksõnale ${searchQuery}.`
+            : `Search results for ${searchQuery}.`
+          : route === 'wheelme'
           ? language === 'et'
             ? 'Wheel.me autonoomne mobiilsete robotite lahendus tootmise ja lao siselogistika automatiseerimiseks.'
             : 'Wheel.me autonomous mobile robot solution for automating internal logistics in production and warehouses.'
@@ -849,18 +1047,19 @@ function App() {
       link.dataset.languageLink = 'true';
       document.head.appendChild(link);
     });
-  }, [language, route]);
+  }, [language, route, searchQuery]);
 
   const switchLanguage = () => {
     setLanguage(nextLanguage);
     setMenuOpen(false);
-    window.history.pushState(null, '', getPagePath(nextLanguage, route, route === 'home' ? window.location.hash : ''));
+    window.history.pushState(null, '', searchQuery ? getSearchPath(nextLanguage, searchQuery) : getPagePath(nextLanguage, route, route === 'home' ? window.location.hash : ''));
   };
 
   const navigateToHomeSection = (event, sectionId) => {
     event.preventDefault();
     setMenuOpen(false);
     setRoute('home');
+    setSearchQuery('');
     window.history.pushState(null, '', getPagePath(language, 'home', `#${sectionId}`));
     window.setTimeout(() => {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -868,6 +1067,20 @@ function App() {
   };
 
   const navigateToContact = (event) => navigateToHomeSection(event, 'contact');
+
+  const handleSearch = (value) => {
+    const query = value.trim();
+
+    if (!query) {
+      return;
+    }
+
+    setMenuOpen(false);
+    setRoute('home');
+    setSearchQuery(query);
+    window.history.pushState(null, '', getSearchPath(language, query));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleContactSubmit = (event) => {
     event.preventDefault();
@@ -909,49 +1122,59 @@ function App() {
           <span className="block h-0.5 w-6 bg-white" />
         </button>
         <nav
-          className={`absolute top-20 right-0 left-0 flex-col border-b border-fs-line bg-black px-6 py-5 text-sm uppercase lg:static lg:flex lg:flex-row lg:items-center lg:gap-10 lg:border-0 lg:bg-transparent lg:p-0 ${
+          className={`absolute top-full right-0 left-0 flex-col border-b border-fs-line bg-black px-6 py-5 text-sm uppercase lg:static lg:flex lg:flex-row lg:items-center lg:gap-7 lg:border-0 lg:bg-transparent lg:p-0 ${
             menuOpen ? 'flex' : 'hidden'
-          }`}
+          } lg:flex`}
           aria-label="Main navigation"
         >
-          {navItems.map((item) => (
-            <a
-              className="flex min-h-10 items-center py-3 no-underline transition hover:text-fs-accent lg:py-0"
-              key={item.href}
-              href={item.href}
-              onClick={(event) => {
-                if (item.anchor === 'blog' || item.anchor === 'wheelme') {
-                  setMenuOpen(false);
-                  return;
-                }
+          <div className={`contents ${desktopSearchOpen ? 'lg:hidden' : ''}`}>
+            {navItems.map((item) => (
+              <a
+                className="flex min-h-10 items-center py-3 no-underline transition hover:text-fs-accent lg:py-0"
+                key={item.href}
+                href={item.href}
+                onClick={(event) => {
+                  if (item.anchor === 'blog' || item.anchor === 'wheelme') {
+                    setMenuOpen(false);
+                    return;
+                  }
 
-                navigateToHomeSection(event, item.anchor);
-              }}
+                  navigateToHomeSection(event, item.anchor);
+                }}
+              >
+                {item.label}
+              </a>
+            ))}
+            <button
+              className="flex min-h-10 w-fit items-center py-3 transition hover:scale-110 lg:py-0"
+              type="button"
+              onClick={switchLanguage}
+              aria-label={t.languageLabel}
+              title={t.languageLabel}
             >
-              {item.label}
+              <img className="h-5 w-7 object-cover" src={assetPath(t.flagSrc)} alt="" aria-hidden="true" />
+            </button>
+            <a
+              className="mt-3 inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent bg-fs-accent px-4 py-2 font-bold text-black no-underline transition hover:bg-white lg:mt-0"
+              href={getPagePath(language, 'home', '#contact')}
+              onClick={navigateToContact}
+            >
+              {t.contactButton}
             </a>
-          ))}
-          <button
-            className="flex min-h-10 w-fit items-center py-3 transition hover:scale-110 lg:py-0"
-            type="button"
-            onClick={switchLanguage}
-            aria-label={t.languageLabel}
-            title={t.languageLabel}
-          >
-            <img className="h-5 w-7 object-cover" src={assetPath(t.flagSrc)} alt="" aria-hidden="true" />
-          </button>
-          <a
-            className="mt-3 inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent bg-fs-accent px-4 py-2 font-bold text-black no-underline transition hover:bg-white lg:mt-0"
-            href={getPagePath(language, 'home', '#contact')}
-            onClick={navigateToContact}
-          >
-            {t.contactButton}
-          </a>
+          </div>
+          <div className="mt-3 w-full lg:hidden">
+            <HeaderSearch label={t.search.label} placeholder={t.search.placeholder} initialValue={searchQuery} onSearch={handleSearch} alwaysOpen />
+          </div>
+          <div className="hidden lg:block">
+            <HeaderSearch label={t.search.label} placeholder={t.search.placeholder} initialValue={searchQuery} onSearch={handleSearch} onOpenChange={setDesktopSearchOpen} />
+          </div>
         </nav>
       </header>
 
       <main id="top">
-        {route === 'wheelme' ? (
+        {searchQuery ? (
+          <SearchPage t={t} language={language} query={searchQuery} onHomeSectionClick={navigateToHomeSection} />
+        ) : route === 'wheelme' ? (
           <WheelmePage t={t} language={language} onContactClick={navigateToContact} onOpenImage={setLightboxImage} />
         ) : route === 'blog' ? (
           <BlogPage t={t} language={language} />
