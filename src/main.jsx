@@ -480,6 +480,7 @@ const content = {
 
 const anchors = ['projects', 'services', 'about', 'blog', 'wheelme'];
 const languages = ['et', 'en'];
+const languagePreferenceKey = 'factorySimulationLanguage';
 
 const getPathWithoutBase = () => {
   const { pathname } = window.location;
@@ -497,7 +498,18 @@ const getPathWithoutBase = () => {
 
 const getLanguageFromPath = () => {
   const language = getPathWithoutBase().split('/').filter(Boolean)[0];
-  return languages.includes(language) ? language : 'et';
+
+  if (languages.includes(language)) {
+    return language;
+  }
+
+  const storedLanguage = window.localStorage?.getItem(languagePreferenceKey);
+
+  if (languages.includes(storedLanguage)) {
+    return storedLanguage;
+  }
+
+  return navigator.language?.toLowerCase().startsWith('et') ? 'et' : 'en';
 };
 
 const getRouteFromPath = () => {
@@ -1012,7 +1024,7 @@ function App() {
 
   useEffect(() => {
     if (!languages.includes(getPathWithoutBase().split('/').filter(Boolean)[0])) {
-      window.history.replaceState(null, '', getLanguagePath(language, ''));
+      window.history.replaceState(null, '', `${getLanguagePath(language, '')}${window.location.search}${window.location.hash}`);
     }
 
     const onPopState = () => {
@@ -1086,6 +1098,7 @@ function App() {
   }, [language, route, searchQuery]);
 
   const switchLanguage = () => {
+    window.localStorage?.setItem(languagePreferenceKey, nextLanguage);
     setLanguage(nextLanguage);
     setMenuOpen(false);
     window.history.pushState(null, '', searchQuery ? getSearchPath(nextLanguage, searchQuery) : getPagePath(nextLanguage, route, route === 'home' ? window.location.hash : ''));
