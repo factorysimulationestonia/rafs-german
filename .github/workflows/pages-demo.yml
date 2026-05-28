@@ -37,6 +37,7 @@ jobs:
           VITE_COMMIT_SHA="${GITHUB_SHA::7}" \
           VITE_LAST_UPDATED="$(date -u +%Y-%m-%d)" \
           npm run build
+          cp dist/index.html dist/404.html
         env:
           BASE_PATH: /fs-home-demo/
 
