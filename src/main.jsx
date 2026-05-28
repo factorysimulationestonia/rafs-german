@@ -24,7 +24,7 @@ const content = {
     flagSrc: '/en-flag.svg',
     heroHeadline: 'Kontseptsioonist kindla investeerimisotsuseni',
     heroHeadlineMobile: <>Kontseptsioonist kindla investeerimis-<br />otsuseni</>,
-    nav: ['Projektid', 'Teenused', 'Meist', 'Uudised', 'Wheel.me'],
+    nav: ['Teenused', 'Projektid', 'Meist', 'Uudised', 'Wheel.me'],
     heroSubline: {
       start: 'Simulatsioonide abil loome tootmisest dünaamilise ülevaate, mis aitab ',
       benefits: 'vähendada riske, optimeerida protsesse',
@@ -49,107 +49,168 @@ const content = {
     },
     projectsTitle: 'Projektid',
     projectIntro:
-      'Valik näiteid, kus simulatsioonid on aidanud tootmist enne füüsilisi muudatusi valideerida.',
+      'Näited projektidest, kus simulatsioonid ja digitaalsed mudelid aitasid teha kindlamaid tootmisotsuseid enne kulukaid füüsilisi muudatusi.',
+    projectCardLabels: {
+      solution: 'Lahendus',
+      results: 'Tulemused'
+    },
     projects: [
       {
         title: 'Plastitööstus',
         image: '/project-plastic.png',
-        points: [
-          'Koosteliini simulatsioon - pistikupesade kokkupanek, testimine ja pakendamine modelleeritud.',
-          'Uue testeri integreerimine - mõju tootmisele hinnatud enne investeeringut.',
-          'Tsükliaja analüüs - simuleeritud mitmeid tootmisstsenaariume.',
-          'Parem sisend hinnapäringuks – tugev alus seadmetarnijate pakkumisteks.'
+        problem: 'Uute testimisseadmete mõju tootmisele oli vaja hinnata enne investeeringut, et vältida pudelikohti, seisakuid ja hilisemaid ümberkorraldusi.',
+        solution: 'Modelleeriti pistikupesade koostamine, testimine ja pakendamine ning simuleeriti erinevaid tootmisstsenaariume enne seadmete hankimist.',
+        results: [
+          'Valideeritud tootmisvõimekus enne seadmete saabumist',
+          'Tuvastatud kriitilised pudelikohad ja tsükliaja piirangud',
+          'Tugev alus seadmetarnijate hinnapäringuteks',
+          'Kiirem projektikäivitus ja tootmise planeerimine',
+          'Välditud kulukad muudatused pärast juurutust'
         ]
       },
       {
         title: 'Rasketööstus',
         image: '/project-heavy.png',
-        points: [
-          '3D laserskaneerimine – kogu 18 000 m² tootmishoone jäädvustati digitaalselt.',
-          'Punktipilvest DWG alusplaan – olemasoleva hoone täpne mõõdistuspõhine joonis, kasutatav projekteerimises',
-          'Paigutuse planeerimine – mudeli põhjal koostatud tootmisalad, põhiplaanid ja lõiked.',
-          'Tehase simulatsioon – erinevad seadmete paigutused ja logistika stsenaariumid testiti virtuaalselt.',
-          'Väiksem ümberpaigutuse risk – kiirem planeerimine ja paremad otsused enne füüsilist paigaldust.'
+        problem: '18 000 m² tootmishoone ümberplaneerimine nõudis täpset ülevaadet olemasolevast keskkonnast ja kindlust, et uued seadmete paigutused toimivad enne füüsilist paigaldust.',
+        solution: 'Kogu tehas laserskaneeriti, loodi täpne DWG alus ning simuleeriti erinevaid layouti ja logistika stsenaariume.',
+        results: [
+          'Täpne digitaalne alus kogu projekteerimiseks',
+          'Valideeritud seadmete paigutused enne investeeringuid',
+          'Kiirem ja kindlam tehase ümberplaneerimine',
+          'Välditud logistilised konfliktid ja ruumiprobleemid',
+          'Tugev tehniline ülevaade kogu tootmiskeskkonnast'
         ]
       },
       {
         title: 'Toiduainetööstus',
         image: '/project-food.png',
         imageOverlay: '/project-food2.png',
-        points: [
-          'Pidev materjalivoog – tootmisprotsess modelleeriti nii, et vähendada ooteaegu ja suurendada läbilaskevõimet.',
-          'Automatiseerimine – manuaalsed etapid asendati, et vähendada tööjõu vajadust ja tõsta efektiivsust.',
-          'Pudelikohad – analüüsi käigus tuvastati kriitilised etapid ja määrati vajalikud puhvrite mahud.',
-          'Protsessi tasakaalustamine – vähendati varieeruvust ja saavutati ühtlasem tsükliaeg.',
-          'Virtuaalne testimine – loodi mudel, kus saab kiiresti muuta parameetreid ja läbi proovida erinevaid stsenaariume.'
+        problem: 'Tootmisprotsessis tekkisid ooteajad, ebaühtlane voog ja pudelikohad, mis piirasid läbilaskevõimet ja põhjustasid ebastabiilset tootmisrütmi.',
+        solution: 'Modelleeriti kogu tootmisprotsess, analüüsiti kriitilisi etappe ning testiti erinevaid automatiseerimise ja protsessi tasakaalustamise stsenaariume.',
+        results: [
+          'Stabiilne materjalivoog kogu protsessi ulatuses',
+          'Ühtlane tootmisrütm ja kontrollitud tsükliajad',
+          'Defineeritud puhvrite mahud kriitiliste protsesside jaoks',
+          'Automatiseeritud tööetapid tootmise efektiivistamiseks',
+          'Virtuaalne keskkond kiireks stsenaariumite testimiseks'
         ]
       },
       {
         title: 'Laologistika',
         image: '/project-logistics.png',
-        points: [
-          'Läbilaskevõime kasv – tootmismaht suureneb, kuna voog on stabiilsem ja katkestusi on vähem, mitte lihtsalt kiirem transport.',
-          'AGV/AMR liikumisteekond väheneb – transport muutub otsesemaks ja efektiivsemaks, väheneb tarbetu liikumine ja edasi-tagasi käimine.',
-          'Operaatorite hõive kasv – vähem ootamist protsesside vahel, rohkem väärtust loovat tööd.',
-          'Laotöötaja hõive kasv – töö jaotub ühtlasemalt, vähem seisakuid ja käsitsi liikumist.',
-          'Tasakaalustatum protsess – vähem katkestusi ja ootamist, sujuvam materjalivoog kogu liini ulatuses.'
+        problem: 'Materjalide liikumine ja siselogistika põhjustasid tarbetut transporti, ooteaegu ja ebaühtlast koormust tootmisprotsessis.',
+        solution: 'Simuleeriti AGV/AMR liikumisteekondi, operaatorite töövoogu ja materjalide liikumist eesmärgiga saavutada stabiilne siselogistika ilma füüsiliste katsetusteta.',
+        results: [
+          'Optimeeritud AGV/AMR liikumisteekonnad',
+          'Stabiilne ja sujuv materjalivoog kogu liini ulatuses',
+          'Tasakaalustatud operaatorite ja laotöötajate töökoormus',
+          'Vähenenud tarbetu liikumine ja ooteajad',
+          'Valideeritud logistika enne füüsilisi muudatusi'
         ]
       },
       {
         title: 'Puidutööstus',
         image: '/project-pellet.png',
         imageOverlays: ['/project-pellet2.png', '/project-pellet3.png'],
-        points: [
-          '3D laserskaneerimine – kogu pelletitehas jäädvustatud täpse digitaalse mudelina.',
-          'Punktipilvest 3D mudeliks – tootmisruumide täpne ruumiline esitus.',
-          'Visuaalne ülevaade tootmisest – keerukad protsessid muudetud 3D-s lihtsalt mõistetavaks.',
-          'Digitaalse kaksiku alus – platvorm edasiseks optimeerimiseks ja targemateks tootmisotsusteks.',
-          'Tootmisandmete integreerimise alus – katla, kuivatuse ja liinikiiruste andmed on ühendatavad 3D mudeliga.'
+        problem: 'Tehasel puudus ajakohane digitaalne ülevaade tootmiskeskkonnast, mis muutis tulevaste arendus- ja investeerimisprojektide planeerimise aeglaseks ja riskantseks.',
+        solution: 'Kogu pelletitehas laserskaneeriti ning modelleeriti detailseks digitaalseks mudeliks tootmise visualiseerimiseks, planeerimiseks ja andmete integreerimiseks.',
+        results: [
+          'Täpne punktipilv, mudelid ning joonised kogu tehasekeskkonnast',
+          'Tugev alus tulevaste investeeringute planeerimiseks',
+          'Visuaalne ülevaade keerukatest tootmisprotsessidest',
+          'Valmidus tootmisandmete integreerimiseks',
+          'Digitaalne platvorm edasiseks optimeerimiseks'
         ]
       }
     ],
     servicesTitle: 'Teenused',
+    servicesIntro:
+      'Valideerime tootmisotsused enne füüsilisi muudatusi, et planeeringud, investeeringud ja juurutused liiguksid kindlama aluse pealt.',
+    servicesHero: {
+      image: '/analysis1.png',
+      imageAlt: 'AutoCAD joonise ja 3D paigutuse võrdlus tõstuki manööverdusanalüüsiga'
+    },
+    servicesQuestions: [
+      'Kuidas vältida kulukaid vigu planeerimisel?',
+      'Kuidas suurendada liini tootlikkust?',
+      'Kuidas vähendada seisakuid?',
+      'Kuidas põhjendada investeeringut firmasiseselt?'
+    ],
+    serviceCardLabels: {
+      validation: 'Mida valideerime',
+      outcome: 'Tulemus'
+    },
+    serviceCta: 'Räägime projektist',
     services: [
       {
-        title: 'Tootmisvoo simulatsioon',
-        main: true,
-        points: [
-          'Digitaalne mudel tootmise tegelikust loogikast',
-          'Läbilaske, järjekordade ja tsükliaegade analüüs',
-          'Otsused enne füüsilist ümberkorraldust'
-        ]
+        title: 'Uue tehase või tootmisliini planeerimine',
+        problem: 'Vale otsus investeerides võib põhjustada kulukaid ümberkorraldusi ja pudelikaelu pärast käivitust.',
+        solutionLead: 'Loome tootmisest 3D simulatsiooni, et testida seadmete paigutust, materjalivooge, operaatorite liikumist ja tootmismahte.',
+        solutionPoints: [
+          'Seadmete paigutus, materjalivood ja operaatorite liikumine',
+          'Tootmismahud ja tsükliajad',
+          'Tõstukite ja AGV-de liikumisteed, pöörderaadiused ja vajalikud ohutusalad',
+        ],
+        impact: [
+          'Aitab saavutada kohe suurema tootlikkuse',
+          'Vähendab tootmisseisakute riski pärast ümberkorraldusi',
+          'Väldib ruumipuudusest tingitud hilisemaid ümbertegemisi',
+        ],
+        ctaPrompt: 'Planeerid uut liini või tehase laiendust?'
       },
       {
-        title: 'Tehase paigutuse planeerimine',
-        points: ['Seadmete ja tööalade 3D planeerimine', 'Materjalivoogude ja logistika kontroll', 'Paigutuste võrdlus enne investeeringut']
+        title: 'Olemasoleva tehase või tootmisliini tootlikkuse suurendamine',
+        problem: 'Tootmine ei saavuta planeeritud läbilaset, tekivad kulukad seisakud ja olemasolevast ressursist ei saada maksimumi kätte.',
+        solutionLead: 'Leiame simulatsiooni abil päris piirangud ning testime parendusi enne tootmise ümberkorraldamist.',
+        solutionPoints: [
+          'Pudelikaelad ja tööjaamade koormus',
+          'Vahetuste mõju läbilaskele',
+          'Logistika kitsaskohad',
+          'Tootmisvoo, tööjaamade ja logistika optimeerimine'
+        ],
+        impact: [
+          'Suurem läbilase olemasoleva ressursiga',
+          'Lühemad tsükliajad ja vähem seisakuid',
+          'Selge ülevaade tootmise tegelikest piirangutest'
+        ],
+        ctaPrompt: 'Tahad leida tootmise tegelikud piirangud?'
       },
       {
-        title: 'Pudelikaelte analüüs',
-        points: ['Kriitiliste piirangute leidmine', 'Tundlikkusanalüüs mahtude ja vahetuste lõikes', 'Praktilised parendusettepanekud']
+        title: 'Robotite ja automatiseerimise valideerimine enne juurutust',
+        problem: 'Valesti juurutatud automaatikalahendused põhjustavad tootmisseisakuid ja kulukaid ümbertegemisi.',
+        solutionLead: 'Testime virtuaalselt robotite ulatust, taktiaegu, järjestust ja koostööd ülejäänud tootmisega.',
+        solutionPoints: [
+          'Robotite tööulatus ja ligipääs',
+          'Taktiajad ja tsüklite järjestus',
+          'Koostöö operaatorite, seadmete ja logistika vahel',
+          'Sobivate automaatikalahenduste valideerimine'
+        ],
+        impact: [
+          'Testimine ilma tootmist seiskamata',
+          'Väiksem risk kulukateks muudatusteks pärast juurutust',
+          'Põhjalik sisend süsteemiintegraatoritele',
+          'Kiirem kasutuselevõtt',
+        ],
+        ctaPrompt: 'Plaanid uut automaatikalahendust?'
       },
       {
-        title: 'Robot- ja automaatikalahenduste valideerimine',
-        points: ['Robotite ulatuse, taktide ja järjekordade kontroll', 'Virtuaalne testimine enne tootmise seiskamist', 'Parem lähteülesanne integraatoritele']
-      },
-      {
-        title: '3D laserskaneerimine ja mudeldamine',
-        points: ['Olemasoleva keskkonna täpne jäädvustamine', 'Punktipilve ja DWG aluste ettevalmistus', 'Mõõdistuspõhine planeerimisalus']
-      },
-      {
-        title: 'Investeeringu stsenaariumid',
-        points: ['Mis-juhtub-kui analüüs enne ostuotsust', 'Seadmete, inimeste ja graafikute võrdlus', 'Selgem sisend RFQ-deks ja juhtimisotsusteks']
+        title: 'Tehase digitaliseerimine',
+        problem: 'Muudatuste tegemine tehases on riskantne ja aeglane, kui puuduvad täpsed joonised ja tehniline ülevaade.',
+        solutionLead: 'Loome laserskaneerimise abil olemasolevast tehasest täpse 3D mudeli edasiseks planeerimiseks ja projekteerimiseks.',
+        solutionPoints: [
+          'Olemasoleva tehase täpne jäädvustamine',
+          'Punktipilv, 3D mudel ja DWG planeerimisalus',
+          'Tehniline ülevaade projekteerijatele ja integraatoritele'
+        ],
+        impact: [
+          'Kiirem projektide planeerimine',
+          'Vähem mõõtmis- ja paigaldusvigu',
+          'Parem koostöö projekteerijate ja integraatoritega',
+          'Väiksem risk ümbertegemisteks tootmises'
+        ],
+        ctaPrompt: 'Vajad täpset ülevaadet oma tehasest?'
       }
     ],
-    featuredService: {
-      title: 'Töökorralduse ja paigutuse valideerimine',
-      image: '/analysis1.png',
-      imageAlt: 'AutoCAD joonise ja 3D paigutuse võrdlus tõstuki manööverdusanalüüsiga',
-      points: [
-        'Detailne liikumisanalüüs tõstukitele ja tõsteseadmetele',
-        'Sõidukipõhine pöörderaadiuse, koormaga liikumise ja vaba ruumi kontroll',
-        'Liikumisstsenaariumide võrdlus enne paigutuse või seadmete muutmist'
-      ]
-    },
     contactTitle: 'Teeme koostööd!',
     contactText: 'Alates varajasest kontseptsioonist kuni valideeritud tehase planeeringuni.',
     form: { name: 'Nimi', email: 'E-mail', description: 'Projekti kirjeldus', send: 'Saada' },
@@ -255,7 +316,7 @@ const content = {
     flagSrc: '/ee-flag.svg',
     heroHeadline: 'From concept to a confident investment decision',
     heroHeadlineMobile: 'From concept to a confident investment decision',
-    nav: ['Projects', 'Services', 'About', 'News & Blog', 'Wheel.me'],
+    nav: ['Services', 'Projects', 'About', 'News & Blog', 'Wheel.me'],
     heroSubline: {
       start: 'With simulations we create a dynamic view of production that helps ',
       benefits: 'reduce risk, optimize processes',
@@ -280,102 +341,168 @@ const content = {
     },
     projectsTitle: 'Projects',
     projectIntro:
-      'Selected examples where simulations helped validate production plans before physical changes.',
+      'Examples of projects where simulations and digital models helped make more confident production decisions before expensive physical changes.',
+    projectCardLabels: {
+      solution: 'Solution',
+      results: 'Outcomes'
+    },
     projects: [
       {
         title: 'Plastics production',
         image: '/project-plastic.png',
-        points: [
-          'Earlier project start - planning began long before equipment arrival.',
-          'Unified stakeholder view - one accurate 3D model for engineers and management.',
-          'Faster ramp-up - reusable layouts sped up concept validation.',
-          'Lower implementation risk - virtual testing prevented costly design errors.'
+        problem: 'The impact of new testing equipment on production had to be assessed before investment to avoid bottlenecks, downtime and later layout changes.',
+        solution: 'Socket assembly, testing and packaging were modeled, and different production scenarios were simulated before equipment procurement.',
+        results: [
+          'Validated production capacity before equipment arrival',
+          'Identified critical bottlenecks and cycle-time constraints',
+          'Strong basis for RFQs to equipment suppliers',
+          'Faster project startup and production planning',
+          'Avoided costly changes after implementation'
         ]
       },
       {
         title: 'Heavy industry',
         image: '/project-heavy.png',
-        points: [
-          'Up to 50% faster robot programming - programs built and tested virtually.',
-          'Higher program quality and safety - reachability and collisions validated before deployment.',
-          'Scalable automation platform - supports adding new robot cells and AMR solutions.',
-          'Lower production disruption - concepts tested without stopping operations.'
+        problem: 'Replanning an 18,000 m² production facility required an accurate view of the existing environment and confidence that new equipment layouts would work before physical installation.',
+        solution: 'The full factory was laser scanned, an accurate DWG base was created, and different layout and logistics scenarios were simulated.',
+        results: [
+          'Accurate digital basis for all engineering work',
+          'Validated equipment layouts before investment',
+          'Faster and more confident factory replanning',
+          'Avoided logistics conflicts and space problems',
+          'Strong technical overview of the full production environment'
         ]
       },
       {
         title: 'Food industry',
         image: '/project-food.png',
         imageOverlay: '/project-food2.png',
-        points: [
-          'Continuous material flow – the production process was modeled to reduce waiting times and increase throughput.',
-          'Automation – manual steps were replaced to reduce labor needs and improve efficiency.',
-          'Bottlenecks – critical process steps were identified and the required buffer sizes were defined.',
-          'Process balancing – variation was reduced and a more consistent cycle time was achieved.',
-          'Virtual testing – a model was created where parameters can be changed quickly and different scenarios can be tested.'
+        problem: 'Waiting times, uneven flow and bottlenecks in the production process limited throughput and created an unstable production rhythm.',
+        solution: 'The full production process was modeled, critical steps were analyzed, and different automation and process-balancing scenarios were tested.',
+        results: [
+          'Stable material flow across the full process',
+          'Consistent production rhythm and controlled cycle times',
+          'Defined buffer sizes for critical process steps',
+          'Automated work steps to improve production efficiency',
+          'Virtual environment for fast scenario testing'
         ]
       },
       {
         title: 'Warehouse logistics',
         image: '/project-logistics.png',
-        points: [
-          'Throughput increase – production volume rises because the flow is more stable and interruptions are reduced, not simply because transport is faster.',
-          'Shorter AGV/AMR travel paths – transport becomes more direct and efficient, reducing unnecessary movement and back-and-forth travel.',
-          'Higher operator utilization – less waiting between process steps and more value-adding work.',
-          'Higher warehouse worker utilization – work is distributed more evenly, with fewer stoppages and less manual movement.',
-          'More balanced process – fewer interruptions and waiting periods, creating a smoother material flow across the full line.'
+        problem: 'Material movement and internal logistics caused unnecessary transport, waiting times and uneven workload in the production process.',
+        solution: 'AGV/AMR routes, operator workflows and material movement were simulated to achieve stable internal logistics without physical trial runs.',
+        results: [
+          'Optimized AGV/AMR movement paths',
+          'Stable and smooth material flow across the full line',
+          'Balanced workload for operators and warehouse workers',
+          'Reduced unnecessary movement and waiting times',
+          'Validated logistics before physical changes'
         ]
       },
       {
         title: 'Pellet factory',
         image: '/project-pellet.png',
         imageOverlays: ['/project-pellet2.png', '/project-pellet3.png'],
-        points: [
-          '3D laser scanning – the entire pellet factory was captured as an accurate digital model.',
-          'Point cloud to 3D model – an accurate spatial representation of the production areas.',
-          'Visual production overview – complex processes were made easy to understand in 3D.',
-          'Digital twin foundation – a platform for further optimization and smarter production decisions.',
-          'Production data integration foundation – boiler, drying and line-speed data can be connected to the 3D model.'
+        problem: 'The factory lacked an up-to-date digital overview of the production environment, making future development and investment planning slow and risky.',
+        solution: 'The entire pellet factory was laser scanned and modeled into a detailed digital model for production visualization, planning and data integration.',
+        results: [
+          'Accurate point cloud, models and drawings of the full factory environment',
+          'Strong basis for planning future investments',
+          'Visual overview of complex production processes',
+          'Readiness for production data integration',
+          'Digital platform for further optimization'
         ]
       }
     ],
     servicesTitle: 'Services',
+    servicesIntro:
+      'We validate production decisions before physical changes are made, giving layouts, investments and implementations a stronger basis.',
+    servicesHero: {
+      image: '/analysis1.png',
+      imageAlt: 'AutoCAD drawing and 3D layout comparison with forklift maneuverability analysis'
+    },
+    servicesQuestions: [
+      'How can I avoid costly planning mistakes?',
+      'How can I increase line productivity?',
+      'How can I reduce downtime?',
+      'How can I justify an investment internally?'
+    ],
+    serviceCardLabels: {
+      validation: 'What we validate',
+      outcome: 'Outcome'
+    },
+    serviceCta: 'Discuss this project',
     services: [
       {
-        title: 'Production Flow Simulation',
-        main: true,
-        points: ['Digital model of real production logic', 'Throughput, queue and cycle-time analysis', 'Confident decisions before physical changes']
+        title: 'Planning a new factory or production line',
+        problem: 'A wrong investment decision can create costly rework and bottlenecks after startup.',
+        solutionLead: 'We create a 3D simulation of production to test equipment layout, material flows, operator movement and production volumes.',
+        solutionPoints: [
+          'Equipment layout, material flows and operator movement',
+          'Production volumes and cycle times',
+          'Forklift and AGV movement paths, turning radii and required safety areas'
+        ],
+        impact: [
+          'Helps achieve higher productivity from the start',
+          'Reduces the risk of production downtime after layout changes',
+          'Avoids later rework caused by lack of space'
+        ],
+        ctaPrompt: 'Planning a new line or factory expansion?'
       },
       {
-        title: 'Factory layout planning',
-        points: ['3D planning for equipment and work areas', 'Material flow and logistics checks', 'Layout comparison before investment']
+        title: 'Increasing productivity in an existing factory or line',
+        problem: 'Production does not reach the planned throughput, downtime becomes expensive and existing resources are not fully used.',
+        solutionLead: 'We use simulation to find the real constraints and test improvements before changing production.',
+        solutionPoints: [
+          'Bottlenecks and workstation load',
+          'Shift impact on throughput',
+          'Logistics constraints',
+          'Production-flow, workstation and logistics optimization'
+        ],
+        impact: [
+          'More throughput from existing resources',
+          'Shorter cycle times and less downtime',
+          'Clear view of the actual production limits'
+        ],
+        ctaPrompt: 'Want to find the real production constraints?'
       },
       {
-        title: 'Bottleneck analysis',
-        points: ['Find the real production constraints', 'Sensitivity checks across volumes and shifts', 'Practical improvement recommendations']
+        title: 'Validating robots and automation before rollout',
+        problem: 'Poorly implemented automation can cause production stoppages and expensive rework.',
+        solutionLead: 'We virtually test robot reach, takt times, sequences and interaction with the rest of production.',
+        solutionPoints: [
+          'Robot reach and access',
+          'Takt times and cycle sequencing',
+          'Interaction with operators, equipment and logistics',
+          'Validation of suitable automation concepts'
+        ],
+        impact: [
+          'Testing without stopping production',
+          'Lower risk of expensive changes after rollout',
+          'Detailed input for system integrators',
+          'Faster commissioning'
+        ],
+        ctaPrompt: 'Planning a new automation solution?'
       },
       {
-        title: 'Robot and automation validation',
-        points: ['Reach, cycle and sequence validation', 'Virtual testing before downtime', 'Clearer specifications for integrators']
-      },
-      {
-        title: '3D laser scanning and modeling',
-        points: ['Accurate capture of existing facilities', 'Point-cloud and DWG base preparation', 'Measurement-based planning data']
-      },
-      {
-        title: 'Investment scenario testing',
-        points: ['What-if analysis before purchasing', 'Compare equipment, people and schedules', 'Clearer RFQ and management inputs']
+        title: 'Factory digitalization',
+        problem: 'Factory changes are slower and riskier when accurate drawings and technical overview are missing.',
+        solutionLead: 'Using laser scanning, we create an accurate 3D model of the existing factory for future planning and engineering.',
+        solutionPoints: [
+          'Accurate capture of the existing facility',
+          'Point cloud, 3D model and DWG planning base',
+          'Technical overview for designers and integrators'
+        ],
+        impact: [
+          'Faster project planning',
+          'Fewer measurement and installation errors',
+          'Better collaboration with designers and integrators',
+          'Lower risk of production rework'
+        ],
+        ctaPrompt: 'Need an accurate overview of your factory?'
       }
     ],
-    featuredService: {
-      title: 'Operational Layout Validation',
-      image: '/analysis1.png',
-      imageAlt: 'AutoCAD drawing and 3D layout comparison with forklift maneuverability analysis',
-      points: [
-        'Detailed maneuverability studies for forklifts, reach trucks and lifters',
-        'Vehicle-specific turning radius, load handling and clearance validation',
-        'Compare movement scenarios before changing layouts or equipment'
-      ]
-    },
     contactTitle: 'Let’s work together!',
     contactText: 'From early-stage concept to validated factory plan.',
     form: { name: 'Name', email: 'E-mail', description: 'Project description', send: 'Send' },
@@ -478,7 +605,7 @@ const content = {
   }
 };
 
-const anchors = ['projects', 'services', 'about', 'blog', 'wheelme'];
+const anchors = ['services', 'projects', 'about', 'blog', 'wheelme'];
 const languages = ['et', 'en'];
 const languagePreferenceKey = 'factorySimulationLanguage';
 
@@ -547,24 +674,111 @@ function IconList({ items, itemClassName = liClass, iconClassName = 'bg-fs-accen
   );
 }
 
-function ProjectPointList({ items }) {
-  return (
-    <ul className="m-0 grid list-none gap-4 p-0">
-      {items.map((item) => {
-        const [lead, ...rest] = item.split(/\s+[–-]\s+/);
-        const detail = rest.join(' – ');
+function ProjectCase({ project, labels, index, onOpenImage }) {
+  const imageFirst = index % 2 === 0;
 
-        return (
-          <li className="grid grid-cols-[1.35rem_1fr] gap-3 text-[clamp(1rem,1.35vw,1.18rem)] leading-snug" key={item}>
-            <span className="mt-0.5 size-5 bg-fs-accent" style={iconMask} aria-hidden="true" />
-            <span>
-              <span className="mb-1 block font-bold text-fs-accent">{lead}</span>
-              {detail && <span className="block text-white/88">{detail}</span>}
-            </span>
-          </li>
-        );
-      })}
-    </ul>
+  return (
+    <article className="grid gap-8 border-t border-fs-line/70 bg-fs-panel/58 p-6 sm:p-8 lg:grid-cols-[minmax(320px,0.78fr)_minmax(0,1fr)] lg:gap-12 lg:p-10">
+      <div className={imageFirst ? '' : 'lg:order-2'}>
+        <ProjectImage project={project} onOpenImage={onOpenImage} />
+      </div>
+      <div className="grid content-start gap-8">
+        <div>
+          <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
+          <h3 className="m-0 max-w-3xl text-[clamp(1.65rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{project.title}</h3>
+        </div>
+
+        <div className="grid gap-7">
+          <p className="m-0 text-[clamp(1.02rem,1.25vw,1.16rem)] leading-relaxed text-white/82">{project.problem}</p>
+          <div>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent">{labels.solution}</p>
+            <p className="m-0 text-[clamp(1.02rem,1.25vw,1.16rem)] leading-relaxed text-white/82">{project.solution}</p>
+          </div>
+        </div>
+
+        <div className="border border-fs-result/55 bg-black/24 p-6">
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-fs-result">{labels.results}</p>
+          <IconList items={project.results} itemClassName="mb-0 text-base leading-relaxed text-white/84" iconClassName="bg-fs-result" />
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ServiceCase({ service, labels, cta, index, onContactClick }) {
+  const validationPoints = service.solutionPoints.slice(0, 3);
+  const outcomePoints = service.impact.slice(0, 3);
+  const stepLabelClass = 'mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent';
+  const bodyClass = 'text-[clamp(1.02rem,1.25vw,1.16rem)] leading-relaxed text-white/82';
+
+  return (
+    <article className="mx-auto w-full max-w-5xl border-t border-fs-line/65 bg-fs-panel/78 p-6 sm:p-9 lg:p-12">
+      <div className="grid gap-8">
+        <div>
+          <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
+          <h3 className="m-0 max-w-3xl text-[clamp(1.7rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{service.title}</h3>
+        </div>
+
+        <div className="max-w-3xl">
+          <p className={`m-0 ${bodyClass}`}>{service.problem}</p>
+        </div>
+
+        <div className="max-w-3xl">
+          <p className={stepLabelClass}>{labels.validation}</p>
+          <p className={`mb-6 ${bodyClass}`}>{service.solutionLead}</p>
+          <IconList items={validationPoints} itemClassName="mb-0 text-base leading-relaxed text-white/74" />
+        </div>
+
+        <div className="w-full border border-fs-result/55 bg-black/24 p-6 lg:p-7">
+          <div className="max-w-3xl">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-result">{labels.outcome}</p>
+            <IconList items={outcomePoints} itemClassName="mb-0 text-base leading-relaxed text-white/84" iconClassName="bg-fs-result" />
+          </div>
+          <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-fs-result/30 pt-5">
+            <p className="m-0 text-base leading-snug text-white/72">{service.ctaPrompt}</p>
+            <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-result/85 px-4 py-2.5 font-bold text-white no-underline transition hover:bg-fs-result hover:text-black" href="#contact" onClick={onContactClick}>
+              {cta}
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ServicesSection({ t, onContactClick }) {
+  return (
+    <section className="pt-24 pb-20 lg:pt-32 lg:pb-36" id="services">
+      <div className="mb-10 overflow-hidden border-t-4 border-fs-accent bg-fs-panel">
+        <div className="relative aspect-[16/9] min-h-[640px] lg:aspect-[16/8.5] lg:min-h-[720px]">
+          <img className="absolute inset-0 h-full w-full object-cover object-center" src={assetPath(t.servicesHero.image)} alt={t.servicesHero.imageAlt} />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08)_0%,rgba(0,0,0,0.24)_42%,rgba(0,0,0,0.82)_78%,#000_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.42)_42%,rgba(0,0,0,0.1)_100%)]" />
+          <div className="relative z-10 grid h-full content-end gap-8 px-5 py-10 sm:px-8 lg:px-[10vw] lg:py-12">
+            <div>
+              <h2 className={`${h2Class} mb-6`}>{t.servicesTitle}</h2>
+              <p className="max-w-2xl text-[clamp(1.08rem,1.6vw,1.35rem)] leading-relaxed text-white/82">{t.servicesIntro}</p>
+              <div className="mt-8 max-w-2xl">
+                <div className="grid gap-3">
+                  {t.servicesQuestions.map((question, index) => (
+                    <div className="flex max-w-full items-start gap-4" key={question}>
+                      <span className="mt-0.5 text-base font-bold text-fs-accent">{index + 1}</span>
+                      <p className="m-0 text-[clamp(1.05rem,1.45vw,1.25rem)] leading-snug text-white/90">{question}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-10 px-5 sm:px-8 lg:gap-14 lg:px-[10vw]">
+        {t.services.map((service, index) => (
+          <ServiceCase service={service} labels={t.serviceCardLabels} cta={t.serviceCta} index={index} onContactClick={onContactClick} key={service.title} />
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -591,7 +805,7 @@ function ProjectImage({ project, onOpenImage }) {
   return (
     <div className="relative w-full">
       <button className="block w-full cursor-zoom-in border-0 bg-transparent p-0" type="button" onClick={() => onOpenImage(project.image)}>
-        <img className="aspect-[4/5] max-h-60 w-full object-cover sm:max-h-72 md:max-h-96 lg:max-h-none xl:aspect-[3/4]" src={assetPath(project.image)} alt="" />
+        <img className="aspect-[4/5] max-h-[34rem] w-full object-cover sm:max-h-[42rem] lg:min-h-[620px] lg:max-h-none xl:aspect-[3/4] xl:min-h-[720px]" src={assetPath(project.image)} alt="" />
         <span className="absolute right-2 bottom-2 grid size-8 place-items-center text-black drop-shadow-[0_1px_2px_rgba(255,255,255,0.65)]" aria-hidden="true">
           <svg className="size-4.5" viewBox="0 0 24 24" fill="none">
             <path d="m20 20-4.2-4.2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -1007,6 +1221,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [desktopSearchOpen, setDesktopSearchOpen] = useState(Boolean(getSearchQuery()));
   const [lightboxImage, setLightboxImage] = useState(null);
+  const contactNameRef = useRef(null);
   const t = content[language];
   const nextLanguage = language === 'et' ? 'en' : 'et';
   const navItems = useMemo(
@@ -1104,6 +1319,10 @@ function App() {
     window.history.pushState(null, '', searchQuery ? getSearchPath(nextLanguage, searchQuery) : getPagePath(nextLanguage, route, route === 'home' ? window.location.hash : ''));
   };
 
+  const focusContactForm = () => {
+    window.setTimeout(() => contactNameRef.current?.focus({ preventScroll: true }), 450);
+  };
+
   const navigateToHomeSection = (event, sectionId) => {
     event.preventDefault();
     setMenuOpen(false);
@@ -1112,10 +1331,25 @@ function App() {
     window.history.pushState(null, '', getPagePath(language, 'home', `#${sectionId}`));
     window.setTimeout(() => {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      if (sectionId === 'contact') {
+        focusContactForm();
+      }
     }, 0);
   };
 
   const navigateToContact = (event) => navigateToHomeSection(event, 'contact');
+
+  useEffect(() => {
+    const focusIfContactHash = () => {
+      if (!searchQuery && route === 'home' && window.location.hash === '#contact') {
+        focusContactForm();
+      }
+    };
+
+    focusIfContactHash();
+    window.addEventListener('hashchange', focusIfContactHash);
+    return () => window.removeEventListener('hashchange', focusIfContactHash);
+  }, [route, searchQuery]);
 
   const handleSearch = (value) => {
     const query = value.trim();
@@ -1243,7 +1477,7 @@ function App() {
               <span className="text-fs-accent">{t.heroSubline.decisions}</span>.
             </p>
             <div className="flex flex-wrap gap-3.5">
-              <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline" href="#contact">
+              <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline" href="#contact" onClick={navigateToContact}>
                 {t.heroButton}
               </a>
               <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent px-5 py-3 font-bold text-white no-underline" href="#services">
@@ -1253,56 +1487,23 @@ function App() {
           </div>
         </section>
 
+        <ServicesSection t={t} onContactClick={navigateToContact} />
+
         <section className={sectionClass} id="projects">
           <div className="mb-14 max-w-4xl">
             <h2 className={h2Class}>{t.projectsTitle}</h2>
             <p className="max-w-3xl text-[clamp(1.05rem,1.7vw,1.35rem)] leading-relaxed text-white/70">{t.projectIntro}</p>
           </div>
-          <div className="grid gap-18">
+          <div className="grid gap-10 lg:gap-14">
             {t.projects.map((project, index) => (
-              <article className="grid items-start gap-8 border-b border-fs-line pb-16 lg:grid-cols-[minmax(440px,1fr)_minmax(260px,0.58fr)] lg:gap-[5vw] xl:grid-cols-[minmax(560px,1fr)_minmax(300px,0.58fr)]" key={project.title}>
-                <div className="grid gap-7 lg:grid-cols-[minmax(190px,0.38fr)_minmax(260px,1fr)] xl:grid-cols-[minmax(230px,0.42fr)_minmax(320px,1fr)]">
-                  <div>
-                    <p className="mb-3 font-bold text-fs-accent">0{index + 1}</p>
-                    <h3 className={h3Class}>{project.title}</h3>
-                  </div>
-                  <ProjectPointList items={project.points} />
-                </div>
-                <ProjectImage project={project} onOpenImage={setLightboxImage} />
-              </article>
+              <ProjectCase project={project} labels={t.projectCardLabels} index={index} onOpenImage={setLightboxImage} key={project.title} />
             ))}
           </div>
         </section>
 
-        <section className="px-5 pt-10 pb-20 sm:px-8 lg:px-[10vw] lg:pt-8 lg:pb-36" id="services">
-          <div className="mb-14 max-w-4xl">
-            <h2 className={h2Class}>{t.servicesTitle}</h2>
-          </div>
-          <div className="grid gap-4.5 md:grid-cols-2 xl:grid-cols-3">
-            {t.services.map((service) => (
-              <article className={`min-h-68 border-t-4 p-7 ${service.main ? 'border-fs-accent bg-fs-accent text-black' : 'border-fs-accent/55 bg-fs-panel text-white'}`} key={service.title}>
-                <h3 className="mb-5 text-[clamp(1.2rem,1.8vw,1.75rem)] leading-tight font-bold">{service.title}</h3>
-                <IconList
-                  items={service.points}
-                  itemClassName={`mb-1 text-base leading-snug ${service.main ? 'text-black/90' : 'text-white/82'}`}
-                  iconClassName={service.main ? 'bg-black' : 'bg-fs-accent'}
-                />
-              </article>
-            ))}
-          </div>
-          <article className="mt-4.5 overflow-hidden border-t-4 border-fs-accent bg-fs-panel text-white">
-            <img className="aspect-[16/7] w-full bg-black object-cover" src={assetPath(t.featuredService.image)} alt={t.featuredService.imageAlt} />
-            <div className="grid gap-6 p-7 sm:p-9 lg:grid-cols-[minmax(280px,0.82fr)_minmax(360px,1fr)] lg:items-start lg:p-10">
-              <div>
-                <p className="mb-3 text-sm font-bold uppercase tracking-[0.14em] text-fs-accent">2D + 3D</p>
-                <h3 className="m-0 text-[clamp(1.55rem,2.6vw,2.7rem)] leading-tight font-bold">{t.featuredService.title}</h3>
-              </div>
-              <IconList items={t.featuredService.points} itemClassName="mb-1 text-base leading-snug text-white/84" iconClassName="bg-fs-accent" />
-            </div>
-          </article>
-        </section>
-
-        <section className={`${sectionClass} min-h-[76vh] ${darkSurfaceClass}`} id="about">
+        <section className={`${sectionClass} relative min-h-[76vh] overflow-hidden`} id="about">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(0,0,0,0.62)_0%,rgba(0,0,0,0.22)_48%,transparent_100%)]" aria-hidden="true" />
+          <div className="relative z-10">
           <h2 className={h2Class}>{t.aboutTitle}</h2>
           <div className="max-w-7xl">
             <h3 className={h3Class}>{t.teamTitle}</h3>
@@ -1366,6 +1567,7 @@ function App() {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         <section className="bg-fs-accent px-5 py-20 text-black sm:px-8 lg:px-[10vw] lg:py-34" id="contact">
@@ -1377,7 +1579,7 @@ function App() {
             <form className="grid gap-4.5" onSubmit={handleContactSubmit}>
               <label className="grid gap-2">
                 {t.form.name}
-                <input className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black" name="name" autoComplete="name" required />
+                <input ref={contactNameRef} className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black" name="name" autoComplete="name" required />
               </label>
               <label className="grid gap-2">
                 {t.form.email}

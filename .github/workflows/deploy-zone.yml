@@ -11,6 +11,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.repository == 'factorysimulationestonia/fs-home'
     runs-on: ubuntu-latest
     environment: production
 
