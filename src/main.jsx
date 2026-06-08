@@ -212,6 +212,33 @@ const content = {
           'Väiksem risk ümbertegemisteks tootmises'
         ],
         ctaPrompt: 'Vajad täpset ülevaadet oma tehasest?'
+      },
+      {
+        title: 'Virtuaalne käikuvõtmine',
+        problem: 'Süsteemi käikuvõtmine on automatiseerimisel üks viimaseid projektietappe, kuid kõige sagedamini tekivad just siis viivitused ning ümbertegemisvajadus, mis tulenevad juhtloogika vigadest ja ootamatutest olukordadest protsessis.',
+        solutionLead: 'Virtuaalse käikuvõtmise käigus ühendame päris PLC ning robotiprogrammid süsteemi virtuaalse mudeliga, et testida terve süsteemi tööd enne füüsilist käivitust.',
+        solutionPoints: [
+          'Digitaalne mudel koos juhtkoodi ja arenduskeskkonnaga',
+          'PLC signaalide, andurite ja täiturite reaalajas valideerimine',
+          'Masinakoodi ja protsessijärjestuste varane testimine'
+        ],
+        impact: [
+          'Lühendab käikuvõtmise etappi, kus muudatused on kõige kulukamad',
+          'Vähendab vigase juhtprogrammi kasutuselevõtu riski',
+          'Parandab tarkvara kvaliteeti enne tootmiskeskkonda jõudmist'
+        ],
+        ctaPrompt: 'Valideeri oma süsteem enne käivitust',
+        visual: {
+          type: 'virtualCommissioning',
+          simulationVideo: '/vc12.webm',
+          logicVideo: '/vc11.webm',
+          simulationLabel: 'Visual Components',
+          simulationIcon: '/vcfavicon.png',
+          logicLabel: 'Siemens PLC Simulation',
+          logicIcon: '/siemensfavicon.png',
+          inputSignal: 'di_sensor',
+          outputSignal: 'do_motor'
+        }
       }
     ],
     contactTitle: 'Teeme koostööd!',
@@ -558,6 +585,33 @@ const content = {
           'Lower risk of production rework'
         ],
         ctaPrompt: 'Need an accurate overview of your factory?'
+      },
+      {
+        title: 'Virtual commissioning',
+        problem: 'System commissioning is one of the final stages in automation projects, yet this is where delays and rework most often appear due to control logic errors and unexpected process situations.',
+        solutionLead: 'During virtual commissioning, we connect the real PLC and robot programs to the system’s virtual model, so the operation of the entire system can be tested before physical startup.',
+        solutionPoints: [
+          'Digital model connected to controller code and development environment',
+          'Real-time validation of PLC signals, sensors and actuators',
+          'Early testing of machine code and process sequences'
+        ],
+        impact: [
+          'Shortens the commissioning stage, where changes are most expensive',
+          'Reduces the risk of deploying control software with errors',
+          'Improves software quality before it reaches production'
+        ],
+        ctaPrompt: 'Validate your system before startup',
+        visual: {
+          type: 'virtualCommissioning',
+          simulationVideo: '/vc12.webm',
+          logicVideo: '/vc11.webm',
+          simulationLabel: 'Visual Components',
+          simulationIcon: '/vcfavicon.png',
+          logicLabel: 'Siemens PLC Simulation',
+          logicIcon: '/siemensfavicon.png',
+          inputSignal: 'di_sensor',
+          outputSignal: 'do_motor'
+        }
       }
     ],
     contactTitle: 'Let’s work together!',
@@ -768,7 +822,8 @@ const partners = [
   { name: 'EML', logo: '/logo-partner-eml.png' },
   { name: 'AI & Robotics Estonia', logo: '/logo-partner-aire.jpg', bare: true, large: true },
   { name: 'TalTech', logo: '/logo-partner-taltech.png', bare: true },
-  { name: 'Flowit', logo: '/logo-partner-flowit.png' }
+  { name: 'Flowit', logo: '/logo-partner-flowit.png' },
+  { name: 'CADRäk', logo: '/logo-partner-cadrak.svg', href: 'https://www.cadrak.com/en' }
 ];
 
 function IconList({ items, itemClassName = liClass, iconClassName = 'bg-fs-accent' }) {
@@ -818,41 +873,96 @@ function ProjectCase({ project, labels, index, onOpenImage }) {
 function ServiceCase({ service, labels, cta, index, id, refCallback, onContactClick }) {
   const validationPoints = service.solutionPoints.slice(0, 3);
   const outcomePoints = service.impact.slice(0, 3);
+  const hasVisual = service.visual?.type === 'virtualCommissioning';
   const stepLabelClass = 'mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent';
   const bodyClass = 'text-[clamp(1.02rem,1.25vw,1.16rem)] leading-relaxed text-white/82';
 
   return (
     <article id={id} ref={refCallback} className="scroll-mt-28 border-t border-fs-line/65 bg-fs-panel/78 p-6 sm:p-9 lg:p-12">
-      <div className="grid gap-8">
-        <div>
-          <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
-          <h3 className="m-0 max-w-3xl text-[clamp(1.7rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{service.title}</h3>
-        </div>
+      <div className={hasVisual ? 'grid gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.72fr)] xl:items-start' : 'grid gap-8'}>
+        <div className="grid gap-8">
+          <div>
+            <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
+            <h3 className="m-0 max-w-3xl text-[clamp(1.7rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{service.title}</h3>
+          </div>
 
-        <div className="max-w-3xl">
-          <p className={`m-0 ${bodyClass}`}>{service.problem}</p>
-        </div>
-
-        <div className="max-w-3xl">
-          <p className={stepLabelClass}>{labels.validation}</p>
-          <p className={`mb-6 ${bodyClass}`}>{service.solutionLead}</p>
-          <IconList items={validationPoints} itemClassName="mb-0 text-base leading-relaxed text-white/74" />
-        </div>
-
-        <div className="w-full border border-fs-result/55 bg-black/24 p-6 lg:p-7">
           <div className="max-w-3xl">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-result">{labels.outcome}</p>
-            <IconList items={outcomePoints} itemClassName="mb-0 text-base leading-relaxed text-white/84" iconClassName="bg-fs-result" />
+            <p className={`m-0 ${bodyClass}`}>{service.problem}</p>
           </div>
-          <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-fs-result/30 pt-5">
-            <p className="m-0 text-base leading-snug text-white/72">{service.ctaPrompt}</p>
-            <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-result/85 px-4 py-2.5 font-bold text-white no-underline transition hover:bg-fs-result hover:text-black" href="#contact" onClick={onContactClick}>
-              {cta}
-            </a>
+
+          <div className="max-w-3xl">
+            <p className={stepLabelClass}>{labels.validation}</p>
+            <p className={`mb-6 ${bodyClass}`}>{service.solutionLead}</p>
+            <IconList items={validationPoints} itemClassName="mb-0 text-base leading-relaxed text-white/74" />
+          </div>
+
+          <div className="w-full border border-fs-result/55 bg-black/24 p-6 lg:p-7">
+            <div className="max-w-3xl">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-result">{labels.outcome}</p>
+              <IconList items={outcomePoints} itemClassName="mb-0 text-base leading-relaxed text-white/84" iconClassName="bg-fs-result" />
+            </div>
+            <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-fs-result/30 pt-5">
+              <p className="m-0 text-base leading-snug text-white/72">{service.ctaPrompt}</p>
+              <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-result/85 px-4 py-2.5 font-bold text-white no-underline transition hover:bg-fs-result hover:text-black" href="#contact" onClick={onContactClick}>
+                {cta}
+              </a>
+            </div>
           </div>
         </div>
+
+        {hasVisual && <VirtualCommissioningVisual visual={service.visual} />}
       </div>
     </article>
+  );
+}
+
+function VirtualCommissioningVisual({ visual }) {
+  return (
+    <div className="vc-visual mx-auto grid w-full max-w-xl select-none gap-4">
+      <VcProgramWindow title={visual.simulationLabel} icon={visual.simulationIcon}>
+        <video className="block aspect-[4/3] w-full bg-black object-contain object-center" src={assetPath(visual.simulationVideo)} autoPlay muted loop playsInline draggable="false" />
+      </VcProgramWindow>
+
+      <div className="relative h-24 sm:h-28" aria-hidden="true">
+        <div className="vc-signal vc-signal-up left-[24%]">
+          <span className="vc-signal-label -left-3 sm:-left-8">{visual.outputSignal}</span>
+        </div>
+        <div className="vc-signal vc-signal-down right-[28%]">
+          <span className="vc-signal-label -right-3 sm:-right-8">{visual.inputSignal}</span>
+        </div>
+      </div>
+
+      <VcProgramWindow title={visual.logicLabel} icon={visual.logicIcon}>
+        <video className="block aspect-[4/3] w-full bg-black object-contain object-center" src={assetPath(visual.logicVideo)} autoPlay muted loop playsInline draggable="false" />
+      </VcProgramWindow>
+    </div>
+  );
+}
+
+function VcProgramWindow({ title, icon, children }) {
+  return (
+    <div className="overflow-hidden rounded-md border border-white/14 bg-[#17191d] shadow-2xl shadow-black/35 ring-1 ring-white/8">
+      <div className="flex h-8 items-center justify-between border-b border-white/10 bg-[#202329]/95 px-2.5 text-[0.72rem] font-semibold leading-none text-white/76 backdrop-blur">
+        <div className="flex min-w-0 items-center gap-1.5">
+          {icon ? (
+            <img className="size-4 shrink-0 rounded-[3px]" src={assetPath(icon)} alt="" aria-hidden="true" draggable="false" />
+          ) : (
+            <span className="grid size-4 shrink-0 place-items-center rounded-[3px] bg-[linear-gradient(135deg,#e2ab19_0%,#ffd861_100%)] shadow-sm" aria-hidden="true">
+              <span className="block size-1.5 rounded-[1px] bg-black/68" />
+            </span>
+          )}
+          <span className="truncate">{title}</span>
+        </div>
+        <div className="flex h-full shrink-0 items-center text-white/52" aria-hidden="true">
+          <span className="grid h-full w-8 place-items-center text-[0.72rem] transition">−</span>
+          <span className="grid h-full w-8 place-items-center text-[0.56rem] transition">□</span>
+          <span className="grid h-full w-8 place-items-center text-[0.72rem] transition">×</span>
+        </div>
+      </div>
+      <div className="bg-black">
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -1751,10 +1861,16 @@ function App() {
 
             <div className="mt-20 border-t border-fs-line pt-14 lg:mt-28 lg:pt-18">
               <h3 className={h3Class}>{t.partnersTitle}</h3>
-              <div className="my-7 grid grid-cols-2 items-center gap-4.5 lg:grid-cols-4" aria-label={t.partnersTitle}>
+              <div className="my-7 grid grid-cols-2 items-center gap-4.5 lg:grid-cols-5" aria-label={t.partnersTitle}>
                 {partners.map((partner) => (
                   <div className={`flex min-h-32 items-center justify-center p-2 ${partner.bare ? 'bg-transparent' : 'bg-white'}`} key={partner.name}>
+                    {partner.href ? (
+                      <a className="flex h-full w-full items-center justify-center" href={partner.href} target="_blank" rel="noreferrer" aria-label={partner.name}>
+                        <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain`} src={assetPath(partner.logo)} alt={partner.name} />
+                      </a>
+                    ) : (
                     <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain`} src={assetPath(partner.logo)} alt={partner.name} />
+                    )}
                   </div>
                 ))}
               </div>
