@@ -809,14 +809,14 @@ function ProjectCase({ project, labels, index, onOpenImage }) {
   );
 }
 
-function ServiceCase({ service, labels, cta, index, onContactClick }) {
+function ServiceCase({ service, labels, cta, index, id, refCallback, onContactClick }) {
   const validationPoints = service.solutionPoints.slice(0, 3);
   const outcomePoints = service.impact.slice(0, 3);
   const stepLabelClass = 'mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent';
   const bodyClass = 'text-[clamp(1.02rem,1.25vw,1.16rem)] leading-relaxed text-white/82';
 
   return (
-    <article className="mx-auto w-full max-w-5xl border-t border-fs-line/65 bg-fs-panel/78 p-6 sm:p-9 lg:p-12">
+    <article id={id} ref={refCallback} className="scroll-mt-28 border-t border-fs-line/65 bg-fs-panel/78 p-6 sm:p-9 lg:p-12">
       <div className="grid gap-8">
         <div>
           <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
@@ -851,6 +851,47 @@ function ServiceCase({ service, labels, cta, index, onContactClick }) {
 }
 
 function ServicesSection({ t, onContactClick }) {
+  const [activeService, setActiveService] = useState(0);
+  const serviceRefs = useRef([]);
+  const serviceIds = useMemo(() => t.services.map((_, index) => `service-${index + 1}`), [t.services]);
+
+  useEffect(() => {
+    serviceRefs.current = serviceRefs.current.slice(0, t.services.length);
+  }, [t.services.length]);
+
+  useEffect(() => {
+    const serviceNodes = serviceRefs.current.filter(Boolean);
+
+    if (!serviceNodes.length || typeof IntersectionObserver === 'undefined') {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => second.intersectionRatio - first.intersectionRatio);
+
+        if (visibleEntries[0]) {
+          const nextIndex = serviceNodes.indexOf(visibleEntries[0].target);
+          if (nextIndex >= 0) {
+            setActiveService(nextIndex);
+          }
+        }
+      },
+      { rootMargin: '-34% 0px -46% 0px', threshold: [0.1, 0.35, 0.6] }
+    );
+
+    serviceNodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, [t.services]);
+
+  const handleServiceNavClick = (event, index) => {
+    event.preventDefault();
+    setActiveService(index);
+    serviceRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <section className="pt-24 pb-20 lg:pt-32 lg:pb-36" id="services">
       <div className="mb-10 overflow-hidden border-t-4 border-fs-accent bg-fs-panel">
@@ -877,10 +918,49 @@ function ServicesSection({ t, onContactClick }) {
         </div>
       </div>
 
-      <div className="grid gap-10 px-5 sm:px-8 lg:gap-14 lg:px-[10vw]">
-        {t.services.map((service, index) => (
-          <ServiceCase service={service} labels={t.serviceCardLabels} cta={t.serviceCta} index={index} onContactClick={onContactClick} key={service.title} />
-        ))}
+      <div className="grid gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(12rem,0.32fr)_minmax(0,1fr)] lg:items-start lg:gap-12 lg:px-[10vw] xl:grid-cols-[minmax(15rem,0.3fr)_minmax(0,1fr)]">
+        <aside className="lg:sticky lg:top-28 lg:self-start" aria-label={t.servicesTitle}>
+          <nav className="border-l border-white/12 pl-4 lg:pl-5">
+            <ol className="m-0 grid list-none gap-1 p-0">
+              {t.services.map((service, index) => {
+                const isActive = activeService === index;
+
+                return (
+                  <li key={service.title}>
+                    <a
+                      className={`group grid grid-cols-[2.25rem_1fr] items-start gap-3 py-3 text-sm leading-snug no-underline transition ${
+                        isActive ? 'text-white' : 'text-white/42 hover:text-white/70'
+                      }`}
+                      href={`#${serviceIds[index]}`}
+                      aria-current={isActive ? 'true' : undefined}
+                      onClick={(event) => handleServiceNavClick(event, index)}
+                    >
+                      <span className={`pt-0.5 font-bold transition ${isActive ? 'text-fs-accent' : 'text-white/28 group-hover:text-white/45'}`}>0{index + 1}</span>
+                      <span className={isActive ? 'font-bold' : ''}>{service.title}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+        </aside>
+
+        <div className="grid gap-10 lg:gap-14">
+          {t.services.map((service, index) => (
+            <ServiceCase
+              service={service}
+              labels={t.serviceCardLabels}
+              cta={t.serviceCta}
+              index={index}
+              id={serviceIds[index]}
+              refCallback={(node) => {
+                serviceRefs.current[index] = node;
+              }}
+              onContactClick={onContactClick}
+              key={service.title}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
