@@ -1372,16 +1372,21 @@ function BlogPage({ t, language }) {
       <div className="grid gap-8 xl:grid-cols-2">
         {[...t.blogPosts].sort((first, second) => second.sortDate.localeCompare(first.sortDate)).map((post, index) => (
           <article
-            className="grid overflow-hidden bg-white text-black shadow-2xl shadow-black/25 md:grid-cols-[0.95fr_minmax(0,1.05fr)]"
+            className="grid bg-white p-7 text-black shadow-2xl shadow-black/25 sm:p-9"
             key={post.title}
           >
-            <div className="flex min-h-80 flex-col justify-between p-7 sm:p-9">
+            <div className="grid">
               <div>
+                <div className="-mx-7 -mt-7 mb-8 overflow-hidden bg-fs-panel/8 sm:-mx-9 sm:-mt-9">
+                  <img className="block aspect-[16/8.5] w-full object-cover object-center" src={assetPath(post.image)} alt="" />
+                </div>
+
                 <div className="mb-6 grid gap-1 text-xs font-bold uppercase tracking-[0.18em]">
                   <p className="m-0 text-fs-accent">{post.category}</p>
                   <p className="m-0 text-fs-panel/45">{post.date}</p>
                 </div>
-                <h2 className="mb-6 text-[clamp(1.25rem,2vw,1.85rem)] leading-tight font-bold text-fs-panel">{post.title}</h2>
+                <h2 className="mb-6 text-[clamp(1.35rem,2vw,1.9rem)] leading-tight font-bold text-fs-panel">{post.title}</h2>
+
                 <div className="grid gap-4 text-base leading-relaxed text-fs-panel/78">
                   {post.lead && <p className="m-0 font-bold text-fs-panel">{post.lead}</p>}
                   {(post.body || [post.excerpt]).map((paragraph) => (
@@ -1401,7 +1406,6 @@ function BlogPage({ t, language }) {
               </div>
               <p className="mt-10 text-sm font-bold text-fs-panel/45">0{index + 1}</p>
             </div>
-            <img className="block h-full min-h-72 w-full object-cover" src={assetPath(post.image)} alt="" />
           </article>
         ))}
       </div>
