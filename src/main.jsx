@@ -26,10 +26,13 @@ const content = {
     heroHeadlineMobile: <>Kontseptsioonist kindla investeerimis-<br />otsuseni</>,
     nav: ['Teenused', 'Projektid', 'Meist', 'Uudised', 'Wheel.me'],
     heroSubline: {
-      start: 'Simulatsioonide abil loome tootmisest dünaamilise ülevaate, mis aitab ',
-      benefits: 'vähendada riske, optimeerida protsesse',
-      middle: ' ja teha ',
-      decisions: 'teadlikke otsuseid'
+      start: <>Aitame tootmisettevõtetel enne investeeringut hinnata, kas planeeritud lahendus töötab päriselt nii nagu vaja.<br />Nii saad </>,
+      risk: 'vähendada riske',
+      afterRisk: ', ',
+      mistakes: 'vältida kulukaid vigu',
+      afterMistakes: ' ning ',
+      savings: 'hoida kokku aega ja raha',
+      end: '.'
     },
     heroButton: 'Räägime projektist',
     heroSecondary: 'Vaata teenuseid',
@@ -369,10 +372,13 @@ const content = {
     heroHeadlineMobile: 'From concept to a confident investment decision',
     nav: ['Services', 'Projects', 'About', 'News & Blog', 'Wheel.me'],
     heroSubline: {
-      start: 'With simulations we create a dynamic view of production that helps ',
-      benefits: 'reduce risk, optimize processes',
-      middle: ' and make ',
-      decisions: 'informed decisions'
+      start: <>We help manufacturing companies evaluate before investing whether the planned solution will actually work the way it needs to.<br />This helps you </>,
+      risk: 'reduce risks',
+      afterRisk: ', ',
+      mistakes: 'avoid costly mistakes',
+      afterMistakes: ' and ',
+      savings: 'save time and money',
+      end: '.'
     },
     heroButton: 'Discuss your project',
     heroSecondary: 'View services',
@@ -1671,9 +1677,12 @@ function App() {
             </h1>
             <p className="mb-8 max-w-2xl text-left text-[clamp(1.05rem,1.55vw,1.45rem)] leading-snug text-white/82">
               {t.heroSubline.start}
-              <span className="text-fs-accent">{t.heroSubline.benefits}</span>
-              {t.heroSubline.middle}
-              <span className="text-fs-accent">{t.heroSubline.decisions}</span>.
+              <span className="text-fs-accent">{t.heroSubline.risk}</span>
+              {t.heroSubline.afterRisk}
+              <span className="text-fs-accent">{t.heroSubline.mistakes}</span>
+              {t.heroSubline.afterMistakes}
+              <span className="text-fs-accent">{t.heroSubline.savings}</span>
+              {t.heroSubline.end}
             </p>
             <div className="flex flex-wrap gap-3.5">
               <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline" href="#contact" onClick={navigateToContact}>
