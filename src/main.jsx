@@ -265,6 +265,57 @@ const content = {
       'Lühikesed lood simulatsioonidest, tootmise planeerimisest, partnerlustest ja projektidest, kus oleme kaasatud olnud.',
     blogPosts: [
       {
+        title: 'Baltic CNC tehnoloogiahariduse konverents 2026',
+        category: 'Konverents',
+        date: '28.05',
+        sortDate: '2026-05-28',
+        image: '/blog/20260528.webp',
+        lead:
+          'Osalesime Baltic CNC Technical Educators Conference 2026 konverentsil, mis toimus Tallinna Tehnikakõrgkooli Advanced Machining tehnoloogiakeskuses.',
+        body: [
+          'Päeva jooksul toimusid ettekanded tuleviku hariduse ja tööstuse teemadel, grupiarutelud, töötoad ning praktilised demoesitlused.',
+          'Programmis käsitleti mitmeid tootmise ja tehnoloogia arenguga seotud teemasid:'
+        ],
+        items: [
+          'CAM-programmeerimine tehisintellekti abil – Venten OÜ',
+          'Tehaste digitaliseerimine ja simulatsioon – Factory Simulation OÜ',
+          'Vibratsiooni summutavad tööriistad CNC-pinkides – Sandvik ja Alas-Kuul AS',
+          'Mõõtetulemuste andmete digitaliseerimine – Mitutoyo ja Venten OÜ'
+        ],
+        afterItems: [
+          'Meie teemaks olid tehaste digitaliseerimise erinevad võimalused, kuid sügavamalt keskendusime tootmisprotsesside projekteerimisele läbi simulatsioonide.',
+          'Tõime praktilisi näiteid sellest, kuidas simulatsioon aitab tootmisotsuseid paremini hinnata — näiteks kuidas juba tõstuki liikumiskiirus võib mõjutada tootlikkust, materjalivoogu ja kogu tootmisprotsessi toimimist. Lisaks jagasime päriselulisi näiteid sellest, kuidas digitaalse mudeli abil saab võrrelda erinevaid lahendusi enne füüsiliste muudatuste tegemist tootmises.'
+        ]
+      },
+      {
+        title: 'Eesti Masinatööstusliidu Kesk-Eesti ettevõtete ühiskülastus',
+        category: 'Ettevõttekülastus',
+        date: '21.05–22.05',
+        sortDate: '2026-05-22',
+        image: '/blog/20260522.webp',
+        body: [
+          'Eesti Masinatööstuse Liit korraldas oma liikmetele Kesk-Eesti tehaste külastuse, mille käigus saime lähedalt tutvuda erinevate tootmisprotsesside, tootearenduse ja tehaste igapäevase opereerimisega.',
+          'Kokku külastasime nelja ettevõtet ning saime väga hea ülevaate piirkonna tööstusettevõtete tegemistest, väljakutsetest ja arengusuundadest:'
+        ],
+        items: ['TB Works OÜ', 'PMT OÜ', 'Nuia PMT OÜ', 'Cleveron AS'],
+        afterItems: [
+          'Sellised külastused annavad hea võimaluse näha, kuidas erinevad tootmisettevõtted oma protsesse arendavad ning milliseid lahendusi kasutatakse efektiivsuse tõstmiseks.'
+        ]
+      },
+      {
+        title: 'Tööstus 5.0 konverents 2026',
+        category: 'Konverents',
+        date: '14.05',
+        sortDate: '2026-05-14',
+        image: '/blog/20260514.webp',
+        lead: 'Sel aastal osalesime Industry 5.0 konverentsil oma stendiga.',
+        body: [
+          'Konverentsi keskmes olid Eesti tööstuse tulevik ja konkurentsivõime – teemadena käisid läbi tööstusinnovatsioon, kestlikkus, rakendusuuringud, automatiseerimine, robootika, digitaliseerimine, küberturvalisus ja uute tehnoloogiate praktiline kasutamine tootmisettevõtetes.',
+          'Meie jaoks jõudsid paljud arutelud ühe väga praktilise küsimuseni: kuidas digitaliseerida ja parandada tootmisprotsessi ennast — mitte ainult tarkvara kaudu, vaid simulatsioonide, andmepõhise planeerimise ja erinevate stsenaariumite kiire testimise abil enne päriselus muudatuste tegemist.',
+          'Loomulikult tõime kaasa ka wheel.me roboti, millega näitasime lihtsat ja praktilist paindliku automatiseerimise näidet — autonoomset prügirobotit, mis liikus messialal ringi.'
+        ]
+      },
+      {
         title: 'Tööstusrobotite programmeerimise ja masinnägemise koolitus',
         category: 'Koolitus',
         date: '19.02 · 26.02 · 05.03 · 12.04',
@@ -556,6 +607,59 @@ const content = {
     blogIntro:
       'Short updates on simulations, production planning, partnerships and use cases where we have been involved.',
     blogPosts: [
+      {
+        title: 'Baltic CNC Technical Educators Conference 2026',
+        category: 'Conference',
+        date: '28.05',
+        sortDate: '2026-05-28',
+        image: '/blog/20260528.webp',
+        lead:
+          'We participated in the Baltic CNC Technical Educators Conference 2026, held at the Advanced Machining Technology Centre of Tallinn University of Applied Sciences.',
+        body: [
+          'The day included presentations, group discussions, workshops, and practical demonstrations on the future of education and industry.',
+          'The programme covered several topics related to manufacturing and technology development:'
+        ],
+        items: [
+          'CAM programming with the help of artificial intelligence – Venten OÜ',
+          'Factory digitalisation and simulation – Factory Simulation OÜ',
+          'Vibration-damping tools in CNC machines – Sandvik and Alas-Kuul AS',
+          'Digitalisation of measurement result data – Mitutoyo and Venten OÜ'
+        ],
+        afterItems: [
+          'Our topic focused on different aspects of factory digitalisation, with a deeper focus on production process design through simulation.',
+          'We shared practical examples of how simulation can support better production decisions — for example, how even forklift travel speed can affect productivity, material flow, and the overall performance of a production process. We also presented real-life examples of how a digital model can be used to compare different solutions before making physical changes in the factory.'
+        ]
+      },
+      {
+        title: 'Joint company visit to Central Estonian enterprises',
+        category: 'Company visit',
+        date: '21.05–22.05',
+        sortDate: '2026-05-22',
+        image: '/blog/20260522.webp',
+        lead:
+          'Joint company visit to Central Estonian enterprises organised by the Estonian Machinery Industry Association.',
+        body: [
+          'The Estonian Machinery Industry Association organised a factory visit for its members in Central Estonia, where we had the opportunity to take a closer look at different production processes, product development activities and daily factory operations.',
+          'In total, we visited four companies and gained a very good overview of the region’s industrial companies, their activities, challenges and development directions:'
+        ],
+        items: ['TB Works OÜ', 'PMT OÜ', 'Nuia PMT OÜ', 'Cleveron AS'],
+        afterItems: [
+          'Such visits provide a valuable opportunity to see how different manufacturing companies develop their processes and what solutions are used to improve efficiency.'
+        ]
+      },
+      {
+        title: 'Industry 5.0 Conference 2026',
+        category: 'Conference',
+        date: '14.05',
+        sortDate: '2026-05-14',
+        image: '/blog/20260514.webp',
+        lead: 'This year, we participated in the Industry 5.0 conference with our own stand.',
+        body: [
+          'The conference focused on the future competitiveness of Estonian industry, with key topics including industrial innovation, sustainability, applied research, automation, robotics, digitalisation, cybersecurity and practical technology adoption in manufacturing.',
+          'For us, many discussions came back to one practical question: how can manufacturers digitalise and improve the production process itself — not only through software, but through simulations, data-driven planning and faster testing of different scenarios before making real-world changes?',
+          'Of course, we also brought out our wheel.me robot to showcase a simple and practical example of flexible automation — an autonomous garbage robot moving through the exhibition area.'
+        ]
+      },
       {
         title: 'Industrial robot programming and machine vision training',
         category: 'Training',
@@ -1082,7 +1186,22 @@ function BlogPage({ t, language }) {
                   <p className="m-0 text-fs-panel/45">{post.date}</p>
                 </div>
                 <h2 className="mb-6 text-[clamp(1.25rem,2vw,1.85rem)] leading-tight font-bold text-fs-panel">{post.title}</h2>
-                <p className="text-base leading-relaxed text-fs-panel/78">{post.excerpt}</p>
+                <div className="grid gap-4 text-base leading-relaxed text-fs-panel/78">
+                  {post.lead && <p className="m-0 font-bold text-fs-panel">{post.lead}</p>}
+                  {(post.body || [post.excerpt]).map((paragraph) => (
+                    <p className="m-0" key={paragraph}>{paragraph}</p>
+                  ))}
+                  {post.items && (
+                    <ul className="m-0 grid gap-2 pl-5">
+                      {post.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {post.afterItems?.map((paragraph) => (
+                    <p className="m-0" key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
               </div>
               <p className="mt-10 text-sm font-bold text-fs-panel/45">0{index + 1}</p>
             </div>
