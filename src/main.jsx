@@ -25,6 +25,7 @@ const content = {
     heroHeadline: 'Kontseptsioonist kindla investeerimisotsuseni',
     heroHeadlineMobile: <>Kontseptsioonist kindla investeerimis-<br />otsuseni</>,
     nav: ['Teenused', 'Projektid', 'Meist', 'Uudised', 'Wheel.me'],
+    headerTagline: <>Sinu Tootmise<br />insenertehniline partner</>,
     heroSubline: {
       start: <>Aitame tootmisettevõtetel enne investeeringut hinnata, kas planeeritud lahendus töötab päriselt nii nagu vaja.<br />Nii saad </>,
       risk: 'vähendada riske',
@@ -398,6 +399,7 @@ const content = {
     heroHeadline: 'From concept to a confident investment decision',
     heroHeadlineMobile: 'From concept to a confident investment decision',
     nav: ['Services', 'Projects', 'About', 'News & Blog', 'Wheel.me'],
+    headerTagline: <>Engineering partner<br />for your production</>,
     heroSubline: {
       start: <>We help manufacturing companies evaluate before investing whether the planned solution will actually work the way it needs to.<br />This helps you </>,
       risk: 'reduce risks',
@@ -819,11 +821,11 @@ const getSearchPath = (language, query) => `${getPagePath(language)}?q=${encodeU
 
 const getLanguagePath = (language, hash = window.location.hash) => getPagePath(language, 'home', hash);
 const partners = [
-  { name: 'EML', logo: '/logo-partner-eml.png' },
-  { name: 'AI & Robotics Estonia', logo: '/logo-partner-aire.jpg', bare: true, large: true },
+  { name: 'EML', logo: '/logo-partner-eml.png', bare: true, imageClassName: 'brightness-0 invert' },
+  { name: 'AI & Robotics Estonia', logo: '/logo-partner-aire-transparent.png', bare: true, large: true },
   { name: 'TalTech', logo: '/logo-partner-taltech.png', bare: true },
-  { name: 'Flowit', logo: '/logo-partner-flowit.png' },
-  { name: 'CADRäk', logo: '/logo-partner-cadrak.svg', href: 'https://www.cadrak.com/en' }
+  { name: 'Flowit', logo: '/logo-partner-flowit.png', bare: true },
+  { name: 'CADRäk', logo: '/logo-partner-cadrak.svg', href: 'https://www.cadrak.com/en', bare: true }
 ];
 
 function IconList({ items, itemClassName = liClass, iconClassName = 'bg-fs-accent' }) {
@@ -876,49 +878,62 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
   const hasVisual = service.visual?.type === 'virtualCommissioning';
   const stepLabelClass = 'mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent';
   const bodyClass = 'text-[clamp(1.02rem,1.25vw,1.16rem)] leading-relaxed text-white/82';
+  const mainContent = (
+    <div className="grid gap-8">
+      <div>
+        <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
+        <h3 className="m-0 max-w-3xl text-[clamp(1.7rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{service.title}</h3>
+      </div>
+
+      <div className="max-w-3xl">
+        <p className={`m-0 ${bodyClass}`}>{service.problem}</p>
+      </div>
+
+      <div className="max-w-3xl">
+        <p className={stepLabelClass}>{labels.validation}</p>
+        <p className={`mb-6 ${bodyClass}`}>{service.solutionLead}</p>
+        <IconList items={validationPoints} itemClassName="mb-0 text-base leading-relaxed text-white/74" />
+      </div>
+    </div>
+  );
+  const outcomeBox = (
+    <div className="w-full border border-fs-result/55 bg-black/24 p-6 lg:p-7">
+      <div className="max-w-5xl">
+        <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-result">{labels.outcome}</p>
+        <IconList items={outcomePoints} itemClassName="mb-0 text-base leading-relaxed text-white/84" iconClassName="bg-fs-result" />
+      </div>
+      <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-fs-result/30 pt-5">
+        <p className="m-0 text-base leading-snug text-white/72">{service.ctaPrompt}</p>
+        <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-result/85 px-4 py-2.5 font-bold text-white no-underline transition hover:bg-fs-result hover:text-black" href="#contact" onClick={onContactClick}>
+          {cta}
+        </a>
+      </div>
+    </div>
+  );
 
   return (
     <article id={id} ref={refCallback} className="scroll-mt-28 border-t border-fs-line/65 bg-fs-panel/78 p-6 sm:p-9 lg:p-12">
-      <div className={hasVisual ? 'grid gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.72fr)] xl:items-start' : 'grid gap-8'}>
-        <div className="grid gap-8">
-          <div>
-            <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
-            <h3 className="m-0 max-w-3xl text-[clamp(1.7rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{service.title}</h3>
+      {hasVisual ? (
+        <div className="grid gap-10">
+          <div className="grid gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(280px,0.58fr)] xl:items-end">
+            {mainContent}
+            <VirtualCommissioningVisual visual={service.visual} />
           </div>
-
-          <div className="max-w-3xl">
-            <p className={`m-0 ${bodyClass}`}>{service.problem}</p>
-          </div>
-
-          <div className="max-w-3xl">
-            <p className={stepLabelClass}>{labels.validation}</p>
-            <p className={`mb-6 ${bodyClass}`}>{service.solutionLead}</p>
-            <IconList items={validationPoints} itemClassName="mb-0 text-base leading-relaxed text-white/74" />
-          </div>
-
-          <div className="w-full border border-fs-result/55 bg-black/24 p-6 lg:p-7">
-            <div className="max-w-3xl">
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-result">{labels.outcome}</p>
-              <IconList items={outcomePoints} itemClassName="mb-0 text-base leading-relaxed text-white/84" iconClassName="bg-fs-result" />
-            </div>
-            <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-fs-result/30 pt-5">
-              <p className="m-0 text-base leading-snug text-white/72">{service.ctaPrompt}</p>
-              <a className="inline-flex min-h-11 w-fit items-center justify-center border border-fs-result/85 px-4 py-2.5 font-bold text-white no-underline transition hover:bg-fs-result hover:text-black" href="#contact" onClick={onContactClick}>
-                {cta}
-              </a>
-            </div>
-          </div>
+          {outcomeBox}
         </div>
-
-        {hasVisual && <VirtualCommissioningVisual visual={service.visual} />}
-      </div>
+      ) : (
+        <div className="grid gap-8">
+          {mainContent}
+          {outcomeBox}
+        </div>
+      )}
     </article>
   );
 }
 
 function VirtualCommissioningVisual({ visual }) {
   return (
-    <div className="vc-visual mx-auto grid w-full max-w-xl select-none gap-4">
+    <div className="vc-visual mx-auto grid w-full max-w-md select-none gap-4">
       <VcProgramWindow title={visual.simulationLabel} icon={visual.simulationIcon}>
         <video className="block aspect-[4/3] w-full bg-black object-contain object-center" src={assetPath(visual.simulationVideo)} autoPlay muted loop playsInline draggable="false" />
       </VcProgramWindow>
@@ -1702,10 +1717,10 @@ function App() {
   return (
     <div className={`min-h-screen ${darkSurfaceClass} text-white`}>
       <header className="sticky top-0 z-20 flex min-h-16 items-center justify-between gap-8 border-b-3 border-fs-accent bg-black/92 px-6 py-3 backdrop-blur lg:min-h-20 lg:px-[7vw]">
-        <a className="inline-flex items-center gap-3 no-underline" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
+        <a className="inline-flex items-end gap-3 no-underline" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
           <img className="block h-auto w-26 lg:w-32" src={assetPath('/logo.svg')} alt="" aria-hidden="true" />
-          <span className="text-lg leading-none font-bold italic tracking-normal text-white sm:text-xl lg:text-2xl">
-            Factory Simulation
+          <span className="pb-0.5 text-xs leading-tight font-bold uppercase tracking-[0.1em] text-white sm:text-sm lg:text-base">
+            {t.headerTagline}
           </span>
         </a>
         <button
@@ -1870,10 +1885,10 @@ function App() {
                   <div className={`flex min-h-32 items-center justify-center p-2 ${partner.bare ? 'bg-transparent' : 'bg-white'}`} key={partner.name}>
                     {partner.href ? (
                       <a className="flex h-full w-full items-center justify-center" href={partner.href} target="_blank" rel="noreferrer" aria-label={partner.name}>
-                        <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain`} src={assetPath(partner.logo)} alt={partner.name} />
+                        <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain ${partner.imageClassName || ''}`} src={assetPath(partner.logo)} alt={partner.name} />
                       </a>
                     ) : (
-                    <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain`} src={assetPath(partner.logo)} alt={partner.name} />
+                    <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain ${partner.imageClassName || ''}`} src={assetPath(partner.logo)} alt={partner.name} />
                     )}
                   </div>
                 ))}
