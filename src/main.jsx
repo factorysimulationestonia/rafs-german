@@ -153,7 +153,7 @@ const content = {
         solutionPoints: [
           'Seadmete paigutus, materjalivood ja operaatorite liikumine',
           'Tootmismahud ja tsükliajad',
-          'Tõstukite ja AGV-de liikumisteed, pöörderaadiused ja vajalikud ohutusalad',
+          'AGV/AMR-de liikumisteed, pöörderaadiused ja vajalikud ohutusalad',
         ],
         impact: [
           'Aitab saavutada kohe suurema tootlikkuse',
@@ -242,6 +242,8 @@ const content = {
         }
       }
     ],
+    clientLogosTitle: 'Kliendid',
+    clientLogosIntro: 'Ettevõtted, kellega oleme koostööd teinud',
     contactTitle: 'Teeme koostööd!',
     contactText: 'Alates varajasest kontseptsioonist kuni valideeritud tehase planeeringuni.',
     form: { name: 'Nimi', email: 'E-mail', description: 'Projekti kirjeldus', send: 'Saada' },
@@ -527,7 +529,7 @@ const content = {
         solutionPoints: [
           'Equipment layout, material flows and operator movement',
           'Production volumes and cycle times',
-          'Forklift and AGV movement paths, turning radii and required safety areas'
+          'AGV/AMR movement paths, turning radii and required safety areas'
         ],
         impact: [
           'Helps achieve higher productivity from the start',
@@ -616,6 +618,8 @@ const content = {
         }
       }
     ],
+    clientLogosTitle: 'Clients',
+    clientLogosIntro: 'Companies we have worked with',
     contactTitle: 'Let’s work together!',
     contactText: 'From early-stage concept to validated factory plan.',
     form: { name: 'Name', email: 'E-mail', description: 'Project description', send: 'Send' },
@@ -827,6 +831,136 @@ const partners = [
   { name: 'Flowit', logo: '/logo-partner-flowit.png', bare: true },
   { name: 'CADRäk', logo: '/logo-partner-cadrak.svg', href: 'https://www.cadrak.com/en', bare: true }
 ];
+const clientLogos = [
+  { name: 'Kohila Vineer', logo: '/kliendid/kohila-vineer_transparent_carousel.png' },
+  { name: 'M ja P Nurst', logo: '/kliendid/m-ja-p-nurst_transparent_carousel.png' },
+  { name: 'Mainor Ülemiste', logo: '/kliendid/mainor-ulemiste_transparent_carousel.png' },
+  { name: 'Smitech', logo: '/kliendid/smitech_transparent_carousel.png' },
+  { name: 'Tammer', logo: '/kliendid/tammer_transparent_carousel.png' },
+  { name: 'Warmeston', logo: '/kliendid/warmeston_transparent_carousel.png' }
+];
+
+function ClientLogoCarousel({ title, intro }) {
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isGliding, setIsGliding] = useState(false);
+  const dragStartRef = useRef({ x: 0, offset: 0 });
+  const dragMoveRef = useRef({ x: 0, time: 0, velocity: 0 });
+  const glideFrameRef = useRef(null);
+  const trackRef = useRef(null);
+  const logoItems = useMemo(() => [...clientLogos, ...clientLogos, ...clientLogos], []);
+
+  const wrapDragOffset = (offset) => {
+    const cycleWidth = trackRef.current ? trackRef.current.scrollWidth / 3 : 0;
+
+    if (!cycleWidth) {
+      return offset;
+    }
+
+    const wrappedOffset = ((offset % cycleWidth) + cycleWidth) % cycleWidth;
+    return wrappedOffset === 0 ? 0 : wrappedOffset - cycleWidth;
+  };
+
+  useEffect(
+    () => () => {
+      if (glideFrameRef.current) {
+        window.cancelAnimationFrame(glideFrameRef.current);
+      }
+    },
+    []
+  );
+
+  const handlePointerDown = (event) => {
+    if (glideFrameRef.current) {
+      window.cancelAnimationFrame(glideFrameRef.current);
+    }
+
+    setIsGliding(false);
+    setIsDragging(true);
+    dragStartRef.current = { x: event.clientX, offset: wrapDragOffset(dragOffset) };
+    dragMoveRef.current = { x: event.clientX, time: performance.now(), velocity: 0 };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event) => {
+    if (!isDragging) {
+      return;
+    }
+
+    const now = performance.now();
+    const elapsed = Math.max(now - dragMoveRef.current.time, 1);
+    const velocity = (event.clientX - dragMoveRef.current.x) / elapsed;
+
+    dragMoveRef.current = { x: event.clientX, time: now, velocity };
+    setDragOffset(wrapDragOffset(dragStartRef.current.offset + event.clientX - dragStartRef.current.x));
+  };
+
+  const handlePointerUp = (event) => {
+    setIsDragging(false);
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+
+    let velocity = dragMoveRef.current.velocity;
+
+    if (Math.abs(velocity) < 0.08) {
+      return;
+    }
+
+    setIsGliding(true);
+
+    let previousTime = performance.now();
+    const glide = (currentTime) => {
+      const elapsed = Math.min(currentTime - previousTime, 32);
+      previousTime = currentTime;
+      setDragOffset((currentOffset) => wrapDragOffset(currentOffset + velocity * elapsed));
+      velocity *= Math.pow(0.82, elapsed / 16.67);
+
+      if (Math.abs(velocity) < 0.04) {
+        setIsGliding(false);
+        return;
+      }
+
+      glideFrameRef.current = window.requestAnimationFrame(glide);
+    };
+
+    glideFrameRef.current = window.requestAnimationFrame(glide);
+  };
+
+  return (
+    <section className={`overflow-hidden border-y border-fs-line/55 px-0 py-14 text-white ${darkSurfaceClass} lg:py-20`} aria-labelledby="client-logos-title">
+      <div className="mb-8 px-5 sm:px-8 lg:px-[10vw]">
+        <h2 className={`${h2Class} mb-4`} id="client-logos-title">
+          {title}
+        </h2>
+        <p className="m-0 max-w-3xl text-[clamp(1.05rem,1.7vw,1.35rem)] leading-relaxed text-white/70">{intro}</p>
+      </div>
+      <div className="relative before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-16 before:bg-[linear-gradient(90deg,#050505,rgba(5,5,5,0))] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-10 after:w-16 after:bg-[linear-gradient(270deg,#050505,rgba(5,5,5,0))] sm:before:w-28 sm:after:w-28">
+        <div
+          ref={trackRef}
+          className={`logo-carousel-track flex w-max touch-pan-y select-none gap-5 px-5 ${isDragging || isGliding ? 'logo-carousel-track--dragging cursor-grabbing' : 'cursor-grab'}`}
+          style={{ '--logo-drag-offset': `${dragOffset}px` }}
+          aria-label={title}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+        >
+          {logoItems.map((client, index) => (
+            <div
+              className="grid size-56 shrink-0 place-items-center border border-fs-accent/35 bg-black/38 px-4 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)] transition hover:border-fs-accent sm:size-72 sm:px-5"
+              key={`${client.name}-${index}`}
+              aria-hidden={index >= clientLogos.length && index < clientLogos.length * 2 ? undefined : 'true'}
+            >
+              <img className="max-h-28 w-[108%] max-w-none object-contain sm:max-h-36 sm:w-[112%]" src={assetPath(client.logo)} alt={client.name} draggable="false" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function IconList({ items, itemClassName = liClass, iconClassName = 'bg-fs-accent' }) {
   return (
@@ -1716,15 +1850,15 @@ function App() {
 
   return (
     <div className={`min-h-screen ${darkSurfaceClass} text-white`}>
-      <header className="sticky top-0 z-20 flex min-h-16 items-center justify-between gap-8 border-b-3 border-fs-accent bg-black/92 px-6 py-3 backdrop-blur lg:min-h-20 lg:px-[7vw]">
-        <a className="inline-flex items-end gap-3 no-underline" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
-          <img className="block h-auto w-26 lg:w-32" src={assetPath('/logo.svg')} alt="" aria-hidden="true" />
-          <span className="pb-0.5 text-xs leading-tight font-bold uppercase tracking-[0.1em] text-white sm:text-sm lg:text-base">
+      <header className="sticky top-0 z-20 flex min-h-16 items-center justify-between gap-5 border-b-3 border-fs-accent bg-black/92 px-6 py-3 backdrop-blur lg:min-h-20 lg:gap-4 lg:px-[5vw] min-[1320px]:gap-8 min-[1320px]:px-[7vw]">
+        <a className="inline-flex items-end gap-2.5 no-underline min-[1320px]:gap-3" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
+          <img className="block h-auto w-26 lg:w-28 min-[1320px]:w-32" src={assetPath('/logo.svg')} alt="" aria-hidden="true" />
+          <span className="pb-0.5 text-xs leading-tight font-bold uppercase tracking-[0.1em] text-white sm:text-sm lg:text-[0.78rem] min-[1320px]:text-base">
             {t.headerTagline}
           </span>
         </a>
         <button
-          className="grid size-11 place-items-center border border-white/30 p-2 lg:hidden"
+          className="grid size-11 place-items-center border border-white/30 p-2 min-[1180px]:hidden"
           type="button"
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
@@ -1735,15 +1869,15 @@ function App() {
           <span className="block h-0.5 w-6 bg-white" />
         </button>
         <nav
-          className={`absolute top-full right-0 left-0 flex-col border-b border-fs-line bg-black px-6 py-5 text-sm uppercase lg:static lg:flex lg:flex-row lg:items-center lg:gap-7 lg:border-0 lg:bg-transparent lg:p-0 ${
+          className={`absolute top-full right-0 left-0 flex-col border-b border-fs-line bg-black px-6 py-5 text-sm uppercase min-[1180px]:static min-[1180px]:flex min-[1180px]:flex-row min-[1180px]:items-center min-[1180px]:gap-4 min-[1180px]:border-0 min-[1180px]:bg-transparent min-[1180px]:p-0 min-[1320px]:gap-7 ${
             menuOpen ? 'flex' : 'hidden'
-          } lg:flex`}
+          } min-[1180px]:flex`}
           aria-label="Main navigation"
         >
-          <div className={`contents ${desktopSearchOpen ? 'lg:hidden' : ''}`}>
+          <div className={`contents ${desktopSearchOpen ? 'min-[1180px]:hidden' : ''}`}>
             {navItems.map((item) => (
               <a
-                className="flex min-h-10 items-center py-3 no-underline transition hover:text-fs-accent lg:py-0"
+                className="flex min-h-10 items-center py-3 no-underline transition hover:text-fs-accent min-[1180px]:py-0"
                 key={item.href}
                 href={item.href}
                 onClick={(event) => {
@@ -1759,7 +1893,7 @@ function App() {
               </a>
             ))}
             <button
-              className="flex min-h-10 w-fit items-center py-3 transition hover:scale-110 lg:py-0"
+              className="flex min-h-10 w-fit items-center py-3 transition hover:scale-110 min-[1180px]:py-0"
               type="button"
               onClick={switchLanguage}
               aria-label={t.languageLabel}
@@ -1768,17 +1902,17 @@ function App() {
               <img className="h-5 w-7 object-cover" src={assetPath(t.flagSrc)} alt="" aria-hidden="true" />
             </button>
             <a
-              className="mt-3 inline-flex min-h-11 w-fit items-center justify-center border border-fs-accent bg-fs-accent px-4 py-2 font-bold text-black no-underline transition hover:bg-white lg:mt-0"
+              className="mt-3 inline-flex min-h-11 w-fit items-center justify-center whitespace-nowrap border border-fs-accent bg-fs-accent px-4 py-2 font-bold text-black no-underline transition hover:bg-white min-[1180px]:mt-0"
               href={getPagePath(language, 'home', '#contact')}
               onClick={navigateToContact}
             >
               {t.contactButton}
             </a>
           </div>
-          <div className="mt-3 w-full lg:hidden">
+          <div className="mt-3 w-full min-[1180px]:hidden">
             <HeaderSearch label={t.search.label} placeholder={t.search.placeholder} initialValue={searchQuery} onSearch={handleSearch} alwaysOpen />
           </div>
-          <div className="hidden lg:block">
+          <div className="hidden min-[1180px]:block">
             <HeaderSearch label={t.search.label} placeholder={t.search.placeholder} initialValue={searchQuery} onSearch={handleSearch} onOpenChange={setDesktopSearchOpen} />
           </div>
         </nav>
@@ -1825,6 +1959,8 @@ function App() {
         </section>
 
         <ServicesSection t={t} onContactClick={navigateToContact} />
+
+        <ClientLogoCarousel title={t.clientLogosTitle} intro={t.clientLogosIntro} />
 
         <section className={sectionClass} id="projects">
           <div className="mb-14 max-w-4xl">

@@ -121,3 +121,35 @@
     }
   }
 }
+
+@layer utilities {
+  .logo-carousel-track {
+    animation: logo-carousel 30s linear infinite;
+    transform: translate3d(var(--logo-drag-offset, 0px), 0, 0);
+    will-change: transform;
+  }
+
+  .logo-carousel-track:hover {
+    animation-play-state: paused;
+  }
+
+  .logo-carousel-track--dragging {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-carousel-track {
+      animation: none;
+    }
+  }
+
+  @keyframes logo-carousel {
+    from {
+      transform: translate3d(var(--logo-drag-offset, 0px), 0, 0);
+    }
+
+    to {
+      transform: translate3d(calc(-33.333333% + var(--logo-drag-offset, 0px)), 0, 0);
+    }
+  }
+}
