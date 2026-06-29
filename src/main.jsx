@@ -964,11 +964,11 @@ function ClientLogoCarousel({ title, intro }) {
 
 function IconList({ items, itemClassName = liClass, iconClassName = 'bg-fs-accent' }) {
   return (
-    <ul className="m-0 grid list-none gap-3.5 p-0">
+    <ul className="m-0 grid min-w-0 list-none gap-3.5 p-0">
       {items.map((item) => (
-        <li className={`grid grid-cols-[1.35rem_1fr] gap-3 ${itemClassName}`} key={item}>
+        <li className={`grid min-w-0 grid-cols-[1.35rem_minmax(0,1fr)] gap-3 ${itemClassName}`} key={item}>
           <span className={`mt-0.5 size-5 ${iconClassName}`} style={iconMask} aria-hidden="true" />
-          <span>{item}</span>
+          <span className="min-w-0 whitespace-normal break-words [overflow-wrap:anywhere]">{item}</span>
         </li>
       ))}
     </ul>
@@ -1013,17 +1013,17 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
   const stepLabelClass = 'mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent';
   const bodyClass = 'text-[clamp(1.02rem,1.25vw,1.16rem)] leading-relaxed text-white/82';
   const mainContent = (
-    <div className="grid gap-8">
+    <div className="grid min-w-0 gap-8">
       <div>
         <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
-        <h3 className="m-0 max-w-3xl text-[clamp(1.7rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{service.title}</h3>
+        <h3 className="m-0 min-w-0 max-w-3xl break-words [overflow-wrap:anywhere] text-[clamp(1.7rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{service.title}</h3>
       </div>
 
-      <div className="max-w-3xl">
+      <div className="min-w-0 max-w-3xl">
         <p className={`m-0 ${bodyClass}`}>{service.problem}</p>
       </div>
 
-      <div className="max-w-3xl">
+      <div className="min-w-0 max-w-3xl">
         <p className={stepLabelClass}>{labels.validation}</p>
         <p className={`mb-6 ${bodyClass}`}>{service.solutionLead}</p>
         <IconList items={validationPoints} itemClassName="mb-0 text-base leading-relaxed text-white/74" />
@@ -1046,7 +1046,7 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
   );
 
   return (
-    <article id={id} ref={refCallback} className="scroll-mt-28 border-t border-fs-line/65 bg-fs-panel/78 p-6 sm:p-9 lg:p-12">
+    <article id={id} ref={refCallback} className="w-full min-w-0 max-w-full scroll-mt-28 overflow-hidden border-t border-fs-line/65 bg-fs-panel/78 p-6 sm:p-9 lg:p-12">
       {hasVisual ? (
         <div className="grid gap-10">
           <div className="grid gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(280px,0.58fr)] xl:items-end">
@@ -1158,22 +1158,22 @@ function ServicesSection({ t, onContactClick }) {
   };
 
   return (
-    <section className="pt-24 pb-20 lg:pt-32 lg:pb-36" id="services">
+    <section className="min-w-0 overflow-x-clip pt-24 pb-20 lg:pt-32 lg:pb-36" id="services">
       <div className="mb-10 overflow-hidden border-t-4 border-fs-accent bg-fs-panel">
         <div className="relative aspect-[16/9] min-h-[640px] lg:aspect-[16/8.5] lg:min-h-[720px]">
           <img className="absolute inset-0 h-full w-full object-cover object-center" src={assetPath(t.servicesHero.image)} alt={t.servicesHero.imageAlt} />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08)_0%,rgba(0,0,0,0.24)_42%,rgba(0,0,0,0.82)_78%,#000_100%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.42)_42%,rgba(0,0,0,0.1)_100%)]" />
-          <div className="relative z-10 grid h-full content-end gap-8 px-5 py-10 sm:px-8 lg:px-[10vw] lg:py-12">
-            <div>
+          <div className="relative z-10 grid h-full w-full min-w-0 max-w-full content-end gap-8 overflow-hidden px-5 py-10 sm:px-8 lg:px-[10vw] lg:py-12">
+            <div className="w-[calc(100vw-2.5rem)] min-w-0 max-w-full sm:w-auto">
               <h2 className={`${h2Class} mb-6`}>{t.servicesTitle}</h2>
-              <p className="max-w-2xl text-[clamp(1.08rem,1.6vw,1.35rem)] leading-relaxed text-white/82">{t.servicesIntro}</p>
-              <div className="mt-8 max-w-2xl">
-                <div className="grid gap-3">
+              <p className="w-full min-w-0 max-w-2xl whitespace-normal break-words [overflow-wrap:anywhere] text-[clamp(1.08rem,1.6vw,1.35rem)] leading-relaxed text-white/82">{t.servicesIntro}</p>
+              <div className="mt-8 w-full min-w-0 max-w-2xl">
+                <div className="grid min-w-0 gap-3">
                   {t.servicesQuestions.map((question, index) => (
-                    <div className="flex max-w-full items-start gap-4" key={question}>
-                      <span className="mt-0.5 text-base font-bold text-fs-accent">{index + 1}</span>
-                      <p className="m-0 text-[clamp(1.05rem,1.45vw,1.25rem)] leading-snug text-white/90">{question}</p>
+                    <div className="flex w-full min-w-0 max-w-full items-start gap-4" key={question}>
+                      <span className="mt-0.5 shrink-0 text-base font-bold text-fs-accent">{index + 1}</span>
+                      <p className="m-0 min-w-0 flex-1 whitespace-normal break-words [overflow-wrap:anywhere] text-[clamp(1.05rem,1.45vw,1.25rem)] leading-snug text-white/90">{question}</p>
                     </div>
                   ))}
                 </div>
@@ -1183,17 +1183,17 @@ function ServicesSection({ t, onContactClick }) {
         </div>
       </div>
 
-      <div className="grid gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(12rem,0.32fr)_minmax(0,1fr)] lg:items-start lg:gap-12 lg:px-[10vw] xl:grid-cols-[minmax(15rem,0.3fr)_minmax(0,1fr)]">
-        <aside className="lg:sticky lg:top-28 lg:self-start" aria-label={t.servicesTitle}>
-          <nav className="border-l border-white/12 pl-4 lg:pl-5">
-            <ol className="m-0 grid list-none gap-1 p-0">
+      <div className="grid w-full min-w-0 max-w-full gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(12rem,0.32fr)_minmax(0,1fr)] lg:items-start lg:gap-12 lg:px-[10vw] xl:grid-cols-[minmax(15rem,0.3fr)_minmax(0,1fr)]">
+        <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start" aria-label={t.servicesTitle}>
+          <nav className="min-w-0 border-l border-white/12 pl-4 lg:pl-5">
+            <ol className="m-0 grid min-w-0 list-none gap-1 p-0">
               {t.services.map((service, index) => {
                 const isActive = activeService === index;
 
                 return (
-                  <li key={service.title}>
+                  <li className="min-w-0" key={service.title}>
                     <a
-                      className={`group grid grid-cols-[2.25rem_1fr] items-start gap-3 py-3 text-sm leading-snug no-underline transition ${
+                      className={`group grid w-full min-w-0 grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-3 py-3 text-sm leading-snug no-underline transition ${
                         isActive ? 'text-white' : 'text-white/42 hover:text-white/70'
                       }`}
                       href={`#${serviceIds[index]}`}
@@ -1201,7 +1201,7 @@ function ServicesSection({ t, onContactClick }) {
                       onClick={(event) => handleServiceNavClick(event, index)}
                     >
                       <span className={`pt-0.5 font-bold transition ${isActive ? 'text-fs-accent' : 'text-white/28 group-hover:text-white/45'}`}>0{index + 1}</span>
-                      <span className={isActive ? 'font-bold' : ''}>{service.title}</span>
+                      <span className={`min-w-0 whitespace-normal break-words [overflow-wrap:anywhere] ${isActive ? 'font-bold' : ''}`}>{service.title}</span>
                     </a>
                   </li>
                 );
@@ -1210,7 +1210,7 @@ function ServicesSection({ t, onContactClick }) {
           </nav>
         </aside>
 
-        <div className="grid gap-10 lg:gap-14">
+        <div className="grid min-w-0 gap-10 lg:gap-14">
           {t.services.map((service, index) => (
             <ServiceCase
               service={service}
@@ -1850,15 +1850,15 @@ function App() {
 
   return (
     <div className={`min-h-screen ${darkSurfaceClass} text-white`}>
-      <header className="sticky top-0 z-20 flex min-h-16 items-center justify-between gap-5 border-b-3 border-fs-accent bg-black/92 px-6 py-3 backdrop-blur lg:min-h-20 lg:gap-4 lg:px-[5vw] min-[1320px]:gap-8 min-[1320px]:px-[7vw]">
-        <a className="inline-flex items-end gap-2.5 no-underline min-[1320px]:gap-3" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
-          <img className="block h-auto w-26 lg:w-28 min-[1320px]:w-32" src={assetPath('/logo.svg')} alt="" aria-hidden="true" />
-          <span className="pb-0.5 text-xs leading-tight font-bold uppercase tracking-[0.1em] text-white sm:text-sm lg:text-[0.78rem] min-[1320px]:text-base">
+      <header className="sticky top-0 z-20 flex min-h-16 min-w-0 items-center justify-between gap-3 border-b-3 border-fs-accent bg-black/92 px-5 py-3 backdrop-blur sm:gap-5 sm:px-6 lg:min-h-20 lg:gap-4 lg:px-[5vw] min-[1320px]:gap-8 min-[1320px]:px-[7vw]">
+        <a className="inline-flex min-w-0 items-end gap-2.5 no-underline min-[1320px]:gap-3" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
+          <img className="block h-auto w-22 shrink-0 sm:w-26 lg:w-28 min-[1320px]:w-32" src={assetPath('/logo.svg')} alt="" aria-hidden="true" />
+          <span className="min-w-0 max-w-32 break-words pb-0.5 text-[0.65rem] leading-tight font-bold uppercase tracking-[0.08em] text-white sm:max-w-none sm:text-sm sm:tracking-[0.1em] lg:text-[0.78rem] min-[1320px]:text-base">
             {t.headerTagline}
           </span>
         </a>
         <button
-          className="grid size-11 place-items-center border border-white/30 p-2 min-[1180px]:hidden"
+          className="grid size-11 shrink-0 place-items-center border border-white/30 p-2 min-[1180px]:hidden"
           type="button"
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
