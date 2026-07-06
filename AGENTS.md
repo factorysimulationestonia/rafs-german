@@ -23,6 +23,7 @@
 - Use transparent logo assets on dark backgrounds. Do not add white logo tiles unless explicitly requested.
 - Treat 375px-wide phones as a required responsive target. Text, grids, headers, service navigation, and media must not create horizontal overflow.
 - Preserve the custom header breakpoints and compact desktop behavior unless the request specifically concerns them.
+- Keep in mind that user is not a graphic design expert, so even if they offer a design idea, consider it critically before executing and offer a better alternative if one exists (also considering what other websites have created or 'industry standards').
 
 ## Implementation
 
