@@ -207,7 +207,13 @@ const content = {
           'Vähendab tootmisseisakute riski pärast ümberkorraldusi',
           'Väldib ruumipuudusest tingitud hilisemaid ümbertegemisi',
         ],
-        ctaPrompt: 'Planeerid uut liini või tehase laiendust?'
+        ctaPrompt: 'Planeerid uut liini või tehase laiendust?',
+        comparisonImages: [
+          {
+            src: '/services/planning.png',
+            alt: 'Uue tehase ja tootmisliini planeering simulatsioonimudelis'
+          }
+        ]
       },
       {
         title: 'Olemasoleva tehase või tootmisliini tootlikkuse suurendamine',
@@ -224,7 +230,18 @@ const content = {
           'Lühemad tsükliajad ja vähem seisakuid',
           'Selge ülevaade tootmise tegelikest piirangutest'
         ],
-        ctaPrompt: 'Tahad leida tootmise tegelikud piirangud?'
+        ctaPrompt: 'Tahad leida tootmise tegelikud piirangud?',
+        comparisonImages: [
+          {
+            src: '/project-food.png',
+            alt: 'Tootmisliini jõudlusnäitajad ja protsessimudel',
+            focus: 'lower'
+          }
+        ],
+        overlayImage: {
+          src: '/project-food2.png',
+          alt: 'Tootmisliini tsükli- ja läbivusaja detailne analüüs'
+        }
       },
       {
         title: 'Robotite ja automatiseerimise valideerimine enne juurutust',
@@ -242,7 +259,17 @@ const content = {
           'Põhjalik sisend süsteemiintegraatoritele',
           'Kiirem kasutuselevõtt',
         ],
-        ctaPrompt: 'Plaanid uut automaatikalahendust?'
+        ctaPrompt: 'Plaanid uut automaatikalahendust?',
+        comparisonImages: [
+          {
+            src: '/services/comparison-1.png',
+            alt: 'Manuaalne tootmisprotsess operaatoritega simulatsioonimudelis'
+          },
+          {
+            src: '/services/comparison-2.png',
+            alt: 'Automatiseeritud robotirakk turvapiirete ja konveieritega simulatsioonimudelis'
+          }
+        ]
       },
       {
         title: 'Tehase digitaliseerimine',
@@ -259,7 +286,13 @@ const content = {
           'Parem koostöö projekteerijate ja integraatoritega',
           'Väiksem risk ümbertegemisteks tootmises'
         ],
-        ctaPrompt: 'Vajad täpset ülevaadet oma tehasest?'
+        ctaPrompt: 'Vajad täpset ülevaadet oma tehasest?',
+        comparisonImages: [
+          {
+            src: '/project-pellet2.png',
+            alt: 'Laserskaneeritud pelletitehase detailne punktipilv'
+          }
+        ]
       },
       {
         title: 'Virtuaalne käikuvõtmine',
@@ -631,7 +664,13 @@ const content = {
           'Reduces the risk of production downtime after layout changes',
           'Avoids later rework caused by lack of space'
         ],
-        ctaPrompt: 'Planning a new line or factory expansion?'
+        ctaPrompt: 'Planning a new line or factory expansion?',
+        comparisonImages: [
+          {
+            src: '/services/planning.png',
+            alt: 'New factory and production-line layout in a simulation model'
+          }
+        ]
       },
       {
         title: 'Increasing productivity in an existing factory or line',
@@ -648,7 +687,18 @@ const content = {
           'Shorter cycle times and less downtime',
           'Clear view of the actual production limits'
         ],
-        ctaPrompt: 'Want to find the real production constraints?'
+        ctaPrompt: 'Want to find the real production constraints?',
+        comparisonImages: [
+          {
+            src: '/project-food.png',
+            alt: 'Production-line performance metrics and process model',
+            focus: 'lower'
+          }
+        ],
+        overlayImage: {
+          src: '/project-food2.png',
+          alt: 'Detailed production-line cycle-time and lead-time analysis'
+        }
       },
       {
         title: 'Validating robots and automation before rollout',
@@ -666,7 +716,17 @@ const content = {
           'Detailed input for system integrators',
           'Faster commissioning'
         ],
-        ctaPrompt: 'Planning a new automation solution?'
+        ctaPrompt: 'Planning a new automation solution?',
+        comparisonImages: [
+          {
+            src: '/services/comparison-1.png',
+            alt: 'Manual production process with operators in a simulation model'
+          },
+          {
+            src: '/services/comparison-2.png',
+            alt: 'Automated robot cell with safety fencing and conveyors in a simulation model'
+          }
+        ]
       },
       {
         title: 'Factory digitalization',
@@ -683,7 +743,13 @@ const content = {
           'Better collaboration with designers and integrators',
           'Lower risk of production rework'
         ],
-        ctaPrompt: 'Need an accurate overview of your factory?'
+        ctaPrompt: 'Need an accurate overview of your factory?',
+        comparisonImages: [
+          {
+            src: '/project-pellet2.png',
+            alt: 'Detailed point cloud of a laser-scanned pellet factory'
+          }
+        ]
       },
       {
         title: 'Virtual commissioning',
@@ -1115,14 +1181,18 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
   const validationPoints = service.solutionPoints.slice(0, 3);
   const outcomePoints = service.impact.slice(0, 3);
   const hasVisual = service.visual?.type === 'virtualCommissioning';
+  const hasComparison = service.comparisonImages?.length > 0;
+  const hasComparisonPair = service.comparisonImages?.length > 1;
   const stepLabelClass = 'mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent';
   const bodyClass = 'text-[clamp(1.02rem,1.25vw,1.16rem)] leading-relaxed text-white/82';
   const mainContent = (
     <div className="grid min-w-0 gap-8">
-      <div>
-        <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
-        <h3 className="m-0 min-w-0 max-w-3xl break-words [overflow-wrap:anywhere] text-[clamp(1.7rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{service.title}</h3>
-      </div>
+      {!hasComparison && (
+        <div>
+          <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
+          <h3 className="m-0 min-w-0 max-w-3xl break-words [overflow-wrap:anywhere] text-[clamp(1.7rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{service.title}</h3>
+        </div>
+      )}
 
       <div className="min-w-0 max-w-3xl">
         <p className={`m-0 ${bodyClass}`}>{service.problem}</p>
@@ -1151,7 +1221,62 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
   );
 
   return (
-    <article id={id} ref={refCallback} className="w-full min-w-0 max-w-full scroll-mt-28 overflow-hidden border-t border-fs-line/65 bg-fs-panel/78 p-6 sm:p-9 lg:p-12">
+    <article
+      id={id}
+      ref={refCallback}
+      className={`w-full min-w-0 max-w-full scroll-mt-28 overflow-hidden border-t border-fs-line/65 p-6 sm:p-9 lg:p-12 ${
+        hasComparison ? 'bg-fs-panel' : 'bg-fs-panel/78'
+      }`}
+    >
+      {hasComparison && (
+        <div className="relative -mx-6 -mt-6 mb-10 overflow-hidden sm:-mx-9 sm:-mt-9 lg:-mx-12 lg:-mt-12 lg:mb-12">
+          <div className={`grid ${hasComparisonPair ? 'sm:grid-cols-2' : ''}`}>
+            {service.comparisonImages.map((image) => (
+              <figure
+                className={`relative m-0 min-w-0 overflow-hidden bg-black ${hasComparisonPair ? 'aspect-[5/4]' : 'aspect-[5/2]'}`}
+                key={image.src}
+              >
+                <img
+                  className={`block h-full w-full object-cover ${
+                    image.focus === 'lower'
+                      ? 'scale-100 object-[center_88%]'
+                      : hasComparisonPair
+                        ? '-translate-y-[12%] scale-[1.28] object-center'
+                        : 'scale-[1.08] object-center'
+                  }`}
+                  src={assetPath(image.src)}
+                  alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(38,38,38,0.04)_0%,transparent_58%,rgba(38,38,38,0.16)_76%,rgba(38,38,38,0.82)_94%,rgba(38,38,38,1)_100%)]"
+                  aria-hidden="true"
+                />
+              </figure>
+            ))}
+          </div>
+          {service.overlayImage && (
+            <div className="absolute top-2 right-2 z-[5] w-[36%] overflow-hidden border border-white/22 bg-black/55 shadow-[0_16px_40px_rgba(0,0,0,0.38)] sm:top-3 sm:right-3 sm:w-[32%] lg:top-4 lg:right-4 lg:w-[31%]">
+              <img
+                className="block h-auto w-full"
+                src={assetPath(service.overlayImage.src)}
+                alt={service.overlayImage.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+          <div
+            className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(90deg,rgba(38,38,38,0.58)_0%,rgba(38,38,38,0.14)_62%,transparent_100%)]"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-x-0 bottom-0 z-20 px-6 pb-8 sm:px-9 sm:pb-9 lg:px-12 lg:pb-10">
+            <p className="mb-4 text-base font-bold text-fs-accent">0{index + 1}</p>
+            <h3 className="m-0 min-w-0 max-w-3xl break-words [overflow-wrap:anywhere] text-[clamp(1.7rem,2.3vw,2.55rem)] leading-tight font-bold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]">{service.title}</h3>
+          </div>
+        </div>
+      )}
       {hasVisual ? (
         <div className="grid gap-10">
           <div className="grid gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(280px,0.58fr)] xl:items-start">
@@ -1996,7 +2121,7 @@ function App() {
 
   return (
     <div className={`min-h-screen ${darkSurfaceClass} text-white`}>
-      <header className="sticky top-0 z-20 flex min-h-16 min-w-0 items-center justify-between gap-3 border-b-3 border-fs-accent bg-black/92 px-5 py-3 backdrop-blur sm:gap-5 sm:px-6 lg:min-h-20 lg:gap-4 lg:px-[5vw] min-[1320px]:gap-8 min-[1320px]:px-[7vw]">
+      <header className="sticky top-0 z-40 flex min-h-16 min-w-0 items-center justify-between gap-3 border-b-3 border-fs-accent bg-black/92 px-5 py-3 backdrop-blur sm:gap-5 sm:px-6 lg:min-h-20 lg:gap-4 lg:px-[5vw] min-[1320px]:gap-8 min-[1320px]:px-[7vw]">
         <a className="inline-flex min-w-0 items-end gap-2.5 no-underline min-[1320px]:gap-3" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
           <img className="block h-auto w-22 shrink-0 sm:w-26 lg:w-28 min-[1320px]:w-32" src={assetPath('/logo.svg')} alt="" aria-hidden="true" />
           <span className="min-w-0 max-w-32 break-words pb-0.5 text-[0.65rem] leading-tight font-bold uppercase tracking-[0.08em] text-white sm:max-w-none sm:text-sm sm:tracking-[0.1em] lg:text-[0.78rem] min-[1320px]:text-base">
