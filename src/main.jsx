@@ -145,6 +145,53 @@ const content = {
       outcome: 'Tulemus'
     },
     serviceCta: 'Räägime projektist',
+    softwareTitle: 'Inseneritarkvara ja tööriistad',
+    softwareIntro:
+      'Kasutame erinevat inseneritarkvara, et tootmissüsteeme enne juurutamist planeerida, simuleerida, programmeerida ja valideerida.',
+    softwareLabel: 'Meie tööriistad',
+    softwareCapabilities: [
+      {
+        title: 'Visual Components',
+        description: <>Modelleerime tootmisprotsesse ja -võimsust ja simuleerime tootmiskontseptsioone.<br />Teostame robotite offline-programmeerimist.</>,
+        tools: ['Visual Components']
+      },
+      {
+        title: 'AutoCAD',
+        description:
+          'Koostame täpsed 2D tootmispaigutused ja tehnilised joonised, mida kasutame simulatsiooni ja projekteerimise alusena.',
+        tools: ['AutoCAD']
+      },
+      {
+        title: 'AutoTURN',
+        description:
+          'Kontrollime tõstukite, veokite ja teiste sõidukite pöörderaadiusi, liikumisteid ja vajalikku manööverdusruumi.',
+        tools: ['AutoTURN']
+      },
+      {
+        title: 'ABB RobotStudio',
+        description:
+          'Programmeerime ja simuleerime ABB robotirakke ning kontrollime robotite tööulatust ja tsükliaegu.',
+        tools: ['ABB RobotStudio']
+      },
+      {
+        title: 'Siemens TIA Portal + PLCSIM',
+        description:
+          'Arendame PLC-programme ning testime juhtloogikat ja süsteemi käitumist virtuaalselt enne füüsilist käivitust.',
+        tools: ['Siemens TIA Portal + PLCSIM']
+      },
+      {
+        title: 'NVIDIA Omniverse',
+        description:
+          'Loome suuremahulisi realistlikke digitaalseid kaksikuid, tehasekeskkondi ja ühendatud tööstuslikke 3D-töövooge.',
+        tools: ['NVIDIA Omniverse']
+      },
+      {
+        title: 'Unreal Engine + Unity',
+        description:
+          'Loome interaktiivseid visualiseeringuid, virtuaalseid tehasekeskkondi ja reaalaja 3D-rakendusi.',
+        tools: ['Unreal Engine', 'Unity']
+      }
+    ],
     services: [
       {
         title: 'Uue tehase või tootmisliini planeerimine',
@@ -521,6 +568,54 @@ const content = {
       outcome: 'Outcome'
     },
     serviceCta: 'Discuss this project',
+    softwareTitle: 'Engineering software and tools',
+    softwareIntro:
+      'We combine specialized engineering tools to plan, simulate, program and validate production systems before implementation.',
+    softwareLabel: 'Our engineering toolkit',
+    softwareCapabilities: [
+      {
+        title: 'Visual Components',
+        description:
+          'We model production flows, capacity and robot cells, and create offline robot programs—including programs for welding robots.',
+        tools: ['Visual Components']
+      },
+      {
+        title: 'AutoCAD',
+        description:
+          'We create accurate 2D production layouts and technical drawings as a reliable basis for simulation and engineering.',
+        tools: ['AutoCAD']
+      },
+      {
+        title: 'AutoTURN',
+        description:
+          'We validate swept paths, turning radii and maneuvering space for forklifts, trucks and other vehicles.',
+        tools: ['AutoTURN']
+      },
+      {
+        title: 'ABB RobotStudio',
+        description:
+          'We program and simulate ABB robot cells, validating robot reach and cycle times.',
+        tools: ['ABB RobotStudio']
+      },
+      {
+        title: 'Siemens TIA Portal + PLCSIM',
+        description:
+          'We develop PLC programs and virtually test control logic and system behavior before physical startup.',
+        tools: ['Siemens TIA Portal + PLCSIM']
+      },
+      {
+        title: 'NVIDIA Omniverse',
+        description:
+          'We build large-scale, realistic digital twins, factory environments and connected industrial 3D workflows.',
+        tools: ['NVIDIA Omniverse']
+      },
+      {
+        title: 'Unreal Engine + Unity',
+        description:
+          'We create interactive visualizations, virtual factory environments and real-time 3D applications.',
+        tools: ['Unreal Engine', 'Unity']
+      }
+    ],
     services: [
       {
         title: 'Planning a new factory or production line',
@@ -824,6 +919,16 @@ const getPagePath = (language, page = 'home', hash = '') => {
 const getSearchPath = (language, query) => `${getPagePath(language)}?q=${encodeURIComponent(query.trim())}`;
 
 const getLanguagePath = (language, hash = window.location.hash) => getPagePath(language, 'home', hash);
+const softwareBrands = {
+  'Visual Components': [{ src: '/software/visual-components.png', className: 'max-h-14 max-w-16' }],
+  AutoCAD: [{ src: '/software/autocad.svg', className: 'max-h-14 max-w-16' }],
+  AutoTURN: [{ src: '/software/autoturn.svg', className: 'max-h-13 max-w-36' }],
+  'ABB RobotStudio': [{ src: '/software/abb-robotstudio.svg', className: 'max-h-14 max-w-20' }],
+  'Siemens TIA Portal + PLCSIM': [{ src: '/software/siemens-tia-portal.svg', className: 'max-h-14 max-w-32' }],
+  'NVIDIA Omniverse': [{ src: '/software/nvidia-omniverse.svg', className: 'max-h-14 max-w-20' }],
+  'Unreal Engine': [{ src: '/software/unreal-engine.svg', className: 'max-h-14 max-w-16' }],
+  Unity: [{ src: '/software/unity.svg', className: 'max-h-14 max-w-16' }]
+};
 const partners = [
   { name: 'EML', logo: '/logo-partner-eml.png', bare: true, imageClassName: 'brightness-0 invert' },
   { name: 'AI & Robotics Estonia', logo: '/logo-partner-aire-transparent.png', bare: true, large: true },
@@ -1118,7 +1223,11 @@ function VcProgramWindow({ title, icon, children }) {
 function ServicesSection({ t, onContactClick }) {
   const [activeService, setActiveService] = useState(0);
   const serviceRefs = useRef([]);
-  const serviceIds = useMemo(() => t.services.map((_, index) => `service-${index + 1}`), [t.services]);
+  const orderedServices = useMemo(
+    () => [...t.services.slice(0, 3), ...t.services.slice(4), t.services[3]],
+    [t.services]
+  );
+  const serviceIds = useMemo(() => orderedServices.map((_, index) => `service-${index + 1}`), [orderedServices]);
 
   useEffect(() => {
     serviceRefs.current = serviceRefs.current.slice(0, t.services.length);
@@ -1187,7 +1296,7 @@ function ServicesSection({ t, onContactClick }) {
         <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start" aria-label={t.servicesTitle}>
           <nav className="min-w-0 border-l border-white/12 pl-4 lg:pl-5">
             <ol className="m-0 grid min-w-0 list-none gap-1 p-0">
-              {t.services.map((service, index) => {
+              {orderedServices.map((service, index) => {
                 const isActive = activeService === index;
 
                 return (
@@ -1211,7 +1320,7 @@ function ServicesSection({ t, onContactClick }) {
         </aside>
 
         <div className="grid min-w-0 gap-10 lg:gap-14">
-          {t.services.map((service, index) => (
+          {orderedServices.map((service, index) => (
             <ServiceCase
               service={service}
               labels={t.serviceCardLabels}
@@ -1224,6 +1333,43 @@ function ServicesSection({ t, onContactClick }) {
               onContactClick={onContactClick}
               key={service.title}
             />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SoftwareSection({ t }) {
+  return (
+    <section className={`${sectionClass} relative overflow-hidden border-y border-white/10 bg-[linear-gradient(145deg,#111_0%,#080808_52%,#101010_100%)]`} id="software">
+      <div className="pointer-events-none absolute top-0 right-[8%] h-72 w-72 rounded-full bg-fs-accent/5 blur-3xl" aria-hidden="true" />
+      <div className="relative">
+        <div className="mb-14 max-w-4xl lg:mb-20">
+          <p className="mb-4 text-sm font-bold tracking-[0.16em] text-fs-accent uppercase">{t.softwareLabel}</p>
+          <h2 className={`${h2Class} mb-7`}>{t.softwareTitle}</h2>
+          <p className="m-0 max-w-3xl text-[clamp(1.05rem,1.7vw,1.35rem)] leading-relaxed text-white/72">{t.softwareIntro}</p>
+        </div>
+
+        <div className="grid min-w-0 gap-x-12 gap-y-10 lg:grid-cols-2 lg:gap-y-14">
+          {t.softwareCapabilities.map((capability) => (
+            <article className="grid min-w-0 grid-cols-[4.5rem_minmax(0,1fr)] gap-5 border-t border-white/16 pt-7 sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-7" key={capability.title}>
+              <div className="flex min-h-16 min-w-0 flex-wrap content-start items-center justify-center gap-3" aria-hidden="true">
+                {capability.tools.flatMap((tool) => softwareBrands[tool]).map((logo) => (
+                  <img
+                    className={`h-auto w-auto object-contain ${logo.className}`}
+                    src={assetPath(logo.src)}
+                    alt=""
+                    loading="lazy"
+                    key={logo.src}
+                  />
+                ))}
+              </div>
+              <div className="min-w-0">
+                <h3 className="mb-3 break-words text-[clamp(1.4rem,2vw,1.9rem)] leading-tight font-semibold text-white">{capability.title}</h3>
+                <p className="m-0 max-w-xl text-base leading-relaxed text-white/66">{capability.description}</p>
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -1959,6 +2105,8 @@ function App() {
         </section>
 
         <ServicesSection t={t} onContactClick={navigateToContact} />
+
+        <SoftwareSection t={t} />
 
         <ClientLogoCarousel title={t.clientLogosTitle} intro={t.clientLogosIntro} />
 
