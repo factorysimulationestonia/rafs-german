@@ -12,7 +12,23 @@ const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_U
 const basePathPrefix = basePath === '/' ? '' : basePath.replace(/\/$/, '');
 const buildCommit = import.meta.env.VITE_COMMIT_SHA || '5ba3d0d';
 const lastUpdated = import.meta.env.VITE_LAST_UPDATED || '2026-05-06';
+const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || (import.meta.env.DEV ? '/api/contact.php' : '');
 const assetPath = (path) => `${basePath}${path.replace(/^\//, '')}`;
+const getContactFormErrors = (form) => {
+  const name = String(form.elements.namedItem('name')?.value || '').trim();
+  const emailField = form.elements.namedItem('email');
+  const email = String(emailField?.value || '').trim();
+  const description = String(form.elements.namedItem('description')?.value || '').trim();
+  const errors = {};
+
+  if (!name) errors.name = 'nameRequired';
+  if (!email) errors.email = 'emailRequired';
+  else if (emailField?.validity.typeMismatch) errors.email = 'emailInvalid';
+  if (!description) errors.description = 'descriptionRequired';
+  else if (description.length < 5) errors.description = 'descriptionShort';
+
+  return errors;
+};
 const iconMask = {
   WebkitMask: `url(${assetPath('/check.svg')}) center / contain no-repeat`,
   mask: `url(${assetPath('/check.svg')}) center / contain no-repeat`
@@ -326,7 +342,23 @@ const content = {
     clientLogosIntro: 'Ettevõtted, kellega oleme koostööd teinud',
     contactTitle: 'Teeme koostööd!',
     contactText: 'Alates varajasest kontseptsioonist kuni valideeritud tehase planeeringuni.',
-    form: { name: 'Nimi', email: 'E-mail', description: 'Projekti kirjeldus', send: 'Saada' },
+    form: {
+      name: 'Nimi',
+      email: 'E-mail',
+      description: 'Projekti kirjeldus',
+      send: 'Saada',
+      sending: 'Saadan…',
+      success: 'Aitäh! Vastame varsti!',
+      error: 'Sõnumi saatmine ebaõnnestus. Palun proovi uuesti või kirjuta meile otse.',
+      directEmail: 'Kirjuta otse e-postile',
+      validation: {
+        nameRequired: 'Palun sisesta nimi.',
+        emailRequired: 'Palun sisesta e-posti aadress.',
+        emailInvalid: 'Palun sisesta korrektne e-posti aadress.',
+        descriptionRequired: 'Palun kirjelda projekti.',
+        descriptionShort: 'Palun lisa vähemalt 5 tähemärki.'
+      }
+    },
     aboutTitle: 'Meist',
     teamTitle: 'Meeskond',
     team: [
@@ -783,7 +815,23 @@ const content = {
     clientLogosIntro: 'Companies we have worked with',
     contactTitle: 'Let’s work together!',
     contactText: 'From early-stage concept to validated factory plan.',
-    form: { name: 'Name', email: 'E-mail', description: 'Project description', send: 'Send' },
+    form: {
+      name: 'Name',
+      email: 'E-mail',
+      description: 'Project description',
+      send: 'Send',
+      sending: 'Sending…',
+      success: 'Thank you! We’ll reply soon!',
+      error: 'The message could not be sent. Please try again or email us directly.',
+      directEmail: 'Email us directly',
+      validation: {
+        nameRequired: 'Please enter your name.',
+        emailRequired: 'Please enter your email address.',
+        emailInvalid: 'Please enter a valid email address.',
+        descriptionRequired: 'Please describe your project.',
+        descriptionShort: 'Please enter at least 5 characters.'
+      }
+    },
     aboutTitle: 'About',
     teamTitle: 'Team',
     team: [
@@ -1682,7 +1730,7 @@ function HeaderSearch({ label, placeholder, initialValue = '', onSearch, onOpenC
   );
 }
 
-function SearchPage({ t, language, query, onContactSubmit }) {
+function SearchPage({ t, language, query, onContactSubmit, onContactInput, contactStatus, contactErrors }) {
   const [loading, setLoading] = useState(true);
   const latestPosts = useMemo(() => [...t.blogPosts].sort((first, second) => second.sortDate.localeCompare(first.sortDate)).slice(0, 2), [t.blogPosts]);
 
@@ -1749,20 +1797,73 @@ function SearchPage({ t, language, query, onContactSubmit }) {
                 <h2 className="mb-3 text-[clamp(1.8rem,3.2vw,3.6rem)] leading-tight font-normal">{t.search.contactTitle}</h2>
                 <p className="text-[clamp(1.1rem,1.7vw,1.45rem)] leading-snug text-white/74">{t.search.contactText}</p>
               </div>
-              <form className="grid gap-4" onSubmit={onContactSubmit}>
+              <form className="relative grid gap-4" onSubmit={onContactSubmit} onInput={onContactInput} noValidate>
+                <label className="absolute -left-[9999px]" aria-hidden="true">
+                  Company
+                  <input name="company" tabIndex="-1" autoComplete="off" />
+                </label>
+                <input type="hidden" name="source" value="search" />
                 <label className="grid gap-2 text-sm font-bold text-white/82">
                   {t.form.name}
-                  <input className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black" name="name" autoComplete="name" required />
+                  <input
+                    className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black"
+                    name="name"
+                    autoComplete="name"
+                    aria-invalid={Boolean(contactErrors?.name)}
+                    aria-describedby={contactErrors?.name ? 'search-contact-name-error' : undefined}
+                    required
+                  />
+                  {contactErrors?.name && <span className="text-sm font-normal text-red-300" id="search-contact-name-error">{t.form.validation[contactErrors.name]}</span>}
                 </label>
                 <label className="grid gap-2 text-sm font-bold text-white/82">
                   {t.form.email}
-                  <input className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black" type="email" name="email" autoComplete="email" required />
+                  <input
+                    className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black"
+                    type="email"
+                    name="email"
+                    autoComplete="email"
+                    aria-invalid={Boolean(contactErrors?.email)}
+                    aria-describedby={contactErrors?.email ? 'search-contact-email-error' : undefined}
+                    required
+                  />
+                  {contactErrors?.email && <span className="text-sm font-normal text-red-300" id="search-contact-email-error">{t.form.validation[contactErrors.email]}</span>}
                 </label>
                 <label className="grid gap-2 text-sm font-bold text-white/82">
                   {t.form.description}
-                  <textarea className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black" name="description" rows="5" required />
+                  <textarea
+                    className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black"
+                    name="description"
+                    rows="5"
+                    minLength="5"
+                    aria-invalid={Boolean(contactErrors?.description)}
+                    aria-describedby={contactErrors?.description ? 'search-contact-description-error' : undefined}
+                    required
+                  />
+                  {contactErrors?.description && <span className="text-sm font-normal text-red-300" id="search-contact-description-error">{t.form.validation[contactErrors.description]}</span>}
                 </label>
-                <button className="min-h-12 w-28 cursor-pointer border-0 bg-fs-accent font-bold text-black transition hover:bg-white" type="submit">{t.form.send}</button>
+                <button
+                  className={`inline-flex min-h-12 items-center justify-center gap-2 border-0 px-4 font-bold transition ${
+                    contactStatus === 'success'
+                      ? 'cursor-default bg-emerald-500 text-black'
+                      : contactStatus === 'sending'
+                        ? 'cursor-wait bg-fs-accent text-black'
+                        : 'cursor-pointer bg-fs-accent text-black hover:bg-white disabled:cursor-not-allowed disabled:opacity-45'
+                  }`}
+                  type="submit"
+                  disabled={contactStatus === 'sending' || contactStatus === 'success'}
+                  aria-live="polite"
+                >
+                  {contactStatus === 'sending' && (
+                    <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden="true" />
+                  )}
+                  {contactStatus === 'success' ? t.form.success : contactStatus === 'sending' ? t.form.sending : t.form.send}
+                </button>
+                {contactStatus === 'error' && (
+                  <p className="m-0 text-sm text-red-300" role="alert">
+                    {t.form.error}{' '}
+                    <a className="font-bold text-white underline" href="mailto:info@factorysimulation.eu">{t.form.directEmail}</a>
+                  </p>
+                )}
               </form>
             </div>
           </section>
@@ -1871,7 +1972,92 @@ function ZoomImage({ src, className = '', imageClassName = '', onOpenImage }) {
   );
 }
 
-function WheelmePage({ t, language, onContactClick, onOpenImage }) {
+function ContactForm({ t, onSubmit, onInput, status, errors, nameRef, idPrefix, source }) {
+  const errorId = (field) => `${idPrefix}-${field}-error`;
+
+  return (
+    <form className="relative grid min-w-0 gap-4.5" onSubmit={onSubmit} onInput={onInput} noValidate>
+      <label className="absolute -left-[9999px]" aria-hidden="true">
+        Company
+        <input name="company" tabIndex="-1" autoComplete="off" />
+      </label>
+      <input type="hidden" name="source" value={source} />
+      <label className="grid gap-2">
+        {t.form.name}
+        <input
+          ref={nameRef}
+          className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black"
+          name="name"
+          autoComplete="name"
+          aria-invalid={Boolean(errors?.name)}
+          aria-describedby={errors?.name ? errorId('name') : undefined}
+          required
+        />
+        {errors?.name && <span className="text-sm text-red-950" id={errorId('name')}>{t.form.validation[errors.name]}</span>}
+      </label>
+      <label className="grid gap-2">
+        {t.form.email}
+        <input
+          className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black"
+          type="email"
+          name="email"
+          autoComplete="email"
+          aria-invalid={Boolean(errors?.email)}
+          aria-describedby={errors?.email ? errorId('email') : undefined}
+          required
+        />
+        {errors?.email && <span className="text-sm text-red-950" id={errorId('email')}>{t.form.validation[errors.email]}</span>}
+      </label>
+      <label className="grid gap-2">
+        {t.form.description}
+        <textarea
+          className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black"
+          name="description"
+          rows="6"
+          minLength="5"
+          aria-invalid={Boolean(errors?.description)}
+          aria-describedby={errors?.description ? errorId('description') : undefined}
+          required
+        />
+        {errors?.description && <span className="text-sm text-red-950" id={errorId('description')}>{t.form.validation[errors.description]}</span>}
+      </label>
+      <button
+        className={`inline-flex min-h-14 items-center justify-center gap-2 border-0 px-5 font-bold transition ${
+          status === 'success'
+            ? 'cursor-default bg-emerald-600 text-white'
+            : status === 'sending'
+              ? 'cursor-wait bg-black text-fs-accent'
+              : 'cursor-pointer bg-black text-fs-accent disabled:cursor-not-allowed disabled:opacity-45'
+        }`}
+        type="submit"
+        disabled={status === 'sending' || status === 'success'}
+        aria-live="polite"
+      >
+        {status === 'sending' && (
+          <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden="true" />
+        )}
+        {status === 'success' ? t.form.success : status === 'sending' ? t.form.sending : t.form.send}
+      </button>
+      {status === 'error' && (
+        <p className="m-0 text-sm text-red-950" role="alert">
+          {t.form.error}{' '}
+          <a className="font-bold text-black underline" href="mailto:info@factorysimulation.eu">{t.form.directEmail}</a>
+        </p>
+      )}
+    </form>
+  );
+}
+
+function WheelmePage({
+  t,
+  language,
+  onContactClick,
+  onOpenImage,
+  onContactSubmit,
+  onContactInput,
+  contactStatus,
+  contactErrors
+}) {
   return (
     <>
       <section className={`${sectionClass} pb-12 lg:pb-20`}>
@@ -1933,20 +2119,20 @@ function WheelmePage({ t, language, onContactClick, onOpenImage }) {
       </section>
 
       <section className="bg-fs-accent px-5 py-16 text-black sm:px-8 lg:px-[10vw] lg:py-24">
-        <div className="flex flex-col items-start gap-8 lg:grid-cols-[1fr_auto]">
-          <div>
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(260px,0.8fr)_minmax(320px,560px)] lg:gap-[8vw]">
+          <div className="min-w-0">
             <h2 className="mb-4 text-[clamp(2.2rem,4vw,4.5rem)] leading-none font-normal max-w-4xl">{t.wheelmePage.ctaTitle}</h2>
             <p className="max-w-3xl text-[clamp(1.1rem,1.6vw,1.45rem)] leading-snug">{t.wheelmePage.ctaText}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-4 lg:justify-end">
-            <a className="inline-flex min-h-14 items-center justify-center bg-black px-6 py-3 font-bold text-white no-underline" href={getPagePath(language, 'home', '#contact')} onClick={onContactClick}>
-              {t.wheelmePage.ctaButton}
-            </a>
-            <div className="inline-flex min-h-14 items-center gap-3 border border-black/35 px-4 py-2">
-              <img className="h-7 w-auto invert" src={assetPath('/wheelme/wheel.me_logo_white.png')} alt="wheel.me" />
-              <span className="text-xs font-bold uppercase tracking-[0.14em] text-black/70">{t.wheelmePage.authorizedReseller}</span>
-            </div>
-          </div>
+          <ContactForm
+            t={t}
+            onSubmit={onContactSubmit}
+            onInput={onContactInput}
+            status={contactStatus}
+            errors={contactErrors}
+            idPrefix="wheelme-contact"
+            source="wheelme"
+          />
         </div>
       </section>
     </>
@@ -1960,6 +2146,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [desktopSearchOpen, setDesktopSearchOpen] = useState(Boolean(getSearchQuery()));
   const [lightboxImage, setLightboxImage] = useState(null);
+  const [contactStatus, setContactStatus] = useState('idle');
+  const [contactErrors, setContactErrors] = useState(null);
   const contactNameRef = useRef(null);
   const t = content[language];
   const nextLanguage = language === 'et' ? 'en' : 'et';
@@ -1975,6 +2163,10 @@ function App() {
       }),
     [language, t]
   );
+
+  useEffect(() => {
+    setContactErrors(null);
+  }, [route, searchQuery]);
 
   useEffect(() => {
     if (!languages.includes(getPathWithoutBase().split('/').filter(Boolean)[0])) {
@@ -2100,13 +2292,27 @@ function App() {
     window.location.href = getSearchPath(language, query);
   };
 
-  const handleContactSubmit = (event) => {
+  const handleContactSubmit = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const description = formData.get('description');
+    const form = event.currentTarget;
+    if (contactStatus === 'sending' || contactStatus === 'success') {
+      return;
+    }
+
+    const validationErrors = getContactFormErrors(form);
+    setContactErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) {
+      form.elements.namedItem(Object.keys(validationErrors)[0])?.focus();
+      return;
+    }
+
+    const formData = new FormData(form);
+    const name = String(formData.get('name') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const description = String(formData.get('description') || '').trim();
+    const company = String(formData.get('company') || '').trim();
+    const source = String(formData.get('source') || 'main').trim();
     const subject = language === 'et' ? 'Uus projektipäring' : 'New project inquiry';
     const body = [
       `${t.form.name}: ${name}`,
@@ -2116,7 +2322,49 @@ function App() {
       description
     ].join('\n');
 
-    window.location.href = `mailto:info@factorysimulation.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (!contactEndpoint) {
+      window.location.href = `mailto:info@factorysimulation.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      return;
+    }
+
+    setContactStatus('sending');
+
+    try {
+      const [request] = await Promise.all([
+        fetch(contactEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, description, language, company, source })
+        })
+          .then((response) => ({ response }))
+          .catch((error) => ({ error })),
+        new Promise((resolve) => window.setTimeout(resolve, 2000))
+      ]);
+
+      if (request.error) {
+        throw request.error;
+      }
+
+      if (!request.response.ok) {
+        throw new Error(`Contact request failed with status ${request.response.status}`);
+      }
+
+      form.reset();
+      setContactErrors(null);
+      setContactStatus('success');
+    } catch (error) {
+      console.error('Contact form submission failed.', error);
+      setContactStatus('error');
+    }
+  };
+
+  const handleContactInput = (event) => {
+    if (contactErrors !== null) {
+      setContactErrors(getContactFormErrors(event.currentTarget));
+    }
+    if (contactStatus === 'error') {
+      setContactStatus('idle');
+    }
   };
 
   return (
@@ -2191,9 +2439,26 @@ function App() {
 
       <main id="top">
         {searchQuery ? (
-          <SearchPage t={t} language={language} query={searchQuery} onContactSubmit={handleContactSubmit} />
+          <SearchPage
+            t={t}
+            language={language}
+            query={searchQuery}
+            onContactSubmit={handleContactSubmit}
+            onContactInput={handleContactInput}
+            contactStatus={contactStatus}
+            contactErrors={contactErrors}
+          />
         ) : route === 'wheelme' ? (
-          <WheelmePage t={t} language={language} onContactClick={navigateToContact} onOpenImage={setLightboxImage} />
+          <WheelmePage
+            t={t}
+            language={language}
+            onContactClick={navigateToContact}
+            onOpenImage={setLightboxImage}
+            onContactSubmit={handleContactSubmit}
+            onContactInput={handleContactInput}
+            contactStatus={contactStatus}
+            contactErrors={contactErrors}
+          />
         ) : route === 'blog' ? (
           <BlogPage t={t} language={language} />
         ) : (
@@ -2328,21 +2593,16 @@ function App() {
               <h2 className={h2Class}>{t.contactTitle}</h2>
               <p className="text-[clamp(1.5rem,3vw,2.4rem)] leading-tight">{t.contactText}</p>
             </div>
-            <form className="grid gap-4.5" onSubmit={handleContactSubmit}>
-              <label className="grid gap-2">
-                {t.form.name}
-                <input ref={contactNameRef} className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black" name="name" autoComplete="name" required />
-              </label>
-              <label className="grid gap-2">
-                {t.form.email}
-                <input className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black" type="email" name="email" autoComplete="email" required />
-              </label>
-              <label className="grid gap-2">
-                {t.form.description}
-                <textarea className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black" name="description" rows="6" required />
-              </label>
-              <button className="min-h-14 w-32 cursor-pointer border-0 bg-black text-fs-accent" type="submit">{t.form.send}</button>
-            </form>
+            <ContactForm
+              t={t}
+              onSubmit={handleContactSubmit}
+              onInput={handleContactInput}
+              status={contactStatus}
+              errors={contactErrors}
+              nameRef={contactNameRef}
+              idPrefix="contact"
+              source="main"
+            />
           </div>
         </section>
           </>
