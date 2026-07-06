@@ -1392,7 +1392,7 @@ function ServicesSection({ t, onContactClick }) {
   };
 
   return (
-    <section className="min-w-0 overflow-x-clip pt-24 pb-20 lg:pt-32 lg:pb-36" id="services">
+    <section className="min-w-0 overflow-x-clip pb-20 lg:pb-36" id="services">
       <div className="mb-10 overflow-hidden border-t-4 border-fs-accent bg-fs-panel">
         <div className="relative aspect-[16/9] min-h-[640px] lg:aspect-[16/8.5] lg:min-h-[720px]">
           <img className="absolute inset-0 h-full w-full object-cover object-center" src={assetPath(t.servicesHero.image)} alt={t.servicesHero.imageAlt} />
