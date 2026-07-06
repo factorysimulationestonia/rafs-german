@@ -1231,9 +1231,11 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
       {hasComparison && (
         <div className="relative -mx-6 -mt-6 mb-10 overflow-hidden sm:-mx-9 sm:-mt-9 lg:-mx-12 lg:-mt-12 lg:mb-12">
           <div className={`grid ${hasComparisonPair ? 'sm:grid-cols-2' : ''}`}>
-            {service.comparisonImages.map((image) => (
+            {service.comparisonImages.map((image, imageIndex) => (
               <figure
-                className={`relative m-0 min-w-0 overflow-hidden bg-black ${hasComparisonPair ? 'aspect-[5/4]' : 'aspect-[5/2]'}`}
+                className={`relative m-0 min-w-0 overflow-hidden bg-black ${
+                  hasComparisonPair ? 'h-80 sm:h-auto sm:aspect-[5/4]' : 'h-80 sm:h-auto sm:aspect-[5/2]'
+                } ${hasComparisonPair && imageIndex === 0 ? 'hidden sm:block' : ''}`}
                 key={image.src}
               >
                 <img
