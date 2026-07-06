@@ -1154,7 +1154,7 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
     <article id={id} ref={refCallback} className="w-full min-w-0 max-w-full scroll-mt-28 overflow-hidden border-t border-fs-line/65 bg-fs-panel/78 p-6 sm:p-9 lg:p-12">
       {hasVisual ? (
         <div className="grid gap-10">
-          <div className="grid gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(280px,0.58fr)] xl:items-end">
+          <div className="grid gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(280px,0.58fr)] xl:items-start">
             {mainContent}
             <VirtualCommissioningVisual visual={service.visual} />
           </div>
