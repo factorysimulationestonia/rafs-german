@@ -1,0 +1,41 @@
+# Factory Simulation Website
+
+## Project
+
+- This is a bilingual Estonian/English React 19 + Vite + Tailwind CSS v4 website.
+- Most application code and localized content live in `src/main.jsx`.
+- Shared CSS, theme tokens, and custom animations live in `src/styles.css`.
+- Static media and brand assets live under `public/`.
+- Use `assetPath()` for public asset URLs so GitHub Pages base paths continue to work.
+
+## Content
+
+- Keep Estonian and English content aligned. When changing copy in one language, update the corresponding translation unless the user explicitly asks otherwise.
+- Preserve the existing practical, engineering-focused tone. Emphasize production decisions, risk reduction, validation, simulation, automation, and measurable outcomes.
+- Use the terminology already established in nearby content.
+- Do not silently rewrite user-provided copy beyond the requested scope.
+
+## Design
+
+- Preserve the dark industrial visual language, Space Grotesk typography, gold accent (`#e2ab19`), and restrained purple result accent (`#8f83d8`).
+- Follow existing Tailwind patterns before adding custom CSS.
+- Keep operational sections structured and readable rather than decorative or card-heavy.
+- Use transparent logo assets on dark backgrounds. Do not add white logo tiles unless explicitly requested.
+- Treat 375px-wide phones as a required responsive target. Text, grids, headers, service navigation, and media must not create horizontal overflow.
+- Preserve the custom header breakpoints and compact desktop behavior unless the request specifically concerns them.
+
+## Implementation
+
+- Keep edits closely scoped. Do not split the large `src/main.jsx` file or introduce new dependencies unless the change clearly requires it.
+- Reuse existing components, localized data structures, and utility classes.
+- Ensure flex and grid text children can shrink with `min-w-0`; use explicit wrapping for long Estonian text where needed.
+- Respect reduced-motion preferences for animated UI.
+- Do not overwrite or remove user assets or unrelated working-tree changes.
+
+## Workflow
+
+- The user normally runs `npm run dev` and reviews changes live. Do not start another server or repeatedly perform browser verification unless asked.
+- Do not run `npm run build` after every edit. Run it before committing/pushing, when explicitly requested, or when a risky structural change needs validation.
+- Before committing, inspect `git status` and include only intended source and asset changes.
+- Do not push or deploy unless explicitly requested.
+- Follow `README.md` for demo and production deployment. Confirm whether the target is `demo` or live `origin` when the request is ambiguous.
