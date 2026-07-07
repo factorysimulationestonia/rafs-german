@@ -898,7 +898,7 @@ const content = {
     team: [
       { name: 'Steven', role: 'CEO', credentials: 'Mechanical engineer (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
       { name: 'Hans', role: 'Simulation engineer', credentials: 'Industrial engineering and management (MSc)', image: '/team/hans.jpg' },
-      { name: 'Markus', role: 'Project engineer', credentials: 'Robotics and automation engineer (MSc)' }
+      { name: 'Markus', role: 'Project engineer', credentials: 'Robotics and automation engineer (MSc)', image: '/team/markus.jpeg' }
     ],
     partnersTitle: 'Partners and network',
     reseller: 'Official reseller and integration partner',
