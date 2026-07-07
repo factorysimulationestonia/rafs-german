@@ -418,7 +418,10 @@ const content = {
         {
           title: 'Vastutav töötleja',
           paragraphs: [
-            'Vastutav töötleja on Factory Simulation OÜ. Andmekaitsega seotud küsimustes saab meiega ühendust võtta aadressil info@factorysimulation.eu.'
+            'Vastutav töötleja: Factory Simulation OÜ.',
+            'Registrikood: 17384619.',
+            'Aadress: Okka tee 2, 4660, Piira, Eesti.',
+            'E-post: info@factorysimulation.eu.'
           ]
         },
         {
@@ -947,7 +950,10 @@ const content = {
         {
           title: 'Controller',
           paragraphs: [
-            'The controller is Factory Simulation OÜ. For privacy-related questions, contact us at info@factorysimulation.eu.'
+            'Controller: Factory Simulation OÜ.',
+            'Registry code: 17384619,.',
+            'Address: Okka tee 2, 4660, Piira, Estonia.',
+            'Email: info@factorysimulation.eu.'
           ]
         },
         {
