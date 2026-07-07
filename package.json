@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:contact-api": "node scripts/dev-contact-api.mjs",
     "build": "vite build",
+    "build:zone": "node scripts/build-zone.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

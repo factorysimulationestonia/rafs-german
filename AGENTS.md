@@ -40,3 +40,5 @@
 - Before committing, inspect `git status` and include only intended source and asset changes.
 - Do not push or deploy unless explicitly requested.
 - Follow `README.md` for demo and production deployment. Confirm whether the target is `demo` or live `origin` when the request is ambiguous.
+- If an important change has been made to the project; or the user has provided some specific information that will be important context for future changes, update this AGENTS.md file with the new information and inform the user that you did so.
+- Contact forms on the main and Wheel.me pages share the `ContactForm` component in `src/main.jsx` and submit through `server/api/contact.php`. Requests include a `source` value (`main`, `wheelme`, or `search`) that is shown in the email body. Production must use `npm run build:zone`; the GitHub Pages demo uses the frontend-only build and retains the `mailto:` fallback.

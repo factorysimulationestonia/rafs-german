@@ -32,7 +32,7 @@ jobs:
         run: |
           VITE_COMMIT_SHA="${GITHUB_SHA::7}" \
           VITE_LAST_UPDATED="$(date -u +%Y-%m-%d)" \
-          npm run build
+          npm run build:zone
         env:
           BASE_PATH: /
 

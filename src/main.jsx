@@ -12,7 +12,23 @@ const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_U
 const basePathPrefix = basePath === '/' ? '' : basePath.replace(/\/$/, '');
 const buildCommit = import.meta.env.VITE_COMMIT_SHA || '5ba3d0d';
 const lastUpdated = import.meta.env.VITE_LAST_UPDATED || '2026-05-06';
+const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || (import.meta.env.DEV ? '/api/contact.php' : '');
 const assetPath = (path) => `${basePath}${path.replace(/^\//, '')}`;
+const getContactFormErrors = (form) => {
+  const name = String(form.elements.namedItem('name')?.value || '').trim();
+  const emailField = form.elements.namedItem('email');
+  const email = String(emailField?.value || '').trim();
+  const description = String(form.elements.namedItem('description')?.value || '').trim();
+  const errors = {};
+
+  if (!name) errors.name = 'nameRequired';
+  if (!email) errors.email = 'emailRequired';
+  else if (emailField?.validity.typeMismatch) errors.email = 'emailInvalid';
+  if (!description) errors.description = 'descriptionRequired';
+  else if (description.length < 5) errors.description = 'descriptionShort';
+
+  return errors;
+};
 const iconMask = {
   WebkitMask: `url(${assetPath('/check.svg')}) center / contain no-repeat`,
   mask: `url(${assetPath('/check.svg')}) center / contain no-repeat`
@@ -326,13 +342,34 @@ const content = {
     clientLogosIntro: 'Ettevõtted, kellega oleme koostööd teinud',
     contactTitle: 'Teeme koostööd!',
     contactText: 'Alates varajasest kontseptsioonist kuni valideeritud tehase planeeringuni.',
-    form: { name: 'Nimi', email: 'E-mail', description: 'Projekti kirjeldus', send: 'Saada' },
+    form: {
+      name: 'Nimi',
+      email: 'E-mail',
+      description: 'Projekti kirjeldus',
+      send: 'Saada',
+      sending: 'Saadan…',
+      success: 'Aitäh! Vastame varsti!',
+      error: 'Sõnumi saatmine ebaõnnestus. Palun proovi uuesti või kirjuta meile otse.',
+      directEmail: 'Kirjuta otse e-postile',
+      privacyNotice: {
+        before: 'Vormi saatmisel töötleme teie esitatud andmeid ainult päringule vastamiseks (lisateave: ',
+        link: 'privaatsuspoliitika',
+        after: ').'
+      },
+      validation: {
+        nameRequired: 'Palun sisesta nimi.',
+        emailRequired: 'Palun sisesta e-posti aadress.',
+        emailInvalid: 'Palun sisesta korrektne e-posti aadress.',
+        descriptionRequired: 'Palun kirjelda projekti.',
+        descriptionShort: 'Palun lisa vähemalt 5 tähemärki.'
+      }
+    },
     aboutTitle: 'Meist',
     teamTitle: 'Meeskond',
     team: [
       { name: 'Steven', role: 'Tegevjuht', credentials: 'Mehaanikainsener (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
       { name: 'Hans', role: 'Simulatsiooniinsener', credentials: 'Tööstustehnika ja juhtimine (MSc)', image: '/team/hans.jpg', linkedin: 'https://www.linkedin.com/in/hjerikson/'  },
-      { name: 'Markus', role: 'Projektiinsener', credentials: 'Robootika ja automaatikainsener (MSc)' }
+      { name: 'Markus', role: 'Projektiinsener', credentials: 'Robootika ja automaatikainsener (MSc)', image: '/team/markus.jpeg' }
     ],
     partnersTitle: 'Partnerid ja võrgustik',
     reseller: 'Ametlik edasimüüja ja integratsioonipartner',
@@ -371,6 +408,60 @@ const content = {
       }
     },
     contacts: 'Kontakt',
+    privacy: {
+      title: 'Privaatsuspoliitika',
+      breadcrumb: 'Privaatsuspoliitika',
+      updated: 'Viimati uuendatud: 07.07.2026',
+      intro:
+        'See privaatsuspoliitika selgitab, kuidas Factory Simulation OÜ töötleb veebilehe kontaktvormide kaudu saadetud andmeid.',
+      sections: [
+        {
+          title: 'Vastutav töötleja',
+          paragraphs: [
+            'Vastutav töötleja: Factory Simulation OÜ.',
+            'Registrikood: 17384619.',
+            'Aadress: Okka tee 2, 4660, Piira, Eesti.',
+            'E-post: info@factorysimulation.eu.'
+          ]
+        },
+        {
+          title: 'Milliseid andmeid töötleme',
+          paragraphs: [
+            'Kontaktvormi kaudu töötleme teie nime, e-posti aadressi, sõnumi sisu, vormi allikat ning tehnilisi andmeid, mis on vajalikud vormi turvaliseks edastamiseks ja rämpsposti vähendamiseks.'
+          ]
+        },
+        {
+          title: 'Miks ja mis õiguslikul alusel andmeid töötleme',
+          paragraphs: [
+            'Töötleme andmeid selleks, et vastata teie päringule, arutada võimalikku projekti ja võtta teie soovil ühendust. Õiguslik alus on lepingu sõlmimisele eelnevate meetmete võtmine teie taotlusel või meie õigustatud huvi vastata äripäringutele.'
+          ]
+        },
+        {
+          title: 'Kellele andmeid edastatakse',
+          paragraphs: [
+            'Andmeid näevad ainult Factory Simulationi inimesed, kes vastavad päringutele. Tehniliselt liiguvad andmed läbi meie veebimajutuse ja e-posti teenusepakkuja Zone.ee.'
+          ]
+        },
+        {
+          title: 'Kui kaua andmeid säilitame',
+          paragraphs: [
+            'Säilitame päringuid nii kaua, kui on mõistlik päringule vastamiseks, võimaliku koostöö ettevalmistamiseks ja tavapärase ärisuhtluse ajaloo hoidmiseks. Kui päringust ei teki koostööd, kustutame või arhiveerime selle mõistliku aja jooksul, välja arvatud juhul, kui seadus nõuab pikemat säilitamist.'
+          ]
+        },
+        {
+          title: 'Turundus ja uudiskirjad',
+          paragraphs: [
+            'Kontaktvormi andmeid ei kasutata uudiskirja saatmiseks ega eraldi turundusnimekirja lisamiseks ilma eraldi vabatahtliku nõusolekuta.'
+          ]
+        },
+        {
+          title: 'Teie õigused',
+          paragraphs: [
+            'Teil on õigus küsida ligipääsu oma andmetele, paluda andmeid parandada või kustutada, piirata töötlemist ning esitada vastuväiteid. Samuti on teil õigus esitada kaebus Andmekaitse Inspektsioonile.'
+          ]
+        }
+      ]
+    },
     blogTitle: 'Uudised',
     breadcrumbHome: 'Avaleht',
     breadcrumbBlog: 'Uudised',
@@ -783,13 +874,34 @@ const content = {
     clientLogosIntro: 'Companies we have worked with',
     contactTitle: 'Let’s work together!',
     contactText: 'From early-stage concept to validated factory plan.',
-    form: { name: 'Name', email: 'E-mail', description: 'Project description', send: 'Send' },
+    form: {
+      name: 'Name',
+      email: 'E-mail',
+      description: 'Project description',
+      send: 'Send',
+      sending: 'Sending…',
+      success: 'Thank you! We’ll reply soon!',
+      error: 'The message could not be sent. Please try again or email us directly.',
+      directEmail: 'Email us directly',
+      privacyNotice: {
+        before: 'When you send this form, we process the information you provide only to respond to your inquiry (',
+        link: 'Privacy Policy',
+        after: ').'
+      },
+      validation: {
+        nameRequired: 'Please enter your name.',
+        emailRequired: 'Please enter your email address.',
+        emailInvalid: 'Please enter a valid email address.',
+        descriptionRequired: 'Please describe your project.',
+        descriptionShort: 'Please enter at least 5 characters.'
+      }
+    },
     aboutTitle: 'About',
     teamTitle: 'Team',
     team: [
       { name: 'Steven', role: 'CEO', credentials: 'Mechanical engineer (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
       { name: 'Hans', role: 'Simulation engineer', credentials: 'Industrial engineering and management (MSc)', image: '/team/hans.jpg' },
-      { name: 'Markus', role: 'Project engineer', credentials: 'Robotics and automation engineer (MSc)' }
+      { name: 'Markus', role: 'Project engineer', credentials: 'Robotics and automation engineer (MSc)', image: '/team/markus.jpeg' }
     ],
     partnersTitle: 'Partners and network',
     reseller: 'Official reseller and integration partner',
@@ -828,6 +940,60 @@ const content = {
       }
     },
     contacts: 'Contacts',
+    privacy: {
+      title: 'Privacy Policy',
+      breadcrumb: 'Privacy Policy',
+      updated: 'Last updated: 07.07.2026',
+      intro:
+        'This Privacy Policy explains how Factory Simulation OÜ processes information sent through the website contact forms.',
+      sections: [
+        {
+          title: 'Controller',
+          paragraphs: [
+            'Controller: Factory Simulation OÜ.',
+            'Registry code: 17384619,.',
+            'Address: Okka tee 2, 4660, Piira, Estonia.',
+            'Email: info@factorysimulation.eu.'
+          ]
+        },
+        {
+          title: 'What information we process',
+          paragraphs: [
+            'Through the contact form, we process your name, email address, message content, form source and technical information needed to deliver the form securely and reduce spam.'
+          ]
+        },
+        {
+          title: 'Purpose and legal basis',
+          paragraphs: [
+            'We process the information to respond to your inquiry, discuss a possible project and contact you at your request. The legal basis is taking steps before entering into a contract at your request or our legitimate interest in responding to business inquiries.'
+          ]
+        },
+        {
+          title: 'Who receives the information',
+          paragraphs: [
+            'The information is seen only by Factory Simulation people who respond to inquiries. Technically, the information passes through our website hosting and email service provider, Zone.ee.'
+          ]
+        },
+        {
+          title: 'How long we keep the information',
+          paragraphs: [
+            'We keep inquiries for as long as reasonably needed to respond, prepare possible cooperation and maintain normal business communication history. If an inquiry does not lead to cooperation, we delete or archive it within a reasonable time unless the law requires longer retention.'
+          ]
+        },
+        {
+          title: 'Marketing and newsletters',
+          paragraphs: [
+            'Contact form information is not used to send newsletters or add you to a separate marketing list without separate voluntary consent.'
+          ]
+        },
+        {
+          title: 'Your rights',
+          paragraphs: [
+            'You have the right to request access to your data, ask for correction or deletion, restrict processing and object to processing. You also have the right to lodge a complaint with the Estonian Data Protection Inspectorate.'
+          ]
+        }
+      ]
+    },
     blogTitle: 'News',
     breadcrumbHome: 'Home',
     breadcrumbBlog: 'News',
@@ -972,13 +1138,13 @@ const getLanguageFromPath = () => {
 
 const getRouteFromPath = () => {
   const page = getPathWithoutBase().split('/').filter(Boolean)[1];
-  return ['blog', 'wheelme'].includes(page) ? page : 'home';
+  return ['blog', 'wheelme', 'privacy'].includes(page) ? page : 'home';
 };
 
 const getSearchQuery = () => new URLSearchParams(window.location.search).get('q')?.trim() || '';
 
 const getPagePath = (language, page = 'home', hash = '') => {
-  const pagePath = page === 'blog' || page === 'wheelme' ? `${page}/` : '';
+  const pagePath = ['blog', 'wheelme', 'privacy'].includes(page) ? `${page}/` : '';
   return `${basePath}${language}/${pagePath}${hash || ''}`;
 };
 
@@ -1684,7 +1850,7 @@ function HeaderSearch({ label, placeholder, initialValue = '', onSearch, onOpenC
   );
 }
 
-function SearchPage({ t, language, query, onContactSubmit }) {
+function SearchPage({ t, language, query, onContactSubmit, onContactInput, contactStatus, contactErrors }) {
   const [loading, setLoading] = useState(true);
   const latestPosts = useMemo(() => [...t.blogPosts].sort((first, second) => second.sortDate.localeCompare(first.sortDate)).slice(0, 2), [t.blogPosts]);
 
@@ -1751,20 +1917,79 @@ function SearchPage({ t, language, query, onContactSubmit }) {
                 <h2 className="mb-3 text-[clamp(1.8rem,3.2vw,3.6rem)] leading-tight font-normal">{t.search.contactTitle}</h2>
                 <p className="text-[clamp(1.1rem,1.7vw,1.45rem)] leading-snug text-white/74">{t.search.contactText}</p>
               </div>
-              <form className="grid gap-4" onSubmit={onContactSubmit}>
+              <form className="relative grid gap-4" onSubmit={onContactSubmit} onInput={onContactInput} noValidate>
+                <label className="absolute -left-[9999px]" aria-hidden="true">
+                  Company
+                  <input name="company" tabIndex="-1" autoComplete="off" />
+                </label>
+                <input type="hidden" name="source" value="search" />
                 <label className="grid gap-2 text-sm font-bold text-white/82">
                   {t.form.name}
-                  <input className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black" name="name" autoComplete="name" required />
+                  <input
+                    className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black"
+                    name="name"
+                    autoComplete="name"
+                    aria-invalid={Boolean(contactErrors?.name)}
+                    aria-describedby={contactErrors?.name ? 'search-contact-name-error' : undefined}
+                    required
+                  />
+                  {contactErrors?.name && <span className="text-sm font-normal text-red-300" id="search-contact-name-error">{t.form.validation[contactErrors.name]}</span>}
                 </label>
                 <label className="grid gap-2 text-sm font-bold text-white/82">
                   {t.form.email}
-                  <input className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black" type="email" name="email" autoComplete="email" required />
+                  <input
+                    className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black"
+                    type="email"
+                    name="email"
+                    autoComplete="email"
+                    aria-invalid={Boolean(contactErrors?.email)}
+                    aria-describedby={contactErrors?.email ? 'search-contact-email-error' : undefined}
+                    required
+                  />
+                  {contactErrors?.email && <span className="text-sm font-normal text-red-300" id="search-contact-email-error">{t.form.validation[contactErrors.email]}</span>}
                 </label>
                 <label className="grid gap-2 text-sm font-bold text-white/82">
                   {t.form.description}
-                  <textarea className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black" name="description" rows="5" required />
+                  <textarea
+                    className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black"
+                    name="description"
+                    rows="5"
+                    minLength="5"
+                    aria-invalid={Boolean(contactErrors?.description)}
+                    aria-describedby={contactErrors?.description ? 'search-contact-description-error' : undefined}
+                    required
+                  />
+                  {contactErrors?.description && <span className="text-sm font-normal text-red-300" id="search-contact-description-error">{t.form.validation[contactErrors.description]}</span>}
                 </label>
-                <button className="min-h-12 w-28 cursor-pointer border-0 bg-fs-accent font-bold text-black transition hover:bg-white" type="submit">{t.form.send}</button>
+                <PrivacyNotice
+                  t={t}
+                  language={language}
+                  className="text-sm leading-snug text-white/62"
+                  linkClassName="text-white underline transition hover:text-fs-accent"
+                />
+                <button
+                  className={`inline-flex min-h-12 items-center justify-center gap-2 border-0 px-4 font-bold transition ${
+                    contactStatus === 'success'
+                      ? 'cursor-default bg-emerald-500 text-black'
+                      : contactStatus === 'sending'
+                        ? 'cursor-wait bg-fs-accent text-black'
+                        : 'cursor-pointer bg-fs-accent text-black hover:bg-white disabled:cursor-not-allowed disabled:opacity-45'
+                  }`}
+                  type="submit"
+                  disabled={contactStatus === 'sending' || contactStatus === 'success'}
+                  aria-live="polite"
+                >
+                  {contactStatus === 'sending' && (
+                    <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden="true" />
+                  )}
+                  {contactStatus === 'success' ? t.form.success : contactStatus === 'sending' ? t.form.sending : t.form.send}
+                </button>
+                {contactStatus === 'error' && (
+                  <p className="m-0 text-sm text-red-300" role="alert">
+                    {t.form.error}{' '}
+                    <a className="font-bold text-white underline" href="mailto:info@factorysimulation.eu">{t.form.directEmail}</a>
+                  </p>
+                )}
               </form>
             </div>
           </section>
@@ -1835,6 +2060,40 @@ function BlogPage({ t, language }) {
   );
 }
 
+function PrivacyPolicyPage({ t, language }) {
+  return (
+    <section className={`${sectionClass} min-h-[calc(100vh-5rem)]`}>
+      <div className="mb-12 max-w-3xl">
+        <nav className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-white/45" aria-label="Breadcrumb">
+          <a className="text-white/55 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'home')}>
+            {t.breadcrumbHome}
+          </a>
+          <span className="text-fs-accent" aria-hidden="true">
+            /
+          </span>
+          <span className="text-fs-accent">{t.privacy.breadcrumb}</span>
+        </nav>
+        <h1 className={h2Class}>{t.privacy.title}</h1>
+        <p className="mb-4 text-lg leading-relaxed text-white/76">{t.privacy.intro}</p>
+        <p className="m-0 text-sm text-white/55">{t.privacy.updated}</p>
+      </div>
+
+      <div className="grid max-w-3xl gap-9 text-white/76">
+        {t.privacy.sections.map((section) => (
+          <section key={section.title}>
+            <h2 className="mb-3 text-xl leading-tight font-bold text-white">{section.title}</h2>
+            <div className="grid gap-3 text-base leading-relaxed">
+              {section.paragraphs.map((paragraph) => (
+                <p className="m-0" key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function InstagramIcon() {
   return (
     <svg className="size-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -1873,7 +2132,105 @@ function ZoomImage({ src, className = '', imageClassName = '', onOpenImage }) {
   );
 }
 
-function WheelmePage({ t, language, onContactClick, onOpenImage }) {
+function PrivacyNotice({ t, language, className = 'text-sm leading-snug text-black/70', linkClassName = 'font-semibold text-black underline' }) {
+  return (
+    <p className={`m-0 ${className}`}>
+      {t.form.privacyNotice.before}
+      <a className={linkClassName} href={getPagePath(language, 'privacy')}>
+        {t.form.privacyNotice.link}
+      </a>
+      {t.form.privacyNotice.after}
+    </p>
+  );
+}
+
+function ContactForm({ t, language, onSubmit, onInput, status, errors, nameRef, idPrefix, source }) {
+  const errorId = (field) => `${idPrefix}-${field}-error`;
+
+  return (
+    <form className="relative grid min-w-0 gap-4.5" onSubmit={onSubmit} onInput={onInput} noValidate>
+      <label className="absolute -left-[9999px]" aria-hidden="true">
+        Company
+        <input name="company" tabIndex="-1" autoComplete="off" />
+      </label>
+      <input type="hidden" name="source" value={source} />
+      <label className="grid gap-2">
+        {t.form.name}
+        <input
+          ref={nameRef}
+          className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black"
+          name="name"
+          autoComplete="name"
+          aria-invalid={Boolean(errors?.name)}
+          aria-describedby={errors?.name ? errorId('name') : undefined}
+          required
+        />
+        {errors?.name && <span className="text-sm text-red-950" id={errorId('name')}>{t.form.validation[errors.name]}</span>}
+      </label>
+      <label className="grid gap-2">
+        {t.form.email}
+        <input
+          className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black"
+          type="email"
+          name="email"
+          autoComplete="email"
+          aria-invalid={Boolean(errors?.email)}
+          aria-describedby={errors?.email ? errorId('email') : undefined}
+          required
+        />
+        {errors?.email && <span className="text-sm text-red-950" id={errorId('email')}>{t.form.validation[errors.email]}</span>}
+      </label>
+      <label className="grid gap-2">
+        {t.form.description}
+        <textarea
+          className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black"
+          name="description"
+          rows="6"
+          minLength="5"
+          aria-invalid={Boolean(errors?.description)}
+          aria-describedby={errors?.description ? errorId('description') : undefined}
+          required
+        />
+        {errors?.description && <span className="text-sm text-red-950" id={errorId('description')}>{t.form.validation[errors.description]}</span>}
+      </label>
+      <PrivacyNotice t={t} language={language} />
+      <button
+        className={`inline-flex min-h-14 items-center justify-center gap-2 border-0 px-5 font-bold transition ${
+          status === 'success'
+            ? 'cursor-default bg-emerald-600 text-white'
+            : status === 'sending'
+              ? 'cursor-wait bg-black text-fs-accent'
+              : 'cursor-pointer bg-black text-fs-accent disabled:cursor-not-allowed disabled:opacity-45'
+        }`}
+        type="submit"
+        disabled={status === 'sending' || status === 'success'}
+        aria-live="polite"
+      >
+        {status === 'sending' && (
+          <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden="true" />
+        )}
+        {status === 'success' ? t.form.success : status === 'sending' ? t.form.sending : t.form.send}
+      </button>
+      {status === 'error' && (
+        <p className="m-0 text-sm text-red-950" role="alert">
+          {t.form.error}{' '}
+          <a className="font-bold text-black underline" href="mailto:info@factorysimulation.eu">{t.form.directEmail}</a>
+        </p>
+      )}
+    </form>
+  );
+}
+
+function WheelmePage({
+  t,
+  language,
+  onContactClick,
+  onOpenImage,
+  onContactSubmit,
+  onContactInput,
+  contactStatus,
+  contactErrors
+}) {
   return (
     <>
       <section className={`${sectionClass} pb-12 lg:pb-20`}>
@@ -1935,20 +2292,21 @@ function WheelmePage({ t, language, onContactClick, onOpenImage }) {
       </section>
 
       <section className="bg-fs-accent px-5 py-16 text-black sm:px-8 lg:px-[10vw] lg:py-24">
-        <div className="flex flex-col items-start gap-8 lg:grid-cols-[1fr_auto]">
-          <div>
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(260px,0.8fr)_minmax(320px,560px)] lg:gap-[8vw]">
+          <div className="min-w-0">
             <h2 className="mb-4 text-[clamp(2.2rem,4vw,4.5rem)] leading-none font-normal max-w-4xl">{t.wheelmePage.ctaTitle}</h2>
             <p className="max-w-3xl text-[clamp(1.1rem,1.6vw,1.45rem)] leading-snug">{t.wheelmePage.ctaText}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-4 lg:justify-end">
-            <a className="inline-flex min-h-14 items-center justify-center bg-black px-6 py-3 font-bold text-white no-underline" href={getPagePath(language, 'home', '#contact')} onClick={onContactClick}>
-              {t.wheelmePage.ctaButton}
-            </a>
-            <div className="inline-flex min-h-14 items-center gap-3 border border-black/35 px-4 py-2">
-              <img className="h-7 w-auto invert" src={assetPath('/wheelme/wheel.me_logo_white.png')} alt="wheel.me" />
-              <span className="text-xs font-bold uppercase tracking-[0.14em] text-black/70">{t.wheelmePage.authorizedReseller}</span>
-            </div>
-          </div>
+          <ContactForm
+            t={t}
+            language={language}
+            onSubmit={onContactSubmit}
+            onInput={onContactInput}
+            status={contactStatus}
+            errors={contactErrors}
+            idPrefix="wheelme-contact"
+            source="wheelme"
+          />
         </div>
       </section>
     </>
@@ -1962,6 +2320,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [desktopSearchOpen, setDesktopSearchOpen] = useState(Boolean(getSearchQuery()));
   const [lightboxImage, setLightboxImage] = useState(null);
+  const [contactStatus, setContactStatus] = useState('idle');
+  const [contactErrors, setContactErrors] = useState(null);
   const contactNameRef = useRef(null);
   const t = content[language];
   const nextLanguage = language === 'et' ? 'en' : 'et';
@@ -1977,6 +2337,10 @@ function App() {
       }),
     [language, t]
   );
+
+  useEffect(() => {
+    setContactErrors(null);
+  }, [route, searchQuery]);
 
   useEffect(() => {
     if (!languages.includes(getPathWithoutBase().split('/').filter(Boolean)[0])) {
@@ -1999,6 +2363,10 @@ function App() {
         ? language === 'et'
           ? `Otsingu tulemused: ${searchQuery} | Factory Simulation`
           : `Search results: ${searchQuery} | Factory Simulation`
+        : route === 'privacy'
+        ? language === 'et'
+          ? 'Privaatsuspoliitika | Factory Simulation'
+          : 'Privacy Policy | Factory Simulation'
         : route === 'wheelme'
         ? language === 'et'
           ? 'Wheel.me autonoomne siselogistika | Factory Simulation'
@@ -2019,6 +2387,10 @@ function App() {
           ? language === 'et'
             ? `Otsingu tulemused märksõnale ${searchQuery}.`
             : `Search results for ${searchQuery}.`
+          : route === 'privacy'
+          ? language === 'et'
+            ? 'Factory Simulationi privaatsuspoliitika ja kontaktvormi andmete töötlemise põhimõtted.'
+            : 'Factory Simulation Privacy Policy and contact form data processing principles.'
           : route === 'wheelme'
           ? language === 'et'
             ? 'Wheel.me autonoomne mobiilsete robotite lahendus tootmise ja lao siselogistika automatiseerimiseks.'
@@ -2102,13 +2474,27 @@ function App() {
     window.location.href = getSearchPath(language, query);
   };
 
-  const handleContactSubmit = (event) => {
+  const handleContactSubmit = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const description = formData.get('description');
+    const form = event.currentTarget;
+    if (contactStatus === 'sending' || contactStatus === 'success') {
+      return;
+    }
+
+    const validationErrors = getContactFormErrors(form);
+    setContactErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) {
+      form.elements.namedItem(Object.keys(validationErrors)[0])?.focus();
+      return;
+    }
+
+    const formData = new FormData(form);
+    const name = String(formData.get('name') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const description = String(formData.get('description') || '').trim();
+    const company = String(formData.get('company') || '').trim();
+    const source = String(formData.get('source') || 'main').trim();
     const subject = language === 'et' ? 'Uus projektipäring' : 'New project inquiry';
     const body = [
       `${t.form.name}: ${name}`,
@@ -2118,7 +2504,49 @@ function App() {
       description
     ].join('\n');
 
-    window.location.href = `mailto:info@factorysimulation.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (!contactEndpoint) {
+      window.location.href = `mailto:info@factorysimulation.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      return;
+    }
+
+    setContactStatus('sending');
+
+    try {
+      const [request] = await Promise.all([
+        fetch(contactEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, description, language, company, source })
+        })
+          .then((response) => ({ response }))
+          .catch((error) => ({ error })),
+        new Promise((resolve) => window.setTimeout(resolve, 2000))
+      ]);
+
+      if (request.error) {
+        throw request.error;
+      }
+
+      if (!request.response.ok) {
+        throw new Error(`Contact request failed with status ${request.response.status}`);
+      }
+
+      form.reset();
+      setContactErrors(null);
+      setContactStatus('success');
+    } catch (error) {
+      console.error('Contact form submission failed.', error);
+      setContactStatus('error');
+    }
+  };
+
+  const handleContactInput = (event) => {
+    if (contactErrors !== null) {
+      setContactErrors(getContactFormErrors(event.currentTarget));
+    }
+    if (contactStatus === 'error') {
+      setContactStatus('idle');
+    }
   };
 
   return (
@@ -2193,9 +2621,28 @@ function App() {
 
       <main id="top">
         {searchQuery ? (
-          <SearchPage t={t} language={language} query={searchQuery} onContactSubmit={handleContactSubmit} />
+          <SearchPage
+            t={t}
+            language={language}
+            query={searchQuery}
+            onContactSubmit={handleContactSubmit}
+            onContactInput={handleContactInput}
+            contactStatus={contactStatus}
+            contactErrors={contactErrors}
+          />
+        ) : route === 'privacy' ? (
+          <PrivacyPolicyPage t={t} language={language} />
         ) : route === 'wheelme' ? (
-          <WheelmePage t={t} language={language} onContactClick={navigateToContact} onOpenImage={setLightboxImage} />
+          <WheelmePage
+            t={t}
+            language={language}
+            onContactClick={navigateToContact}
+            onOpenImage={setLightboxImage}
+            onContactSubmit={handleContactSubmit}
+            onContactInput={handleContactInput}
+            contactStatus={contactStatus}
+            contactErrors={contactErrors}
+          />
         ) : route === 'blog' ? (
           <BlogPage t={t} language={language} />
         ) : (
@@ -2330,21 +2777,17 @@ function App() {
               <h2 className={h2Class}>{t.contactTitle}</h2>
               <p className="text-[clamp(1.5rem,3vw,2.4rem)] leading-tight">{t.contactText}</p>
             </div>
-            <form className="grid gap-4.5" onSubmit={handleContactSubmit}>
-              <label className="grid gap-2">
-                {t.form.name}
-                <input ref={contactNameRef} className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black" name="name" autoComplete="name" required />
-              </label>
-              <label className="grid gap-2">
-                {t.form.email}
-                <input className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black" type="email" name="email" autoComplete="email" required />
-              </label>
-              <label className="grid gap-2">
-                {t.form.description}
-                <textarea className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black" name="description" rows="6" required />
-              </label>
-              <button className="min-h-14 w-32 cursor-pointer border-0 bg-black text-fs-accent" type="submit">{t.form.send}</button>
-            </form>
+            <ContactForm
+              t={t}
+              language={language}
+              onSubmit={handleContactSubmit}
+              onInput={handleContactInput}
+              status={contactStatus}
+              errors={contactErrors}
+              nameRef={contactNameRef}
+              idPrefix="contact"
+              source="main"
+            />
           </div>
         </section>
           </>
@@ -2356,6 +2799,7 @@ function App() {
         <div>
           <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
           <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
+          <a className="block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'privacy')}>{t.privacy.title}</a>
           <div className="mt-4 flex gap-2" aria-label="Social media">
             {socialLinks.map(({ name, href, Icon }) => (
               <a
