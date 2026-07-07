@@ -351,6 +351,11 @@ const content = {
       success: 'Aitäh! Vastame varsti!',
       error: 'Sõnumi saatmine ebaõnnestus. Palun proovi uuesti või kirjuta meile otse.',
       directEmail: 'Kirjuta otse e-postile',
+      privacyNotice: {
+        before: 'Vormi saatmisel töötleme teie esitatud andmeid ainult päringule vastamiseks (lisateave: ',
+        link: 'privaatsuspoliitika',
+        after: ').'
+      },
       validation: {
         nameRequired: 'Palun sisesta nimi.',
         emailRequired: 'Palun sisesta e-posti aadress.',
@@ -364,7 +369,7 @@ const content = {
     team: [
       { name: 'Steven', role: 'Tegevjuht', credentials: 'Mehaanikainsener (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
       { name: 'Hans', role: 'Simulatsiooniinsener', credentials: 'Tööstustehnika ja juhtimine (MSc)', image: '/team/hans.jpg', linkedin: 'https://www.linkedin.com/in/hjerikson/'  },
-      { name: 'Markus', role: 'Projektiinsener', credentials: 'Robootika ja automaatikainsener (MSc)' }
+      { name: 'Markus', role: 'Projektiinsener', credentials: 'Robootika ja automaatikainsener (MSc)', image: '/team/markus.jpeg' }
     ],
     partnersTitle: 'Partnerid ja võrgustik',
     reseller: 'Ametlik edasimüüja ja integratsioonipartner',
@@ -403,6 +408,57 @@ const content = {
       }
     },
     contacts: 'Kontakt',
+    privacy: {
+      title: 'Privaatsuspoliitika',
+      breadcrumb: 'Privaatsuspoliitika',
+      updated: 'Viimati uuendatud: 07.07.2026',
+      intro:
+        'See privaatsuspoliitika selgitab, kuidas Factory Simulation OÜ töötleb veebilehe kontaktvormide kaudu saadetud andmeid.',
+      sections: [
+        {
+          title: 'Vastutav töötleja',
+          paragraphs: [
+            'Vastutav töötleja on Factory Simulation OÜ. Andmekaitsega seotud küsimustes saab meiega ühendust võtta aadressil info@factorysimulation.eu.'
+          ]
+        },
+        {
+          title: 'Milliseid andmeid töötleme',
+          paragraphs: [
+            'Kontaktvormi kaudu töötleme teie nime, e-posti aadressi, sõnumi sisu, vormi allikat ning tehnilisi andmeid, mis on vajalikud vormi turvaliseks edastamiseks ja rämpsposti vähendamiseks.'
+          ]
+        },
+        {
+          title: 'Miks ja mis õiguslikul alusel andmeid töötleme',
+          paragraphs: [
+            'Töötleme andmeid selleks, et vastata teie päringule, arutada võimalikku projekti ja võtta teie soovil ühendust. Õiguslik alus on lepingu sõlmimisele eelnevate meetmete võtmine teie taotlusel või meie õigustatud huvi vastata äripäringutele.'
+          ]
+        },
+        {
+          title: 'Kellele andmeid edastatakse',
+          paragraphs: [
+            'Andmeid näevad ainult Factory Simulationi inimesed, kes vastavad päringutele. Tehniliselt liiguvad andmed läbi meie veebimajutuse ja e-posti teenusepakkuja Zone.ee.'
+          ]
+        },
+        {
+          title: 'Kui kaua andmeid säilitame',
+          paragraphs: [
+            'Säilitame päringuid nii kaua, kui on mõistlik päringule vastamiseks, võimaliku koostöö ettevalmistamiseks ja tavapärase ärisuhtluse ajaloo hoidmiseks. Kui päringust ei teki koostööd, kustutame või arhiveerime selle mõistliku aja jooksul, välja arvatud juhul, kui seadus nõuab pikemat säilitamist.'
+          ]
+        },
+        {
+          title: 'Turundus ja uudiskirjad',
+          paragraphs: [
+            'Kontaktvormi andmeid ei kasutata uudiskirja saatmiseks ega eraldi turundusnimekirja lisamiseks ilma eraldi vabatahtliku nõusolekuta.'
+          ]
+        },
+        {
+          title: 'Teie õigused',
+          paragraphs: [
+            'Teil on õigus küsida ligipääsu oma andmetele, paluda andmeid parandada või kustutada, piirata töötlemist ning esitada vastuväiteid. Samuti on teil õigus esitada kaebus Andmekaitse Inspektsioonile.'
+          ]
+        }
+      ]
+    },
     blogTitle: 'Uudised',
     breadcrumbHome: 'Avaleht',
     breadcrumbBlog: 'Uudised',
@@ -824,6 +880,11 @@ const content = {
       success: 'Thank you! We’ll reply soon!',
       error: 'The message could not be sent. Please try again or email us directly.',
       directEmail: 'Email us directly',
+      privacyNotice: {
+        before: 'When you send this form, we process the information you provide only to respond to your inquiry (',
+        link: 'Privacy Policy',
+        after: ').'
+      },
       validation: {
         nameRequired: 'Please enter your name.',
         emailRequired: 'Please enter your email address.',
@@ -876,6 +937,57 @@ const content = {
       }
     },
     contacts: 'Contacts',
+    privacy: {
+      title: 'Privacy Policy',
+      breadcrumb: 'Privacy Policy',
+      updated: 'Last updated: 07.07.2026',
+      intro:
+        'This Privacy Policy explains how Factory Simulation OÜ processes information sent through the website contact forms.',
+      sections: [
+        {
+          title: 'Controller',
+          paragraphs: [
+            'The controller is Factory Simulation OÜ. For privacy-related questions, contact us at info@factorysimulation.eu.'
+          ]
+        },
+        {
+          title: 'What information we process',
+          paragraphs: [
+            'Through the contact form, we process your name, email address, message content, form source and technical information needed to deliver the form securely and reduce spam.'
+          ]
+        },
+        {
+          title: 'Purpose and legal basis',
+          paragraphs: [
+            'We process the information to respond to your inquiry, discuss a possible project and contact you at your request. The legal basis is taking steps before entering into a contract at your request or our legitimate interest in responding to business inquiries.'
+          ]
+        },
+        {
+          title: 'Who receives the information',
+          paragraphs: [
+            'The information is seen only by Factory Simulation people who respond to inquiries. Technically, the information passes through our website hosting and email service provider, Zone.ee.'
+          ]
+        },
+        {
+          title: 'How long we keep the information',
+          paragraphs: [
+            'We keep inquiries for as long as reasonably needed to respond, prepare possible cooperation and maintain normal business communication history. If an inquiry does not lead to cooperation, we delete or archive it within a reasonable time unless the law requires longer retention.'
+          ]
+        },
+        {
+          title: 'Marketing and newsletters',
+          paragraphs: [
+            'Contact form information is not used to send newsletters or add you to a separate marketing list without separate voluntary consent.'
+          ]
+        },
+        {
+          title: 'Your rights',
+          paragraphs: [
+            'You have the right to request access to your data, ask for correction or deletion, restrict processing and object to processing. You also have the right to lodge a complaint with the Estonian Data Protection Inspectorate.'
+          ]
+        }
+      ]
+    },
     blogTitle: 'News',
     breadcrumbHome: 'Home',
     breadcrumbBlog: 'News',
@@ -1020,13 +1132,13 @@ const getLanguageFromPath = () => {
 
 const getRouteFromPath = () => {
   const page = getPathWithoutBase().split('/').filter(Boolean)[1];
-  return ['blog', 'wheelme'].includes(page) ? page : 'home';
+  return ['blog', 'wheelme', 'privacy'].includes(page) ? page : 'home';
 };
 
 const getSearchQuery = () => new URLSearchParams(window.location.search).get('q')?.trim() || '';
 
 const getPagePath = (language, page = 'home', hash = '') => {
-  const pagePath = page === 'blog' || page === 'wheelme' ? `${page}/` : '';
+  const pagePath = ['blog', 'wheelme', 'privacy'].includes(page) ? `${page}/` : '';
   return `${basePath}${language}/${pagePath}${hash || ''}`;
 };
 
@@ -1841,6 +1953,12 @@ function SearchPage({ t, language, query, onContactSubmit, onContactInput, conta
                   />
                   {contactErrors?.description && <span className="text-sm font-normal text-red-300" id="search-contact-description-error">{t.form.validation[contactErrors.description]}</span>}
                 </label>
+                <PrivacyNotice
+                  t={t}
+                  language={language}
+                  className="text-sm leading-snug text-white/62"
+                  linkClassName="text-white underline transition hover:text-fs-accent"
+                />
                 <button
                   className={`inline-flex min-h-12 items-center justify-center gap-2 border-0 px-4 font-bold transition ${
                     contactStatus === 'success'
@@ -1934,6 +2052,40 @@ function BlogPage({ t, language }) {
   );
 }
 
+function PrivacyPolicyPage({ t, language }) {
+  return (
+    <section className={`${sectionClass} min-h-[calc(100vh-5rem)]`}>
+      <div className="mb-12 max-w-3xl">
+        <nav className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-white/45" aria-label="Breadcrumb">
+          <a className="text-white/55 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'home')}>
+            {t.breadcrumbHome}
+          </a>
+          <span className="text-fs-accent" aria-hidden="true">
+            /
+          </span>
+          <span className="text-fs-accent">{t.privacy.breadcrumb}</span>
+        </nav>
+        <h1 className={h2Class}>{t.privacy.title}</h1>
+        <p className="mb-4 text-lg leading-relaxed text-white/76">{t.privacy.intro}</p>
+        <p className="m-0 text-sm text-white/55">{t.privacy.updated}</p>
+      </div>
+
+      <div className="grid max-w-3xl gap-9 text-white/76">
+        {t.privacy.sections.map((section) => (
+          <section key={section.title}>
+            <h2 className="mb-3 text-xl leading-tight font-bold text-white">{section.title}</h2>
+            <div className="grid gap-3 text-base leading-relaxed">
+              {section.paragraphs.map((paragraph) => (
+                <p className="m-0" key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function InstagramIcon() {
   return (
     <svg className="size-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -1972,7 +2124,19 @@ function ZoomImage({ src, className = '', imageClassName = '', onOpenImage }) {
   );
 }
 
-function ContactForm({ t, onSubmit, onInput, status, errors, nameRef, idPrefix, source }) {
+function PrivacyNotice({ t, language, className = 'text-sm leading-snug text-black/70', linkClassName = 'font-semibold text-black underline' }) {
+  return (
+    <p className={`m-0 ${className}`}>
+      {t.form.privacyNotice.before}
+      <a className={linkClassName} href={getPagePath(language, 'privacy')}>
+        {t.form.privacyNotice.link}
+      </a>
+      {t.form.privacyNotice.after}
+    </p>
+  );
+}
+
+function ContactForm({ t, language, onSubmit, onInput, status, errors, nameRef, idPrefix, source }) {
   const errorId = (field) => `${idPrefix}-${field}-error`;
 
   return (
@@ -2021,6 +2185,7 @@ function ContactForm({ t, onSubmit, onInput, status, errors, nameRef, idPrefix, 
         />
         {errors?.description && <span className="text-sm text-red-950" id={errorId('description')}>{t.form.validation[errors.description]}</span>}
       </label>
+      <PrivacyNotice t={t} language={language} />
       <button
         className={`inline-flex min-h-14 items-center justify-center gap-2 border-0 px-5 font-bold transition ${
           status === 'success'
@@ -2126,6 +2291,7 @@ function WheelmePage({
           </div>
           <ContactForm
             t={t}
+            language={language}
             onSubmit={onContactSubmit}
             onInput={onContactInput}
             status={contactStatus}
@@ -2189,6 +2355,10 @@ function App() {
         ? language === 'et'
           ? `Otsingu tulemused: ${searchQuery} | Factory Simulation`
           : `Search results: ${searchQuery} | Factory Simulation`
+        : route === 'privacy'
+        ? language === 'et'
+          ? 'Privaatsuspoliitika | Factory Simulation'
+          : 'Privacy Policy | Factory Simulation'
         : route === 'wheelme'
         ? language === 'et'
           ? 'Wheel.me autonoomne siselogistika | Factory Simulation'
@@ -2209,6 +2379,10 @@ function App() {
           ? language === 'et'
             ? `Otsingu tulemused märksõnale ${searchQuery}.`
             : `Search results for ${searchQuery}.`
+          : route === 'privacy'
+          ? language === 'et'
+            ? 'Factory Simulationi privaatsuspoliitika ja kontaktvormi andmete töötlemise põhimõtted.'
+            : 'Factory Simulation Privacy Policy and contact form data processing principles.'
           : route === 'wheelme'
           ? language === 'et'
             ? 'Wheel.me autonoomne mobiilsete robotite lahendus tootmise ja lao siselogistika automatiseerimiseks.'
@@ -2448,6 +2622,8 @@ function App() {
             contactStatus={contactStatus}
             contactErrors={contactErrors}
           />
+        ) : route === 'privacy' ? (
+          <PrivacyPolicyPage t={t} language={language} />
         ) : route === 'wheelme' ? (
           <WheelmePage
             t={t}
@@ -2595,6 +2771,7 @@ function App() {
             </div>
             <ContactForm
               t={t}
+              language={language}
               onSubmit={handleContactSubmit}
               onInput={handleContactInput}
               status={contactStatus}
@@ -2614,6 +2791,7 @@ function App() {
         <div>
           <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
           <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
+          <a className="block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'privacy')}>{t.privacy.title}</a>
           <div className="mt-4 flex gap-2" aria-label="Social media">
             {socialLinks.map(({ name, href, Icon }) => (
               <a
