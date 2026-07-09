@@ -462,6 +462,134 @@ const content = {
         }
       ]
     },
+    faq: {
+      metaTitle: 'Tootmise simulatsiooni KKK | Factory Simulation teenused',
+      metaDescription:
+        'Loe, kuidas tootmise simulatsioon aitab testida tootmisvoogu, võimsust, layoute, automatiseerimiskontseptsioone ja investeerimisstsenaariume enne füüsilisi muudatusi.',
+      breadcrumb: 'Tootmise simulatsiooni KKK',
+      eyebrow: 'Factory Simulation FAQ',
+      title: 'Tootmise simulatsiooni KKK',
+      intro: [
+        'Simulatsioon aitab tootmisettevõtetel testida tootmise layoute, materjalivooge, automatiseerimiskontseptsioone ja võimsusstsenaariume enne füüsiliste muudatuste või investeerimisotsuste tegemist.',
+        'Allpool on vastused levinud küsimustele selle kohta, kuidas simulatsioon töötab, kui täpne see on ja millal see loob kõige rohkem väärtust.'
+      ],
+      teaser: {
+        eyebrow: 'Korduma kippuvad küsimused',
+        title: 'Paremad tootmisotsused algavad õigetest küsimustest',
+        intro:
+          'Lühikesed vastused simulatsiooni täpsuse, kasutusjuhtude, automatiseerimise ja investeerimisotsuste kohta.',
+        link: 'Vaata kõiki küsimusi ja vastuseid'
+      },
+      cta: {
+        title: 'Tahad hinnata oma tootmisideed enne investeeringut?',
+        text: 'Räägime läbi protsessi, andmed ja otsuse, mida simulatsioon peaks toetama.',
+        button: 'Räägime projektist'
+      },
+      items: [
+        {
+          question: 'Mis on simulatsioon tootmises?',
+          answer: [
+            'Tootmise simulatsioon tähendab tootmisprotsessi, liini, tööala või tehaseosa digitaalse mudeli loomist.',
+            'Mudelit kasutatakse selleks, et testida, kuidas materjalid, inimesed, masinad, puhvrid ja transpordisüsteemid koos töötavad enne päris muudatuste tegemist. Eesmärk on mõista tootmisvoogu, võimsust, pudelikaelu ja investeerimisriske enne aja ja raha sidumist.'
+          ]
+        },
+        {
+          question: 'Kuidas simulatsioon töötab?',
+          answer: [
+            'Tootmissimulatsioon algab tavaliselt protsessi kaardistamisest, layouti infost ja sisendandmetest.',
+            'Tüüpilised sisendandmed on tsükliajad, tootevalik, operaatorite ülesanded, masinate võimsus, transporditeekonnad, vahetuste graafikud, puhvrid ja ümberseadistused. Nende põhjal ehitatakse digitaalne mudel, kus saab erinevaid tootmisstsenaariume testida ja võrrelda.',
+            'Tulemus ei ole ainult visuaalne mudel. See on otsustustugi, mis aitab mõista, mis juhtub siis, kui muutub layout, ressursside hulk, protsessiloogika või automatiseerimiskontseptsioon.'
+          ]
+        },
+        {
+          question: 'Kui täpsed simulatsioonid on?',
+          answer: [
+            'Simulatsioonid on otsustustoe mudelid, mitte reaalsuse üks-ühele koopiad.',
+            'Täpsus sõltub sisendandmete kvaliteedist. Sarnaselt tehisintellektiga on väljund nii hea kui andmed ja eeldused, millele see tugineb. Kui tsükliajad, protsessiloogika, tootevalik, operaatorite ülesanded, puhvrid ja materjalivood on realistlikud, saab simulatsioon anda väärtuslikku infot stsenaariumite võrdlemiseks ja otsuste toetamiseks.',
+            'Enamasti tuleb peamine väärtus sellest, et saab mõista tootmissüsteemi eri osade omavahelist mõju, tuvastada pudelikaelu ja testida, kas planeeritud muudatus parandab tõenäoliselt kogu voogu enne selle elluviimist.',
+            'Näiteks aitab simulatsioon võrrelda, kas tootmisliin töötab paremini teistsuguse layouti, puhvri suuruse, operaatorite jaotuse, transpordiloogika või automatiseerimiskontseptsiooniga.'
+          ]
+        },
+        {
+          question: 'Kas müüte simulatsioonitarkvara või pakute simulatsiooniteenuseid?',
+          answer: [
+            'Pakume inseneri- ja simulatsiooniteenuseid, mitte oma simulatsioonitarkvara.',
+            'Meie töö hõlmab tootmisprobleemi mõistmist, sisendandmete kogumist, simulatsioonimudeli ehitamist, stsenaariumite testimist, tulemuste tõlgendamist ja nende muutmist praktilisteks insenertehnilisteks soovitusteks.',
+            'Simulatsioonitarkvara on tööriist. Väärtus tekib sellest, kuidas mudel ehitatakse, milliseid stsenaariume testitakse ja kuidas tulemusi kasutatakse layouti, automatiseerimise, võimsuse või investeerimisotsuste toetamiseks.'
+          ]
+        },
+        {
+          question: 'Millal peaks tootmise simulatsiooni kasutama?',
+          answer: [
+            'Tootmise simulatsioon on kasulik enne suuri layouti muudatusi, automatiseerimisinvesteeringuid, võimsuse kasvatamist, tehase kolimist, uute toodete juurutamist või tootevaliku muutumist.',
+            'See on eriti väärtuslik siis, kui otsus on kallis, raskesti tagasi pööratav või sisaldab mitut ebakindlat muutujat. Simulatsioon aitab ideed testida enne füüsiliste muudatuste tegemist või tarnijapakkumiste küsimist.',
+            'Tüüpilised kasutusjuhud on:'
+          ],
+          points: [
+            'uue tootmisliini planeerimine',
+            'tehase layouti muudatused',
+            'pudelikaelte analüüs',
+            'robotite ja automatiseerimiskontseptsioonide valideerimine',
+            'siselogistika ja materjalivoo analüüs',
+            'operaatorite ja masinate kasutuse analüüs',
+            'võimsuse ja läbilaske uuringud'
+          ]
+        },
+        {
+          question: 'Kuidas aitab simulatsioon pudelikaelu vähendada?',
+          answer: [
+            'Simulatsioon aitab näidata, kus tootmisvoos tekivad järjekorrad, ooteajad, ülekoormatud operaatorid, alakasutatud masinad, transpordiviivitused või puhvrite probleemid.',
+            'Erinevaid stsenaariume testides saab võrrelda layouti muudatusi, puhvrite suurusi, mehitust, automatiseerimisvalikuid ja protsessijärjestusi enne füüsiliste muudatuste tegemist.',
+            'Selle asemel, et pudelikaela asukohta oletada, annab simulatsioon visuaalse ja andmepõhise viisi testida, kuidas kogu süsteem muudatustele reageerib.'
+          ]
+        },
+        {
+          question: 'Kas simulatsioon saab toetada automatiseerimisinvesteeringu otsust?',
+          answer: [
+            'Jah. Simulatsioon aitab testida, kas planeeritud automatiseerimiskontseptsioonil on piisav võimsus, kuhu võivad tekkida uued pudelikaelad, mitu robotit või operaatorit võib vaja minna ja kas oodatav läbilaske paranemine on realistlik.',
+            'See aitab vähendada investeerimisriski enne lõplike tarnijapakkumiste küsimist, seadmete ostmist või tootmise layouti muutmist.',
+            'Simulatsioon on eriti kasulik siis, kui võrreldakse käsitsi tehtavat, poolautomaatset ja automaatset stsenaariumi kõrvuti.'
+          ]
+        },
+        {
+          question: 'Kas saate töötada kaugelt rahvusvaheliste klientidega?',
+          answer: [
+            'Jah. Saame toetada tootmisettevõtteid kaugelt sõltumata sellest, kus tootmiskoht asub.',
+            'Esimene samm on tavaliselt veebikohtumine, et mõista tootmisprobleemi, planeeritud investeeringut või automatiseerimisideed. Seejärel saab klient jagada olemasolevat sisendit, näiteks layouti jooniseid, protsessivideoid, fotosid, tsükliaegu, tootevalikut, operaatorite ülesandeid ja tootmisandmeid.',
+            'Selle info põhjal saame ehitada esmase simulatsioonimudeli, võrrelda stsenaariume ja tulemused koos veebis üle vaadata. See aitab kliendil mõista pudelikaelu, võimsuse piire ja parendusvõimalusi enne füüsiliste muudatuste, tarnijapakkumiste või seadmeinvesteeringute tegemist.',
+            'Kui vaja on rohkem detailsust, võib järgmine samm sisaldada täiendavat andmekogumist, täpsemaid protsessimõõtmisi või koostööd kliendi inseneri-, tootmis- või automaatikatiimiga.',
+            'Teeme koostööd ka Euroopa inseneri- ja automaatikapartneritega, sealhulgas Itaalias ja Šveitsis. Kui projekt vajab kohalikku teadmist, juurutustuge või täiendavat tehnilist kompetentsi, saame sõltuvalt projekti mahust kaasata usaldusväärseid partnereid.'
+          ]
+        },
+        {
+          question: 'Kas saad simulatsiooni selgitada päriselulise näitega?',
+          answer: [
+            'Mõtle jalgpallimeeskonnale, eriti nüüd, kui 2026. aasta maailmameistrivõistlused käivad.',
+            'Kui meeskond ostab parima ründaja, kas see teeb meeskonna automaatselt parimaks? Mitte tingimata. Ründaja võib olla väga hea, aga tulemus sõltub endiselt sellest, kuidas keskväli võimalusi loob, kuidas kaitse surve all hakkama saab, kuidas meeskond koos liigub ja kas kogu süsteem töötab.',
+            'Sama loogika kehtib tootmises.',
+            'Ühe kalli masina, roboti või automaatikasüsteemi ostmine ei paranda automaatselt kogu tootmisvoogu. Kui järgmine protsess on liiga aeglane, materjalivarustus ebastabiilne või operaatorid ootavad etappide vahel, võib uus masin lihtsalt pudelikaela mujale liigutada.',
+            'Simulatsioon aitab enne investeeringut vaadata tervikut. See näitab, kuidas masinad, inimesed, puhvrid, transport ja protsessietapid koos töötavad, et ettevõte saaks aru, kas planeeritud muudatus parandab kogu tootmisahelat, mitte ainult üht eraldiseisvat operatsiooni.'
+          ]
+        },
+        {
+          question: 'Mis on Automation 2.0?',
+          answer: [
+            'Automation 2.0 tähendab liikumist üksikutelt automatiseerimisprojektidelt ühendatuma, simulatsioonipõhise ja elutsüklit arvestava tööstusautomaatika lähenemise poole.',
+            'Praktikas tähendab see, et automaatikat ei projekteerita ja testita ainult juurutuse ajal. Seda valideeritakse varem simulatsioonide, digitaalsete mudelite, robotikontseptsioonide, tsükliaja analüüsi, virtuaalse käikuvõtmise ja tootmisvoo testimise abil.',
+            'Eesmärk on vähendada hilises faasis tehtavaid muudatusi, vältida kulukaid vigu ja teha automaatikaotsuseid kindlamalt enne süsteemide töölepanekut.'
+          ]
+        },
+        {
+          question: 'Mis on digitaalne kaksik?',
+          answer: [
+            'Digitaalne kaksik on reaalse tootmisprotsessi, liini, masina, tehaseala või isegi terve tehase digitaalne kujutis.',
+            'Tootmises saab digitaalset kaksikut kasutada tootmisandmete visualiseerimiseks, jõudluse jälgimiseks, materjalivoo mõistmiseks ja parendusideede testimiseks digitaalses keskkonnas. Sõltuvalt detailsuse tasemest võib see sisaldada layouti infot, masinaid, operaatoreid, tsükliaegu, transporditeekondi, puhvreid, sensoriandmeid, OEE andmeid või ERP/MES infot.',
+            'Lihtne simulatsioonimudel ehitatakse tavaliselt stsenaariumite testimiseks ja otsuste toetamiseks. Digitaalne kaksik võib minna sammu kaugemale, ühendades mudeli päris tootmisandmetega ning kasutades seda andmete visualiseerimiseks, jälgimiseks, analüüsiks ja pidevaks parendamiseks.',
+            'Peamine väärtus on see, et juhid, insenerid ja tootmistiimid näevad tootmissüsteemis toimuvat selgemalt - mitte ainult tabelite kaudu, vaid visuaalse ja andmepõhise mudeli abil.'
+          ]
+        }
+      ]
+    },
     blogTitle: 'Uudised',
     breadcrumbHome: 'Avaleht',
     breadcrumbBlog: 'Uudised',
@@ -994,6 +1122,134 @@ const content = {
         }
       ]
     },
+    faq: {
+      metaTitle: 'Factory Simulation FAQ | Factory Simulation Services',
+      metaDescription:
+        'Learn how manufacturing simulation helps test production flow, capacity, layouts, automation concepts and investment scenarios before making physical changes.',
+      breadcrumb: 'Factory Simulation FAQ',
+      eyebrow: 'Factory Simulation FAQ',
+      title: 'Manufacturing Simulation FAQ',
+      intro: [
+        'Simulation helps manufacturing companies test production layouts, material flows, automation concepts and capacity scenarios before making physical changes or investment decisions.',
+        'Below are answers to common questions about how simulation works, how accurate it is and when it creates the most value.'
+      ],
+      teaser: {
+        eyebrow: 'Frequently asked questions',
+        title: 'Better production decisions start with better questions',
+        intro:
+          'Short answers about simulation accuracy, use cases, automation decisions and when manufacturing simulation creates value.',
+        link: 'Explore the full FAQ'
+      },
+      cta: {
+        title: 'Want to test a production idea before investing?',
+        text: 'Let us review the process, input data and decision the simulation should support.',
+        button: 'Discuss your project'
+      },
+      items: [
+        {
+          question: 'What is simulation in manufacturing?',
+          answer: [
+            'Simulation in manufacturing means building a digital model of a production process, line, cell or factory area.',
+            'The model is used to test how materials, people, machines, buffers and transport systems work together before changes are made in real life. The goal is to understand production flow, capacity, bottlenecks and investment risks before committing time and money.'
+          ]
+        },
+        {
+          question: 'How does simulation work?',
+          answer: [
+            'A production simulation usually starts with process mapping, layout information and input data.',
+            'Typical input data includes cycle times, product mix, operator tasks, machine capacity, transport routes, shift patterns, buffers and changeovers. These inputs are used to build a digital model where different production scenarios can be tested and compared.',
+            'The output is not only a visual model. It is a decision-support tool that helps understand what happens when the layout, resources, process logic or automation concept changes.'
+          ]
+        },
+        {
+          question: 'How accurate are simulations?',
+          answer: [
+            'Simulations are decision-support models, not exact one-to-one copies of reality.',
+            'Accuracy depends on the quality of input data - similar to artificial intelligence, the output is only as good as the data and assumptions behind it. If cycle times, process logic, product mix, operator tasks, buffers and material flows are realistic, the simulation can provide valuable insight for comparing scenarios and supporting decisions.',
+            'In most cases, the main value comes from understanding how different parts of the production system interact, identifying bottlenecks and testing whether a planned change is likely to improve the whole flow before it is implemented.',
+            'For example, a simulation can help compare whether a production line performs better with a different layout, buffer size, operator allocation, transport logic or automation concept.'
+          ]
+        },
+        {
+          question: 'Do you sell simulation software or provide simulation services?',
+          answer: [
+            'We provide engineering and simulation services, not our own simulation software.',
+            'Our work includes understanding the production problem, collecting input data, building the simulation model, testing scenarios, interpreting the results and turning the findings into practical engineering recommendations.',
+            'Simulation software is the tool. The value comes from how the model is built, what scenarios are tested and how the results are used to support layout, automation, capacity or investment decisions.'
+          ]
+        },
+        {
+          question: 'When should you use manufacturing simulation?',
+          answer: [
+            'Manufacturing simulation is useful before major layout changes, automation investments, capacity increases, factory relocations, new product introductions or changes in product mix.',
+            'It is especially valuable when the decision is expensive, difficult to reverse or includes several uncertain variables. Simulation helps test the idea before physical changes are made or supplier offers are requested.',
+            'Typical use cases include:'
+          ],
+          points: [
+            'new production line planning',
+            'factory layout changes',
+            'bottleneck analysis',
+            'robot and automation concept validation',
+            'internal logistics and material flow analysis',
+            'operator and machine utilisation analysis',
+            'capacity and throughput studies'
+          ]
+        },
+        {
+          question: 'How can simulation help reduce bottlenecks?',
+          answer: [
+            'Simulation helps show where queues, waiting times, overloaded operators, underused machines, transport delays or buffer problems appear in the production flow.',
+            'By testing different scenarios, it becomes possible to compare layout changes, buffer sizes, staffing levels, automation options and process sequences before making physical changes.',
+            'Instead of guessing where the bottleneck might be, simulation gives a visual and data-based way to test how the whole system reacts to changes.'
+          ]
+        },
+        {
+          question: 'Can simulation support automation investment decisions?',
+          answer: [
+            'Yes. Simulation can help test whether a planned automation concept has enough capacity, where it may create new bottlenecks, how many robots or operators may be needed and whether the expected throughput improvement is realistic.',
+            'This helps reduce investment risk before requesting final supplier offers, buying equipment or changing the production layout.',
+            'Simulation is especially useful when comparing manual, semi-automated and automated scenarios side by side.'
+          ]
+        },
+        {
+          question: 'Can you work remotely with international customers?',
+          answer: [
+            'Yes. We can support manufacturing companies remotely, regardless of where the production site is located.',
+            'The first step is usually an online discussion to understand the production challenge, planned investment or automation idea. After that, the customer can share available input such as layout drawings, process videos, photos, cycle times, product mix, operator tasks and production data.',
+            'Based on this information, we can build an initial simulation model, compare scenarios and review the results together online. This helps the customer understand bottlenecks, capacity limits and improvement options before committing to physical changes, supplier offers or equipment investments.',
+            'If more detail is needed, the next step can include additional data collection, more precise process measurements or cooperation with the customer’s engineering, production or automation team.',
+            'We also cooperate with engineering and automation partners in Europe, including Italy and Switzerland. When a project requires local know-how, implementation support or additional technical expertise, we can involve trusted partners depending on the project scope and customer needs.'
+          ]
+        },
+        {
+          question: 'Can you explain simulation with a real-life example?',
+          answer: [
+            'Think of a football team - especially now, while the World Cup 2026 is ongoing.',
+            'If a team buys the best striker, does that automatically make it the best team? Not necessarily. The striker may be excellent, but the result still depends on how the midfield creates chances, how the defence handles pressure, how the team moves together and whether the whole system works.',
+            'The same logic applies in manufacturing.',
+            'Buying one expensive machine, robot or automation system does not automatically improve the whole production flow. If the next process is too slow, if material supply is unstable or if operators are waiting between steps, the new machine may simply move the bottleneck somewhere else.',
+            'Simulation helps look at the full system before investment. It shows how machines, people, buffers, transport and process steps work together, so the company can understand whether the planned change improves the whole production chain - not just one isolated operation.'
+          ]
+        },
+        {
+          question: 'What is Automation 2.0?',
+          answer: [
+            'Automation 2.0 means moving from isolated automation projects towards a more connected, simulation-driven and lifecycle-based approach to industrial automation.',
+            'In practice, this means automation is not only designed and tested during implementation. It is already validated earlier through simulation, digital models, robot concepts, cycle time analysis, virtual commissioning and production flow testing.',
+            'The goal is to reduce late-stage changes, avoid costly mistakes and make automation decisions with more confidence before systems go live.'
+          ]
+        },
+        {
+          question: 'What is a digital twin?',
+          answer: [
+            'A digital twin is a digital representation of a real production process, line, machine, factory area or even an entire factory.',
+            'In manufacturing, a digital twin can be used to visualize production data, monitor performance, understand material flow and test different improvement ideas in a digital environment. Depending on the level of detail, it can include layout information, machines, operators, cycle times, transport routes, buffers, sensor data, OEE data or ERP/MES information.',
+            'A simple simulation model is usually built to test scenarios and support decisions. A digital twin can go one step further by connecting the model with real production data and using it for data visualization, monitoring, analysis and continuous improvement.',
+            'The main value is that managers, engineers and production teams can see what is happening in the production system more clearly - not only through spreadsheets, but through a visual and data-based model.'
+          ]
+        }
+      ]
+    },
     blogTitle: 'News',
     breadcrumbHome: 'Home',
     breadcrumbBlog: 'News',
@@ -1103,6 +1359,7 @@ const content = {
 };
 
 const anchors = ['services', 'projects', 'about', 'blog', 'wheelme'];
+const pageRoutes = ['blog', 'wheelme', 'privacy', 'factory-simulation-faq'];
 const languages = ['et', 'en'];
 const languagePreferenceKey = 'factorySimulationLanguage';
 
@@ -1138,13 +1395,13 @@ const getLanguageFromPath = () => {
 
 const getRouteFromPath = () => {
   const page = getPathWithoutBase().split('/').filter(Boolean)[1];
-  return ['blog', 'wheelme', 'privacy'].includes(page) ? page : 'home';
+  return pageRoutes.includes(page) ? page : 'home';
 };
 
 const getSearchQuery = () => new URLSearchParams(window.location.search).get('q')?.trim() || '';
 
 const getPagePath = (language, page = 'home', hash = '') => {
-  const pagePath = ['blog', 'wheelme', 'privacy'].includes(page) ? `${page}/` : '';
+  const pagePath = pageRoutes.includes(page) ? `${page}/` : '';
   return `${basePath}${language}/${pagePath}${hash || ''}`;
 };
 
@@ -1633,6 +1890,39 @@ function ServicesSection({ t, onContactClick }) {
   );
 }
 
+function FaqTeaserSection({ t, language }) {
+  const teaserItems = [0, 1, 2, 4].map((index) => t.faq.items[index]);
+
+  return (
+    <section className="border-y border-white/10 bg-[linear-gradient(145deg,#090909_0%,#151515_58%,#080808_100%)] px-5 py-18 sm:px-8 lg:px-[10vw] lg:py-28">
+      <div className="grid min-w-0 gap-12 lg:grid-cols-[minmax(260px,0.78fr)_minmax(0,1.22fr)] lg:gap-[7vw]">
+        <div className="min-w-0">
+          <p className="mb-4 text-sm font-bold tracking-[0.16em] text-fs-accent uppercase">{t.faq.teaser.eyebrow}</p>
+          <h2 className="mb-7 max-w-4xl text-[clamp(2.25rem,4.6vw,4.8rem)] leading-none font-normal">{t.faq.teaser.title}</h2>
+          <a
+            className="mt-8 inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline transition hover:bg-white"
+            href={getPagePath(language, 'factory-simulation-faq')}
+          >
+            {t.faq.teaser.link}
+          </a>
+        </div>
+
+        <div className="grid min-w-0 gap-0 border-t border-white/14">
+          {teaserItems.map((item, index) => (
+            <article className="grid min-w-0 grid-cols-[2.4rem_minmax(0,1fr)] gap-4 border-b border-white/14 py-6 sm:grid-cols-[3.2rem_minmax(0,1fr)] sm:gap-6" key={item.question}>
+              <span className="pt-1 text-sm font-bold text-fs-accent">0{index + 1}</span>
+              <div className="min-w-0">
+                <h3 className="mb-3 break-words text-[clamp(1.25rem,2vw,1.85rem)] leading-tight font-semibold text-white">{item.question}</h3>
+                <p className="m-0 max-w-3xl text-base leading-relaxed text-white/66">{item.answer[0]}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function SoftwareSection({ t }) {
   return (
     <section className={`${sectionClass} relative overflow-hidden border-y border-white/10 bg-[linear-gradient(145deg,#111_0%,#080808_52%,#101010_100%)]`} id="software">
@@ -2060,6 +2350,73 @@ function BlogPage({ t, language }) {
   );
 }
 
+function FaqAnswerContent({ item }) {
+  return (
+    <div className="grid gap-4 text-base leading-relaxed text-white/74">
+      {item.answer.map((paragraph) => (
+        <p className="m-0" key={paragraph}>{paragraph}</p>
+      ))}
+      {item.points && (
+        <ul className="m-0 grid gap-2 pl-5">
+          {item.points.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+function FactorySimulationFaqPage({ t, language, onContactClick }) {
+  return (
+    <section className={`${sectionClass} min-h-[calc(100vh-5rem)]`}>
+      <div className="mb-14 max-w-4xl">
+        <nav className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-white/45" aria-label="Breadcrumb">
+          <a className="text-white/55 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'home')}>
+            {t.breadcrumbHome}
+          </a>
+          <span className="text-fs-accent" aria-hidden="true">
+            /
+          </span>
+          <span className="text-fs-accent">{t.faq.breadcrumb}</span>
+        </nav>
+        <h1 className={h2Class}>{t.faq.title}</h1>
+        <div className="grid max-w-3xl gap-4 text-[clamp(1.05rem,1.7vw,1.35rem)] leading-relaxed text-white/72">
+          {t.faq.intro.map((paragraph) => (
+            <p className="m-0" key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid max-w-5xl gap-8">
+        {t.faq.items.map((item, index) => (
+          <article className="grid min-w-0 gap-5 border-t border-white/16 pt-7 sm:grid-cols-[4rem_minmax(0,1fr)] sm:gap-7" id={`faq-${index + 1}`} key={item.question}>
+            <span className="text-sm font-bold text-fs-accent sm:pt-2">0{index + 1}</span>
+            <div className="min-w-0">
+              <h2 className="mb-4 break-words text-[clamp(1.4rem,2.5vw,2.35rem)] leading-tight font-semibold text-white">{item.question}</h2>
+              <FaqAnswerContent item={item} />
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="mt-16 border-t-4 border-fs-accent bg-white p-7 text-black sm:p-9 lg:mt-24 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-10">
+        <div>
+          <h2 className="mb-4 max-w-4xl text-[clamp(1.9rem,3.8vw,4rem)] leading-none font-normal">{t.faq.cta.title}</h2>
+          <p className="m-0 max-w-3xl text-[clamp(1.05rem,1.55vw,1.28rem)] leading-relaxed text-fs-panel/76">{t.faq.cta.text}</p>
+        </div>
+        <a
+          className="mt-7 inline-flex min-h-12 items-center justify-center border border-fs-panel bg-fs-panel px-5 py-3 font-bold text-white no-underline transition hover:border-fs-accent hover:bg-fs-accent hover:text-black lg:mt-0"
+          href={getPagePath(language, 'home', '#contact')}
+          onClick={onContactClick}
+        >
+          {t.faq.cta.button}
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function PrivacyPolicyPage({ t, language }) {
   return (
     <section className={`${sectionClass} min-h-[calc(100vh-5rem)]`}>
@@ -2375,6 +2732,8 @@ function App() {
         ? language === 'et'
           ? 'Uudised & blogi | Factory Simulation'
           : 'News & Blog | Factory Simulation'
+        : route === 'factory-simulation-faq'
+        ? t.faq.metaTitle
         : language === 'et'
           ? 'Factory Simulation | Tootmise simulatsioonid ja tehase planeerimine'
           : 'Factory Simulation | Digital Twin Solutions';
@@ -2399,6 +2758,8 @@ function App() {
           ? language === 'et'
             ? 'Factory Simulationi uudised, blogipostitused ja lood tootmise simulatsioonidest.'
             : 'Factory Simulation news, blog posts and stories about production simulation.'
+          : route === 'factory-simulation-faq'
+          ? t.faq.metaDescription
           : language === 'et'
             ? 'Tootmise simuleerimine, tehase paigutuse planeerimine ja digitaalsed mudelid Eesti tööstusettevõtetele.'
             : 'Factory Simulation creates a dynamic view of production with simulations and digital models.'
@@ -2645,6 +3006,8 @@ function App() {
           />
         ) : route === 'blog' ? (
           <BlogPage t={t} language={language} />
+        ) : route === 'factory-simulation-faq' ? (
+          <FactorySimulationFaqPage t={t} language={language} onContactClick={navigateToContact} />
         ) : (
           <>
         <section className="relative grid min-h-[680px] items-end overflow-hidden bg-black px-5 pt-20 pb-16 sm:px-8 lg:aspect-video lg:min-h-0 lg:items-center lg:px-[10vw] lg:py-20">
@@ -2679,6 +3042,8 @@ function App() {
         </section>
 
         <ServicesSection t={t} onContactClick={navigateToContact} />
+
+        <FaqTeaserSection t={t} language={language} />
 
         <SoftwareSection t={t} />
 
@@ -2799,6 +3164,7 @@ function App() {
         <div>
           <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
           <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
+          <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'factory-simulation-faq')}>{t.faq.breadcrumb}</a>
           <a className="block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'privacy')}>{t.privacy.title}</a>
           <div className="mt-4 flex gap-2" aria-label="Social media">
             {socialLinks.map(({ name, href, Icon }) => (
