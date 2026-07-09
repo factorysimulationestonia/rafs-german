@@ -1390,7 +1390,7 @@ const getLanguageFromPath = () => {
     return storedLanguage;
   }
 
-  return navigator.language?.toLowerCase().startsWith('et') ? 'et' : 'en';
+  return 'en';
 };
 
 const getRouteFromPath = () => {
@@ -2761,7 +2761,7 @@ function App() {
           : route === 'factory-simulation-faq'
           ? t.faq.metaDescription
           : language === 'et'
-            ? 'Tootmise simuleerimine, tehase paigutuse planeerimine ja digitaalsed mudelid Eesti tööstusettevõtetele.'
+            ? 'Tootmise simuleerimine, tehase paigutuse planeerimine ja digitaalsed mudelid tööstusettevõtetele.'
             : 'Factory Simulation creates a dynamic view of production with simulations and digital models.'
       );
     }
