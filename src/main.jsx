@@ -1430,7 +1430,6 @@ const clientLogos = [
   { name: 'M ja P Nurst', logo: '/kliendid/m-ja-p-nurst_transparent_carousel.png' },
   { name: 'Mainor Ülemiste', logo: '/kliendid/mainor-ulemiste_transparent_carousel.png' },
   { name: 'Smitech', logo: '/kliendid/smitech_transparent_carousel.png' },
-  { name: 'Tammer', logo: '/kliendid/tammer_transparent_carousel.png' },
   { name: 'Warmeston', logo: '/kliendid/warmeston_transparent_carousel.png' }
 ];
 
