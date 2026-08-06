@@ -40,10 +40,10 @@ const content = {
     flagSrc: '/en-flag.svg',
     heroHeadline: 'Kontseptsioonist kindla investeerimisotsuseni',
     heroHeadlineMobile: <>Kontseptsioonist kindla investeerimis-<br />otsuseni</>,
-    nav: ['Teenused', 'Projektid', 'Meist', 'Uudised', 'Wheel.me'],
+    nav: ['Teenused', 'Meist', 'Uudised', 'Wheel.me'],
     headerTagline: <>Sinu Tootmise<br />insenertehniline partner</>,
     heroSubline: {
-      start: <>Aitame tootmisettevõtetel enne investeeringut hinnata, kas planeeritud lahendus töötab päriselt nii nagu vaja.<br />Nii saad </>,
+      start: <>Aitame integraatoritel ja tootmisettevõtetel automatiseerimist enne paigaldust ja käivitamist virtuaalselt valideerida – alates roboti liikumisest ja tsükliajast kuni tootmisvõimekuse, PLC-loogika ning seadmete koostööni.<br />Nii saad </>,
       risk: 'vähendada riske',
       afterRisk: ', ',
       mistakes: 'vältida kulukaid vigu',
@@ -145,16 +145,16 @@ const content = {
     ],
     servicesTitle: 'Teenused',
     servicesIntro:
-      'Valideerime tootmisotsused enne füüsilisi muudatusi, et planeeringud, investeeringud ja juurutused liiguksid kindlama aluse pealt.',
+      'Toetame automaatikaintegraatoreid, masinaehitajaid ja tootmisettevõtteid simulatsiooni, robotite võrguvälise programmeerimise ning virtuaalse kasutuselevõtuga –',
     servicesHero: {
       image: '/analysis1.png',
       imageAlt: 'AutoCAD joonise ja 3D paigutuse võrdlus tõstuki manööverdusanalüüsiga'
     },
     servicesQuestions: [
-      'Kuidas vältida kulukaid vigu planeerimisel?',
-      'Kuidas suurendada liini tootlikkust?',
-      'Kuidas vähendada seisakuid?',
-      'Kuidas põhjendada investeeringut firmasiseselt?'
+      'Kas süsteem saavutab nõutud tsükliaja ja tootmisvõimsuse?',
+      'Kuidas testida PLC- ja robotiloogikat enne füüsilist käivitamist?',
+      'Kas robotiprogramme saab arendada ja testida virtuaalses keskkonnas?',
+      'Kuidas valideerida uut tehast või tootmisliini enne investeeringu tegemist?'
     ],
     serviceCardLabels: {
       validation: 'Mida valideerime',
@@ -198,7 +198,7 @@ const content = {
       {
         title: 'NVIDIA Omniverse',
         description:
-          'Loome suuremahulisi realistlikke digitaalseid kaksikuid, tehasekeskkondi ja ühendatud tööstuslikke 3D-töövooge.',
+          'Loome NVIDIA Omniverse ja Isaac Sim abil suuremahulisi realistlikke digitaalseid kaksikuid, tehasekeskkondi ja ühendatud tööstuslikke 3D-töövooge.',
         tools: ['NVIDIA Omniverse']
       },
       {
@@ -288,27 +288,34 @@ const content = {
         ]
       },
       {
-        title: 'Tehase digitaliseerimine',
-        problem: 'Muudatuste tegemine tehases on riskantne ja aeglane, kui puuduvad täpsed joonised ja tehniline ülevaade.',
-        solutionLead: 'Loome laserskaneerimise abil olemasolevast tehasest täpse 3D mudeli edasiseks planeerimiseks ja projekteerimiseks.',
+        title: 'Robotite võrguväline programmeerimine',
+        problem: 'Robotite programmeerimine füüsilistel seadmetel võtab väärtuslikku tootmis- ja käivitusaega ning ootamatud ulatuse, kokkupõrgete ja järjestuse probleemid võivad käivitamisel viivitusi põhjustada.',
+        validationLabel: 'Mida programmeerime',
+        solutionLead: 'Robotite võrguvälise programmeerimise käigus loome ja testime robotiprogramme virtuaalses keskkonnas, lähtudes planeeritud robotirakust, tööriistadest ja protsessinõuetest, enne kui programm kantakse füüsilisse robotisse.',
         solutionPoints: [
-          'Olemasoleva tehase täpne jäädvustamine',
-          'Punktipilv, 3D mudel ja DWG planeerimisalus',
-          'Tehniline ülevaade projekteerijatele ja integraatoritele'
+          'Robotiprogrammid virtuaalse robotiraku põhjal',
+          'Tööriistade, trajektooride ja protsessijärjestuste testimine',
+          'Programmi ettevalmistus füüsilisse robotisse ülekandmiseks'
         ],
         impact: [
-          'Kiirem projektide planeerimine',
-          'Vähem mõõtmis- ja paigaldusvigu',
-          'Parem koostöö projekteerijate ja integraatoritega',
-          'Väiksem risk ümbertegemisteks tootmises'
+          'Vähendab programmeerimisaega tootmispõrandal',
+          'Lühendab paigaldust ja käivitamist',
+          'Annab testitud robotiprogrammi, mis on valmis lõplikuks kohapealseks kalibreerimiseks'
         ],
-        ctaPrompt: 'Vajad täpset ülevaadet oma tehasest?',
+        ctaPrompt: 'Soovid vähendada kohapealset robotiprogrammeerimise aega?',
         comparisonImages: [
           {
-            src: '/project-pellet2.png',
-            alt: 'Laserskaneeritud pelletitehase detailne punktipilv'
+            src: '/services/olp-1.png',
+            alt: 'Robotite võrguvälise programmeerimise rakumudel virtuaalses keskkonnas',
+            imageClassName: '-scale-x-100 bg-[#d8d8d6] object-cover object-[68%_16%]'
           }
-        ]
+        ],
+        overlayImage: {
+          src: '/services/olp-2.png',
+          alt: 'Robotiprogrammi võrguvälise programmeerimise vaade',
+          className: 'top-0 right-0 h-[160%] w-[36%] sm:w-[35%] lg:w-[34%]',
+          imageClassName: 'h-full w-full object-cover object-top'
+        }
       },
       {
         title: 'Virtuaalne käikuvõtmine',
@@ -325,17 +332,13 @@ const content = {
           'Parandab tarkvara kvaliteeti enne tootmiskeskkonda jõudmist'
         ],
         ctaPrompt: 'Valideeri oma süsteem enne käivitust',
-        visual: {
-          type: 'virtualCommissioning',
-          simulationVideo: '/vc12.webm',
-          logicVideo: '/vc11.webm',
-          simulationLabel: 'Visual Components',
-          simulationIcon: '/vcfavicon.png',
-          logicLabel: 'Siemens PLC Simulation',
-          logicIcon: '/siemensfavicon.png',
-          inputSignal: 'di_sensor',
-          outputSignal: 'do_motor'
-        }
+        comparisonImages: [
+          {
+            src: '/services/vc.png',
+            alt: 'Virtuaalse käikuvõtmise süsteemimudel ja juhtloogika valideerimine',
+            imageClassName: 'scale-100 bg-[#d6d9dc] object-contain object-top'
+          }
+        ]
       }
     ],
     clientLogosTitle: 'Kliendid',
@@ -344,13 +347,18 @@ const content = {
     contactText: 'Alates varajasest kontseptsioonist kuni valideeritud tehase planeeringuni.',
     form: {
       name: 'Nimi',
-      email: 'E-mail',
+      email: 'Email',
       description: 'Projekti kirjeldus',
+      placeholders: {
+        name: 'Sinu nimi',
+        email: 'Sinu email',
+        description: 'Kirjelda oma projekti mõne sõnaga'
+      },
       send: 'Saada',
       sending: 'Saadan…',
       success: 'Aitäh! Vastame varsti!',
       error: 'Sõnumi saatmine ebaõnnestus. Palun proovi uuesti või kirjuta meile otse.',
-      directEmail: 'Kirjuta otse e-postile',
+      directEmail: 'Kirjuta otse emailile',
       privacyNotice: {
         before: 'Vormi saatmisel töötleme teie esitatud andmeid ainult päringule vastamiseks (lisateave: ',
         link: 'privaatsuspoliitika',
@@ -358,8 +366,8 @@ const content = {
       },
       validation: {
         nameRequired: 'Palun sisesta nimi.',
-        emailRequired: 'Palun sisesta e-posti aadress.',
-        emailInvalid: 'Palun sisesta korrektne e-posti aadress.',
+        emailRequired: 'Palun sisesta emaili aadress.',
+        emailInvalid: 'Palun sisesta korrektne emaili aadress.',
         descriptionRequired: 'Palun kirjelda projekti.',
         descriptionShort: 'Palun lisa vähemalt 5 tähemärki.'
       }
@@ -421,13 +429,13 @@ const content = {
             'Vastutav töötleja: Factory Simulation OÜ.',
             'Registrikood: 17384619.',
             'Aadress: Okka tee 2, 4660, Piira, Eesti.',
-            'E-post: info@factorysimulation.eu.'
+            'email: info@factorysimulation.eu.'
           ]
         },
         {
           title: 'Milliseid andmeid töötleme',
           paragraphs: [
-            'Kontaktvormi kaudu töötleme teie nime, e-posti aadressi, sõnumi sisu, vormi allikat ning tehnilisi andmeid, mis on vajalikud vormi turvaliseks edastamiseks ja rämpsposti vähendamiseks.'
+            'Kontaktvormi kaudu töötleme teie nime, emaili aadressi, sõnumi sisu, vormi allikat ning tehnilisi andmeid, mis on vajalikud vormi turvaliseks edastamiseks ja rämpsposti vähendamiseks.'
           ]
         },
         {
@@ -439,7 +447,7 @@ const content = {
         {
           title: 'Kellele andmeid edastatakse',
           paragraphs: [
-            'Andmeid näevad ainult Factory Simulationi inimesed, kes vastavad päringutele. Tehniliselt liiguvad andmed läbi meie veebimajutuse ja e-posti teenusepakkuja Zone.ee.'
+            'Andmeid näevad ainult Factory Simulationi inimesed, kes vastavad päringutele. Tehniliselt liiguvad andmed läbi meie veebimajutuse ja emaili teenusepakkuja Zone.ee.'
           ]
         },
         {
@@ -564,7 +572,6 @@ const content = {
         {
           question: 'Kas saad simulatsiooni selgitada päriselulise näitega?',
           answer: [
-            'Mõtle jalgpallimeeskonnale, eriti nüüd, kui 2026. aasta maailmameistrivõistlused käivad.',
             'Kui meeskond ostab parima ründaja, kas see teeb meeskonna automaatselt parimaks? Mitte tingimata. Ründaja võib olla väga hea, aga tulemus sõltub endiselt sellest, kuidas keskväli võimalusi loob, kuidas kaitse surve all hakkama saab, kuidas meeskond koos liigub ja kas kogu süsteem töötab.',
             'Sama loogika kehtib tootmises.',
             'Ühe kalli masina, roboti või automaatikasüsteemi ostmine ei paranda automaatselt kogu tootmisvoogu. Kui järgmine protsess on liiga aeglane, materjalivarustus ebastabiilne või operaatorid ootavad etappide vahel, võib uus masin lihtsalt pudelikaela mujale liigutada.',
@@ -699,10 +706,10 @@ const content = {
     flagSrc: '/ee-flag.svg',
     heroHeadline: 'From concept to a confident investment decision',
     heroHeadlineMobile: 'From concept to a confident investment decision',
-    nav: ['Services', 'Projects', 'About', 'News & Blog', 'Wheel.me'],
+    nav: ['Services', 'About', 'News & Blog', 'Wheel.me'],
     headerTagline: <>Engineering partner<br />for your production</>,
     heroSubline: {
-      start: <>We help manufacturing companies evaluate before investing whether the planned solution will actually work the way it needs to.<br />This helps you </>,
+      start: <>We help automation integrators and manufacturers validate automation before assembly and commissioning - from robot motion and cycle times to production capacity or mix, PLC logic and equipment interaction.<br />This helps you </>,
       risk: 'reduce risks',
       afterRisk: ', ',
       mistakes: 'avoid costly mistakes',
@@ -804,22 +811,22 @@ const content = {
     ],
     servicesTitle: 'Services',
     servicesIntro:
-      'We validate production decisions before physical changes are made, giving layouts, investments and implementations a stronger basis.',
+      'We support automation integrators, machine builders and manufacturers with simulation, offline robot programming and virtual commissioning—from early concept validation to physical implementation.',
     servicesHero: {
       image: '/analysis1.png',
       imageAlt: 'AutoCAD drawing and 3D layout comparison with forklift maneuverability analysis'
     },
     servicesQuestions: [
-      'How can I avoid costly planning mistakes?',
-      'How can I increase line productivity?',
-      'How can I reduce downtime?',
-      'How can I justify an investment internally?'
+      'Will the system achieve the required cycle time and production capacity?',
+      'How can I test PLC and robot logic before physical commissioning?',
+      'Can robot programs be developed and tested offline?',
+      'How can I validate a new factory or production line before investment?'
     ],
     serviceCardLabels: {
       validation: 'What we validate',
       outcome: 'Outcome'
     },
-    serviceCta: 'Discuss this project',
+    serviceCta: 'Discuss your project',
     softwareTitle: 'Engineering software and tools',
     softwareIntro:
       'We combine specialized engineering tools to plan, simulate, program and validate production systems before implementation.',
@@ -858,7 +865,7 @@ const content = {
       {
         title: 'NVIDIA Omniverse',
         description:
-          'We build large-scale, realistic digital twins, factory environments and connected industrial 3D workflows.',
+          'We build large-scale, realistic digital twins, factory environments and connected industrial 3D workflows with NVIDIA Omniverse and Isaac Sim.',
         tools: ['NVIDIA Omniverse']
       },
       {
@@ -948,27 +955,34 @@ const content = {
         ]
       },
       {
-        title: 'Factory digitalization',
-        problem: 'Factory changes are slower and riskier when accurate drawings and technical overview are missing.',
-        solutionLead: 'Using laser scanning, we create an accurate 3D model of the existing factory for future planning and engineering.',
+        title: 'Offline robot programming',
+        problem: 'Robot programming on physical equipment takes valuable production and commissioning time, while unexpected reachability, collision and sequencing issues can cause delays during startup.',
+        validationLabel: 'What we program',
+        solutionLead: 'During offline robot programming, we create and test robot programs in a virtual environment based on the planned robot cell, tooling and process requirements before transferring them to the physical robot.',
         solutionPoints: [
-          'Accurate capture of the existing facility',
-          'Point cloud, 3D model and DWG planning base',
-          'Technical overview for designers and integrators'
+          'Robot programs based on the planned robot cell',
+          'Tooling, paths and process sequences tested virtually',
+          'Program preparation before transfer to the physical robot'
         ],
         impact: [
-          'Faster project planning',
-          'Fewer measurement and installation errors',
-          'Better collaboration with designers and integrators',
-          'Lower risk of production rework'
+          'Reduces programming time on the factory floor',
+          'Shortens installation and commissioning',
+          'Provides a tested robot program ready for final on-site calibration'
         ],
-        ctaPrompt: 'Need an accurate overview of your factory?',
+        ctaPrompt: 'Ready to reduce on-site robot programming time?',
         comparisonImages: [
           {
-            src: '/project-pellet2.png',
-            alt: 'Detailed point cloud of a laser-scanned pellet factory'
+            src: '/services/olp-1.png',
+            alt: 'Offline robot programming cell model in a virtual environment',
+            imageClassName: '-scale-x-100 bg-[#d8d8d6] object-cover object-[68%_16%]'
           }
-        ]
+        ],
+        overlayImage: {
+          src: '/services/olp-2.png',
+          alt: 'Offline robot programming program view',
+          className: 'top-0 right-0 h-[160%] w-[36%] sm:w-[35%] lg:w-[34%]',
+          imageClassName: 'h-full w-full object-cover object-top'
+        }
       },
       {
         title: 'Virtual commissioning',
@@ -985,17 +999,13 @@ const content = {
           'Improves software quality before it reaches production'
         ],
         ctaPrompt: 'Validate your system before startup',
-        visual: {
-          type: 'virtualCommissioning',
-          simulationVideo: '/vc12.webm',
-          logicVideo: '/vc11.webm',
-          simulationLabel: 'Visual Components',
-          simulationIcon: '/vcfavicon.png',
-          logicLabel: 'Siemens PLC Simulation',
-          logicIcon: '/siemensfavicon.png',
-          inputSignal: 'di_sensor',
-          outputSignal: 'do_motor'
-        }
+        comparisonImages: [
+          {
+            src: '/services/vc.png',
+            alt: 'Virtual commissioning system model and control-logic validation',
+            imageClassName: 'scale-100 bg-[#d6d9dc] object-contain object-top'
+          }
+        ]
       }
     ],
     clientLogosTitle: 'Clients',
@@ -1004,8 +1014,13 @@ const content = {
     contactText: 'From early-stage concept to validated factory plan.',
     form: {
       name: 'Name',
-      email: 'E-mail',
+      email: 'Email',
       description: 'Project description',
+      placeholders: {
+        name: 'Your name',
+        email: 'Your email',
+        description: 'Describe your project in a few words'
+      },
       send: 'Send',
       sending: 'Sending…',
       success: 'Thank you! We’ll reply soon!',
@@ -1224,7 +1239,6 @@ const content = {
         {
           question: 'Can you explain simulation with a real-life example?',
           answer: [
-            'Think of a football team - especially now, while the World Cup 2026 is ongoing.',
             'If a team buys the best striker, does that automatically make it the best team? Not necessarily. The striker may be excellent, but the result still depends on how the midfield creates chances, how the defence handles pressure, how the team moves together and whether the whole system works.',
             'The same logic applies in manufacturing.',
             'Buying one expensive machine, robot or automation system does not automatically improve the whole production flow. If the next process is too slow, if material supply is unstable or if operators are waiting between steps, the new machine may simply move the bottleneck somewhere else.',
@@ -1358,7 +1372,7 @@ const content = {
   }
 };
 
-const anchors = ['services', 'projects', 'about', 'blog', 'wheelme'];
+const anchors = ['services', 'about', 'blog', 'wheelme'];
 const pageRoutes = ['blog', 'wheelme', 'privacy', 'factory-simulation-faq'];
 const languages = ['et', 'en'];
 const languagePreferenceKey = 'factorySimulationLanguage';
@@ -1430,7 +1444,10 @@ const clientLogos = [
   { name: 'M ja P Nurst', logo: '/kliendid/m-ja-p-nurst_transparent_carousel.png' },
   { name: 'Mainor Ülemiste', logo: '/kliendid/mainor-ulemiste_transparent_carousel.png' },
   { name: 'Smitech', logo: '/kliendid/smitech_transparent_carousel.png' },
-  { name: 'Warmeston', logo: '/kliendid/warmeston_transparent_carousel.png' }
+  { name: 'Warmeston', logo: '/kliendid/warmeston_transparent_carousel.png' },
+  { name: 'Ecopress Waste System OÜ', logo: '/kliendid/ecopress-waste-system-ou_transparent_carousel.png' },
+  { name: 'Upgreat OÜ', logo: '/kliendid/upgreat-ou_transparent_carousel.png' },
+  { name: 'Sark Robotics OÜ', logo: '/kliendid/sark-robotics-ou_transparent_carousel.png' }
 ];
 
 function ClientLogoCarousel({ title, intro }) {
@@ -1540,15 +1557,19 @@ function ClientLogoCarousel({ title, intro }) {
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
         >
-          {logoItems.map((client, index) => (
-            <div
-              className="grid size-56 shrink-0 place-items-center border border-fs-accent/35 bg-black/38 px-4 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)] transition hover:border-fs-accent sm:size-72 sm:px-5"
-              key={`${client.name}-${index}`}
-              aria-hidden={index >= clientLogos.length && index < clientLogos.length * 2 ? undefined : 'true'}
-            >
-              <img className="max-h-28 w-[108%] max-w-none object-contain sm:max-h-36 sm:w-[112%]" src={assetPath(client.logo)} alt={client.name} draggable="false" />
-            </div>
-          ))}
+          {logoItems.map((client, index) => {
+            const isAccessibleCopy = index >= clientLogos.length && index < clientLogos.length * 2;
+
+            return (
+              <div
+                className="grid size-56 shrink-0 place-items-center border border-fs-accent/35 bg-black/38 px-4 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)] transition hover:border-fs-accent sm:size-72 sm:px-5"
+                key={`${client.name}-${index}`}
+                aria-hidden={isAccessibleCopy ? undefined : 'true'}
+              >
+                <img className="max-h-28 w-[108%] max-w-none object-contain sm:max-h-36 sm:w-[112%]" src={assetPath(client.logo)} alt={client.name} draggable="false" />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -1568,41 +1589,9 @@ function IconList({ items, itemClassName = liClass, iconClassName = 'bg-fs-accen
   );
 }
 
-function ProjectCase({ project, labels, index, onOpenImage }) {
-  const imageFirst = index % 2 === 0;
-
-  return (
-    <article className="grid gap-8 border-t border-fs-line/70 bg-fs-panel/58 p-6 sm:p-8 lg:grid-cols-[minmax(320px,0.78fr)_minmax(0,1fr)] lg:gap-12 lg:p-10">
-      <div className={imageFirst ? '' : 'lg:order-2'}>
-        <ProjectImage project={project} onOpenImage={onOpenImage} />
-      </div>
-      <div className="grid content-start gap-8">
-        <div>
-          <p className="mb-5 text-base font-bold text-fs-accent">0{index + 1}</p>
-          <h3 className="m-0 max-w-3xl text-[clamp(1.65rem,2.3vw,2.55rem)] leading-tight font-bold text-white">{project.title}</h3>
-        </div>
-
-        <div className="grid gap-7">
-          <p className="m-0 text-[clamp(1.02rem,1.25vw,1.16rem)] leading-relaxed text-white/82">{project.problem}</p>
-          <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent">{labels.solution}</p>
-            <p className="m-0 text-[clamp(1.02rem,1.25vw,1.16rem)] leading-relaxed text-white/82">{project.solution}</p>
-          </div>
-        </div>
-
-        <div className="border border-fs-result/55 bg-black/24 p-6">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-fs-result">{labels.results}</p>
-          <IconList items={project.results} itemClassName="mb-0 text-base leading-relaxed text-white/84" iconClassName="bg-fs-result" />
-        </div>
-      </div>
-    </article>
-  );
-}
-
 function ServiceCase({ service, labels, cta, index, id, refCallback, onContactClick }) {
   const validationPoints = service.solutionPoints.slice(0, 3);
   const outcomePoints = service.impact.slice(0, 3);
-  const hasVisual = service.visual?.type === 'virtualCommissioning';
   const hasComparison = service.comparisonImages?.length > 0;
   const hasComparisonPair = service.comparisonImages?.length > 1;
   const stepLabelClass = 'mb-3 text-xs font-bold uppercase tracking-[0.18em] text-fs-accent';
@@ -1621,7 +1610,7 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
       </div>
 
       <div className="min-w-0 max-w-3xl">
-        <p className={stepLabelClass}>{labels.validation}</p>
+        <p className={stepLabelClass}>{service.validationLabel || labels.validation}</p>
         <p className={`mb-6 ${bodyClass}`}>{service.solutionLead}</p>
         <IconList items={validationPoints} itemClassName="mb-0 text-base leading-relaxed text-white/74" />
       </div>
@@ -1662,11 +1651,12 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
               >
                 <img
                   className={`block h-full w-full object-cover ${
-                    image.focus === 'lower'
+                    image.imageClassName ||
+                    (image.focus === 'lower'
                       ? 'scale-100 object-[center_88%]'
                       : hasComparisonPair
                         ? '-translate-y-[12%] scale-[1.28] object-center'
-                        : 'scale-[1.08] object-center'
+                        : 'scale-[1.08] object-center')
                   }`}
                   src={assetPath(image.src)}
                   alt={image.alt}
@@ -1681,9 +1671,11 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
             ))}
           </div>
           {service.overlayImage && (
-            <div className="absolute top-2 right-2 z-[5] w-[36%] overflow-hidden border border-white/22 bg-black/55 shadow-[0_16px_40px_rgba(0,0,0,0.38)] sm:top-3 sm:right-3 sm:w-[32%] lg:top-4 lg:right-4 lg:w-[31%]">
+            <div className={`absolute z-[5] overflow-hidden border border-white/22 bg-black/55 shadow-[0_16px_40px_rgba(0,0,0,0.38)] ${
+              service.overlayImage.className || 'top-2 right-2 w-[36%] sm:top-3 sm:right-3 sm:w-[32%] lg:top-4 lg:right-4 lg:w-[31%]'
+            }`}>
               <img
-                className="block h-auto w-full"
+                className={`block ${service.overlayImage.imageClassName || 'h-auto w-full'}`}
                 src={assetPath(service.overlayImage.src)}
                 alt={service.overlayImage.alt}
                 loading="lazy"
@@ -1701,71 +1693,11 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
           </div>
         </div>
       )}
-      {hasVisual ? (
-        <div className="grid gap-10">
-          <div className="grid gap-10 xl:grid-cols-[minmax(0,0.95fr)_minmax(280px,0.58fr)] xl:items-start">
-            {mainContent}
-            <VirtualCommissioningVisual visual={service.visual} />
-          </div>
-          {outcomeBox}
-        </div>
-      ) : (
-        <div className="grid gap-8">
-          {mainContent}
-          {outcomeBox}
-        </div>
-      )}
+      <div className="grid gap-8">
+        {mainContent}
+        {outcomeBox}
+      </div>
     </article>
-  );
-}
-
-function VirtualCommissioningVisual({ visual }) {
-  return (
-    <div className="vc-visual mx-auto grid w-full max-w-md select-none gap-4">
-      <VcProgramWindow title={visual.simulationLabel} icon={visual.simulationIcon}>
-        <video className="block aspect-[4/3] w-full bg-black object-contain object-center" src={assetPath(visual.simulationVideo)} autoPlay muted loop playsInline draggable="false" />
-      </VcProgramWindow>
-
-      <div className="relative h-24 sm:h-28" aria-hidden="true">
-        <div className="vc-signal vc-signal-up left-[24%]">
-          <span className="vc-signal-label -left-3 sm:-left-8">{visual.outputSignal}</span>
-        </div>
-        <div className="vc-signal vc-signal-down right-[28%]">
-          <span className="vc-signal-label -right-3 sm:-right-8">{visual.inputSignal}</span>
-        </div>
-      </div>
-
-      <VcProgramWindow title={visual.logicLabel} icon={visual.logicIcon}>
-        <video className="block aspect-[4/3] w-full bg-black object-contain object-center" src={assetPath(visual.logicVideo)} autoPlay muted loop playsInline draggable="false" />
-      </VcProgramWindow>
-    </div>
-  );
-}
-
-function VcProgramWindow({ title, icon, children }) {
-  return (
-    <div className="overflow-hidden rounded-md border border-white/14 bg-[#17191d] shadow-2xl shadow-black/35 ring-1 ring-white/8">
-      <div className="flex h-8 items-center justify-between border-b border-white/10 bg-[#202329]/95 px-2.5 text-[0.72rem] font-semibold leading-none text-white/76 backdrop-blur">
-        <div className="flex min-w-0 items-center gap-1.5">
-          {icon ? (
-            <img className="size-4 shrink-0 rounded-[3px]" src={assetPath(icon)} alt="" aria-hidden="true" draggable="false" />
-          ) : (
-            <span className="grid size-4 shrink-0 place-items-center rounded-[3px] bg-[linear-gradient(135deg,#e2ab19_0%,#ffd861_100%)] shadow-sm" aria-hidden="true">
-              <span className="block size-1.5 rounded-[1px] bg-black/68" />
-            </span>
-          )}
-          <span className="truncate">{title}</span>
-        </div>
-        <div className="flex h-full shrink-0 items-center text-white/52" aria-hidden="true">
-          <span className="grid h-full w-8 place-items-center text-[0.72rem] transition">−</span>
-          <span className="grid h-full w-8 place-items-center text-[0.56rem] transition">□</span>
-          <span className="grid h-full w-8 place-items-center text-[0.72rem] transition">×</span>
-        </div>
-      </div>
-      <div className="bg-black">
-        {children}
-      </div>
-    </div>
   );
 }
 
@@ -1773,7 +1705,7 @@ function ServicesSection({ t, onContactClick }) {
   const [activeService, setActiveService] = useState(0);
   const serviceRefs = useRef([]);
   const orderedServices = useMemo(
-    () => [...t.services.slice(0, 3), ...t.services.slice(4), t.services[3]],
+    () => [t.services[2], t.services[1], t.services[4], t.services[3], t.services[0]],
     [t.services]
   );
   const serviceIds = useMemo(() => orderedServices.map((_, index) => `service-${index + 1}`), [orderedServices]);
@@ -1817,11 +1749,8 @@ function ServicesSection({ t, onContactClick }) {
 
   return (
     <section className="min-w-0 overflow-x-clip pb-20 lg:pb-36" id="services">
-      <div className="mb-10 overflow-hidden border-t-4 border-fs-accent bg-fs-panel">
+      <div className="mb-10 overflow-hidden border-t-4 border-fs-accent bg-black">
         <div className="relative aspect-[16/9] min-h-[640px] lg:aspect-[16/8.5] lg:min-h-[720px]">
-          <img className="absolute inset-0 h-full w-full object-cover object-center" src={assetPath(t.servicesHero.image)} alt={t.servicesHero.imageAlt} />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08)_0%,rgba(0,0,0,0.24)_42%,rgba(0,0,0,0.82)_78%,#000_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.42)_42%,rgba(0,0,0,0.1)_100%)]" />
           <div className="relative z-10 grid h-full w-full min-w-0 max-w-full content-end gap-8 overflow-hidden px-5 py-10 sm:px-8 lg:px-[10vw] lg:py-12">
             <div className="w-[calc(100vw-2.5rem)] min-w-0 max-w-full sm:w-auto">
               <h2 className={`${h2Class} mb-6`}>{t.servicesTitle}</h2>
@@ -1890,33 +1819,17 @@ function ServicesSection({ t, onContactClick }) {
 }
 
 function FaqTeaserSection({ t, language }) {
-  const teaserItems = [0, 1, 2, 4].map((index) => t.faq.items[index]);
-
   return (
     <section className="border-y border-white/10 bg-[linear-gradient(145deg,#090909_0%,#151515_58%,#080808_100%)] px-5 py-18 sm:px-8 lg:px-[10vw] lg:py-28">
-      <div className="grid min-w-0 gap-12 lg:grid-cols-[minmax(260px,0.78fr)_minmax(0,1.22fr)] lg:gap-[7vw]">
-        <div className="min-w-0">
-          <p className="mb-4 text-sm font-bold tracking-[0.16em] text-fs-accent uppercase">{t.faq.teaser.eyebrow}</p>
-          <h2 className="mb-7 max-w-4xl text-[clamp(2.25rem,4.6vw,4.8rem)] leading-none font-normal">{t.faq.teaser.title}</h2>
-          <a
-            className="mt-8 inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline transition hover:bg-white"
-            href={getPagePath(language, 'factory-simulation-faq')}
-          >
-            {t.faq.teaser.link}
-          </a>
-        </div>
-
-        <div className="grid min-w-0 gap-0 border-t border-white/14">
-          {teaserItems.map((item, index) => (
-            <article className="grid min-w-0 grid-cols-[2.4rem_minmax(0,1fr)] gap-4 border-b border-white/14 py-6 sm:grid-cols-[3.2rem_minmax(0,1fr)] sm:gap-6" key={item.question}>
-              <span className="pt-1 text-sm font-bold text-fs-accent">0{index + 1}</span>
-              <div className="min-w-0">
-                <h3 className="mb-3 break-words text-[clamp(1.25rem,2vw,1.85rem)] leading-tight font-semibold text-white">{item.question}</h3>
-                <p className="m-0 max-w-3xl text-base leading-relaxed text-white/66">{item.answer[0]}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+      <div className="min-w-0 max-w-4xl">
+        <p className="mb-4 text-sm font-bold tracking-[0.16em] text-fs-accent uppercase">{t.faq.teaser.eyebrow}</p>
+        <h2 className="mb-7 text-[clamp(2.25rem,4.6vw,4.8rem)] leading-none font-normal">{t.faq.teaser.title}</h2>
+        <a
+          className="mt-8 inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline transition hover:bg-white"
+          href={getPagePath(language, 'factory-simulation-faq')}
+        >
+          {t.faq.teaser.link}
+        </a>
       </div>
     </section>
   );
@@ -1973,36 +1886,6 @@ function LinkedinIcon() {
     <svg className="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M6.9 8.8H3.5v11h3.4v-11ZM5.2 7.3c1.1 0 1.8-.7 1.8-1.7S6.3 4 5.2 4s-1.8.7-1.8 1.7.7 1.6 1.8 1.6ZM20.5 13.5c0-3.3-1.8-4.9-4.1-4.9-1.9 0-2.8 1-3.2 1.8V8.8H9.8v11h3.4v-6.1c0-1.6.3-3.1 2.2-3.1 1.8 0 1.8 1.7 1.8 3.2v6h3.4v-6.3Z" />
     </svg>
-  );
-}
-
-function ProjectImage({ project, onOpenImage }) {
-  const overlays = project.imageOverlays || (project.imageOverlay ? [project.imageOverlay] : []);
-
-  return (
-    <div className="relative w-full">
-      <button className="block w-full cursor-zoom-in border-0 bg-transparent p-0" type="button" onClick={() => onOpenImage(project.image)}>
-        <img className="aspect-[4/5] max-h-[34rem] w-full object-cover sm:max-h-[42rem] lg:min-h-[620px] lg:max-h-none xl:aspect-[3/4] xl:min-h-[720px]" src={assetPath(project.image)} alt="" />
-        <span className="absolute right-2 bottom-2 grid size-8 place-items-center text-black drop-shadow-[0_1px_2px_rgba(255,255,255,0.65)]" aria-hidden="true">
-          <svg className="size-4.5" viewBox="0 0 24 24" fill="none">
-            <path d="m20 20-4.2-4.2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            <circle cx="10.8" cy="10.8" r="5.8" stroke="currentColor" strokeWidth="2" />
-          </svg>
-        </span>
-      </button>
-      {overlays.map((image, overlayIndex) => (
-        <button
-          className={`absolute w-2/3 cursor-zoom-in border-0 bg-transparent p-0 shadow-2xl sm:w-3/4 ${
-            overlayIndex === 0 ? '-top-3 -right-2 sm:-top-6 sm:-right-5 lg:-top-8 lg:-right-8' : '-right-2 -bottom-3 sm:-right-5 sm:-bottom-6 lg:-right-8 lg:-bottom-8'
-          }`}
-          type="button"
-          onClick={() => onOpenImage(image)}
-          key={image}
-        >
-          <img className="w-full object-cover" src={assetPath(image)} alt="" />
-        </button>
-      ))}
-    </div>
   );
 }
 
@@ -2217,6 +2100,7 @@ function SearchPage({ t, language, query, onContactSubmit, onContactInput, conta
                   <input
                     className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black"
                     name="name"
+                    placeholder={t.form.placeholders.name}
                     autoComplete="name"
                     aria-invalid={Boolean(contactErrors?.name)}
                     aria-describedby={contactErrors?.name ? 'search-contact-name-error' : undefined}
@@ -2230,6 +2114,7 @@ function SearchPage({ t, language, query, onContactSubmit, onContactInput, conta
                     className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black"
                     type="email"
                     name="email"
+                    placeholder={t.form.placeholders.email}
                     autoComplete="email"
                     aria-invalid={Boolean(contactErrors?.email)}
                     aria-describedby={contactErrors?.email ? 'search-contact-email-error' : undefined}
@@ -2242,6 +2127,7 @@ function SearchPage({ t, language, query, onContactSubmit, onContactInput, conta
                   <textarea
                     className="w-full border-0 bg-white px-3.5 py-3 font-sans font-normal text-black"
                     name="description"
+                    placeholder={t.form.placeholders.description}
                     rows="5"
                     minLength="5"
                     aria-invalid={Boolean(contactErrors?.description)}
@@ -2516,6 +2402,7 @@ function ContactForm({ t, language, onSubmit, onInput, status, errors, nameRef, 
           ref={nameRef}
           className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black"
           name="name"
+          placeholder={t.form.placeholders.name}
           autoComplete="name"
           aria-invalid={Boolean(errors?.name)}
           aria-describedby={errors?.name ? errorId('name') : undefined}
@@ -2529,6 +2416,7 @@ function ContactForm({ t, language, onSubmit, onInput, status, errors, nameRef, 
           className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black"
           type="email"
           name="email"
+          placeholder={t.form.placeholders.email}
           autoComplete="email"
           aria-invalid={Boolean(errors?.email)}
           aria-describedby={errors?.email ? errorId('email') : undefined}
@@ -2541,6 +2429,7 @@ function ContactForm({ t, language, onSubmit, onInput, status, errors, nameRef, 
         <textarea
           className="w-full border-0 bg-white/72 px-3.5 py-3 font-sans text-black"
           name="description"
+          placeholder={t.form.placeholders.description}
           rows="6"
           minLength="5"
           aria-invalid={Boolean(errors?.description)}
@@ -3047,18 +2936,6 @@ function App() {
         <SoftwareSection t={t} />
 
         <ClientLogoCarousel title={t.clientLogosTitle} intro={t.clientLogosIntro} />
-
-        <section className={sectionClass} id="projects">
-          <div className="mb-14 max-w-4xl">
-            <h2 className={h2Class}>{t.projectsTitle}</h2>
-            <p className="max-w-3xl text-[clamp(1.05rem,1.7vw,1.35rem)] leading-relaxed text-white/70">{t.projectIntro}</p>
-          </div>
-          <div className="grid gap-10 lg:gap-14">
-            {t.projects.map((project, index) => (
-              <ProjectCase project={project} labels={t.projectCardLabels} index={index} onOpenImage={setLightboxImage} key={project.title} />
-            ))}
-          </div>
-        </section>
 
         <section className={`${sectionClass} relative min-h-[76vh] overflow-hidden`} id="about">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(0,0,0,0.62)_0%,rgba(0,0,0,0.22)_48%,transparent_100%)]" aria-hidden="true" />
