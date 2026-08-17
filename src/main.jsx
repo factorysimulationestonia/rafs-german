@@ -288,7 +288,7 @@ const content = {
         ]
       },
       {
-        title: 'Robotite võrguväline programmeerimine',
+        title: 'Robotite offline programmeerimine',
         problem: 'Robotite programmeerimine füüsilistel seadmetel võtab väärtuslikku tootmis- ja käivitusaega ning ootamatud ulatuse, kokkupõrgete ja järjestuse probleemid võivad käivitamisel viivitusi põhjustada.',
         validationLabel: 'Mida programmeerime',
         solutionLead: 'Robotite võrguvälise programmeerimise käigus loome ja testime robotiprogramme virtuaalses keskkonnas, lähtudes planeeritud robotirakust, tööriistadest ja protsessinõuetest, enne kui programm kantakse füüsilisse robotisse.',
