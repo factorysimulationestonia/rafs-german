@@ -4,6 +4,7 @@
   --font-sans: "Space Grotesk", Helvetica, Arial, sans-serif;
   --font-display: "Space Grotesk", Helvetica, Arial, sans-serif;
   --color-fs-accent: #e2ab19;
+  --color-fs-consult: #8fd6a3;
   --color-fs-result: #8f83d8;
   --color-fs-panel: #262626;
   --color-fs-line: rgba(226, 171, 25, 0.72);
@@ -25,6 +26,62 @@
   h2,
   h3 {
     font-family: "Space Grotesk", Helvetica, Arial, sans-serif;
+  }
+}
+
+@property --cta-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@layer components {
+  .cta-consultation {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid rgb(143 214 163 / 0.78);
+    background: linear-gradient(135deg, #8fd6a3 0%, #d9c46a 100%);
+    color: #07130a;
+    box-shadow: 0 0 0 1px rgb(143 214 163 / 0.14), 0 12px 28px rgb(143 214 163 / 0.1);
+    transition: border-color 180ms ease, box-shadow 180ms ease, filter 180ms ease, transform 180ms ease;
+  }
+
+  .cta-consultation::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: 0;
+    padding: 2px;
+    background: conic-gradient(
+      from var(--cta-border-angle),
+      rgb(255 255 255 / 0),
+      rgb(255 255 255 / 0.5),
+      rgb(226 171 25 / 0.34),
+      rgb(255 255 255 / 0) 42%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: cta-border-spin 6s linear infinite;
+    pointer-events: none;
+  }
+
+  .cta-consultation::after {
+    content: none;
+  }
+
+  .cta-consultation:hover {
+    border-color: rgb(255 255 255 / 0.62);
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.16), 0 14px 30px rgb(143 214 163 / 0.15);
+    filter: saturate(1.03);
+    transform: translateY(-1px);
+  }
+
+  .cta-consultation:focus-visible {
+    outline: 3px solid rgb(255 255 255 / 0.86);
+    outline-offset: 3px;
   }
 }
 
@@ -56,6 +113,24 @@
 
     to {
       transform: translate3d(calc(-33.333333% + var(--logo-drag-offset, 0px)), 0, 0);
+    }
+  }
+
+  @keyframes cta-border-spin {
+    to {
+      --cta-border-angle: 360deg;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-consultation,
+    .cta-consultation::before {
+      animation: none;
+      transition: none;
+    }
+
+    .cta-consultation:hover {
+      transform: none;
     }
   }
 }

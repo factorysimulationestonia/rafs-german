@@ -51,9 +51,9 @@ const content = {
       savings: 'hoida kokku aega ja raha',
       end: '.'
     },
-    heroButton: 'Räägime projektist',
+    heroButton: 'Saa tasuta konsultatsioon',
     heroSecondary: 'Vaata teenuseid',
-    contactButton: 'Võta ühendust',
+    contactButton: 'Tasuta konsultatsioon',
     search: {
       label: 'Otsi',
       placeholder: 'Otsi...',
@@ -344,7 +344,9 @@ const content = {
     clientLogosTitle: 'Kliendid',
     clientLogosIntro: 'Ettevõtted, kellega oleme koostööd teinud',
     contactTitle: 'Teeme koostööd!',
-    contactText: 'Alates varajasest kontseptsioonist kuni valideeritud tehase planeeringuni.',
+    contactText: 'Alustame lühikese kõnega, et mõista sinu projekti, riske ja järgmisi samme.',
+    contactFormTitle: 'Tasuta konsultatsioon',
+    contactFormText: 'Saada meile sõnum ja lepime kokku kõne, et arutada projekti ning leida parim simulatsiooni- või valideerimislahendus.',
     form: {
       name: 'Nimi',
       email: 'Email',
@@ -717,9 +719,9 @@ const content = {
       savings: 'save time and money',
       end: '.'
     },
-    heroButton: 'Discuss your project',
+    heroButton: 'Get a free consultation',
     heroSecondary: 'View services',
-    contactButton: 'Contact us',
+    contactButton: 'Free consultation',
     search: {
       label: 'Search',
       placeholder: 'Search for...',
@@ -1011,7 +1013,9 @@ const content = {
     clientLogosTitle: 'Clients',
     clientLogosIntro: 'Companies we have worked with',
     contactTitle: 'Let’s work together!',
-    contactText: 'From early-stage concept to validated factory plan.',
+    contactText: 'Start with a short call to clarify your project, risks and next decisions.',
+    contactFormTitle: 'Get a free consultation',
+    contactFormText: 'Send us a message and we will jump on a call to discuss your project and the right simulation or validation path.',
     form: {
       name: 'Name',
       email: 'Email',
@@ -2386,11 +2390,17 @@ function PrivacyNotice({ t, language, className = 'text-sm leading-snug text-bla
   );
 }
 
-function ContactForm({ t, language, onSubmit, onInput, status, errors, nameRef, idPrefix, source }) {
+function ContactForm({ t, language, onSubmit, onInput, status, errors, nameRef, idPrefix, source, className = '', title, intro }) {
   const errorId = (field) => `${idPrefix}-${field}-error`;
 
   return (
-    <form className="relative grid min-w-0 gap-4.5" onSubmit={onSubmit} onInput={onInput} noValidate>
+    <form className={`relative grid min-w-0 gap-4.5 ${className}`} onSubmit={onSubmit} onInput={onInput} noValidate>
+      {(title || intro) && (
+        <div className="mb-1">
+          {title && <h3 className="mb-2 text-[clamp(1.35rem,1.9vw,1.85rem)] leading-tight font-bold">{title}</h3>}
+          {intro && <p className="m-0 text-[clamp(0.98rem,1.15vw,1.08rem)] leading-relaxed">{intro}</p>}
+        </div>
+      )}
       <label className="absolute -left-[9999px]" aria-hidden="true">
         Company
         <input name="company" tabIndex="-1" autoComplete="off" />
@@ -2852,7 +2862,7 @@ function App() {
               <img className="h-5 w-7 object-cover" src={assetPath(t.flagSrc)} alt="" aria-hidden="true" />
             </button>
             <a
-              className="mt-3 inline-flex min-h-11 w-fit items-center justify-center whitespace-nowrap border border-fs-accent bg-fs-accent px-4 py-2 font-bold text-black no-underline transition hover:bg-white min-[1180px]:mt-0"
+              className="cta-consultation mt-3 inline-flex min-h-11 w-fit items-center justify-center whitespace-nowrap px-4 py-2 font-bold no-underline min-[1180px]:mt-0"
               href={getPagePath(language, 'home', '#contact')}
               onClick={navigateToContact}
             >
@@ -3028,6 +3038,9 @@ function App() {
               nameRef={contactNameRef}
               idPrefix="contact"
               source="main"
+              title={t.contactFormTitle}
+              intro={t.contactFormText}
+              className="border border-black/18 bg-black/[0.045] p-5 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)] sm:p-6 lg:p-7"
             />
           </div>
         </section>
