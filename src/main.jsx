@@ -13,7 +13,19 @@ const basePathPrefix = basePath === '/' ? '' : basePath.replace(/\/$/, '');
 const buildCommit = import.meta.env.VITE_COMMIT_SHA || '5ba3d0d';
 const lastUpdated = import.meta.env.VITE_LAST_UPDATED || '2026-05-06';
 const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || (import.meta.env.DEV ? '/api/contact.php' : '');
+const leadConversionTarget = 'AW-18241161030/BFTiCOXzvr8cEMaOiPpD';
 const assetPath = (path) => `${basePath}${path.replace(/^\//, '')}`;
+const trackLeadConversion = () => {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
+    return;
+  }
+
+  window.gtag('event', 'conversion', {
+    send_to: leadConversionTarget,
+    value: 1.0,
+    currency: 'EUR'
+  });
+};
 const getContactFormErrors = (form) => {
   const name = String(form.elements.namedItem('name')?.value || '').trim();
   const emailField = form.elements.namedItem('email');
@@ -2793,6 +2805,7 @@ function App() {
       form.reset();
       setContactErrors(null);
       setContactStatus('success');
+      trackLeadConversion();
     } catch (error) {
       console.error('Contact form submission failed.', error);
       setContactStatus('error');
