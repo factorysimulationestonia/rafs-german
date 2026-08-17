@@ -1753,9 +1753,9 @@ function ServicesSection({ t, onContactClick }) {
 
   return (
     <section className="min-w-0 overflow-x-clip pb-20 lg:pb-36" id="services">
-      <div className="mb-10 overflow-hidden border-t-4 border-fs-accent bg-black">
-        <div className="relative aspect-[16/9] min-h-[640px] lg:aspect-[16/8.5] lg:min-h-[720px]">
-          <div className="relative z-10 grid h-full w-full min-w-0 max-w-full content-end gap-8 overflow-hidden px-5 py-10 sm:px-8 lg:px-[10vw] lg:py-12">
+      <div className="mb-5 overflow-hidden border-t-4 border-fs-accent bg-black sm:mb-7 lg:mb-10">
+        <div className="relative min-h-[520px] lg:min-h-[560px] xl:min-h-[600px]">
+          <div className="relative z-10 grid h-full w-full min-w-0 max-w-full content-end gap-8 overflow-hidden px-5 pt-16 pb-8 sm:px-8 sm:pt-18 sm:pb-9 lg:px-[10vw] lg:py-12">
             <div className="w-[calc(100vw-2.5rem)] min-w-0 max-w-full sm:w-auto">
               <h2 className={`${h2Class} mb-6`}>{t.servicesTitle}</h2>
               <p className="w-full min-w-0 max-w-2xl whitespace-normal break-words [overflow-wrap:anywhere] text-[clamp(1.08rem,1.6vw,1.35rem)] leading-relaxed text-white/82">{t.servicesIntro}</p>
