@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2026-08-17
+
+### Changed
+- Optimized public raster media to WebP and removed unused large originals from the production asset set.
+- Added responsive desktop and mobile homepage hero video variants.
+- Added responsive and lazy-loading hints for page media.
+
 ## [1.0.2] - 2026-08-07
 
 ### Changed

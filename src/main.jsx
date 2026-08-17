@@ -15,6 +15,7 @@ const lastUpdated = import.meta.env.VITE_LAST_UPDATED || '2026-05-06';
 const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || (import.meta.env.DEV ? '/api/contact.php' : '');
 const leadConversionTarget = 'AW-18241161030/BFTiCOXzvr8cEMaOiPpD';
 const assetPath = (path) => `${basePath}${path.replace(/^\//, '')}`;
+const assetSrcSet = (sources) => sources.map(({ src, width }) => `${assetPath(src)} ${width}w`).join(', ');
 const trackLeadConversion = () => {
   if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
     return;
@@ -89,7 +90,7 @@ const content = {
     projects: [
       {
         title: 'Plastitööstus',
-        image: '/project-plastic.png',
+        image: '/project-plastic.webp',
         problem: 'Uute testimisseadmete mõju tootmisele oli vaja hinnata enne investeeringut, et vältida pudelikohti, seisakuid ja hilisemaid ümberkorraldusi.',
         solution: 'Modelleeriti pistikupesade koostamine, testimine ja pakendamine ning simuleeriti erinevaid tootmisstsenaariume enne seadmete hankimist.',
         results: [
@@ -102,7 +103,7 @@ const content = {
       },
       {
         title: 'Rasketööstus',
-        image: '/project-heavy.png',
+        image: '/project-heavy.webp',
         problem: '18 000 m² tootmishoone ümberplaneerimine nõudis täpset ülevaadet olemasolevast keskkonnast ja kindlust, et uued seadmete paigutused toimivad enne füüsilist paigaldust.',
         solution: 'Kogu tehas laserskaneeriti, loodi täpne DWG alus ning simuleeriti erinevaid layouti ja logistika stsenaariume.',
         results: [
@@ -115,8 +116,8 @@ const content = {
       },
       {
         title: 'Toiduainetööstus',
-        image: '/project-food.png',
-        imageOverlay: '/project-food2.png',
+        image: '/project-food.webp',
+        imageOverlay: '/project-food2.webp',
         problem: 'Tootmisprotsessis tekkisid ooteajad, ebaühtlane voog ja pudelikohad, mis piirasid läbilaskevõimet ja põhjustasid ebastabiilset tootmisrütmi.',
         solution: 'Modelleeriti kogu tootmisprotsess, analüüsiti kriitilisi etappe ning testiti erinevaid automatiseerimise ja protsessi tasakaalustamise stsenaariume.',
         results: [
@@ -129,7 +130,7 @@ const content = {
       },
       {
         title: 'Laologistika',
-        image: '/project-logistics.png',
+        image: '/project-logistics.webp',
         problem: 'Materjalide liikumine ja siselogistika põhjustasid tarbetut transporti, ooteaegu ja ebaühtlast koormust tootmisprotsessis.',
         solution: 'Simuleeriti AGV/AMR liikumisteekondi, operaatorite töövoogu ja materjalide liikumist eesmärgiga saavutada stabiilne siselogistika ilma füüsiliste katsetusteta.',
         results: [
@@ -142,8 +143,8 @@ const content = {
       },
       {
         title: 'Puidutööstus',
-        image: '/project-pellet.png',
-        imageOverlays: ['/project-pellet2.png', '/project-pellet3.png'],
+        image: '/project-pellet.webp',
+        imageOverlays: ['/project-pellet2.webp', '/project-pellet3.webp'],
         problem: 'Tehasel puudus ajakohane digitaalne ülevaade tootmiskeskkonnast, mis muutis tulevaste arendus- ja investeerimisprojektide planeerimise aeglaseks ja riskantseks.',
         solution: 'Kogu pelletitehas laserskaneeriti ning modelleeriti detailseks digitaalseks mudeliks tootmise visualiseerimiseks, planeerimiseks ja andmete integreerimiseks.',
         results: [
@@ -159,7 +160,7 @@ const content = {
     servicesIntro:
       'Toetame automaatikaintegraatoreid, masinaehitajaid ja tootmisettevõtteid simulatsiooni, robotite võrguvälise programmeerimise ning virtuaalse kasutuselevõtuga –',
     servicesHero: {
-      image: '/analysis1.png',
+      image: '/analysis1.webp',
       imageAlt: 'AutoCAD joonise ja 3D paigutuse võrdlus tõstuki manööverdusanalüüsiga'
     },
     servicesQuestions: [
@@ -238,7 +239,7 @@ const content = {
         ctaPrompt: 'Planeerid uut liini või tehase laiendust?',
         comparisonImages: [
           {
-            src: '/services/planning.png',
+            src: '/services/planning.webp',
             alt: 'Uue tehase ja tootmisliini planeering simulatsioonimudelis'
           }
         ]
@@ -261,13 +262,13 @@ const content = {
         ctaPrompt: 'Tahad leida tootmise tegelikud piirangud?',
         comparisonImages: [
           {
-            src: '/project-food.png',
+            src: '/project-food.webp',
             alt: 'Tootmisliini jõudlusnäitajad ja protsessimudel',
             focus: 'lower'
           }
         ],
         overlayImage: {
-          src: '/project-food2.png',
+          src: '/project-food2.webp',
           alt: 'Tootmisliini tsükli- ja läbivusaja detailne analüüs'
         }
       },
@@ -290,11 +291,11 @@ const content = {
         ctaPrompt: 'Plaanid uut automaatikalahendust?',
         comparisonImages: [
           {
-            src: '/services/comparison-1.png',
+            src: '/services/comparison-1.webp',
             alt: 'Manuaalne tootmisprotsess operaatoritega simulatsioonimudelis'
           },
           {
-            src: '/services/comparison-2.png',
+            src: '/services/comparison-2.webp',
             alt: 'Automatiseeritud robotirakk turvapiirete ja konveieritega simulatsioonimudelis'
           }
         ]
@@ -317,13 +318,13 @@ const content = {
         ctaPrompt: 'Soovid vähendada kohapealset robotiprogrammeerimise aega?',
         comparisonImages: [
           {
-            src: '/services/olp-1.png',
+            src: '/services/olp-1.webp',
             alt: 'Robotite võrguvälise programmeerimise rakumudel virtuaalses keskkonnas',
             imageClassName: '-scale-x-100 bg-[#d8d8d6] object-cover object-[68%_16%]'
           }
         ],
         overlayImage: {
-          src: '/services/olp-2.png',
+          src: '/services/olp-2.webp',
           alt: 'Robotiprogrammi võrguvälise programmeerimise vaade',
           className: 'top-0 right-0 h-[160%] w-[36%] sm:w-[35%] lg:w-[34%]',
           imageClassName: 'h-full w-full object-cover object-top'
@@ -346,7 +347,7 @@ const content = {
         ctaPrompt: 'Valideeri oma süsteem enne käivitust',
         comparisonImages: [
           {
-            src: '/services/vc.png',
+            src: '/services/vc.webp',
             alt: 'Virtuaalse käikuvõtmise süsteemimudel ja juhtloogika valideerimine',
             imageClassName: 'scale-100 bg-[#d6d9dc] object-contain object-top'
           }
@@ -389,9 +390,9 @@ const content = {
     aboutTitle: 'Meist',
     teamTitle: 'Meeskond',
     team: [
-      { name: 'Steven', role: 'Tegevjuht', credentials: 'Mehaanikainsener (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
-      { name: 'Hans', role: 'Simulatsiooniinsener', credentials: 'Tööstustehnika ja juhtimine (MSc)', image: '/team/hans.jpg', linkedin: 'https://www.linkedin.com/in/hjerikson/'  },
-      { name: 'Markus', role: 'Projektiinsener', credentials: 'Robootika ja automaatikainsener (MSc)', image: '/team/markus.jpeg' }
+      { name: 'Steven', role: 'Tegevjuht', credentials: 'Mehaanikainsener (BSc)', image: '/team/steven.webp', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
+      { name: 'Hans', role: 'Simulatsiooniinsener', credentials: 'Tööstustehnika ja juhtimine (MSc)', image: '/team/hans.webp', linkedin: 'https://www.linkedin.com/in/hjerikson/'  },
+      { name: 'Markus', role: 'Projektiinsener', credentials: 'Robootika ja automaatikainsener (MSc)', image: '/team/markus.webp' }
     ],
     partnersTitle: 'Partnerid ja võrgustik',
     reseller: 'Ametlik edasimüüja ja integratsioonipartner',
@@ -423,10 +424,11 @@ const content = {
       ctaButton: 'Räägi spetsialistiga',
       authorizedReseller: 'Ametlik edasimüüja',
       images: {
-        hero: '/wheelme/wheelme_0792.jpg',
-        detail: '/wheelme/_dsc3066.jpg',
-        concept: '/wheelme/wheelme1.png',
-        power: '/wheelme/power station close by.jpg'
+        hero: '/wheelme/wheelme_0792.webp',
+        heroMobile: '/wheelme/wheelme_0792-mobile.webp',
+        detail: '/wheelme/_dsc3066.webp',
+        concept: '/wheelme/wheelme1.webp',
+        power: '/wheelme/power-station-close-by.webp'
       }
     },
     contacts: 'Kontakt',
@@ -673,7 +675,7 @@ const content = {
         category: 'Koolitus',
         date: '19.02 · 26.02 · 05.03 · 12.04',
         sortDate: '2026-04-12',
-        image: '/blog/news1.jpg',
+        image: '/blog/news1.webp',
         excerpt:
           'Läbisime praktilise koolitusprogrammi teemadel tööstusrobotite programmeerimine (offline & online) ning masinnägemise lahenduste rakendamine tootmises. Koolitus keskendus robotite programmeerimisele ja vision-süsteemide kasutamisele automatiseeritud tootmisprotsessides.'
       },
@@ -682,7 +684,7 @@ const content = {
         category: 'Konverents',
         date: '19.03',
         sortDate: '2026-03-19',
-        image: '/blog/news2.png',
+        image: '/blog/news2.webp',
         excerpt:
           'Osalesime Smart Industry konverentsil, kus arutati tööstuse digitaliseerimise, automatiseerimise ja tulevikulahenduste teemadel. Üritusel kuulutati välja ka „Aasta Tehas 2026“.'
       },
@@ -691,7 +693,7 @@ const content = {
         category: 'Partnerlus',
         date: '06.04 – 07.04',
         sortDate: '2026-04-07',
-        image: '/blog/news3.jpeg',
+        image: '/blog/news3.webp',
         excerpt:
           'Külastasime wheel.me tootmisüksust Norras ning osalesime tehnilisel koolitusel autonoomsete mobiilsete robotlahenduste teemal. Tutvusime süsteemide praktiliste kasutusvõimaluste, seadistamise ja erinevate tööstuslike rakendustega.'
       },
@@ -700,7 +702,7 @@ const content = {
         category: 'Seminar',
         date: '22.04',
         sortDate: '2026-04-22',
-        image: '/blog/news4.jpeg',
+        image: '/blog/news4.webp',
         excerpt:
           'Osalesime Soome ja Eesti lehtmetallipäevade raames toimunud masinatööstuse seminaril ja võrgustumisüritusel. Päeva jooksul arutati koostöövõimalusi, tööstuse arengusuundi ning jagati praktilisi kogemusi tootmisvaldkonnast.'
       },
@@ -709,7 +711,7 @@ const content = {
         category: 'Võrgustik',
         date: '06.05',
         sortDate: '2026-05-06',
-        image: '/blog/news5.jpg',
+        image: '/blog/news5.webp',
         excerpt:
           'Osalesime Eesti Masinatööstuse Liidu 90. aastapäeva üritusel, kus kohtusid EML-i liikmed, partnerid ning valdkonna esindajad. Üritus keskendus sektori arengule ja koostööle.'
       }
@@ -757,7 +759,7 @@ const content = {
     projects: [
       {
         title: 'Plastics production',
-        image: '/project-plastic.png',
+        image: '/project-plastic.webp',
         problem: 'The impact of new testing equipment on production had to be assessed before investment to avoid bottlenecks, downtime and later layout changes.',
         solution: 'Socket assembly, testing and packaging were modeled, and different production scenarios were simulated before equipment procurement.',
         results: [
@@ -770,7 +772,7 @@ const content = {
       },
       {
         title: 'Heavy industry',
-        image: '/project-heavy.png',
+        image: '/project-heavy.webp',
         problem: 'Replanning an 18,000 m² production facility required an accurate view of the existing environment and confidence that new equipment layouts would work before physical installation.',
         solution: 'The full factory was laser scanned, an accurate DWG base was created, and different layout and logistics scenarios were simulated.',
         results: [
@@ -783,8 +785,8 @@ const content = {
       },
       {
         title: 'Food industry',
-        image: '/project-food.png',
-        imageOverlay: '/project-food2.png',
+        image: '/project-food.webp',
+        imageOverlay: '/project-food2.webp',
         problem: 'Waiting times, uneven flow and bottlenecks in the production process limited throughput and created an unstable production rhythm.',
         solution: 'The full production process was modeled, critical steps were analyzed, and different automation and process-balancing scenarios were tested.',
         results: [
@@ -797,7 +799,7 @@ const content = {
       },
       {
         title: 'Warehouse logistics',
-        image: '/project-logistics.png',
+        image: '/project-logistics.webp',
         problem: 'Material movement and internal logistics caused unnecessary transport, waiting times and uneven workload in the production process.',
         solution: 'AGV/AMR routes, operator workflows and material movement were simulated to achieve stable internal logistics without physical trial runs.',
         results: [
@@ -810,8 +812,8 @@ const content = {
       },
       {
         title: 'Pellet factory',
-        image: '/project-pellet.png',
-        imageOverlays: ['/project-pellet2.png', '/project-pellet3.png'],
+        image: '/project-pellet.webp',
+        imageOverlays: ['/project-pellet2.webp', '/project-pellet3.webp'],
         problem: 'The factory lacked an up-to-date digital overview of the production environment, making future development and investment planning slow and risky.',
         solution: 'The entire pellet factory was laser scanned and modeled into a detailed digital model for production visualization, planning and data integration.',
         results: [
@@ -827,7 +829,7 @@ const content = {
     servicesIntro:
       'We support automation integrators, machine builders and manufacturers with simulation, offline robot programming and virtual commissioning—from early concept validation to physical implementation.',
     servicesHero: {
-      image: '/analysis1.png',
+      image: '/analysis1.webp',
       imageAlt: 'AutoCAD drawing and 3D layout comparison with forklift maneuverability analysis'
     },
     servicesQuestions: [
@@ -907,7 +909,7 @@ const content = {
         ctaPrompt: 'Planning a new line or factory expansion?',
         comparisonImages: [
           {
-            src: '/services/planning.png',
+            src: '/services/planning.webp',
             alt: 'New factory and production-line layout in a simulation model'
           }
         ]
@@ -930,13 +932,13 @@ const content = {
         ctaPrompt: 'Want to find the real production constraints?',
         comparisonImages: [
           {
-            src: '/project-food.png',
+            src: '/project-food.webp',
             alt: 'Production-line performance metrics and process model',
             focus: 'lower'
           }
         ],
         overlayImage: {
-          src: '/project-food2.png',
+          src: '/project-food2.webp',
           alt: 'Detailed production-line cycle-time and lead-time analysis'
         }
       },
@@ -959,11 +961,11 @@ const content = {
         ctaPrompt: 'Planning a new automation solution?',
         comparisonImages: [
           {
-            src: '/services/comparison-1.png',
+            src: '/services/comparison-1.webp',
             alt: 'Manual production process with operators in a simulation model'
           },
           {
-            src: '/services/comparison-2.png',
+            src: '/services/comparison-2.webp',
             alt: 'Automated robot cell with safety fencing and conveyors in a simulation model'
           }
         ]
@@ -986,13 +988,13 @@ const content = {
         ctaPrompt: 'Ready to reduce on-site robot programming time?',
         comparisonImages: [
           {
-            src: '/services/olp-1.png',
+            src: '/services/olp-1.webp',
             alt: 'Offline robot programming cell model in a virtual environment',
             imageClassName: '-scale-x-100 bg-[#d8d8d6] object-cover object-[68%_16%]'
           }
         ],
         overlayImage: {
-          src: '/services/olp-2.png',
+          src: '/services/olp-2.webp',
           alt: 'Offline robot programming program view',
           className: 'top-0 right-0 h-[160%] w-[36%] sm:w-[35%] lg:w-[34%]',
           imageClassName: 'h-full w-full object-cover object-top'
@@ -1015,7 +1017,7 @@ const content = {
         ctaPrompt: 'Validate your system before startup',
         comparisonImages: [
           {
-            src: '/services/vc.png',
+            src: '/services/vc.webp',
             alt: 'Virtual commissioning system model and control-logic validation',
             imageClassName: 'scale-100 bg-[#d6d9dc] object-contain object-top'
           }
@@ -1058,9 +1060,9 @@ const content = {
     aboutTitle: 'About',
     teamTitle: 'Team',
     team: [
-      { name: 'Steven', role: 'CEO', credentials: 'Mechanical engineer (BSc)', image: '/team/steven.jpg', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
-      { name: 'Hans', role: 'Simulation engineer', credentials: 'Industrial engineering and management (MSc)', image: '/team/hans.jpg' },
-      { name: 'Markus', role: 'Project engineer', credentials: 'Robotics and automation engineer (MSc)', image: '/team/markus.jpeg' }
+      { name: 'Steven', role: 'CEO', credentials: 'Mechanical engineer (BSc)', image: '/team/steven.webp', linkedin: 'https://www.linkedin.com/in/steven-strandberg/' },
+      { name: 'Hans', role: 'Simulation engineer', credentials: 'Industrial engineering and management (MSc)', image: '/team/hans.webp' },
+      { name: 'Markus', role: 'Project engineer', credentials: 'Robotics and automation engineer (MSc)', image: '/team/markus.webp' }
     ],
     partnersTitle: 'Partners and network',
     reseller: 'Official reseller and integration partner',
@@ -1092,10 +1094,11 @@ const content = {
       ctaButton: 'Talk to a specialist',
       authorizedReseller: 'Authorized reseller',
       images: {
-        hero: '/wheelme/wheelme_0792.jpg',
-        detail: '/wheelme/_dsc3066.jpg',
-        concept: '/wheelme/wheelme1.png',
-        power: '/wheelme/power station close by.jpg'
+        hero: '/wheelme/wheelme_0792.webp',
+        heroMobile: '/wheelme/wheelme_0792-mobile.webp',
+        detail: '/wheelme/_dsc3066.webp',
+        concept: '/wheelme/wheelme1.webp',
+        power: '/wheelme/power-station-close-by.webp'
       }
     },
     contacts: 'Contacts',
@@ -1344,7 +1347,7 @@ const content = {
         category: 'Training',
         date: '19.02 · 26.02 · 05.03 · 12.04',
         sortDate: '2026-04-12',
-        image: '/blog/news1.jpg',
+        image: '/blog/news1.webp',
         excerpt:
           'We completed a practical training program covering industrial robot programming (offline and online) and the application of machine vision solutions in production. The training focused on robot programming and the use of vision systems in automated production processes.'
       },
@@ -1353,7 +1356,7 @@ const content = {
         category: 'Conference',
         date: '19.03',
         sortDate: '2026-03-19',
-        image: '/blog/news2.png',
+        image: '/blog/news2.webp',
         excerpt:
           'We attended the Smart Industry conference, where industrial digitalization, automation and future solutions were discussed. The event also included the announcement of “Factory of the Year 2026”.'
       },
@@ -1362,7 +1365,7 @@ const content = {
         category: 'Partnership',
         date: '06.04 – 07.04',
         sortDate: '2026-04-07',
-        image: '/blog/news3.jpeg',
+        image: '/blog/news3.webp',
         excerpt:
           'We visited wheel.me’s production facility in Norway and took part in technical training on autonomous mobile robot solutions. The visit covered practical use cases, configuration and different industrial applications.'
       },
@@ -1371,7 +1374,7 @@ const content = {
         category: 'Seminar',
         date: '22.04',
         sortDate: '2026-04-22',
-        image: '/blog/news4.jpeg',
+        image: '/blog/news4.webp',
         excerpt:
           'We participated in a machinery industry seminar and networking event held as part of the Finnish and Estonian Sheet Metal Days. The day focused on cooperation opportunities, industry development trends and practical production experience.'
       },
@@ -1380,7 +1383,7 @@ const content = {
         category: 'Network',
         date: '06.05',
         sortDate: '2026-05-06',
-        image: '/blog/news5.jpg',
+        image: '/blog/news5.webp',
         excerpt:
           'We attended the 90th anniversary event of the Federation of Estonian Engineering Industry, bringing together EML members, partners and industry representatives. The event focused on sector development and cooperation.'
       }
@@ -1439,7 +1442,7 @@ const getSearchPath = (language, query) => `${getPagePath(language)}?q=${encodeU
 
 const getLanguagePath = (language, hash = window.location.hash) => getPagePath(language, 'home', hash);
 const softwareBrands = {
-  'Visual Components': [{ src: '/software/visual-components.png', className: 'max-h-14 max-w-16' }],
+  'Visual Components': [{ src: '/software/visual-components.webp', className: 'max-h-14 max-w-16' }],
   AutoCAD: [{ src: '/software/autocad.svg', className: 'max-h-14 max-w-16' }],
   AutoTURN: [{ src: '/software/autoturn.svg', className: 'max-h-13 max-w-36' }],
   'ABB RobotStudio': [{ src: '/software/abb-robotstudio.svg', className: 'max-h-14 max-w-20' }],
@@ -1449,21 +1452,21 @@ const softwareBrands = {
   Unity: [{ src: '/software/unity.svg', className: 'max-h-14 max-w-16' }]
 };
 const partners = [
-  { name: 'EML', logo: '/logo-partner-eml.png', bare: true, imageClassName: 'brightness-0 invert' },
-  { name: 'AI & Robotics Estonia', logo: '/logo-partner-aire-transparent.png', bare: true, large: true },
-  { name: 'TalTech', logo: '/logo-partner-taltech.png', bare: true },
-  { name: 'Flowit', logo: '/logo-partner-flowit.png', bare: true },
+  { name: 'EML', logo: '/logo-partner-eml.webp', bare: true, imageClassName: 'brightness-0 invert' },
+  { name: 'AI & Robotics Estonia', logo: '/logo-partner-aire-transparent.webp', bare: true, large: true },
+  { name: 'TalTech', logo: '/logo-partner-taltech.webp', bare: true },
+  { name: 'Flowit', logo: '/logo-partner-flowit.webp', bare: true },
   { name: 'CADRäk', logo: '/logo-partner-cadrak.svg', href: 'https://www.cadrak.com/en', bare: true }
 ];
 const clientLogos = [
-  { name: 'Kohila Vineer', logo: '/kliendid/kohila-vineer_transparent_carousel.png' },
-  { name: 'M ja P Nurst', logo: '/kliendid/m-ja-p-nurst_transparent_carousel.png' },
-  { name: 'Mainor Ülemiste', logo: '/kliendid/mainor-ulemiste_transparent_carousel.png' },
-  { name: 'Smitech', logo: '/kliendid/smitech_transparent_carousel.png' },
-  { name: 'Warmeston', logo: '/kliendid/warmeston_transparent_carousel.png' },
-  { name: 'Ecopress Waste System OÜ', logo: '/kliendid/ecopress-waste-system-ou_transparent_carousel.png' },
-  { name: 'Upgreat OÜ', logo: '/kliendid/upgreat-ou_transparent_carousel.png' },
-  { name: 'Sark Robotics OÜ', logo: '/kliendid/sark-robotics-ou_transparent_carousel.png' }
+  { name: 'Kohila Vineer', logo: '/kliendid/kohila-vineer_transparent_carousel.webp' },
+  { name: 'M ja P Nurst', logo: '/kliendid/m-ja-p-nurst_transparent_carousel.webp' },
+  { name: 'Mainor Ülemiste', logo: '/kliendid/mainor-ulemiste_transparent_carousel.webp' },
+  { name: 'Smitech', logo: '/kliendid/smitech_transparent_carousel.webp' },
+  { name: 'Warmeston', logo: '/kliendid/warmeston_transparent_carousel.webp' },
+  { name: 'Ecopress Waste System OÜ', logo: '/kliendid/ecopress-waste-system-ou_transparent_carousel.webp' },
+  { name: 'Upgreat OÜ', logo: '/kliendid/upgreat-ou_transparent_carousel.webp' },
+  { name: 'Sark Robotics OÜ', logo: '/kliendid/sark-robotics-ou_transparent_carousel.webp' }
 ];
 
 function ClientLogoCarousel({ title, intro }) {
@@ -1582,7 +1585,7 @@ function ClientLogoCarousel({ title, intro }) {
                 key={`${client.name}-${index}`}
                 aria-hidden={isAccessibleCopy ? undefined : 'true'}
               >
-                <img className="max-h-28 w-[108%] max-w-none object-contain sm:max-h-36 sm:w-[112%]" src={assetPath(client.logo)} alt={client.name} draggable="false" />
+                <img className="max-h-28 w-[108%] max-w-none object-contain sm:max-h-36 sm:w-[112%]" src={assetPath(client.logo)} alt={client.name} loading="lazy" decoding="async" draggable="false" />
               </div>
             );
           })}
@@ -2080,7 +2083,7 @@ function SearchPage({ t, language, query, onContactSubmit, onContactInput, conta
             <div className="grid gap-4 md:grid-cols-3">
                 {latestPosts.map((post) => (
                   <article className="grid overflow-hidden bg-white text-black md:grid-rows-[11rem_1fr]" key={post.title}>
-                    <img className="h-44 w-full object-cover md:h-full" src={assetPath(post.image)} alt="" />
+                    <img className="h-44 w-full object-cover md:h-full" src={assetPath(post.image)} alt="" loading="lazy" decoding="async" />
                     <div className="flex min-h-52 flex-col justify-between p-5">
                       <div>
                         <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-fs-accent">{post.category} · {post.date}</p>
@@ -2216,7 +2219,7 @@ function BlogPage({ t, language }) {
             <div className="grid">
               <div>
                 <div className="-mx-7 -mt-7 mb-8 overflow-hidden bg-fs-panel/8 sm:-mx-9 sm:-mt-9">
-                  <img className="block aspect-[16/8.5] w-full object-cover object-center" src={assetPath(post.image)} alt="" />
+                  <img className="block aspect-[16/8.5] w-full object-cover object-center" src={assetPath(post.image)} alt="" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
                 </div>
 
                 <div className="mb-6 grid gap-1 text-xs font-bold uppercase tracking-[0.18em]">
@@ -2379,7 +2382,7 @@ const socialLinks = [
 function ZoomImage({ src, className = '', imageClassName = '', onOpenImage }) {
   return (
     <button className={`relative block cursor-zoom-in border-0 bg-transparent p-0 ${className}`} type="button" onClick={() => onOpenImage(src)}>
-      <img className={imageClassName} src={assetPath(src)} alt="" />
+      <img className={imageClassName} src={assetPath(src)} alt="" loading="lazy" decoding="async" />
       <span className="absolute right-2 bottom-2 grid size-8 place-items-center text-black drop-shadow-[0_1px_2px_rgba(255,255,255,0.65)]" aria-hidden="true">
         <svg className="size-4.5" viewBox="0 0 24 24" fill="none">
           <path d="m20 20-4.2-4.2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -2521,13 +2524,23 @@ function WheelmePage({
                 {t.wheelmePage.ctaButton}
               </a>
               <div className="inline-flex min-h-12 items-center gap-3 border border-white/18 bg-black/50 px-4 py-2">
-                <img className="h-5 w-auto" src={assetPath('/wheelme/wheel.me_logo_white.png')} alt="wheel.me" />
+                <img className="h-5 w-auto" src={assetPath('/wheelme/wheel.me_logo_white.webp')} alt="wheel.me" decoding="async" />
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-white/68">{t.wheelmePage.authorizedReseller}</span>
               </div>
             </div>
           </div>
           <div className="relative mx-auto w-full max-w-xl xl:max-w-none">
-            <img className="aspect-[4/5] max-h-[72vh] w-full object-cover shadow-2xl shadow-black/35 xl:aspect-[5/6]" src={assetPath(t.wheelmePage.images.hero)} alt="" />
+            <img
+              className="aspect-[4/5] max-h-[72vh] w-full object-cover shadow-2xl shadow-black/35 xl:aspect-[5/6]"
+              src={assetPath(t.wheelmePage.images.hero)}
+              srcSet={assetSrcSet([
+                { src: t.wheelmePage.images.heroMobile, width: 820 },
+                { src: t.wheelmePage.images.hero, width: 1400 }
+              ])}
+              sizes="(min-width: 1280px) 42vw, min(100vw, 36rem)"
+              alt=""
+              decoding="async"
+            />
           </div>
         </div>
       </section>
@@ -2922,8 +2935,9 @@ function App() {
         ) : (
           <>
         <section className="relative grid min-h-[680px] items-end overflow-hidden bg-black px-5 pt-20 pb-16 sm:px-8 lg:aspect-video lg:min-h-0 lg:items-center lg:px-[10vw] lg:py-20">
-          <video className="absolute inset-0 h-full w-full object-cover object-right" poster={assetPath('/hero-simulation.svg')} autoPlay muted loop playsInline>
-            <source src={assetPath('/hero.webm')} type="video/webm" />
+          <video className="absolute inset-0 h-full w-full object-cover object-right" poster={assetPath('/hero-simulation.svg')} autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
+            <source media="(max-width: 767px)" src={assetPath('/hero-mobile.webm')} type="video/webm" />
+            <source src={assetPath('/hero-desktop.webm')} type="video/webm" />
           </video>
           <div className="absolute inset-0 bg-[linear-gradient(0deg,#000_0%,rgba(0,0,0,0.9)_18%,rgba(0,0,0,0.5)_42%,rgba(0,0,0,0.06)_72%)] lg:bg-[linear-gradient(90deg,#000_0%,rgba(0,0,0,0.88)_28%,rgba(0,0,0,0.48)_58%,rgba(0,0,0,0.12)_100%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,0,0,0.24)_0%,transparent_38%,transparent_72%,rgba(0,0,0,0.28)_100%)]" />
@@ -2971,7 +2985,7 @@ function App() {
                 <article className="group md:max-w-64" key={person.name}>
                   <div className="mb-5 aspect-[4/5] max-w-48 overflow-hidden border border-fs-accent/35 bg-fs-panel sm:max-w-56 md:max-w-none">
                     {person.image ? (
-                      <img className="h-full w-full object-cover grayscale transition duration-300 group-hover:grayscale-0" src={assetPath(person.image)} alt={person.name} />
+                      <img className="h-full w-full object-cover grayscale transition duration-300 group-hover:grayscale-0" src={assetPath(person.image)} alt={person.name} loading="lazy" decoding="async" />
                     ) : (
                       <div className="grid h-full place-items-center bg-fs-accent/10 text-fs-accent">
                         <PersonIcon />
@@ -3007,10 +3021,10 @@ function App() {
                   <div className={`flex min-h-32 items-center justify-center p-2 ${partner.bare ? 'bg-transparent' : 'bg-white'}`} key={partner.name}>
                     {partner.href ? (
                       <a className="flex h-full w-full items-center justify-center" href={partner.href} target="_blank" rel="noreferrer" aria-label={partner.name}>
-                        <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain ${partner.imageClassName || ''}`} src={assetPath(partner.logo)} alt={partner.name} />
+                        <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain ${partner.imageClassName || ''}`} src={assetPath(partner.logo)} alt={partner.name} loading="lazy" decoding="async" />
                       </a>
                     ) : (
-                    <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain ${partner.imageClassName || ''}`} src={assetPath(partner.logo)} alt={partner.name} />
+                    <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain ${partner.imageClassName || ''}`} src={assetPath(partner.logo)} alt={partner.name} loading="lazy" decoding="async" />
                     )}
                   </div>
                 ))}
@@ -3018,7 +3032,7 @@ function App() {
               <h3 className={h3Class}>{t.reseller}</h3>
               <div className="grid gap-5 sm:grid-cols-[12rem_1fr] sm:items-start lg:max-w-4xl">
                 <a className="flex h-48 items-center justify-center border border-white/18 bg-black/50 p-4" href={getPagePath(language, 'wheelme')} aria-label="wheel.me">
-                  <img className="max-h-30 w-full object-contain" src={assetPath('/wheelme/wheel.me_logo_white.png')} alt="wheel.me" />
+                  <img className="max-h-30 w-full object-contain" src={assetPath('/wheelme/wheel.me_logo_white.webp')} alt="wheel.me" loading="lazy" decoding="async" />
                 </a>
                 <div>
                   <p className="mb-3 text-[clamp(1rem,1.45vw,1.25rem)] leading-snug text-white/92">
