@@ -292,10 +292,18 @@ const content = {
         comparisonImages: [
           {
             src: '/services/comparison-1.webp',
+            sources: [
+              { src: '/services/comparison-1-760.webp', width: 760 },
+              { src: '/services/comparison-1.webp', width: 1054 }
+            ],
             alt: 'Manuaalne tootmisprotsess operaatoritega simulatsioonimudelis'
           },
           {
             src: '/services/comparison-2.webp',
+            sources: [
+              { src: '/services/comparison-2-760.webp', width: 760 },
+              { src: '/services/comparison-2.webp', width: 1054 }
+            ],
             alt: 'Automatiseeritud robotirakk turvapiirete ja konveieritega simulatsioonimudelis'
           }
         ]
@@ -962,10 +970,18 @@ const content = {
         comparisonImages: [
           {
             src: '/services/comparison-1.webp',
+            sources: [
+              { src: '/services/comparison-1-760.webp', width: 760 },
+              { src: '/services/comparison-1.webp', width: 1054 }
+            ],
             alt: 'Manual production process with operators in a simulation model'
           },
           {
             src: '/services/comparison-2.webp',
+            sources: [
+              { src: '/services/comparison-2-760.webp', width: 760 },
+              { src: '/services/comparison-2.webp', width: 1054 }
+            ],
             alt: 'Automated robot cell with safety fencing and conveyors in a simulation model'
           }
         ]
@@ -1678,6 +1694,8 @@ function ServiceCase({ service, labels, cta, index, id, refCallback, onContactCl
                         : 'scale-[1.08] object-center')
                   }`}
                   src={assetPath(image.src)}
+                  srcSet={image.sources ? assetSrcSet(image.sources) : undefined}
+                  sizes={hasComparisonPair ? '(min-width: 640px) 50vw, 100vw' : '100vw'}
                   alt={image.alt}
                   loading="lazy"
                   decoding="async"
