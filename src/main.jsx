@@ -1480,6 +1480,7 @@ const clientLogos = [
   { name: 'Mainor Ülemiste', logo: '/kliendid/mainor-ulemiste_transparent_carousel.webp' },
   { name: 'Smitech', logo: '/kliendid/smitech_transparent_carousel.webp' },
   { name: 'Warmeston', logo: '/kliendid/warmeston_transparent_carousel.webp' },
+  { name: 'Plastotec', logo: '/kliendid/plastotec_transparent_carousel.webp' },
   { name: 'Ecopress Waste System OÜ', logo: '/kliendid/ecopress-waste-system-ou_transparent_carousel.webp' },
   { name: 'Upgreat OÜ', logo: '/kliendid/upgreat-ou_transparent_carousel.webp' },
   { name: 'Sark Robotics OÜ', logo: '/kliendid/sark-robotics-ou_transparent_carousel.webp' }
