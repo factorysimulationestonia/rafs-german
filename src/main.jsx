@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { version as appVersion } from '../package.json';
 import './styles.css';
 
 const sectionClass = 'px-5 py-20 sm:px-8 lg:px-[10vw] lg:py-36';
@@ -3118,7 +3119,7 @@ function App() {
         </div>
         <div>
           <p className="m-0 text-white/70">Factory Simulation & Digital Twin solutions</p>
-          <p className="mt-2 mb-0 text-xs text-white/45">Last updated {lastUpdated} · {buildCommit}</p>
+          <p className="mt-2 mb-0 text-xs text-white/45">Last updated {lastUpdated} · {buildCommit} · v{appVersion}</p>
         </div>
       </footer>
       <ImageLightbox image={lightboxImage} onClose={() => setLightboxImage(null)} />
