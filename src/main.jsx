@@ -1409,7 +1409,7 @@ const content = {
 };
 
 const anchors = ['services', 'about', 'blog', 'wheelme'];
-const pageRoutes = ['blog', 'wheelme', 'privacy', 'factory-simulation-faq'];
+const pageRoutes = ['blog', 'wheelme', 'privacy', 'factory-simulation-faq', 'brand'];
 const languages = ['et', 'en'];
 const languagePreferenceKey = 'factorySimulationLanguage';
 
@@ -1444,13 +1444,18 @@ const getLanguageFromPath = () => {
 };
 
 const getRouteFromPath = () => {
-  const page = getPathWithoutBase().split('/').filter(Boolean)[1];
+  const parts = getPathWithoutBase().split('/').filter(Boolean);
+  const page = languages.includes(parts[0]) ? parts[1] : parts[0];
   return pageRoutes.includes(page) ? page : 'home';
 };
 
 const getSearchQuery = () => new URLSearchParams(window.location.search).get('q')?.trim() || '';
 
 const getPagePath = (language, page = 'home', hash = '') => {
+  if (page === 'brand') {
+    return `${basePath}brand/${hash || ''}`;
+  }
+
   const pagePath = pageRoutes.includes(page) ? `${page}/` : '';
   return `${basePath}${language}/${pagePath}${hash || ''}`;
 };
@@ -2213,6 +2218,178 @@ function SearchPage({ t, language, query, onContactSubmit, onContactInput, conta
   );
 }
 
+const brandColors = [
+  { name: 'Factory Black', value: '#000000', text: '#ffffff', role: 'Primary background' },
+  { name: 'Graphite', value: '#111111', text: '#ffffff', role: 'Secondary surface' },
+  { name: 'Industrial Panel', value: '#262626', text: '#ffffff', role: 'Panels and framed media' },
+  { name: 'Simulation Gold', value: '#e2ab19', text: '#000000', role: 'Primary brand accent' },
+  { name: 'Logo Gold', value: '#dca41c', text: '#000000', role: 'Logo artwork' },
+  { name: 'Consultation Green', value: '#8fd6a3', text: '#000000', role: 'Consultation and action states' },
+  { name: 'Result Purple', value: '#8f83d8', text: '#ffffff', role: 'Validated results and highlights' }
+];
+
+const brandVoiceUse = [
+  'Clear claims tied to validation, risk reduction, cycle time, throughput, layout, automation, and commissioning.',
+  'Concrete outcomes: fewer costly changes, faster project launch, better investment decisions, verified capacity.',
+  'Calm confidence with short, structured copy that is easy to scan.'
+];
+
+const brandVoiceAvoid = [
+  'Decorative or lifestyle-heavy language.',
+  'Overpromising exact savings without project evidence.',
+  'Making simulation sound like a visual gimmick instead of an engineering decision tool.'
+];
+
+function BrandPage({ language }) {
+  return (
+    <div className="bg-black text-white">
+      <section className="relative grid min-h-[72vh] content-center gap-9 overflow-hidden border-b-3 border-fs-accent px-5 py-18 sm:px-8 lg:px-[10vw] lg:py-24">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(226,171,25,0.16)_1px,transparent_0),linear-gradient(135deg,#000_0%,#111_46%,#262626_100%)] bg-[length:34px_34px,auto]" aria-hidden="true" />
+        <div className="relative z-10">
+          <nav className="mb-10 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-white/45" aria-label="Breadcrumb">
+            <a className="text-white/55 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'home')}>
+              {content[language].breadcrumbHome}
+            </a>
+            <span className="text-fs-accent" aria-hidden="true">
+              /
+            </span>
+            <span className="text-fs-accent">Brand</span>
+          </nav>
+          <img className="mb-10 block h-auto w-[min(20rem,70vw)]" src={assetPath('/logo.svg')} alt="Factory Simulation" decoding="async" />
+          <div className="max-w-5xl">
+            <p className="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-fs-accent">Brand Identity</p>
+            <h1 className="mb-7 text-[clamp(2.75rem,7vw,5.75rem)] leading-none font-semibold">From concept to a confident investment decision</h1>
+            <p className="max-w-4xl text-[clamp(1.15rem,2vw,1.65rem)] leading-snug text-white/76">
+              A dark, technical, industrial identity for production simulation, digital twins, factory planning, automation validation, and virtual commissioning.
+            </p>
+          </div>
+          <div className="mt-9 flex flex-wrap gap-3.5">
+            <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent bg-fs-accent px-5 py-3 font-bold text-black no-underline transition hover:bg-white" href={assetPath('/logo.svg')}>
+              Download logo
+            </a>
+            <a className="inline-flex min-h-12 items-center justify-center border border-fs-accent px-5 py-3 font-bold text-white no-underline transition hover:bg-fs-accent hover:text-black" href={assetPath('/social-preview.png')}>
+              Social preview
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className={sectionClass}>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,1.1fr)] lg:gap-[7vw]">
+          <div>
+            <h2 className={h2Class}>Brand Core</h2>
+            <div className="grid gap-5 text-[clamp(1.05rem,1.6vw,1.32rem)] leading-relaxed text-white/76">
+              <p className="m-0"><span className="font-bold text-white">Company name:</span> Factory Simulation</p>
+              <p className="m-0"><span className="font-bold text-white">Legal name:</span> Factory Simulation OÜ</p>
+              <p className="m-0"><span className="font-bold text-white">Primary descriptor:</span> Digital twin solutions for production, factory planning, simulation, automation validation, and virtual commissioning.</p>
+              <p className="m-0"><span className="font-bold text-white">Short positioning:</span> Factory Simulation helps manufacturers and integrators validate production decisions virtually before expensive physical changes.</p>
+            </div>
+          </div>
+          <div className="border-t-4 border-fs-accent bg-white p-7 text-black sm:p-9">
+            <h3 className="mb-5 text-[clamp(1.8rem,3vw,3.2rem)] leading-none font-normal text-fs-panel">Brand Promise</h3>
+            <p className="mb-5 text-[clamp(1.35rem,2.2vw,2.1rem)] leading-tight font-semibold">From concept to a confident investment decision.</p>
+            <p className="m-0 text-lg leading-relaxed text-fs-panel/74">
+              Factory Simulation reduces implementation risk by testing layouts, material flows, robot cells, PLC logic, throughput, and production concepts before installation or commissioning.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className={`${sectionClass} border-y border-fs-line bg-black/50`}>
+        <h2 className={h2Class}>Logo</h2>
+        <div className="grid gap-8 lg:grid-cols-[minmax(280px,0.85fr)_minmax(0,1fr)] lg:items-start">
+          <div className="grid min-h-72 place-items-center border border-white/16 bg-fs-panel p-8">
+            <img className="w-full max-w-sm" src={assetPath('/logo.svg')} alt="Factory Simulation" loading="lazy" decoding="async" />
+          </div>
+          <div className="grid gap-5 text-lg leading-relaxed text-white/76">
+            <p className="m-0">Use the SVG logo wherever possible. Place it on black or very dark industrial backgrounds.</p>
+            <p className="m-0">Keep clear space around the mark equal to at least the height of the gold FS block inside the logo.</p>
+            <p className="m-0">Do not recolor, stretch, rotate, add shadows, place on white tiles, or use over busy imagery without a dark overlay.</p>
+            <div className="grid gap-2 border-t border-white/14 pt-5 text-base text-white/62">
+              <p className="m-0">Digital header: 112 px wide or larger.</p>
+              <p className="m-0">Footer or small placement: 96 px wide or larger.</p>
+              <p className="m-0">Favicon or app icon: use the existing favicon asset.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={sectionClass}>
+        <h2 className={h2Class}>Color System</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {brandColors.map((color) => (
+            <article
+              className="grid min-h-40 content-end border border-white/16 p-4"
+              key={color.name}
+              style={{ backgroundColor: color.value, color: color.text }}
+            >
+              <h3 className="mb-1 text-xl leading-tight font-bold">{color.name}</h3>
+              <p className="m-0 text-sm font-bold uppercase tracking-[0.14em] opacity-70">{color.value}</p>
+              <p className="mt-3 mb-0 text-sm leading-snug opacity-74">{color.role}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={`${sectionClass} border-y border-fs-line bg-fs-panel/48`}>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(320px,1.2fr)] lg:gap-[7vw]">
+          <div>
+            <h2 className={h2Class}>Typography</h2>
+            <p className="max-w-2xl text-[clamp(1.05rem,1.6vw,1.32rem)] leading-relaxed text-white/72">
+              Space Grotesk gives the brand its practical engineering confidence. Use it for headlines, body copy, navigation, labels, and interface text.
+            </p>
+          </div>
+          <div className="grid gap-7">
+            <p className="m-0 text-[clamp(2.5rem,5.8vw,4.8rem)] leading-none font-semibold">Space Grotesk</p>
+            <p className="m-0 text-[clamp(1.25rem,2vw,1.75rem)] leading-snug text-white/78">Headlines are direct and compact. Body copy stays readable, technical, and grounded in production decisions.</p>
+            <p className="m-0 text-sm font-bold uppercase tracking-[0.16em] text-fs-accent">Navigation and labels use modest uppercase tracking</p>
+          </div>
+        </div>
+      </section>
+
+      <section className={sectionClass}>
+        <h2 className={h2Class}>Voice</h2>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <article className="border-t-4 border-fs-accent bg-white p-7 text-black sm:p-8">
+            <h3 className="mb-5 text-2xl font-bold text-fs-panel">Use</h3>
+            <ul className="m-0 grid gap-3 pl-5 text-base leading-relaxed text-fs-panel/76">
+              {brandVoiceUse.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+          <article className="border border-white/16 bg-fs-panel p-7 sm:p-8">
+            <h3 className="mb-5 text-2xl font-bold">Avoid</h3>
+            <ul className="m-0 grid gap-3 pl-5 text-base leading-relaxed text-white/74">
+              {brandVoiceAvoid.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section className={`${sectionClass} border-t border-fs-line`}>
+        <h2 className={h2Class}>Messaging</h2>
+        <div className="grid gap-6 lg:grid-cols-2">
+          <article className="border border-white/16 bg-fs-panel p-7 sm:p-8">
+            <p className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-fs-accent">English</p>
+            <h3 className="mb-4 text-[clamp(1.7rem,3vw,3rem)] leading-tight font-semibold">From concept to a confident investment decision</h3>
+            <p className="mb-6 text-base leading-relaxed text-white/72">We help integrators and manufacturing companies validate automation virtually before installation and commissioning, from robot motion and cycle time to production capacity, PLC logic, and equipment cooperation.</p>
+            <p className="m-0 text-sm font-bold uppercase tracking-[0.16em] text-white/52">Your production engineering partner</p>
+          </article>
+          <article className="border border-white/16 bg-fs-panel p-7 sm:p-8">
+            <p className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-fs-accent">Estonian</p>
+            <h3 className="mb-4 text-[clamp(1.7rem,3vw,3rem)] leading-tight font-semibold">Kontseptsioonist kindla investeerimisotsuseni</h3>
+            <p className="mb-6 text-base leading-relaxed text-white/72">Aitame integraatoritel ja tootmisettevõtetel automatiseerimist enne paigaldust ja käivitamist virtuaalselt valideerida, alates roboti liikumisest ja tsükliajast kuni tootmisvõimekuse, PLC-loogika ning seadmete koostööni.</p>
+            <p className="m-0 text-sm font-bold uppercase tracking-[0.16em] text-white/52">Sinu tootmise insenertehniline partner</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 function BlogPage({ t, language }) {
   return (
     <section className={`${sectionClass} min-h-[calc(100vh-5rem)]`}>
@@ -2643,7 +2820,7 @@ function App() {
   }, [route, searchQuery]);
 
   useEffect(() => {
-    if (!languages.includes(getPathWithoutBase().split('/').filter(Boolean)[0])) {
+    if (route !== 'brand' && !languages.includes(getPathWithoutBase().split('/').filter(Boolean)[0])) {
       window.history.replaceState(null, '', `${getLanguagePath(language, '')}${window.location.search}${window.location.hash}`);
     }
 
@@ -2677,6 +2854,8 @@ function App() {
           : 'News & Blog | Factory Simulation'
         : route === 'factory-simulation-faq'
         ? t.faq.metaTitle
+        : route === 'brand'
+        ? 'Brand Identity | Factory Simulation'
         : language === 'et'
           ? 'Factory Simulation | Tootmise simulatsioonid ja tehase planeerimine'
           : 'Factory Simulation | Digital Twin Solutions';
@@ -2703,6 +2882,8 @@ function App() {
             : 'Factory Simulation news, blog posts and stories about production simulation.'
           : route === 'factory-simulation-faq'
           ? t.faq.metaDescription
+          : route === 'brand'
+          ? 'Factory Simulation brand identity, logo usage, colors, typography, messaging, and visual guidance.'
           : language === 'et'
             ? 'Tootmise simuleerimine, tehase paigutuse planeerimine ja digitaalsed mudelid tööstusettevõtetele.'
             : 'Factory Simulation creates a dynamic view of production with simulations and digital models.'
@@ -2710,11 +2891,14 @@ function App() {
     }
 
     const origin = window.location.origin;
-    const headLinks = [
-      ['canonical', language, `${origin}${getPagePath(language, route)}`],
-      ['alternate', 'et', `${origin}${getPagePath('et', route)}`],
-      ['alternate', 'en', `${origin}${getPagePath('en', route)}`]
-    ];
+    const headLinks =
+      route === 'brand'
+        ? [['canonical', language, `${origin}${getPagePath(language, route)}`]]
+        : [
+            ['canonical', language, `${origin}${getPagePath(language, route)}`],
+            ['alternate', 'et', `${origin}${getPagePath('et', route)}`],
+            ['alternate', 'en', `${origin}${getPagePath('en', route)}`]
+          ];
 
     document.querySelectorAll('link[data-language-link="true"]').forEach((link) => link.remove());
     headLinks.forEach(([rel, hrefLang, href]) => {
@@ -2952,6 +3136,8 @@ function App() {
           <BlogPage t={t} language={language} />
         ) : route === 'factory-simulation-faq' ? (
           <FactorySimulationFaqPage t={t} language={language} onContactClick={navigateToContact} />
+        ) : route === 'brand' ? (
+          <BrandPage language={language} />
         ) : (
           <>
         <section className="relative grid min-h-[680px] items-end overflow-hidden bg-black px-5 pt-20 pb-16 sm:px-8 lg:aspect-video lg:min-h-0 lg:items-center lg:px-[10vw] lg:py-20">

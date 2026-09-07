@@ -18,6 +18,8 @@
 ## Design
 
 - Preserve the dark industrial visual language, Space Grotesk typography, gold accent (`#e2ab19`), and restrained purple result accent (`#8f83d8`).
+- The reusable company brand identity package lives in `brand-identity/`; keep it aligned with future changes to logo usage, colors, typography, voice, or core messaging.
+- The public brand sheet is available at `/brand`; it is intentionally unlinked from main navigation but should stay aligned with `brand-identity/`.
 - Follow existing Tailwind patterns before adding custom CSS.
 - Keep operational sections structured and readable rather than decorative or card-heavy.
 - Use transparent logo assets on dark backgrounds. Do not add white logo tiles unless explicitly requested.

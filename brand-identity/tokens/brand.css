@@ -1,0 +1,84 @@
+:root {
+  --fs-font-sans: "Space Grotesk", Helvetica, Arial, sans-serif;
+  --fs-font-display: "Space Grotesk", Helvetica, Arial, sans-serif;
+
+  --fs-color-black: #000000;
+  --fs-color-graphite: #111111;
+  --fs-color-panel: #262626;
+  --fs-color-white: #ffffff;
+  --fs-color-muted-white: rgba(255, 255, 255, 0.72);
+  --fs-color-accent: #e2ab19;
+  --fs-color-logo-gold: #dca41c;
+  --fs-color-consult: #8fd6a3;
+  --fs-color-result: #8f83d8;
+  --fs-color-line: rgba(226, 171, 25, 0.72);
+
+  --fs-radius-none: 0;
+  --fs-radius-small: 4px;
+  --fs-radius-medium: 8px;
+
+  --fs-space-1: 4px;
+  --fs-space-2: 8px;
+  --fs-space-3: 12px;
+  --fs-space-4: 16px;
+  --fs-space-5: 20px;
+  --fs-space-6: 24px;
+  --fs-space-8: 32px;
+  --fs-space-10: 40px;
+  --fs-space-14: 56px;
+  --fs-space-20: 80px;
+
+  --fs-text-small: 0.875rem;
+  --fs-text-body: 1rem;
+  --fs-text-large: 1.25rem;
+  --fs-text-card-title: 1.5rem;
+  --fs-text-section: clamp(2.7rem, 6vw, 5.6rem);
+  --fs-text-hero: clamp(2.3rem, 4.8vw, 5.4rem);
+
+  --fs-line-tight: 1.02;
+  --fs-line-heading: 1.1;
+  --fs-line-body: 1.45;
+
+  --fs-background-industrial:
+    radial-gradient(circle at 1px 1px, rgba(226, 171, 25, 0.16) 1px, transparent 0),
+    linear-gradient(135deg, #000000 0%, #111111 46%, #262626 100%);
+}
+
+.fs-button-primary {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--fs-color-accent);
+  background: var(--fs-color-accent);
+  color: var(--fs-color-black);
+  font-family: var(--fs-font-sans);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.fs-button-secondary {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--fs-color-accent);
+  background: transparent;
+  color: var(--fs-color-white);
+  font-family: var(--fs-font-sans);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.fs-button-consultation {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(143, 214, 163, 0.78);
+  background: linear-gradient(135deg, #8fd6a3 0%, #d9c46a 100%);
+  color: #07130a;
+  font-family: var(--fs-font-sans);
+  font-weight: 700;
+  text-decoration: none;
+}

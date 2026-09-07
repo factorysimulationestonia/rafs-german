@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Factory Simulation Brand Sheet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="tokens/brand.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--fs-color-black);
+        color: var(--fs-color-white);
+        font-family: var(--fs-font-sans);
+      }
+
+      main {
+        min-height: 100vh;
+        background: var(--fs-background-industrial);
+      }
+
+      section {
+        padding: clamp(32px, 7vw, 96px);
+      }
+
+      .hero {
+        display: grid;
+        min-height: 72vh;
+        align-content: center;
+        gap: 36px;
+        border-bottom: 3px solid var(--fs-color-accent);
+      }
+
+      .logo {
+        width: min(320px, 70vw);
+        height: auto;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 980px;
+        font-size: clamp(44px, 7vw, 92px);
+        line-height: var(--fs-line-tight);
+        font-weight: 600;
+      }
+
+      h2 {
+        margin-bottom: 28px;
+        font-size: clamp(32px, 5vw, 64px);
+        line-height: var(--fs-line-heading);
+        font-weight: 500;
+      }
+
+      .lead {
+        max-width: 850px;
+        color: var(--fs-color-muted-white);
+        font-size: clamp(18px, 2vw, 26px);
+        line-height: 1.35;
+      }
+
+      .actions,
+      .grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .actions a {
+        padding: 12px 18px;
+      }
+
+      .swatch {
+        width: min(180px, 100%);
+        min-height: 140px;
+        display: grid;
+        align-content: end;
+        gap: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        padding: 14px;
+      }
+
+      .swatch strong,
+      .swatch span {
+        display: block;
+      }
+
+      .swatch span {
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 14px;
+      }
+
+      .light-text {
+        color: #000;
+      }
+
+      .light-text span {
+        color: rgba(0, 0, 0, 0.72);
+      }
+
+      .type-demo {
+        display: grid;
+        gap: 20px;
+        max-width: 900px;
+      }
+
+      .type-demo .display {
+        font-size: clamp(40px, 6vw, 76px);
+        line-height: 1.02;
+        font-weight: 600;
+      }
+
+      .type-demo .body {
+        color: var(--fs-color-muted-white);
+        font-size: 20px;
+        line-height: 1.45;
+      }
+
+      .panel {
+        max-width: 980px;
+        border: 1px solid var(--fs-color-line);
+        background: rgba(38, 38, 38, 0.74);
+        padding: clamp(20px, 4vw, 36px);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <img class="logo" src="assets/logo.svg" alt="Factory Simulation" />
+        <div>
+          <h1>From concept to a confident investment decision</h1>
+          <p class="lead">A dark, technical, industrial identity for simulation, digital twins, automation validation, and factory planning.</p>
+        </div>
+        <div class="actions">
+          <a class="fs-button-primary" href="https://factorysimulation.eu/">Primary CTA</a>
+          <a class="fs-button-secondary" href="https://factorysimulation.eu/">Secondary CTA</a>
+          <a class="fs-button-consultation" href="https://factorysimulation.eu/">Consultation CTA</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>Color System</h2>
+        <div class="grid">
+          <div class="swatch" style="background:#000000"><strong>Factory Black</strong><span>#000000</span></div>
+          <div class="swatch" style="background:#111111"><strong>Graphite</strong><span>#111111</span></div>
+          <div class="swatch" style="background:#262626"><strong>Industrial Panel</strong><span>#262626</span></div>
+          <div class="swatch light-text" style="background:#e2ab19"><strong>Simulation Gold</strong><span>#e2ab19</span></div>
+          <div class="swatch light-text" style="background:#8fd6a3"><strong>Consultation Green</strong><span>#8fd6a3</span></div>
+          <div class="swatch" style="background:#8f83d8"><strong>Result Purple</strong><span>#8f83d8</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Typography</h2>
+        <div class="type-demo">
+          <p class="display">Space Grotesk for practical engineering confidence.</p>
+          <p class="body">Use short, structured copy tied to risk reduction, validation, cycle time, throughput, automation, and measurable production decisions.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Voice Example</h2>
+        <div class="panel">
+          <h3>Validate production changes before physical implementation</h3>
+          <p class="lead">Factory Simulation helps manufacturers and integrators test layouts, robot cells, material flows, PLC logic, and capacity before expensive installation decisions.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

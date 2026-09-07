@@ -1,0 +1,70 @@
+{
+  "brand": {
+    "name": "Factory Simulation",
+    "legalName": "Factory Simulation OÜ",
+    "url": "https://factorysimulation.eu/",
+    "descriptor": "Factory Simulation & Digital Twin solutions"
+  },
+  "typography": {
+    "fontSans": "\"Space Grotesk\", Helvetica, Arial, sans-serif",
+    "fontDisplay": "\"Space Grotesk\", Helvetica, Arial, sans-serif"
+  },
+  "colors": {
+    "black": {
+      "hex": "#000000",
+      "usage": "Primary background"
+    },
+    "graphite": {
+      "hex": "#111111",
+      "usage": "Secondary dark surface"
+    },
+    "panel": {
+      "hex": "#262626",
+      "usage": "Panels and framed media"
+    },
+    "white": {
+      "hex": "#ffffff",
+      "usage": "Primary text on dark backgrounds"
+    },
+    "accent": {
+      "hex": "#e2ab19",
+      "usage": "Primary brand accent, buttons, separators, highlights"
+    },
+    "logoGold": {
+      "hex": "#dca41c",
+      "usage": "Logo artwork"
+    },
+    "consult": {
+      "hex": "#8fd6a3",
+      "usage": "Consultation and action states"
+    },
+    "result": {
+      "hex": "#8f83d8",
+      "usage": "Validated results and secondary highlights"
+    }
+  },
+  "radii": {
+    "none": "0",
+    "small": "4px",
+    "medium": "8px"
+  },
+  "assets": {
+    "logo": "assets/logo.svg",
+    "favicon": "assets/favicon.png",
+    "socialPreview": "assets/social-preview.png"
+  },
+  "messaging": {
+    "en": {
+      "headline": "From concept to a confident investment decision",
+      "tagline": "Your production engineering partner",
+      "ctaPrimary": "Get a free consultation",
+      "ctaSecondary": "View services"
+    },
+    "et": {
+      "headline": "Kontseptsioonist kindla investeerimisotsuseni",
+      "tagline": "Sinu tootmise insenertehniline partner",
+      "ctaPrimary": "Saa tasuta konsultatsioon",
+      "ctaSecondary": "Vaata teenuseid"
+    }
+  }
+}
