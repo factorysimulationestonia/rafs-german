@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-09-09
+
+### Added
+- Added German as a third supported site language with localized home, services, Wheel.me, FAQ, blog, privacy, search, contact form, metadata, sitemap, and contact-email copy.
+- Added a compact three-language header selector with Estonian, English, and German flag options.
+- Added `german-translations.md` as a proofing sheet for the German copy.
+
 ## [1.0.7] - 2026-09-07
 
 ### Added

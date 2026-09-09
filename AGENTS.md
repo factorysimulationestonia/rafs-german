@@ -2,7 +2,8 @@
 
 ## Project
 
-- This is a bilingual Estonian/English React 19 + Vite + Tailwind CSS v4 website.
+- This is a trilingual Estonian/English/German React 19 + Vite + Tailwind CSS v4 website.
+- German is being prepared as a third supported language for review/demo. Keep German content aligned with Estonian and English when changing localized copy.
 - Most application code and localized content live in `src/main.jsx`.
 - Shared CSS, theme tokens, and custom animations live in `src/styles.css`.
 - Static media and brand assets live under `public/`.

@@ -169,7 +169,36 @@ function sendContactEmail(string $name, string $email, string $message, string $
     $fromAddress = envValue('CONTACT_FROM_ADDRESS', 'website@factorysimulation.eu');
     $recipient = envValue('CONTACT_TO_ADDRESS', 'info@factorysimulation.eu');
     $siteHost = envValue('CONTACT_SITE_HOST', 'factorysimulation.eu');
-    $subjectPrefix = $language === 'et' ? 'Uus projektipäring veebilehelt' : 'New project inquiry from the website';
+    $copy = [
+        'et' => [
+            'subjectPrefix' => 'Uus projektipäring veebilehelt',
+            'heading' => 'Uus projektipäring',
+            'name' => 'Nimi',
+            'language' => 'Keel',
+            'source' => 'Vormi allikas',
+            'submitted' => 'Saadetud',
+            'description' => 'Projekti kirjeldus:',
+        ],
+        'en' => [
+            'subjectPrefix' => 'New project inquiry from the website',
+            'heading' => 'New project inquiry',
+            'name' => 'Name',
+            'language' => 'Language',
+            'source' => 'Form source',
+            'submitted' => 'Submitted',
+            'description' => 'Project description:',
+        ],
+        'de' => [
+            'subjectPrefix' => 'Neue Projektanfrage von der Website',
+            'heading' => 'Neue Projektanfrage',
+            'name' => 'Name',
+            'language' => 'Sprache',
+            'source' => 'Formularquelle',
+            'submitted' => 'Gesendet',
+            'description' => 'Projektbeschreibung:',
+        ],
+    ];
+    $subjectPrefix = $copy[$language]['subjectPrefix'];
     $subject = $subjectPrefix . ': ' . $name . ', ' . $email;
     $submittedAt = gmdate('Y-m-d H:i:s') . ' UTC';
     $sourceLabels = [
@@ -183,18 +212,23 @@ function sendContactEmail(string $name, string $email, string $message, string $
             'wheelme' => 'Wheel.me page contact form',
             'search' => 'Search page contact form',
         ],
+        'de' => [
+            'main' => 'Kontaktformular der Hauptseite',
+            'wheelme' => 'Kontaktformular der Wheel.me-Seite',
+            'search' => 'Kontaktformular der Suchseite',
+        ],
     ];
 
     $body = implode("\n", [
-        $language === 'et' ? 'Uus projektipäring' : 'New project inquiry',
+        $copy[$language]['heading'],
         '',
-        ($language === 'et' ? 'Nimi' : 'Name') . ': ' . $name,
+        $copy[$language]['name'] . ': ' . $name,
         'E-mail: ' . $email,
-        ($language === 'et' ? 'Keel' : 'Language') . ': ' . strtoupper($language),
-        ($language === 'et' ? 'Vormi allikas' : 'Form source') . ': ' . $sourceLabels[$language][$source],
-        ($language === 'et' ? 'Saadetud' : 'Submitted') . ': ' . $submittedAt,
+        $copy[$language]['language'] . ': ' . strtoupper($language),
+        $copy[$language]['source'] . ': ' . $sourceLabels[$language][$source],
+        $copy[$language]['submitted'] . ': ' . $submittedAt,
         '',
-        $language === 'et' ? 'Projekti kirjeldus:' : 'Project description:',
+        $copy[$language]['description'],
         $message,
     ]);
 
@@ -293,7 +327,7 @@ if (
     || filter_var($email, FILTER_VALIDATE_EMAIL) === false
     || textLength($message) < 5
     || textLength($message) > MAX_MESSAGE_LENGTH
-    || !in_array($language, ['et', 'en'], true)
+    || !in_array($language, ['et', 'en', 'de'], true)
     || !in_array($source, ['main', 'wheelme', 'search'], true)
 ) {
     respond(422, ['ok' => false, 'code' => 'validation_failed']);
