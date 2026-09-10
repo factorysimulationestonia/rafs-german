@@ -11,6 +11,7 @@ build/
 .env
 .env.*
 !.env.example
+!.env.german
 
 # Logs
 logs/
@@ -45,5 +46,6 @@ Desktop.ini
 # Temporary files
 *.tmp
 *.temp
+.local-checks/
 
 .tools/

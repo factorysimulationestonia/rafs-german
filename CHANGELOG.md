@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-09-10
+
+### Added
+- Added a standalone German-market site variant with its own header, responsive hero video, contact form, privacy route, and dedicated build mode.
+- Added German-only local and production build commands while retaining the existing translated services, software, clients, team, partners, and FAQ content.
+
+### Changed
+- Restored the main site language selector to Estonian and English only.
+- Configured the GitHub Pages demo workflow to publish the standalone German site.
+- Reused the original footer across the main and German site variants.
+
+### Removed
+- Removed the Wheel.me page, reseller section, and sitemap entry from the German site.
+
 ## [1.1.0] - 2026-09-09
 
 ### Added

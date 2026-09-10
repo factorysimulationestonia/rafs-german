@@ -5,6 +5,8 @@
 - This repository will contain two independently built site variants: the current Estonian/English site and a separate German-market site that may use a different structure and design.
 - German is currently available as a translation of the existing site for review/demo. The redesign will be developed on `german-site-redesign`; keep production unchanged until its own domain and deployment are approved.
 - Follow `docs/german-site-architecture.md` for the agreed repository, deployment, cross-domain language switching, and SEO approach.
+- The separate German composition lives in `src/GermanSite.jsx`. Use `npm run dev:de` to serve it at `/` like a dedicated domain and `npm run build:de` for its standalone bundle. The regular `npm run dev` and `npm run build` commands serve only the ET/EN site.
+- The German site is German-only and has no visible language selector. The main site language selector contains only Estonian and English.
 - Most application code and localized content live in `src/main.jsx`.
 - Shared CSS, theme tokens, and custom animations live in `src/styles.css`.
 - Static media and brand assets live under `public/`.

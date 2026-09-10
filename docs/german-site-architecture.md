@@ -11,7 +11,12 @@ components can remain common to both variants.
 
 ## Repository Shape
 
-The intended structure is:
+The first implementation keeps the separate German composition in
+`src/GermanSite.jsx` and selects it at the application entry point. It is served
+from `/` with the German build mode and is not included as a language path in the
+main ET/EN site.
+
+If the German site grows into several page modules, use this structure:
 
 ```text
 src/
@@ -31,8 +36,6 @@ actually use it.
 - Each site variant gets its own build and deployment target.
 - Domain names and deployment credentials stay in environment variables and
   repository secrets, not application source.
-- Until the German redesign is ready, `/de/` on the demo remains the reviewable
-  translation of the current site.
 
 Suggested build-time configuration:
 
@@ -43,9 +46,9 @@ VITE_MAIN_SITE_ORIGIN=https://www.example.com
 VITE_GERMAN_SITE_ORIGIN=https://www.example.de
 ```
 
-The language switcher should use full cross-domain URLs once the German domain is
-configured. It should link to an equivalent page where one exists and otherwise
-fall back to the destination site's home page.
+The German site is German-only and does not show a language selector. The main
+site keeps its original Estonian/English selector and does not advertise German
+as a third in-place language.
 
 ## SEO Rules
 
@@ -60,7 +63,7 @@ fall back to the destination site's home page.
 ## Delivery Sequence
 
 1. Agree the German audience, offer, page map, and domain.
-2. Build the German site variant on `german-site-redesign` and review it on demo.
+2. Build the German site variant on `german-site-redesign` and review it locally and on the German-only GitHub Pages demo.
 3. Configure the second deployment target and domain.
 4. Add cross-domain language links, canonicals, `hreflang`, sitemaps, and redirects.
 5. Launch the German domain without changing the Estonian/English production site.

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { version as appVersion } from '../package.json';
+import GermanSite from './GermanSite';
 import './styles.css';
 
 const sectionClass = 'px-5 py-20 sm:px-8 lg:px-[10vw] lg:py-36';
@@ -11,6 +12,7 @@ const h3Class = 'mb-5 text-[clamp(1.35rem,2vw,2rem)] leading-tight font-bold';
 const liClass = 'mb-4 text-[clamp(1rem,1.45vw,1.28rem)] leading-snug';
 const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 const basePathPrefix = basePath === '/' ? '' : basePath.replace(/\/$/, '');
+const siteVariant = import.meta.env.VITE_SITE_VARIANT || 'combined';
 const buildCommit = import.meta.env.VITE_COMMIT_SHA || '5ba3d0d';
 const lastUpdated = import.meta.env.VITE_LAST_UPDATED || '2026-05-06';
 const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || (import.meta.env.DEV ? '/api/contact.php' : '');
@@ -2044,11 +2046,10 @@ content.de = {
 
 const anchors = ['services', 'about', 'blog', 'wheelme'];
 const pageRoutes = ['blog', 'wheelme', 'privacy', 'factory-simulation-faq', 'brand'];
-const languages = ['et', 'en', 'de'];
+const languages = ['et', 'en'];
 const languageOptions = [
   { code: 'et', label: 'Eesti', flagSrc: '/ee-flag.svg' },
-  { code: 'en', label: 'English', flagSrc: '/en-flag.svg' },
-  { code: 'de', label: 'Deutsch', flagSrc: '/de-flag.svg' }
+  { code: 'en', label: 'English', flagSrc: '/en-flag.svg' }
 ];
 const languagePreferenceKey = 'factorySimulationLanguage';
 const localizedValue = (values, language) => values[language] || values.en;
@@ -2068,6 +2069,10 @@ const getPathWithoutBase = () => {
 };
 
 const getLanguageFromPath = () => {
+  if (siteVariant === 'de') {
+    return 'de';
+  }
+
   const language = getPathWithoutBase().split('/').filter(Boolean)[0];
 
   if (languages.includes(language)) {
@@ -2097,7 +2102,8 @@ const getPagePath = (language, page = 'home', hash = '') => {
   }
 
   const pagePath = pageRoutes.includes(page) ? `${page}/` : '';
-  return `${basePath}${language}/${pagePath}${hash || ''}`;
+  const languagePath = siteVariant === 'de' && language === 'de' ? '' : `${language}/`;
+  return `${basePath}${languagePath}${pagePath}${hash || ''}`;
 };
 
 const getSearchPath = (language, query) => `${getPagePath(language)}?q=${encodeURIComponent(query.trim())}`;
@@ -3430,6 +3436,128 @@ function WheelmePage({
   );
 }
 
+function GermanFaqContent({ t }) {
+  const navigateToGermanContact = (event) => {
+    event.preventDefault();
+    window.location.href = getPagePath('de', 'home', '#kontakt');
+  };
+
+  return (
+    <div className={`${darkSurfaceClass} text-white`}>
+      <FactorySimulationFaqPage t={t} language="de" onContactClick={navigateToGermanContact} />
+    </div>
+  );
+}
+
+function OriginalFooter({ t, language }) {
+  return (
+    <footer className={`grid items-center gap-8 border-t border-fs-line px-6 py-10 text-white lg:grid-cols-[180px_1fr_auto] lg:px-[7vw] ${darkSurfaceClass}`}>
+      <img className="w-40" src={assetPath('/logo.svg')} alt="Factory Simulation" />
+      <div>
+        <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
+        <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
+        <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'factory-simulation-faq')}>{t.faq.breadcrumb}</a>
+        <a className="block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'privacy')}>{t.privacy.title}</a>
+        <div className="mt-4 flex gap-2" aria-label="Social media">
+          {socialLinks.map(({ name, href, Icon }) => (
+            <a
+              className="grid size-8 place-items-center border border-fs-accent/55 text-fs-accent transition hover:border-white/70 hover:text-white"
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={name}
+              key={name}
+            >
+              <Icon />
+            </a>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p className="m-0 text-white/70">Factory Simulation &amp; Digital Twin solutions</p>
+        <p className="mt-2 mb-0 text-xs text-white/45">Last updated {lastUpdated} · {buildCommit} · v{appVersion}</p>
+      </div>
+    </footer>
+  );
+}
+
+function GermanOriginalSections({ t }) {
+  const navigateToGermanContact = (event) => {
+    event.preventDefault();
+    document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <div className={`${darkSurfaceClass} text-white`}>
+      <ServicesSection t={t} onContactClick={navigateToGermanContact} />
+
+      <SoftwareSection t={t} />
+
+      <ClientLogoCarousel title={t.clientLogosTitle} intro={t.clientLogosIntro} />
+
+      <section className={`${sectionClass} relative min-h-[76vh] overflow-hidden`} id="about">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(0,0,0,0.62)_0%,rgba(0,0,0,0.22)_48%,transparent_100%)]" aria-hidden="true" />
+        <div className="relative z-10">
+          <h2 className={h2Class}>{t.aboutTitle}</h2>
+          <div className="max-w-7xl">
+            <h3 className={h3Class}>{t.teamTitle}</h3>
+            <div className="grid max-w-5xl gap-8 md:grid-cols-3 md:justify-between">
+              {t.team.map((person) => (
+                <article className="group md:max-w-64" key={person.name}>
+                  <div className="mb-5 aspect-[4/5] max-w-48 overflow-hidden border border-fs-accent/35 bg-fs-panel sm:max-w-56 md:max-w-none">
+                    {person.image ? (
+                      <img className="h-full w-full object-cover grayscale transition duration-300 group-hover:grayscale-0" src={assetPath(person.image)} alt={person.name} loading="lazy" decoding="async" />
+                    ) : (
+                      <div className="grid h-full place-items-center bg-fs-accent/10 text-fs-accent">
+                        <PersonIcon />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex items-start justify-between gap-4 border-t border-fs-line pt-4">
+                    <div>
+                      <h4 className="mb-1 text-2xl font-semibold leading-tight text-white">{person.name}</h4>
+                      <p className="mb-2 text-base font-medium leading-snug text-fs-accent">{person.role}</p>
+                      <p className="m-0 text-sm leading-snug text-white/72">{person.credentials}</p>
+                    </div>
+                    {person.linkedin && (
+                      <a
+                        className="grid size-8 shrink-0 place-items-center border border-fs-accent/55 text-fs-accent transition hover:border-white/70 hover:text-white"
+                        href={person.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`${person.name} LinkedIn`}
+                      >
+                        <LinkedinIcon />
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-20 border-t border-fs-line pt-14 lg:mt-28 lg:pt-18">
+              <h3 className={h3Class}>{t.partnersTitle}</h3>
+              <div className="my-7 grid grid-cols-2 items-center gap-4.5 lg:grid-cols-5" aria-label={t.partnersTitle}>
+                {partners.map((partner) => (
+                  <div className={`flex min-h-32 items-center justify-center p-2 ${partner.bare ? 'bg-transparent' : 'bg-white'}`} key={partner.name}>
+                    {partner.href ? (
+                      <a className="flex h-full w-full items-center justify-center" href={partner.href} target="_blank" rel="noreferrer" aria-label={partner.name}>
+                        <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain ${partner.imageClassName || ''}`} src={assetPath(partner.logo)} alt={partner.name} loading="lazy" decoding="async" />
+                      </a>
+                    ) : (
+                      <img className={`${partner.large ? 'max-h-32' : 'max-h-28'} w-full object-contain ${partner.imageClassName || ''}`} src={assetPath(partner.logo)} alt={partner.name} loading="lazy" decoding="async" />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 function App() {
   const [language, setLanguage] = useState(getLanguageFromPath);
   const [route, setRoute] = useState(getRouteFromPath);
@@ -3607,9 +3735,14 @@ function App() {
     }
 
     window.localStorage?.setItem(languagePreferenceKey, nextLanguage);
-    setLanguage(nextLanguage);
     setMenuOpen(false);
-    window.history.pushState(null, '', searchQuery ? getSearchPath(nextLanguage, searchQuery) : getPagePath(nextLanguage, route, route === 'home' ? window.location.hash : ''));
+    const destinationRoute = route;
+    const destinationPath = searchQuery
+      ? getSearchPath(nextLanguage, searchQuery)
+      : getPagePath(nextLanguage, destinationRoute, destinationRoute === 'home' && route === 'home' ? window.location.hash : '');
+
+    setLanguage(nextLanguage);
+    window.history.pushState(null, '', destinationPath);
   };
 
   const focusContactForm = () => {
@@ -3992,36 +4125,28 @@ function App() {
         )}
       </main>
 
-      <footer className={`grid items-center gap-8 border-t border-fs-line px-6 py-10 lg:grid-cols-[180px_1fr_auto] lg:px-[7vw] ${darkSurfaceClass}`}>
-        <img className="w-40" src={assetPath('/logo.svg')} alt="Factory Simulation" />
-        <div>
-          <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
-          <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
-          <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'factory-simulation-faq')}>{t.faq.breadcrumb}</a>
-          <a className="block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'privacy')}>{t.privacy.title}</a>
-          <div className="mt-4 flex gap-2" aria-label="Social media">
-            {socialLinks.map(({ name, href, Icon }) => (
-              <a
-                className="grid size-8 place-items-center border border-fs-accent/55 text-fs-accent transition hover:border-white/70 hover:text-white"
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={name}
-                key={name}
-              >
-                <Icon />
-              </a>
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="m-0 text-white/70">Factory Simulation & Digital Twin solutions</p>
-          <p className="mt-2 mb-0 text-xs text-white/45">Last updated {lastUpdated} · {buildCommit} · v{appVersion}</p>
-        </div>
-      </footer>
+      <OriginalFooter t={t} language={language} />
       <ImageLightbox image={lightboxImage} onClose={() => setLightboxImage(null)} />
     </div>
   );
 }
 
-createRoot(document.getElementById('root')).render(<App />);
+const renderGermanSite = siteVariant === 'de';
+
+createRoot(document.getElementById('root')).render(
+  renderGermanSite ? (
+    <GermanSite
+      assetPath={assetPath}
+      basePath={basePath}
+      contactEndpoint={contactEndpoint}
+      isDedicatedSite={siteVariant === 'de'}
+      footer={<OriginalFooter t={content.de} language="de" />}
+      faqContent={<GermanFaqContent t={content.de} />}
+      t={content.de}
+    >
+      <GermanOriginalSections t={content.de} />
+    </GermanSite>
+  ) : (
+    <App />
+  )
+);

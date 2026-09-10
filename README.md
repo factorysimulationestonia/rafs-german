@@ -2,6 +2,20 @@
 
 ## Local development
 
+### German market site
+
+The German redesign is a separate, German-only site variant in the same
+repository. Run it locally at the root URL with:
+
+```bash
+npm run dev:de
+```
+
+The dedicated production bundle is created with `npm run build:de`. Its mode is
+configured in `.env.german`; add `VITE_GERMAN_SITE_ORIGIN` when the German domain
+has been chosen. See `docs/german-site-architecture.md` for deployment and SEO
+requirements.
+
 ### Contact form testing
 
 The live site sends contact messages through a small PHP endpoint and Zone's local SMTP relay. No SMTP credentials are exposed to the browser.
@@ -40,7 +54,7 @@ git push demo services-update:main
 
 Demo URL: <https://hansojuhan.github.io/fs-home-demo/>
 
-The demo workflow builds with `BASE_PATH=/fs-home-demo/` and copies `dist/index.html` to `dist/404.html`, allowing clean routes such as `/et/` to work on GitHub Pages.
+The demo workflow publishes the standalone German build with `BASE_PATH=/fs-home-demo/` and copies `dist/index.html` to `dist/404.html`, allowing its clean routes to work on GitHub Pages. The demo repository is intentionally separate from the ET/EN production deployment.
 
 Because GitHub Pages cannot run PHP, the demo contact form retains the `mailto:` fallback.
 

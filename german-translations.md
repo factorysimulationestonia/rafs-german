@@ -2,6 +2,57 @@
 
 Source context: Estonian and English site copy in `src/main.jsx`.
 
+The section "German Market Site" contains the separate landing page draft in
+`src/GermanSite.jsx`. It supersedes the translated home page when the dedicated
+German site is launched.
+
+## German Market Site
+
+### Metadata
+- Title: Produktionssimulation und digitale Fabrikplanung | Factory Simulation
+- Description: Produktionssimulation, Fabrikplanung und virtuelle Inbetriebnahme für belastbare Investitionsentscheidungen in der Industrie.
+
+### Navigation
+- Brand line: Engineering-Partner / für Ihre Produktion
+- Navigation: Leistungen / Software / Über uns
+- Contact button: Projekt besprechen
+- The German site has no language selector and is German-only.
+
+### Hero
+- Headline: Vom Konzept zur sicheren Investitionsentscheidung
+- Body: Wir helfen Automatisierungsintegratoren und Produktionsunternehmen, Automatisierung vor Montage und Inbetriebnahme virtuell zu validieren - von Roboterbewegung und Zykluszeiten bis zu Produktionskapazität, PLC-Logik und Zusammenspiel der Anlagen. So können Sie Risiken reduzieren, kostspielige Fehler vermeiden und Zeit und Geld sparen.
+- Primary button: Kostenlose Beratung anfragen
+- Secondary button: Leistungen ansehen
+- Fact 1: Vor der Investition / Varianten objektiv vergleichen
+- Fact 2: Vor der Montage / Abläufe und Kapazität validieren
+- Fact 3: Vor dem Anlauf / Fehler und Verzögerungen reduzieren
+
+### Main Content
+- The middle of the German landing page uses the translated Services, Software, Client logos, About, Team, and Partners sections documented below.
+- The Wheel.me reseller section and `/wheelme/` page are intentionally excluded from the German site.
+
+### Contact
+- Kicker: Erster Schritt
+- Headline: Bringen Sie die offene Produktionsfrage mit.
+- Body: In einem kurzen Gespräch klären wir, welche Entscheidung ansteht, welche Daten vorhanden sind und ob eine Simulation den nächsten Schritt verbessern kann.
+- Fields: Name / E-Mail / Unternehmen / Worum geht es?
+- Submit: Anfrage senden
+- Sending: Wird gesendet...
+- Success: Anfrage gesendet
+- Error: Die Nachricht konnte nicht gesendet werden. Bitte schreiben Sie an info@factorysimulation.eu.
+- Privacy note: Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Beantwortung der Anfrage zu.
+
+### Footer
+- The German site uses the original shared footer.
+- Heading: Kontakt
+- Links: Factory Simulation FAQ / Datenschutzerklärung
+- Company line: Factory Simulation & Digital Twin solutions
+
+### Privacy Page
+- Title: Datenschutzerklärung
+- Intro: Diese Datenschutzerklärung erläutert, wie Factory Simulation OÜ Informationen verarbeitet, die über die Kontaktformulare der Website übermittelt werden.
+- Section headings: Verantwortlicher / Welche Daten wir verarbeiten / Zweck und Rechtsgrundlage / Speicherdauer und Weitergabe / Ihre Rechte
+
 ## Metadata
 
 ### Home
@@ -16,10 +67,6 @@ Source context: Estonian and English site copy in `src/main.jsx`.
 - Title: Datenschutzerklärung | Factory Simulation
 - Description: Datenschutzerklärung von Factory Simulation und Grundsätze zur Verarbeitung von Kontaktformulardaten.
 
-### Wheel.me
-- Title: Autonome interne Logistik mit Wheel.me | Factory Simulation
-- Description: Autonome mobile Roboterlösung von Wheel.me zur Automatisierung interner Logistik in Produktion und Lager.
-
 ### Blog
 - Title: News & Blog | Factory Simulation
 - Description: Factory Simulation News, Blogbeiträge und Geschichten über Produktionssimulation.
@@ -31,7 +78,7 @@ Source context: Estonian and English site copy in `src/main.jsx`.
 ## Shared Navigation
 
 - Language switcher label: Sprache auswählen
-- Navigation: Leistungen / Über uns / News & Blog / Wheel.me
+- Navigation: Leistungen / Über uns / News & Blog
 - Header tagline: Engineering-Partner für Ihre Produktion
 - Contact button: Kostenlose Beratung
 - Footer contacts: Kontakt
@@ -257,34 +304,6 @@ Source context: Estonian and English site copy in `src/main.jsx`.
 - Markus role: Projektingenieur
 - Markus credentials: Robotik- und Automatisierungsingenieur (MSc)
 - Partners title: Partner und Netzwerk
-- Reseller title: Offizieller Vertriebspartner und Integrationspartner
-- Wheel.me text: Wheel.me ist das weltweit erste autonome Rad, das jedes Objekt in einen mobilen Roboter verwandelt
-- Wheel.me prompt: Finden Sie heraus, wie die Wheel.me-Lösung zu Ihren Geschäftsanforderungen passt
-- Wheel.me button: Kontakt aufnehmen
-- Wheel.me learn more: Mehr erfahren
-
-## Wheel.me Page
-
-- Title: Autonome interne Logistik mit Wheel.me
-- Breadcrumb: Wheel.me
-- Reseller text: Factory Simulation ist offizieller Wheel.me-Vertriebspartner und Integrationspartner in Estland.
-- Intro: Die autonome mobile Roboterlösung von Wheel.me ermöglicht es, vorhandene Wagen, Regale, Werkbänke und andere interne Logistikausrüstung in intelligente selbstfahrende Roboter zu verwandeln.
-- Paragraphs:
-  - Das System hilft, Materialtransporte in Produktion und Lager zu automatisieren, ohne komplexe Fördertechnik oder spezielle AMR-Wagen.
-  - Wheel.me-Roboter bewegen sich autonom in einer zuvor kartierten Umgebung, vermeiden Hindernisse und ermöglichen eine flexible und skalierbare interne Logistiklösung. Das System ist für Produktionsunternehmen konzipiert, die manuelle Transporte reduzieren, Arbeitsabläufe optimieren und die Stabilität des Materialflusses verbessern möchten.
-  - In Kombination mit Simulation und Produktionsanalyse hilft Wheel.me, die Auswirkungen autonomer interner Logistik vor einer Investition zu validieren.
-- Benefits title: Die Lösung hilft Ihnen
-- Benefits:
-  - Vorhandene Wagen und Plattformen automatisieren
-  - Zeit für manuelle Transporte reduzieren
-  - Stabilität und Durchsatz des Produktionsflusses erhöhen
-  - Logistikprozesse schnell umkonfigurieren
-  - Die Lösung Schritt für Schritt testen und skalieren
-- CTA title: Finden Sie heraus, ob Wheel.me zu Ihrer Produktion passt
-- CTA text: Lassen Sie uns Ihren Materialfluss, Engpässe und den passenden Umfang für ein Pilotprojekt prüfen.
-- CTA button: Mit einem Spezialisten sprechen
-- Badge: Autorisierter Vertriebspartner
-
 ## Privacy Policy
 
 - Title: Datenschutzerklärung
@@ -464,5 +483,4 @@ Source context: Estonian and English site copy in `src/main.jsx`.
 - Source label: Formularquelle
 - Submitted label: Gesendet
 - Main page source: Kontaktformular der Hauptseite
-- Wheel.me source: Kontaktformular der Wheel.me-Seite
 - Search source: Kontaktformular der Suchseite

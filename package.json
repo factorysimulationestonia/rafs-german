@@ -1,12 +1,14 @@
 {
   "name": "factory-simulation-homepage",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:de": "vite --mode german",
     "dev:contact-api": "node scripts/dev-contact-api.mjs",
     "build": "vite build",
+    "build:de": "vite build --mode german",
     "build:zone": "node scripts/build-zone.mjs",
     "preview": "vite preview"
   },
