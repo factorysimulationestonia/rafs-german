@@ -2,8 +2,9 @@
 
 ## Project
 
-- This is a trilingual Estonian/English/German React 19 + Vite + Tailwind CSS v4 website.
-- German is being prepared as a third supported language for review/demo. Keep German content aligned with Estonian and English when changing localized copy.
+- This repository will contain two independently built site variants: the current Estonian/English site and a separate German-market site that may use a different structure and design.
+- German is currently available as a translation of the existing site for review/demo. The redesign will be developed on `german-site-redesign`; keep production unchanged until its own domain and deployment are approved.
+- Follow `docs/german-site-architecture.md` for the agreed repository, deployment, cross-domain language switching, and SEO approach.
 - Most application code and localized content live in `src/main.jsx`.
 - Shared CSS, theme tokens, and custom animations live in `src/styles.css`.
 - Static media and brand assets live under `public/`.
@@ -11,7 +12,7 @@
 
 ## Content
 
-- Keep Estonian and English content aligned. When changing copy in one language, update the corresponding translation unless the user explicitly asks otherwise.
+- Keep Estonian and English content aligned. German content can diverge to suit the German-market site and should not be forced into the same page structure.
 - Preserve the existing practical, engineering-focused tone. Emphasize production decisions, risk reduction, validation, simulation, automation, and measurable outcomes.
 - Use the terminology already established in nearby content.
 - Do not silently rewrite user-provided copy beyond the requested scope.
