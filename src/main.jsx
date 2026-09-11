@@ -3871,6 +3871,12 @@ function OriginalFooter({ t, language }) {
         <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
         <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'factory-simulation-faq')}>{t.faq.breadcrumb}</a>
         <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'privacy')}>{t.privacy.title}</a>
+        {language === 'de' && (
+          <>
+            <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={`${getPagePath(language)}legal-notice/`}>Rechtliche Hinweise</a>
+            <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={`${getPagePath(language)}impressum/`}>Impressum</a>
+          </>
+        )}
         <button className="block border-0 bg-transparent p-0 text-left text-sm text-white/60 transition hover:text-fs-accent" type="button" onClick={requestPrivacySettings}>
           {(consentContent[language] || consentContent.en).reopen}
         </button>

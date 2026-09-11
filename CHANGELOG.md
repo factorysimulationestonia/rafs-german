@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Added draft German Impressum and legal-notice pages with access from every German footer.
+- Added a German legal-content review sheet for partner and counsel approval.
+
+### Fixed
+- Corrected the company postal code from `4660` to `46607` in all privacy-policy translations.
+
 ## [1.3.1] - 2026-09-11
 
 ### Added

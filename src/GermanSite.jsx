@@ -30,6 +30,115 @@ function GermanPrivacy({ assetPath, homePath, footer, privacy }) {
   );
 }
 
+function GermanLegalDocument({ assetPath, children, homePath, kicker, lead, title, footer }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="de-site">
+      <header className="de-header de-header--solid">
+        <a href={homePath} aria-label="Factory Simulation Startseite">
+          <img src={assetPath('/logo.svg')} alt="Factory Simulation" />
+        </a>
+      </header>
+      <main className="de-legal">
+        <a className="de-back" href={homePath}>← Zurück zur Startseite</a>
+        <p className="de-kicker">{kicker}</p>
+        <h1>{title}</h1>
+        <p className="de-legal__lead">{lead}</p>
+        {children}
+      </main>
+      {footer}
+    </div>
+  );
+}
+
+function GermanImpressum({ assetPath, homePath, footer }) {
+  return (
+    <GermanLegalDocument
+      assetPath={assetPath}
+      homePath={homePath}
+      kicker="Anbieterkennzeichnung"
+      title="Impressum"
+      lead="Angaben zum Anbieter dieser Website."
+      footer={footer}
+    >
+      <section>
+        <h2>Anbieter</h2>
+        <p>
+          Factory Simulation OÜ<br />
+          Rechtsform: Osaühing (estnische Gesellschaft mit beschränkter Haftung)<br />
+          Okka tee 2<br />
+          Piira küla, Vinni vald<br />
+          Lääne-Viru maakond 46607<br />
+          Estland
+        </p>
+      </section>
+      <section>
+        <h2>Vertretungsberechtigte Person</h2>
+        <p>Vorstandsmitglied: Steven Strandberg</p>
+      </section>
+      <section>
+        <h2>Kontakt</h2>
+        <p>
+          Telefon: <a href="tel:+3725118303">+372 511 8303</a><br />
+          E-Mail: <a href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
+        </p>
+      </section>
+      <section>
+        <h2>Registereintrag</h2>
+        <p>
+          Estnisches Handelsregister (Äriregister)<br />
+          Registernummer: 17384619
+        </p>
+      </section>
+      <section>
+        <h2>Umsatzsteuer-Identifikationsnummer</h2>
+        <p>EE102941711</p>
+      </section>
+      <section>
+        <h2>Verantwortlich für den Inhalt</h2>
+        <p>Steven Strandberg, Anschrift wie oben.</p>
+      </section>
+    </GermanLegalDocument>
+  );
+}
+
+function GermanLegalNotice({ assetPath, homePath, footer }) {
+  return (
+    <GermanLegalDocument
+      assetPath={assetPath}
+      homePath={homePath}
+      kicker="Rechtliches"
+      title="Rechtliche Hinweise"
+      lead="Hinweise zur Nutzung und zu den Inhalten dieser Website."
+      footer={footer}
+    >
+      <section>
+        <h2>Informationen auf dieser Website</h2>
+        <p>Die Inhalte dieser Website dienen der allgemeinen Information über unsere Leistungen. Sie stellen kein verbindliches Angebot und keine technische, rechtliche oder wirtschaftliche Beratung für einen konkreten Anwendungsfall dar. Verbindliche Leistungen, Ergebnisse und Termine ergeben sich ausschließlich aus einer individuellen Vereinbarung.</p>
+      </section>
+      <section>
+        <h2>Inhalte und Aktualität</h2>
+        <p>Wir erstellen und pflegen die Inhalte mit angemessener Sorgfalt. Produktions-, Simulations- und Projektergebnisse hängen jedoch von den jeweiligen Eingangsdaten, Annahmen und Rahmenbedingungen ab. Bitte kontaktieren Sie uns, wenn Sie einen Fehler oder eine veraltete Angabe feststellen.</p>
+      </section>
+      <section>
+        <h2>Urheber- und Nutzungsrechte</h2>
+        <p>Texte, Grafiken, Simulationen, Bilder, Videos und sonstige eigene Inhalte dieser Website dürfen nur im gesetzlich zulässigen Umfang oder mit vorheriger Zustimmung von Factory Simulation OÜ verwendet werden. Rechte Dritter bleiben unberührt und werden, soweit erkennbar, entsprechend gekennzeichnet.</p>
+      </section>
+      <section>
+        <h2>Externe Links</h2>
+        <p>Diese Website enthält Links zu externen Angeboten. Für deren Inhalte und Datenschutzpraktiken sind die jeweiligen Anbieter verantwortlich. Wir prüfen externe Links bei ihrer Aufnahme, haben jedoch keinen fortlaufenden Einfluss auf spätere Änderungen fremder Inhalte.</p>
+      </section>
+      <section>
+        <h2>Verfügbarkeit</h2>
+        <p>Wir bemühen uns um einen zuverlässigen Betrieb der Website, können eine jederzeitige unterbrechungs- oder fehlerfreie Verfügbarkeit jedoch nicht gewährleisten.</p>
+      </section>
+    </GermanLegalDocument>
+  );
+}
+
 export default function GermanSite({ assetPath, basePath, contactEndpoint, isDedicatedSite = false, children, footer, faqContent, onLeadConversion, privacyDetails, t }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formStatus, setFormStatus] = useState('idle');
@@ -42,6 +151,9 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
   const activeRoute = isDedicatedSite ? pathParts[0] : pathParts[1];
   const isPrivacy = activeRoute === 'privacy';
   const isFaq = activeRoute === 'factory-simulation-faq';
+  const isImpressum = activeRoute === 'impressum';
+  const isLegalNotice = activeRoute === 'legal-notice';
+  const isLegalPage = isImpressum || isLegalNotice;
   const isRemovedWheelmeRoute = activeRoute === 'wheelme';
 
   useEffect(() => {
@@ -53,7 +165,11 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
   useEffect(() => {
     document.documentElement.lang = 'de';
     document.body.classList.add('de-body');
-    document.title = isPrivacy
+    document.title = isImpressum
+      ? 'Impressum | Factory Simulation'
+      : isLegalNotice
+        ? 'Rechtliche Hinweise | Factory Simulation'
+      : isPrivacy
       ? 'Datenschutzerklärung | Factory Simulation'
       : isFaq
         ? 'Factory Simulation FAQ | Factory Simulation Leistungen'
@@ -62,7 +178,11 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
     const description = document.querySelector('meta[name="description"]');
     description?.setAttribute(
       'content',
-      isPrivacy
+      isImpressum
+        ? 'Impressum und Anbieterkennzeichnung von Factory Simulation OÜ.'
+        : isLegalNotice
+          ? 'Rechtliche Hinweise zur Website von Factory Simulation OÜ.'
+      : isPrivacy
         ? 'Datenschutzerklärung von Factory Simulation OÜ.'
         : isFaq
           ? 'Antworten zu Produktionssimulation, Kapazitätsanalyse, Layoutplanung und digitalen Zwillingen.'
@@ -70,14 +190,30 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
     );
 
     const currentOrigin = germanOrigin || window.location.origin;
-    const canonicalPath = isPrivacy ? privacyPath : isFaq ? (isDedicatedSite ? `${basePath}factory-simulation-faq/` : `${basePath}de/factory-simulation-faq/`) : homePath;
+    const canonicalPath = isImpressum
+      ? (isDedicatedSite ? `${basePath}impressum/` : `${basePath}de/impressum/`)
+      : isLegalNotice
+        ? (isDedicatedSite ? `${basePath}legal-notice/` : `${basePath}de/legal-notice/`)
+        : isPrivacy
+          ? privacyPath
+          : isFaq
+            ? (isDedicatedSite ? `${basePath}factory-simulation-faq/` : `${basePath}de/factory-simulation-faq/`)
+            : homePath;
     const canonicalUrl = `${currentOrigin}${canonicalPath}`;
-    const pageTitle = isPrivacy
+    const pageTitle = isImpressum
+      ? 'Impressum | Factory Simulation'
+      : isLegalNotice
+        ? 'Rechtliche Hinweise | Factory Simulation'
+      : isPrivacy
       ? 'Datenschutzerklärung | Factory Simulation'
       : isFaq
         ? 'Factory Simulation FAQ | Factory Simulation Leistungen'
         : 'Produktionssimulation und digitale Fabrikplanung | Factory Simulation';
-    const pageDescription = isPrivacy
+    const pageDescription = isImpressum
+      ? 'Impressum und Anbieterkennzeichnung von Factory Simulation OÜ.'
+      : isLegalNotice
+        ? 'Rechtliche Hinweise zur Website von Factory Simulation OÜ.'
+      : isPrivacy
       ? 'Datenschutzerklärung von Factory Simulation OÜ.'
       : isFaq
         ? 'Antworten zu Produktionssimulation, Kapazitätsanalyse, Layoutplanung und digitalen Zwillingen.'
@@ -99,7 +235,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
       ['alternate', 'de', canonicalUrl]
     ];
 
-    if (!isPrivacy && resolvedMainSiteOrigin) {
+    if (!isPrivacy && !isLegalPage && resolvedMainSiteOrigin) {
       const normalizedMainOrigin = resolvedMainSiteOrigin.replace(/\/$/, '');
       const alternateRoute = isFaq ? 'factory-simulation-faq/' : '';
       links.push(['alternate', 'et', `${normalizedMainOrigin}/et/${alternateRoute}`]);
@@ -117,7 +253,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
     });
 
     return () => document.body.classList.remove('de-body');
-  }, [basePath, germanOrigin, homePath, isDedicatedSite, isFaq, isPrivacy, privacyPath, resolvedMainSiteOrigin]);
+  }, [basePath, germanOrigin, homePath, isDedicatedSite, isFaq, isImpressum, isLegalNotice, isLegalPage, isPrivacy, privacyPath, resolvedMainSiteOrigin]);
 
   if (isFaq) {
     return (
@@ -135,6 +271,14 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
 
   if (isPrivacy) {
     return <GermanPrivacy assetPath={assetPath} homePath={homePath} footer={footer} privacy={privacyDetails} />;
+  }
+
+  if (isImpressum) {
+    return <GermanImpressum assetPath={assetPath} homePath={homePath} footer={footer} />;
+  }
+
+  if (isLegalNotice) {
+    return <GermanLegalNotice assetPath={assetPath} homePath={homePath} footer={footer} />;
   }
 
   const handleSubmit = async (event) => {
