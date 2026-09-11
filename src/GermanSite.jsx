@@ -84,17 +84,39 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
 
     const currentOrigin = germanOrigin || window.location.origin;
     const canonicalPath = isPrivacy ? privacyPath : isFaq ? (isDedicatedSite ? `${basePath}factory-simulation-faq/` : `${basePath}de/factory-simulation-faq/`) : homePath;
+    const canonicalUrl = `${currentOrigin}${canonicalPath}`;
+    const pageTitle = isPrivacy
+      ? 'Datenschutzerklärung | Factory Simulation'
+      : isFaq
+        ? 'Factory Simulation FAQ | Factory Simulation Leistungen'
+        : 'Produktionssimulation und digitale Fabrikplanung | Factory Simulation';
+    const pageDescription = isPrivacy
+      ? 'Datenschutzerklärung von Factory Simulation OÜ.'
+      : isFaq
+        ? 'Antworten zu Produktionssimulation, Kapazitätsanalyse, Layoutplanung und digitalen Zwillingen.'
+        : 'Produktionssimulation, Fabrikplanung und virtuelle Inbetriebnahme für belastbare Investitionsentscheidungen in der Industrie.';
+
+    const metadata = [
+      ['meta[property="og:title"]', 'content', pageTitle],
+      ['meta[property="og:description"]', 'content', pageDescription],
+      ['meta[property="og:url"]', 'content', canonicalUrl],
+      ['meta[name="twitter:title"]', 'content', pageTitle],
+      ['meta[name="twitter:description"]', 'content', pageDescription]
+    ];
+    metadata.forEach(([selector, attribute, value]) => document.querySelector(selector)?.setAttribute(attribute, value));
+
     document.querySelectorAll('link[data-language-link="true"]').forEach((link) => link.remove());
 
     const links = [
-      ['canonical', '', `${currentOrigin}${canonicalPath}`],
-      ['alternate', 'de', `${currentOrigin}${canonicalPath}`]
+      ['canonical', '', canonicalUrl],
+      ['alternate', 'de', canonicalUrl]
     ];
 
     if (!isPrivacy && resolvedMainSiteOrigin) {
       const normalizedMainOrigin = resolvedMainSiteOrigin.replace(/\/$/, '');
-      links.push(['alternate', 'et', `${normalizedMainOrigin}/et/`]);
-      links.push(['alternate', 'en', `${normalizedMainOrigin}/en/`]);
+      const alternateRoute = isFaq ? 'factory-simulation-faq/' : '';
+      links.push(['alternate', 'et', `${normalizedMainOrigin}/et/${alternateRoute}`]);
+      links.push(['alternate', 'en', `${normalizedMainOrigin}/en/${alternateRoute}`]);
       links.push(['alternate', 'x-default', `${normalizedMainOrigin}/en/`]);
     }
 

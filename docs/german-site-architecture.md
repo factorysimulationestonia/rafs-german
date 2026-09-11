@@ -11,10 +11,10 @@ components can remain common to both variants.
 
 ## Repository Shape
 
-The first implementation keeps the separate German composition in
-`src/GermanSite.jsx` and selects it at the application entry point. It is served
-from `/` with the German build mode and is not included as a language path in the
-main ET/EN site.
+The German composition remains in `src/GermanSite.jsx` and is selected at the
+application entry point. The normal production build serves it under `/de/`,
+while the German build mode serves the same composition from `/` for the demo
+and a future dedicated German domain.
 
 If the German site grows into several page modules, use this structure:
 
@@ -31,9 +31,11 @@ actually use it.
 
 ## URLs And Deployment
 
-- The existing domain continues to serve the Estonian and English site.
-- A separate German domain serves the German site from its root URL.
-- Each site variant gets its own build and deployment target.
+- The existing domain serves the Estonian and English site plus the separate
+  German composition under `/de/`.
+- The normal production build deploys all three languages together for now.
+- The dedicated German build remains available for the demo and a future German
+  domain, where it will serve the German composition from `/`.
 - Domain names and deployment credentials stay in environment variables and
   repository secrets, not application source.
 
@@ -64,9 +66,9 @@ as a third in-place language.
 
 1. Agree the German audience, offer, page map, and domain.
 2. Build the German site variant on `german-site-redesign` and review it locally and on the German-only GitHub Pages demo.
-3. Configure the second deployment target and domain.
-4. Add cross-domain language links, canonicals, `hreflang`, sitemaps, and redirects.
-5. Launch the German domain without changing the Estonian/English production site.
+3. Publish the German composition under `/de/` in the normal production build.
+4. Configure a second deployment target if a German domain is selected.
+5. Update cross-domain canonicals, `hreflang`, sitemaps, and redirects before moving `/de/` to that domain.
 
 ## When To Split Repositories
 

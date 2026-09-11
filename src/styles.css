@@ -29,54 +29,18 @@
   }
 }
 
-@property --cta-border-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
 @layer components {
   .cta-consultation {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    border: 1px solid rgb(143 214 163 / 0.78);
-    background: linear-gradient(135deg, #8fd6a3 0%, #d9c46a 100%);
-    color: #07130a;
-    box-shadow: 0 0 0 1px rgb(143 214 163 / 0.14), 0 12px 28px rgb(143 214 163 / 0.1);
-    transition: border-color 180ms ease, box-shadow 180ms ease, filter 180ms ease, transform 180ms ease;
-  }
-
-  .cta-consultation::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    z-index: 0;
-    padding: 2px;
-    background: conic-gradient(
-      from var(--cta-border-angle),
-      rgb(255 255 255 / 0),
-      rgb(255 255 255 / 0.5),
-      rgb(226 171 25 / 0.34),
-      rgb(255 255 255 / 0) 42%
-    );
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    mask-composite: exclude;
-    animation: cta-border-spin 6s linear infinite;
-    pointer-events: none;
-  }
-
-  .cta-consultation::after {
-    content: none;
+    border: 1px solid #e2ab19;
+    background: #e2ab19;
+    color: #000;
+    transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
   }
 
   .cta-consultation:hover {
-    border-color: rgb(255 255 255 / 0.62);
-    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.16), 0 14px 30px rgb(143 214 163 / 0.15);
-    filter: saturate(1.03);
-    transform: translateY(-1px);
+    border-color: #fff;
+    background: #fff;
+    color: #000;
   }
 
   .cta-consultation:focus-visible {
@@ -624,7 +588,7 @@
     margin-top: 8px;
     border: 1px solid rgb(21 23 19 / 0.58);
     border-radius: 0;
-    background: rgb(255 255 255 / 0.32);
+    background: #fff;
     padding: 13px 14px;
     color: #151713;
     font: inherit;
@@ -963,21 +927,4 @@
     }
   }
 
-  @keyframes cta-border-spin {
-    to {
-      --cta-border-angle: 360deg;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cta-consultation,
-    .cta-consultation::before {
-      animation: none;
-      transition: none;
-    }
-
-    .cta-consultation:hover {
-      transform: none;
-    }
-  }
 }

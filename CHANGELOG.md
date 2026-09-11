@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-09-11
+
+### Added
+- Added the standalone German presentation to the normal production site under `/de/`, including its FAQ and privacy routes.
+- Added German production URLs and route-specific language alternatives for search engines.
+
+### Changed
+- Kept the German-only build mode available for the demo and a future dedicated domain while allowing ET, EN, and German to deploy together.
+- Updated German social metadata to match the active German page.
+- Aligned the main header action heights, moved the language selector to the rightmost position, and changed the German contact fields to white.
+
 ## [1.2.0] - 2026-09-10
 
 ### Added

@@ -70,7 +70,7 @@ const content = {
     },
     heroButton: 'Saa tasuta konsultatsioon',
     heroSecondary: 'Vaata teenuseid',
-    contactButton: 'Tasuta konsultatsioon',
+    contactButton: 'Kontakteeru',
     search: {
       label: 'Otsi',
       placeholder: 'Otsi...',
@@ -748,7 +748,7 @@ const content = {
     },
     heroButton: 'Get a free consultation',
     heroSecondary: 'View services',
-    contactButton: 'Free consultation',
+    contactButton: 'Discuss your project',
     search: {
       label: 'Search',
       placeholder: 'Search for...',
@@ -2687,8 +2687,8 @@ function HeaderSearch({ label, placeholder, initialValue = '', onSearch, onOpenC
   return (
     <form
       ref={formRef}
-      className={`flex min-h-11 items-center overflow-hidden border border-fs-accent/70 transition-[max-width,border-color] duration-200 ease-out lg:min-h-10 ${
-        alwaysOpen ? 'w-full max-w-full' : open ? 'w-full max-w-full lg:max-w-[min(42rem,58vw)]' : 'w-10 max-w-10'
+      className={`flex h-8 items-center overflow-hidden border border-fs-accent/70 transition-[max-width,border-color] duration-200 ease-out ${
+        alwaysOpen ? 'w-full max-w-full' : open ? 'w-full max-w-full lg:max-w-[min(42rem,58vw)]' : 'w-8 max-w-8'
       }`}
       role="search"
       onSubmit={handleSubmit}
@@ -2705,7 +2705,7 @@ function HeaderSearch({ label, placeholder, initialValue = '', onSearch, onOpenC
           onChange={(event) => setValue(event.target.value)}
         />
       )}
-      <button className="grid size-10 shrink-0 place-items-center text-fs-accent transition hover:bg-fs-accent hover:text-black" type="submit" aria-label={label} title={label}>
+      <button className="grid size-8 shrink-0 place-items-center text-fs-accent transition hover:bg-fs-accent hover:text-black" type="submit" aria-label={label} title={label}>
         <SearchIcon />
       </button>
     </form>
@@ -3914,29 +3914,8 @@ function App() {
                 {item.label}
               </a>
             ))}
-            <div className="flex min-h-10 w-fit items-center gap-1 py-3 min-[1180px]:py-0" aria-label={t.languageSwitcherLabel || 'Language'} role="group">
-              {languageOptions.map((option) => {
-                const isCurrentLanguage = option.code === language;
-
-                return (
-                  <button
-                    className={`grid size-8 shrink-0 place-items-center border transition hover:border-fs-accent hover:bg-fs-accent/10 ${
-                      isCurrentLanguage ? 'border-fs-accent bg-fs-accent/14' : 'border-white/22'
-                    }`}
-                    type="button"
-                    onClick={() => switchLanguage(option.code)}
-                    aria-label={`Switch to ${option.label}`}
-                    aria-pressed={isCurrentLanguage}
-                    title={option.label}
-                    key={option.code}
-                  >
-                    <img className="h-4 w-6 object-cover" src={assetPath(option.flagSrc)} alt="" aria-hidden="true" />
-                  </button>
-                );
-              })}
-            </div>
             <a
-              className="cta-consultation mt-3 inline-flex min-h-11 w-fit items-center justify-center whitespace-nowrap px-4 py-2 font-bold no-underline min-[1180px]:mt-0"
+              className="cta-consultation mt-3 inline-flex h-8 w-fit items-center justify-center whitespace-nowrap px-4 font-bold no-underline min-[1180px]:mt-0"
               href={getPagePath(language, 'home', '#contact')}
               onClick={navigateToContact}
             >
@@ -3948,6 +3927,27 @@ function App() {
           </div>
           <div className="hidden min-[1180px]:block">
             <HeaderSearch label={t.search.label} placeholder={t.search.placeholder} initialValue={searchQuery} onSearch={handleSearch} onOpenChange={setDesktopSearchOpen} />
+          </div>
+          <div className="flex min-h-10 w-fit items-center gap-1 py-3 min-[1180px]:py-0" aria-label={t.languageSwitcherLabel || 'Language'} role="group">
+            {languageOptions.map((option) => {
+              const isCurrentLanguage = option.code === language;
+
+              return (
+                <button
+                  className={`grid size-8 shrink-0 place-items-center border transition hover:border-fs-accent hover:bg-fs-accent/10 ${
+                    isCurrentLanguage ? 'border-fs-accent bg-fs-accent/14' : 'border-white/22'
+                  }`}
+                  type="button"
+                  onClick={() => switchLanguage(option.code)}
+                  aria-label={`Switch to ${option.label}`}
+                  aria-pressed={isCurrentLanguage}
+                  title={option.label}
+                  key={option.code}
+                >
+                  <img className="h-4 w-6 object-cover" src={assetPath(option.flagSrc)} alt="" aria-hidden="true" />
+                </button>
+              );
+            })}
           </div>
         </nav>
       </header>
@@ -4131,7 +4131,9 @@ function App() {
   );
 }
 
-const renderGermanSite = siteVariant === 'de';
+const isDedicatedGermanSite = siteVariant === 'de';
+const isGermanPath = !isDedicatedGermanSite && getPathWithoutBase().split('/').filter(Boolean)[0] === 'de';
+const renderGermanSite = isDedicatedGermanSite || isGermanPath;
 
 createRoot(document.getElementById('root')).render(
   renderGermanSite ? (
@@ -4139,7 +4141,7 @@ createRoot(document.getElementById('root')).render(
       assetPath={assetPath}
       basePath={basePath}
       contactEndpoint={contactEndpoint}
-      isDedicatedSite={siteVariant === 'de'}
+      isDedicatedSite={isDedicatedGermanSite}
       footer={<OriginalFooter t={content.de} language="de" />}
       faqContent={<GermanFaqContent t={content.de} />}
       t={content.de}

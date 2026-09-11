@@ -16,6 +16,11 @@ configured in `.env.german`; add `VITE_GERMAN_SITE_ORIGIN` when the German domai
 has been chosen. See `docs/german-site-architecture.md` for deployment and SEO
 requirements.
 
+The normal build serves the same separate German composition at `/de/`. This
+allows the live ET/EN and German sites to deploy together without coupling their
+navigation or page presentation. The dedicated build remains ready for a future
+German domain.
+
 ### Contact form testing
 
 The live site sends contact messages through a small PHP endpoint and Zone's local SMTP relay. No SMTP credentials are exposed to the browser.
