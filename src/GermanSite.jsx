@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function GermanPrivacy({ assetPath, homePath, footer }) {
+function GermanPrivacy({ assetPath, homePath, footer, privacy }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -15,35 +15,22 @@ function GermanPrivacy({ assetPath, homePath, footer }) {
       <main className="de-legal">
         <a className="de-back" href={homePath}>← Zurück zur Startseite</a>
         <p className="de-kicker">Rechtliches</p>
-        <h1>Datenschutzerklärung</h1>
-        <p className="de-legal__lead">Diese Datenschutzerklärung erläutert, wie Factory Simulation OÜ Informationen verarbeitet, die über die Kontaktformulare der Website übermittelt werden.</p>
-        <section>
-          <h2>Verantwortlicher</h2>
-          <p>Factory Simulation OÜ<br />E-Mail: <a href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a></p>
-        </section>
-        <section>
-          <h2>Welche Daten wir verarbeiten</h2>
-          <p>Über das Kontaktformular verarbeiten wir Ihren Namen, Ihre E-Mail-Adresse, den Inhalt Ihrer Nachricht, die Formularquelle sowie technische Informationen, die für eine sichere Übermittlung und zur Spam-Abwehr erforderlich sind.</p>
-        </section>
-        <section>
-          <h2>Zweck und Rechtsgrundlage</h2>
-          <p>Wir verwenden die Angaben, um Ihre Anfrage zu beantworten, ein mögliches Projekt zu besprechen und Sie auf Ihren Wunsch zu kontaktieren. Rechtsgrundlage sind vorvertragliche Maßnahmen auf Ihre Anfrage oder unser berechtigtes Interesse an der Beantwortung geschäftlicher Anfragen.</p>
-        </section>
-        <section>
-          <h2>Speicherdauer und Weitergabe</h2>
-          <p>Wir bewahren Anfragen nur so lange auf, wie dies für die Bearbeitung und die anschließende geschäftliche Kommunikation erforderlich ist. Eine Weitergabe erfolgt nur an Dienstleister, die für den Betrieb der Website und die Zustellung der Nachricht benötigt werden, oder wenn eine gesetzliche Pflicht besteht.</p>
-        </section>
-        <section>
-          <h2>Ihre Rechte</h2>
-          <p>Sie können Auskunft, Berichtigung oder Löschung Ihrer Daten verlangen, die Verarbeitung einschränken und ihr widersprechen. Außerdem haben Sie das Recht, sich bei der zuständigen Datenschutzaufsichtsbehörde zu beschweren.</p>
-        </section>
+        <h1>{privacy.title}</h1>
+        <p className="de-legal__lead">{privacy.intro}</p>
+        <p className="de-legal__updated">{privacy.updated}</p>
+        {privacy.sections.map((section) => (
+          <section key={section.title}>
+            <h2>{section.title}</h2>
+            {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </section>
+        ))}
       </main>
       {footer}
     </div>
   );
 }
 
-export default function GermanSite({ assetPath, basePath, contactEndpoint, isDedicatedSite = false, children, footer, faqContent, t }) {
+export default function GermanSite({ assetPath, basePath, contactEndpoint, isDedicatedSite = false, children, footer, faqContent, onLeadConversion, privacyDetails, t }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formStatus, setFormStatus] = useState('idle');
   const mainSiteOrigin = import.meta.env.VITE_MAIN_SITE_ORIGIN || '';
@@ -147,7 +134,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
   }
 
   if (isPrivacy) {
-    return <GermanPrivacy assetPath={assetPath} homePath={homePath} footer={footer} />;
+    return <GermanPrivacy assetPath={assetPath} homePath={homePath} footer={footer} privacy={privacyDetails} />;
   }
 
   const handleSubmit = async (event) => {
@@ -182,6 +169,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
       if (!response.ok) throw new Error(`Contact request failed with status ${response.status}`);
       form.reset();
       setFormStatus('success');
+      onLeadConversion?.();
     } catch (error) {
       console.error('Contact form submission failed.', error);
       setFormStatus('error');

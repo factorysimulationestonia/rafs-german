@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-09-11
+
+### Added
+- Added localized consent controls with separate choices for Google Analytics and Google Ads conversion measurement.
+- Added complete ET/EN/DE privacy disclosures for measurement data, purposes, legal bases, providers, retention, transfers, and withdrawal.
+
+### Changed
+- Removed sitemap priority and change-frequency hints so language-market importance is not represented by unsupported ranking signals.
+- Blocked Google measurement scripts and lead-conversion events until the relevant consent is granted.
+- Self-hosted Space Grotesk so typography no longer creates an unconditional request to Google Fonts.
+- Moved the persistent privacy-settings control into the shared footer.
+
 ## [1.3.0] - 2026-09-11
 
 ### Added

@@ -77,6 +77,11 @@ The Zone deployment workflow runs `npm run build:zone`. This adds `server/api/co
 
 The workflow is guarded so it only deploys from `factorysimulationestonia/fs-home`, not from the demo repository.
 
+The Zone build explicitly enables consent-gated Google Analytics and Google Ads
+measurement. Regular and German-only demo builds leave Google measurement
+disabled so local and GitHub Pages traffic does not enter the production
+properties.
+
 ## Email system
 
 ### How it works

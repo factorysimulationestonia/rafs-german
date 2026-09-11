@@ -8,7 +8,8 @@ const buildArguments = npmCli ? [npmCli, 'run', 'build'] : ['run', 'build'];
 const build = spawnSync(buildCommand, buildArguments, {
   env: {
     ...process.env,
-    VITE_CONTACT_ENDPOINT: '/api/contact.php'
+    VITE_CONTACT_ENDPOINT: '/api/contact.php',
+    VITE_GOOGLE_MEASUREMENT_ENABLED: 'true'
   },
   stdio: 'inherit'
 });

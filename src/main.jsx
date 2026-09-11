@@ -16,11 +16,115 @@ const siteVariant = import.meta.env.VITE_SITE_VARIANT || 'combined';
 const buildCommit = import.meta.env.VITE_COMMIT_SHA || '5ba3d0d';
 const lastUpdated = import.meta.env.VITE_LAST_UPDATED || '2026-05-06';
 const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || (import.meta.env.DEV ? '/api/contact.php' : '');
+const analyticsTagId = 'G-JRKZJXK4DL';
+const adsTagId = 'AW-18241161030';
+const googleMeasurementEnabled = import.meta.env.VITE_GOOGLE_MEASUREMENT_ENABLED === 'true';
 const leadConversionTarget = 'AW-18241161030/BFTiCOXzvr8cEMaOiPpD';
+const consentStorageKey = 'factorySimulationConsent';
+const privacySettingsEvent = 'factory-simulation:open-privacy-settings';
+const consentVersion = 1;
+const consentLifetimeMs = 365 * 24 * 60 * 60 * 1000;
 const assetPath = (path) => `${basePath}${path.replace(/^\//, '')}`;
 const assetSrcSet = (sources) => sources.map(({ src, width }) => `${assetPath(src)} ${width}w`).join(', ');
+const readConsent = () => {
+  try {
+    const consent = JSON.parse(window.localStorage.getItem(consentStorageKey));
+    if (
+      consent?.version !== consentVersion ||
+      typeof consent.savedAt !== 'number' ||
+      Date.now() - consent.savedAt > consentLifetimeMs
+    ) {
+      window.localStorage.removeItem(consentStorageKey);
+      return null;
+    }
+    return consent;
+  } catch {
+    return null;
+  }
+};
+const saveConsent = ({ analytics, advertising }) => {
+  const consent = {
+    version: consentVersion,
+    savedAt: Date.now(),
+    analytics: Boolean(analytics),
+    advertising: Boolean(advertising)
+  };
+  try {
+    window.localStorage.setItem(consentStorageKey, JSON.stringify(consent));
+  } catch {
+    // The choice still applies for this page when browser storage is unavailable.
+  }
+  return consent;
+};
+const activateGoogleMeasurement = (consent) => {
+  if (!googleMeasurementEnabled || (!consent?.analytics && !consent?.advertising) || document.querySelector('script[data-google-measurement]')) {
+    return;
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+  window.gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+  window.gtag('consent', 'update', {
+    analytics_storage: consent.analytics ? 'granted' : 'denied',
+    ad_storage: consent.advertising ? 'granted' : 'denied',
+    ad_user_data: consent.advertising ? 'granted' : 'denied',
+    ad_personalization: 'denied'
+  });
+  window.gtag('js', new Date());
+
+  if (consent.analytics) {
+    window.gtag('config', analyticsTagId, {
+      cookie_expires: 31536000,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
+  }
+  if (consent.advertising) {
+    window.gtag('config', adsTagId, {
+      allow_ad_personalization_signals: false
+    });
+  }
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${consent.analytics ? analyticsTagId : adsTagId}`;
+  script.dataset.googleMeasurement = 'true';
+  document.head.appendChild(script);
+};
+const clearGoogleMeasurementStorage = () => {
+  try {
+    Object.keys(window.localStorage)
+      .filter((key) => key.startsWith('_gcl_'))
+      .forEach((key) => window.localStorage.removeItem(key));
+  } catch {
+    // Ignore storage restrictions; denied consent still prevents future loading.
+  }
+
+  document.cookie.split(';').forEach((entry) => {
+    const name = entry.split('=')[0].trim();
+    if (!/^_(ga|gid|gat|gcl)/.test(name)) return;
+    const expiry = 'expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax';
+    document.cookie = `${name}=; ${expiry}`;
+    document.cookie = `${name}=; ${expiry}; domain=${window.location.hostname}`;
+    document.cookie = `${name}=; ${expiry}; domain=.${window.location.hostname}`;
+  });
+};
+const requestPrivacySettings = () => window.dispatchEvent(new Event(privacySettingsEvent));
+
+const storedConsent = readConsent();
+if (storedConsent) {
+  activateGoogleMeasurement(storedConsent);
+}
+
 const trackLeadConversion = () => {
-  if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
+  if (!googleMeasurementEnabled || !readConsent()?.advertising || typeof window === 'undefined' || typeof window.gtag !== 'function') {
     return;
   }
 
@@ -2044,6 +2148,204 @@ content.de = {
   ]
 };
 
+const consentContent = {
+  et: {
+    title: 'Privaatsusvalikud',
+    summary: 'Kasutame Google Analyticsit ja Google Adsi mõõtmist ainult teie nõusolekul. Keeldumine ei mõjuta veebilehe ega kontaktvormi kasutamist.',
+    acceptAll: 'Nõustu kõigiga',
+    reject: 'Keeldu mittevajalikest',
+    settings: 'Seaded',
+    settingsTitle: 'Privaatsusseaded',
+    necessaryTitle: 'Vajalikud',
+    necessaryText: 'Keele- ja privaatsusvaliku meeldejätmiseks. Alati aktiivne.',
+    analyticsTitle: 'Analüütika',
+    analyticsText: 'Google Analytics aitab meil mõista veebilehe kasutamist ja toimivust.',
+    advertisingTitle: 'Reklaamide mõõtmine',
+    advertisingText: 'Google Ads aitab mõõta, kas reklaam tõi kontaktvormi saatmiseni. Isikupärastatud reklaame ei lubata.',
+    save: 'Salvesta valikud',
+    cancel: 'Tagasi',
+    privacy: 'Privaatsuspoliitika',
+    reopen: 'Privaatsusseaded'
+  },
+  en: {
+    title: 'Privacy choices',
+    summary: 'We use Google Analytics and Google Ads measurement only with your consent. Refusing does not affect the website or contact form.',
+    acceptAll: 'Accept all',
+    reject: 'Reject non-essential',
+    settings: 'Settings',
+    settingsTitle: 'Privacy settings',
+    necessaryTitle: 'Necessary',
+    necessaryText: 'Remembers language and privacy choices. Always active.',
+    analyticsTitle: 'Analytics',
+    analyticsText: 'Google Analytics helps us understand website use and performance.',
+    advertisingTitle: 'Advertising measurement',
+    advertisingText: 'Google Ads measures whether an advertisement led to a contact-form submission. Personalized advertising remains disabled.',
+    save: 'Save choices',
+    cancel: 'Back',
+    privacy: 'Privacy Policy',
+    reopen: 'Privacy settings'
+  },
+  de: {
+    title: 'Datenschutzauswahl',
+    summary: 'Wir verwenden Google Analytics und die Google-Ads-Messung nur mit Ihrer Einwilligung. Eine Ablehnung beeinträchtigt weder die Website noch das Kontaktformular.',
+    acceptAll: 'Alle akzeptieren',
+    reject: 'Nicht notwendige ablehnen',
+    settings: 'Einstellungen',
+    settingsTitle: 'Datenschutzeinstellungen',
+    necessaryTitle: 'Notwendig',
+    necessaryText: 'Speichert Sprach- und Datenschutzauswahl. Immer aktiv.',
+    analyticsTitle: 'Analyse',
+    analyticsText: 'Google Analytics hilft uns, Nutzung und Leistung der Website zu verstehen.',
+    advertisingTitle: 'Werbemessung',
+    advertisingText: 'Google Ads misst, ob eine Anzeige zum Absenden eines Kontaktformulars geführt hat. Personalisierte Werbung bleibt deaktiviert.',
+    save: 'Auswahl speichern',
+    cancel: 'Zurück',
+    privacy: 'Datenschutzerklärung',
+    reopen: 'Datenschutzeinstellungen'
+  }
+};
+
+const privacySupplement = {
+  et: {
+    updated: 'Viimati uuendatud: 11.09.2026',
+    intro: 'See privaatsuspoliitika selgitab, kuidas Factory Simulation OÜ töötleb kontaktvormide kaudu saadetud andmeid ning kasutab teie nõusolekul veebianalüütikat ja reklaamide tulemuslikkuse mõõtmist.',
+    sections: [
+      {
+        title: 'Vajalik veebisalvestus',
+        paragraphs: [
+          'Veebileht salvestab brauseri kohalikku salvestusruumi keele-eelistuse ja privaatsusvaliku. Need andmed on vajalikud kasutaja soovitud funktsioonide pakkumiseks ja valiku meeldejätmiseks; õiguslik alus on meie õigustatud huvi pakkuda toimivat ja valikuid austavat veebilehte. Privaatsusvalik aegub 12 kuu pärast. Google’i mõõtmisteenuseid ei laadita, kui te pole neile nõusolekut andnud.'
+        ]
+      },
+      {
+        title: 'Kontaktvormi turvalisus ja säilitamine',
+        paragraphs: [
+          'Kontaktvorm kasutab rämpspostivälja, päritolukontrolli ja päringusageduse piirangut. Kuritarvituste vältimiseks salvestab rakendus IP-aadressi ning saatmiskatsed ajutisse piirangufaili kuni üheks tunniks. Selle turvatöötluse õiguslik alus on meie õigustatud huvi kaitsta veebilehte ja kontaktkanalit. Kontaktvormi sisu edastatakse e-postiga Factory Simulationile Zone’i infrastruktuuri kaudu.',
+          'Päringud, millest ei teki lepingulist või muud ärisuhet, kustutatakse või anonüümitakse hiljemalt 24 kuu jooksul pärast viimast sisulist suhtlust. Koostöö tekkimisel võidakse asjaomaseid andmeid säilitada lepingu täitmiseks ning raamatupidamis- või muude seadusest tulenevate kohustuste tähtaja jooksul.'
+        ]
+      },
+      {
+        title: 'Google Analytics',
+        paragraphs: [
+          'Teie nõusolekul kasutame Google Analytics 4 teenust (mõõtmise ID G-JRKZJXK4DL), et koostada koondstatistikat veebilehe kasutamise ja toimivuse kohta. Töödeldavad andmed võivad hõlmata vaadatud URL-e ja lehe pealkirju, viitavat lehte, brauseri ja seadme andmeid, ligikaudset asukohta IP-aadressi põhjal, kasutussündmusi ning küpsistega seotud veebitunnuseid.',
+          'Õiguslik alus on teie nõusolek isikuandmete kaitse üldmääruse artikli 6 lõike 1 punkti a alusel. Google Analyticsi küpsised _ga ja _ga_<mõõtmise ID> võivad kehtida kuni 12 kuud; sündmuse- ja kasutajataseme andmeid säilitatakse Analyticsi kontol kuni 14 kuud.'
+        ]
+      },
+      {
+        title: 'Google Adsi konversioonide mõõtmine',
+        paragraphs: [
+          'Eraldi nõusolekul kasutame Google Adsi mõõtmist (ID AW-18241161030), et hinnata reklaamikampaaniate tulemuslikkust. Pärast kontaktvormi edukat saatmist võib Google Ads saada konversioonisündmuse ning seostada selle varasema reklaamiklikiga. Selleks võidakse töödelda reklaamikliki tunnuseid, veebitunnuseid, seadme- ja brauseriandmeid ning konversiooni aega.',
+          'Õiguslik alus on teie nõusolek. Isikupärastatud reklaamide signaalid on veebilehel välja lülitatud. _gcl_ algusega reklaamimõõtmise küpsised võivad kehtida kuni 90 päeva.'
+        ]
+      },
+      {
+        title: 'Teenusepakkujad ja rahvusvaheline andmeedastus',
+        paragraphs: [
+          'Google Analyticsi ja Google Adsi teenuseid osutab Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Iirimaa. Google võib töödelda andmeid väljaspool Euroopa Majanduspiirkonda, sealhulgas Ameerika Ühendriikides. Google märgib, et kasutab vajaduse korral Euroopa Komisjoni heakskiidetud kaitsemeetmeid, sealhulgas EL-USA andmekaitseraamistikku ja lepingu tüüptingimusi.',
+          'Kontaktvormi majutus- ja e-posti teenusepakkuja on Zone Media OÜ (Zone.ee). Google’i privaatsusteave: https://policies.google.com/privacy; küpsisteave: https://policies.google.com/technologies/cookies; andmeedastuse raamistikud: https://policies.google.com/privacy/frameworks.'
+        ]
+      },
+      {
+        title: 'Teie analüütika- ja reklaamivalikud',
+        paragraphs: [
+          'Analüütika ja reklaamide mõõtmine on vaikimisi välja lülitatud. Saate nendega eraldi nõustuda, neist keelduda või oma valikut hiljem lehe nupu „Privaatsusseaded” kaudu muuta. Nõusoleku tagasivõtmine ei mõjuta enne tagasivõtmist toimunud töötlemise seaduslikkust ega takista veebilehe või kontaktvormi kasutamist.'
+        ]
+      }
+    ]
+  },
+  en: {
+    updated: 'Last updated: 11.09.2026',
+    intro: 'This Privacy Policy explains how Factory Simulation OÜ processes information submitted through contact forms and, with your consent, uses website analytics and advertising-performance measurement.',
+    sections: [
+      {
+        title: 'Necessary website storage',
+        paragraphs: [
+          'The website stores your language preference and privacy choice in browser local storage. This is necessary to provide requested functionality and remember your choice; the legal basis is our legitimate interest in providing a functional website that respects visitor choices. The privacy choice expires after 12 months. Google measurement services are not loaded unless you consent to them.'
+        ]
+      },
+      {
+        title: 'Contact-form security and retention',
+        paragraphs: [
+          'The contact form uses a honeypot field, origin validation and submission-rate controls. To prevent abuse, the application stores the IP address and submission timestamps in a temporary rate-limit file for no more than one hour. The legal basis for this security processing is our legitimate interest in protecting the website and contact channel. Contact-form contents are delivered to Factory Simulation by email through Zone infrastructure.',
+          'Inquiries that do not lead to a contractual or other business relationship are deleted or anonymized no later than 24 months after the last substantive communication. If cooperation begins, relevant information may be retained for performance of the contract and for the duration of accounting or other statutory obligations.'
+        ]
+      },
+      {
+        title: 'Google Analytics',
+        paragraphs: [
+          'With your consent, we use Google Analytics 4 (measurement ID G-JRKZJXK4DL) to produce aggregate statistics about website use and performance. Data may include viewed URLs and page titles, referring page, browser and device information, approximate location derived from the IP address, usage events and cookie-linked online identifiers.',
+          'The legal basis is your consent under Article 6(1)(a) GDPR. Google Analytics cookies _ga and _ga_<measurement ID> may remain for up to 12 months; event- and user-level data is retained in the Analytics property for up to 14 months.'
+        ]
+      },
+      {
+        title: 'Google Ads conversion measurement',
+        paragraphs: [
+          'With separate consent, we use Google Ads measurement (ID AW-18241161030) to assess advertising-campaign performance. After a contact form is successfully submitted, Google Ads may receive a conversion event and associate it with an earlier advertisement click. This may involve ad-click identifiers, online identifiers, device and browser information and the conversion time.',
+          'The legal basis is your consent. Personalized-advertising signals are disabled on this website. Advertising-measurement cookies beginning with _gcl_ may remain for up to 90 days.'
+        ]
+      },
+      {
+        title: 'Service providers and international transfers',
+        paragraphs: [
+          'Google Analytics and Google Ads are provided by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland. Google may process information outside the European Economic Area, including in the United States. Google states that it uses European Commission-approved safeguards where required, including the EU-US Data Privacy Framework and Standard Contractual Clauses.',
+          'Our contact-form hosting and email provider is Zone Media OÜ (Zone.ee). Google privacy information: https://policies.google.com/privacy; cookie information: https://policies.google.com/technologies/cookies; transfer frameworks: https://policies.google.com/privacy/frameworks.'
+        ]
+      },
+      {
+        title: 'Your analytics and advertising choices',
+        paragraphs: [
+          'Analytics and advertising measurement are off by default. You can consent to them separately, reject them, or change your selection later through the “Privacy settings” button. Withdrawing consent does not affect processing that was lawful before withdrawal and does not prevent use of the website or contact form.'
+        ]
+      }
+    ]
+  },
+  de: {
+    updated: 'Zuletzt aktualisiert: 11.09.2026',
+    intro: 'Diese Datenschutzerklärung erläutert, wie Factory Simulation OÜ über Kontaktformulare übermittelte Angaben verarbeitet und mit Ihrer Einwilligung Webanalyse sowie die Messung der Werbeleistung einsetzt.',
+    sections: [
+      {
+        title: 'Notwendige Website-Speicherung',
+        paragraphs: [
+          'Die Website speichert Ihre Sprachpräferenz und Datenschutzauswahl im lokalen Speicher des Browsers. Dies ist erforderlich, um angeforderte Funktionen bereitzustellen und Ihre Auswahl zu speichern; Rechtsgrundlage ist unser berechtigtes Interesse an einer funktionsfähigen Website, die Ihre Auswahl respektiert. Die Datenschutzauswahl läuft nach 12 Monaten ab. Google-Messdienste werden nur geladen, wenn Sie eingewilligt haben.'
+        ]
+      },
+      {
+        title: 'Sicherheit und Aufbewahrung des Kontaktformulars',
+        paragraphs: [
+          'Das Kontaktformular verwendet ein Honeypot-Feld, eine Herkunftsprüfung und Begrenzungen der Übermittlungshäufigkeit. Zur Missbrauchsabwehr speichert die Anwendung die IP-Adresse und Zeitpunkte der Sendeversuche höchstens eine Stunde lang in einer temporären Datei. Rechtsgrundlage dieser Sicherheitsverarbeitung ist unser berechtigtes Interesse am Schutz der Website und des Kontaktkanals. Die Formularinhalte werden über die Infrastruktur von Zone per E-Mail an Factory Simulation übermittelt.',
+          'Anfragen, die nicht zu einem Vertrags- oder sonstigen Geschäftsverhältnis führen, werden spätestens 24 Monate nach der letzten inhaltlichen Kommunikation gelöscht oder anonymisiert. Kommt eine Zusammenarbeit zustande, können relevante Angaben zur Vertragserfüllung sowie für die Dauer gesetzlicher Aufbewahrungsfristen gespeichert werden.'
+        ]
+      },
+      {
+        title: 'Google Analytics',
+        paragraphs: [
+          'Mit Ihrer Einwilligung verwenden wir Google Analytics 4 (Mess-ID G-JRKZJXK4DL), um zusammengefasste Statistiken über Nutzung und Leistung der Website zu erstellen. Verarbeitet werden können aufgerufene URLs und Seitentitel, verweisende Seiten, Browser- und Geräteinformationen, ein aus der IP-Adresse abgeleiteter ungefährer Standort, Nutzungsereignisse sowie mit Cookies verknüpfte Online-Kennungen.',
+          'Rechtsgrundlage ist Ihre Einwilligung nach Artikel 6 Absatz 1 Buchstabe a DSGVO. Die Google-Analytics-Cookies _ga und _ga_<Mess-ID> können bis zu 12 Monate bestehen; Ereignis- und Nutzerdaten werden in der Analytics-Property bis zu 14 Monate gespeichert.'
+        ]
+      },
+      {
+        title: 'Google-Ads-Conversion-Messung',
+        paragraphs: [
+          'Mit separater Einwilligung verwenden wir die Google-Ads-Messung (ID AW-18241161030), um die Leistung von Werbekampagnen zu bewerten. Nach erfolgreichem Absenden eines Kontaktformulars kann Google Ads ein Conversion-Ereignis erhalten und einem früheren Anzeigenklick zuordnen. Dabei können Anzeigenklick-Kennungen, Online-Kennungen, Geräte- und Browserinformationen sowie der Zeitpunkt der Conversion verarbeitet werden.',
+          'Rechtsgrundlage ist Ihre Einwilligung. Signale für personalisierte Werbung sind auf dieser Website deaktiviert. Cookies zur Werbemessung, deren Name mit _gcl_ beginnt, können bis zu 90 Tage bestehen.'
+        ]
+      },
+      {
+        title: 'Dienstleister und internationale Übermittlungen',
+        paragraphs: [
+          'Google Analytics und Google Ads werden von Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, bereitgestellt. Google kann Informationen außerhalb des Europäischen Wirtschaftsraums, auch in den USA, verarbeiten. Google erklärt, erforderlichenfalls von der Europäischen Kommission anerkannte Garantien zu verwenden, darunter das EU-US Data Privacy Framework und Standardvertragsklauseln.',
+          'Unser Anbieter für Hosting und E-Mail-Versand des Kontaktformulars ist Zone Media OÜ (Zone.ee). Google-Datenschutzinformationen: https://policies.google.com/privacy; Cookie-Informationen: https://policies.google.com/technologies/cookies; Übermittlungsrahmen: https://policies.google.com/privacy/frameworks.'
+        ]
+      },
+      {
+        title: 'Ihre Analyse- und Werbeauswahl',
+        paragraphs: [
+          'Analyse und Werbemessung sind standardmäßig deaktiviert. Sie können separat einwilligen, ablehnen oder Ihre Auswahl später über die Schaltfläche „Datenschutzeinstellungen” ändern. Der Widerruf berührt nicht die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung und verhindert weder die Nutzung der Website noch des Kontaktformulars.'
+        ]
+      }
+    ]
+  }
+};
+
 const anchors = ['services', 'about', 'blog', 'wheelme'];
 const pageRoutes = ['blog', 'wheelme', 'privacy', 'factory-simulation-faq', 'brand'];
 const languages = ['et', 'en'];
@@ -2109,6 +2411,114 @@ const getPagePath = (language, page = 'home', hash = '') => {
 const getSearchPath = (language, query) => `${getPagePath(language)}?q=${encodeURIComponent(query.trim())}`;
 
 const getLanguagePath = (language, hash = window.location.hash) => getPagePath(language, 'home', hash);
+
+function ConsentManager({ initialLanguage }) {
+  const [language, setLanguage] = useState(initialLanguage);
+  const [decision, setDecision] = useState(readConsent);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [analytics, setAnalytics] = useState(Boolean(decision?.analytics));
+  const [advertising, setAdvertising] = useState(Boolean(decision?.advertising));
+  const copy = consentContent[language] || consentContent.en;
+  const privacyPath = getPagePath(language, 'privacy');
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const nextLanguage = document.documentElement.lang;
+      if (consentContent[nextLanguage]) setLanguage(nextLanguage);
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handleSettingsRequest = () => {
+      const currentDecision = readConsent();
+      setAnalytics(Boolean(currentDecision?.analytics));
+      setAdvertising(Boolean(currentDecision?.advertising));
+      setSettingsOpen(true);
+    };
+    window.addEventListener(privacySettingsEvent, handleSettingsRequest);
+    return () => window.removeEventListener(privacySettingsEvent, handleSettingsRequest);
+  }, []);
+
+  const applyChoice = (choice) => {
+    if (!choice.analytics || !choice.advertising) {
+      clearGoogleMeasurementStorage();
+    }
+    const nextDecision = saveConsent(choice);
+    const changedExistingChoice = decision && (
+      decision.analytics !== nextDecision.analytics ||
+      decision.advertising !== nextDecision.advertising
+    );
+
+    if (changedExistingChoice) {
+      clearGoogleMeasurementStorage();
+      window.location.reload();
+      return;
+    }
+
+    setDecision(nextDecision);
+    setAnalytics(nextDecision.analytics);
+    setAdvertising(nextDecision.advertising);
+    setSettingsOpen(false);
+    activateGoogleMeasurement(nextDecision);
+  };
+
+  const openSettings = () => {
+    setAnalytics(Boolean(decision?.analytics));
+    setAdvertising(Boolean(decision?.advertising));
+    setSettingsOpen(true);
+  };
+
+  return (
+    <>
+      {!decision && !settingsOpen && (
+        <aside className="fixed inset-x-3 bottom-3 z-[100] mx-auto max-h-[calc(100vh-1.5rem)] max-w-5xl overflow-y-auto rounded-md border border-white/18 bg-[#202320] p-5 text-white shadow-2xl sm:p-6" aria-labelledby="privacy-choice-title">
+          <div className="grid min-w-0 gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+            <div className="min-w-0">
+              <h2 className="mb-2 text-xl font-bold" id="privacy-choice-title">{copy.title}</h2>
+              <p className="m-0 max-w-3xl text-sm leading-relaxed text-white/76">{copy.summary}</p>
+              <a className="mt-3 inline-block text-sm font-semibold text-fs-accent" href={privacyPath}>{copy.privacy}</a>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <button className="min-h-11 border border-white/35 px-4 py-2 text-sm font-bold text-white transition hover:border-white" type="button" onClick={() => applyChoice({ analytics: false, advertising: false })}>{copy.reject}</button>
+              <button className="min-h-11 border border-white/35 px-4 py-2 text-sm font-bold text-white transition hover:border-white" type="button" onClick={openSettings}>{copy.settings}</button>
+              <button className="min-h-11 border border-fs-accent bg-fs-accent px-4 py-2 text-sm font-bold text-black transition hover:border-white hover:bg-white" type="button" onClick={() => applyChoice({ analytics: true, advertising: true })}>{copy.acceptAll}</button>
+            </div>
+          </div>
+        </aside>
+      )}
+
+      {settingsOpen && (
+        <div className="fixed inset-0 z-[110] grid place-items-center overflow-y-auto bg-black/72 p-3 sm:p-6" role="presentation">
+          <section className="my-auto w-full max-w-xl rounded-md border border-white/18 bg-[#202320] p-5 text-white shadow-2xl sm:p-7" role="dialog" aria-modal="true" aria-labelledby="privacy-settings-title">
+            <h2 className="mb-5 text-2xl font-bold" id="privacy-settings-title">{copy.settingsTitle}</h2>
+            <div className="divide-y divide-white/14 border-y border-white/14">
+              <label className="flex min-w-0 items-start gap-4 py-4">
+                <input className="mt-1 size-5 shrink-0 accent-[#e2ab19]" type="checkbox" checked disabled />
+                <span className="min-w-0"><strong className="block">{copy.necessaryTitle}</strong><span className="mt-1 block text-sm leading-relaxed text-white/65">{copy.necessaryText}</span></span>
+              </label>
+              <label className="flex min-w-0 cursor-pointer items-start gap-4 py-4">
+                <input className="mt-1 size-5 shrink-0 accent-[#e2ab19]" type="checkbox" checked={analytics} onChange={(event) => setAnalytics(event.target.checked)} />
+                <span className="min-w-0"><strong className="block">{copy.analyticsTitle}</strong><span className="mt-1 block text-sm leading-relaxed text-white/65">{copy.analyticsText}</span></span>
+              </label>
+              <label className="flex min-w-0 cursor-pointer items-start gap-4 py-4">
+                <input className="mt-1 size-5 shrink-0 accent-[#e2ab19]" type="checkbox" checked={advertising} onChange={(event) => setAdvertising(event.target.checked)} />
+                <span className="min-w-0"><strong className="block">{copy.advertisingTitle}</strong><span className="mt-1 block text-sm leading-relaxed text-white/65">{copy.advertisingText}</span></span>
+              </label>
+            </div>
+            <a className="mt-4 inline-block text-sm font-semibold text-fs-accent" href={privacyPath}>{copy.privacy}</a>
+            <div className="mt-6 flex flex-wrap justify-end gap-2">
+              <button className="min-h-11 border border-white/35 px-4 py-2 text-sm font-bold text-white transition hover:border-white" type="button" onClick={() => setSettingsOpen(false)}>{copy.cancel}</button>
+              <button className="min-h-11 border border-fs-accent bg-fs-accent px-4 py-2 text-sm font-bold text-black transition hover:border-white hover:bg-white" type="button" onClick={() => applyChoice({ analytics, advertising })}>{copy.save}</button>
+            </div>
+          </section>
+        </div>
+      )}
+    </>
+  );
+}
+
 const softwareBrands = {
   'Visual Components': [{ src: '/software/visual-components.webp', className: 'max-h-14 max-w-16' }],
   AutoCAD: [{ src: '/software/autocad.svg', className: 'max-h-14 max-w-16' }],
@@ -3165,6 +3575,9 @@ function FactorySimulationFaqPage({ t, language, onContactClick }) {
 }
 
 function PrivacyPolicyPage({ t, language }) {
+  const supplement = privacySupplement[language] || privacySupplement.en;
+  const sections = [...t.privacy.sections, ...supplement.sections];
+
   return (
     <section className={`${sectionClass} min-h-[calc(100vh-5rem)]`}>
       <div className="mb-12 max-w-3xl">
@@ -3178,12 +3591,12 @@ function PrivacyPolicyPage({ t, language }) {
           <span className="text-fs-accent">{t.privacy.breadcrumb}</span>
         </nav>
         <h1 className={h2Class}>{t.privacy.title}</h1>
-        <p className="mb-4 text-lg leading-relaxed text-white/76">{t.privacy.intro}</p>
-        <p className="m-0 text-sm text-white/55">{t.privacy.updated}</p>
+        <p className="mb-4 text-lg leading-relaxed text-white/76">{supplement.intro}</p>
+        <p className="m-0 text-sm text-white/55">{supplement.updated}</p>
       </div>
 
       <div className="grid max-w-3xl gap-9 text-white/76">
-        {t.privacy.sections.map((section) => (
+        {sections.map((section) => (
           <section key={section.title}>
             <h2 className="mb-3 text-xl leading-tight font-bold text-white">{section.title}</h2>
             <div className="grid gap-3 text-base leading-relaxed">
@@ -3457,7 +3870,10 @@ function OriginalFooter({ t, language }) {
         <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
         <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
         <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'factory-simulation-faq')}>{t.faq.breadcrumb}</a>
-        <a className="block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'privacy')}>{t.privacy.title}</a>
+        <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'privacy')}>{t.privacy.title}</a>
+        <button className="block border-0 bg-transparent p-0 text-left text-sm text-white/60 transition hover:text-fs-accent" type="button" onClick={requestPrivacySettings}>
+          {(consentContent[language] || consentContent.en).reopen}
+        </button>
         <div className="mt-4 flex gap-2" aria-label="Social media">
           {socialLinks.map(({ name, href, Icon }) => (
             <a
@@ -3474,7 +3890,7 @@ function OriginalFooter({ t, language }) {
         </div>
       </div>
       <div>
-        <p className="m-0 text-white/70">Factory Simulation &amp; Digital Twin solutions</p>
+        <p className="m-0 text-white/70">Factory Simulation</p>
         <p className="mt-2 mb-0 text-xs text-white/45">Last updated {lastUpdated} · {buildCommit} · v{appVersion}</p>
       </div>
     </footer>
@@ -4134,21 +4550,32 @@ function App() {
 const isDedicatedGermanSite = siteVariant === 'de';
 const isGermanPath = !isDedicatedGermanSite && getPathWithoutBase().split('/').filter(Boolean)[0] === 'de';
 const renderGermanSite = isDedicatedGermanSite || isGermanPath;
+const germanPrivacyDetails = {
+  title: content.de.privacy.title,
+  intro: privacySupplement.de.intro,
+  updated: privacySupplement.de.updated,
+  sections: [...content.de.privacy.sections, ...privacySupplement.de.sections]
+};
 
 createRoot(document.getElementById('root')).render(
-  renderGermanSite ? (
-    <GermanSite
-      assetPath={assetPath}
-      basePath={basePath}
-      contactEndpoint={contactEndpoint}
-      isDedicatedSite={isDedicatedGermanSite}
-      footer={<OriginalFooter t={content.de} language="de" />}
-      faqContent={<GermanFaqContent t={content.de} />}
-      t={content.de}
-    >
-      <GermanOriginalSections t={content.de} />
-    </GermanSite>
-  ) : (
-    <App />
-  )
+  <>
+    {renderGermanSite ? (
+      <GermanSite
+        assetPath={assetPath}
+        basePath={basePath}
+        contactEndpoint={contactEndpoint}
+        isDedicatedSite={isDedicatedGermanSite}
+        footer={<OriginalFooter t={content.de} language="de" />}
+        faqContent={<GermanFaqContent t={content.de} />}
+        privacyDetails={germanPrivacyDetails}
+        onLeadConversion={trackLeadConversion}
+        t={content.de}
+      >
+        <GermanOriginalSections t={content.de} />
+      </GermanSite>
+    ) : (
+      <App />
+    )}
+    <ConsentManager initialLanguage={renderGermanSite ? 'de' : getLanguageFromPath()} />
+  </>
 );
