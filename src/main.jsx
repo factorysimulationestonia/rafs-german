@@ -560,7 +560,7 @@ const content = {
           paragraphs: [
             'Vastutav töötleja: Factory Simulation OÜ.',
             'Registrikood: 17384619.',
-            'Aadress: Okka tee 2, 4660, Piira, Eesti.',
+            'Aadress: Okka tee 2, 46607, Piira, Eesti.',
             'email: info@factorysimulation.eu.'
           ]
         },
@@ -1239,7 +1239,7 @@ const content = {
           paragraphs: [
             'Controller: Factory Simulation OÜ.',
             'Registry code: 17384619,.',
-            'Address: Okka tee 2, 4660, Piira, Estonia.',
+            'Address: Okka tee 2, 46607, Piira, Estonia.',
             'Email: info@factorysimulation.eu.'
           ]
         },
@@ -1889,7 +1889,7 @@ content.de = {
         paragraphs: [
           'Verantwortlicher: Factory Simulation OÜ.',
           'Registernummer: 17384619,.',
-          'Adresse: Okka tee 2, 4660, Piira, Estland.',
+          'Adresse: Okka tee 2, 46607, Piira, Estland.',
           'E-Mail: info@factorysimulation.eu.'
         ]
       },

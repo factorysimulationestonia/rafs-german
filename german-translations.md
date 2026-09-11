@@ -314,7 +314,7 @@ German site is launched.
 ### Verantwortlicher
 - Verantwortlicher: Factory Simulation OÜ.
 - Registernummer: 17384619,.
-- Adresse: Okka tee 2, 4660, Piira, Estland.
+- Adresse: Okka tee 2, 46607, Piira, Estland.
 - E-Mail: info@factorysimulation.eu.
 
 ### Welche Informationen wir verarbeiten
