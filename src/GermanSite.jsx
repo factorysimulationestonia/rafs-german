@@ -139,9 +139,10 @@ function GermanLegalNotice({ assetPath, homePath, footer }) {
   );
 }
 
-export default function GermanSite({ assetPath, basePath, contactEndpoint, isDedicatedSite = false, children, footer, faqContent, onLeadConversion, privacyDetails, t }) {
+export default function GermanSite({ assetPath, basePath, contactEndpoint, contactPerson, isDedicatedSite = false, children, footer, faqContent, onLeadConversion, privacyDetails, t }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formStatus, setFormStatus] = useState('idle');
+  const [headerFloating, setHeaderFloating] = useState(false);
   const mainSiteOrigin = import.meta.env.VITE_MAIN_SITE_ORIGIN || '';
   const resolvedMainSiteOrigin = mainSiteOrigin || (isDedicatedSite ? '' : `${window.location.origin}${basePath.replace(/\/$/, '')}`);
   const germanOrigin = (import.meta.env.VITE_GERMAN_SITE_ORIGIN || import.meta.env.VITE_PUBLIC_ORIGIN || '').replace(/\/$/, '');
@@ -161,6 +162,16 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
       window.history.replaceState(null, '', homePath);
     }
   }, [homePath, isRemovedWheelmeRoute]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHeaderFloating(window.scrollY > 80);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = 'de';
@@ -322,7 +333,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
 
   return (
     <div className="de-site">
-      <header className="de-header">
+      <header className={`de-header${headerFloating ? ' de-header--floating' : ''}`}>
         <a className="de-brand" href={homePath} aria-label="Factory Simulation Startseite">
           <img src={assetPath('/logo.svg')} alt="Factory Simulation" />
           <span>{t.headerTagline}</span>
@@ -373,18 +384,33 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, isDed
 
         <section className="de-contact" id="kontakt">
           <div className="de-contact__intro">
-            <p className="de-kicker">Erster Schritt</p>
-            <h2>Bringen Sie die offene Produktionsfrage mit.</h2>
-            <p>In einem kurzen Gespräch klären wir, welche Entscheidung ansteht, welche Daten vorhanden sind und ob eine Simulation den nächsten Schritt verbessern kann.</p>
-            <a href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
+            <p className="de-kicker">Ihr direkter Kontakt</p>
+            {contactPerson && (
+              <article className="de-contact-person" aria-label="Ihr Ansprechpartner für die DACH-Region">
+                <div className="de-contact-person__portrait" role="img" aria-label="Platzhalter für das Portrait des Ansprechpartners">
+                  <span>Foto folgt</span>
+                </div>
+                <div className="de-contact-person__details">
+                  <p className="de-contact-person__label">Ihr direkter Kontakt</p>
+                  <h3>{contactPerson.name}</h3>
+                  <p className="de-contact-person__role">{contactPerson.role}</p>
+                  <a href={contactPerson.phoneHref}>{contactPerson.phone}</a>
+                  <a href={`mailto:${contactPerson.email}`}>{contactPerson.email}</a>
+                </div>
+              </article>
+            )}
+            <div className="de-contact__prompt">
+              <h2>Bringen Sie die offene Produktionsfrage mit.</h2>
+              <p>In einem kurzen Gespräch klären wir, welche Entscheidung ansteht, welche Daten vorhanden sind und ob eine Simulation den nächsten Schritt verbessern kann.</p>
+            </div>
           </div>
           <form className="de-form" onSubmit={handleSubmit}>
             <div className="de-form__row">
-              <label>Name<input name="name" autoComplete="name" required /></label>
-              <label>E-Mail<input name="email" type="email" autoComplete="email" required /></label>
+              <label>Name<input name="name" autoComplete="name" placeholder="Vor- und Nachname" required /></label>
+              <label>E-Mail<input name="email" type="email" autoComplete="email" placeholder="name@unternehmen.de" required /></label>
             </div>
-            <label>Unternehmen<input name="organization" autoComplete="organization" /></label>
-            <label>Worum geht es?<textarea name="description" rows="5" minLength="5" required /></label>
+            <label>Unternehmen<input name="organization" autoComplete="organization" placeholder="Unternehmensname" /></label>
+            <label>Worum geht es?<textarea name="description" rows="5" minLength="5" placeholder="Welche Produktionsentscheidung möchten Sie absichern?" required /></label>
             <input className="de-honeypot" name="company" tabIndex="-1" autoComplete="off" aria-hidden="true" />
             <p className="de-form__privacy">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Beantwortung der Anfrage zu. <a href={privacyPath}>Datenschutz</a></p>
             <button className="de-button de-button--dark" type="submit" disabled={formStatus === 'sending' || formStatus === 'success'}>

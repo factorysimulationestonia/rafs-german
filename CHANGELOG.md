@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-09-11
+
 ### Added
 - Added draft German Impressum and legal-notice pages with access from every German footer.
 - Added a German legal-content review sheet for partner and counsel approval.
+- Added a reusable DACH contact-person panel to the German landing page and every German footer.
+
+### Changed
+- Redesigned the German footer with distinct brand, DACH contact, social-media, and information areas.
+- Kept the German header visible after visitors scroll beyond its initial position.
+- Reduced German contact-form padding and added localized field placeholders.
 
 ### Fixed
 - Corrected the company postal code from `4660` to `46607` in all privacy-policy translations.

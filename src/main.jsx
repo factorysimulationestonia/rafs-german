@@ -16,6 +16,13 @@ const siteVariant = import.meta.env.VITE_SITE_VARIANT || 'combined';
 const buildCommit = import.meta.env.VITE_COMMIT_SHA || '5ba3d0d';
 const lastUpdated = import.meta.env.VITE_LAST_UPDATED || '2026-05-06';
 const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || (import.meta.env.DEV ? '/api/contact.php' : '');
+const dachContact = {
+  name: 'Vorname Nachname',
+  role: 'Ansprechpartner DACH',
+  phone: '+49 000 00000000',
+  phoneHref: 'tel:+490000000000',
+  email: 'vorname.nachname@factorysimulation.eu'
+};
 const analyticsTagId = 'G-JRKZJXK4DL';
 const adsTagId = 'AW-18241161030';
 const googleMeasurementEnabled = import.meta.env.VITE_GOOGLE_MEASUREMENT_ENABLED === 'true';
@@ -3862,7 +3869,70 @@ function GermanFaqContent({ t }) {
   );
 }
 
-function OriginalFooter({ t, language }) {
+function OriginalFooter({ t, language, contactPerson }) {
+  if (language === 'de') {
+    return (
+      <footer className={`${darkSurfaceClass} border-t border-fs-line px-5 py-12 text-white sm:px-8 lg:px-[7vw] lg:py-16`}>
+        <div className="grid min-w-0 gap-11 md:grid-cols-2 xl:grid-cols-[280px_minmax(280px,430px)_minmax(120px,1fr)_210px] xl:gap-x-10 xl:gap-y-11">
+          <div className="flex min-w-0 items-center lg:self-center">
+            <a className="flex min-w-0 items-center gap-4 text-white no-underline" href={getPagePath(language)} aria-label="Factory Simulation Startseite">
+              <img className="w-36 shrink-0 sm:w-40" src={assetPath('/logo.svg')} alt="Factory Simulation" />
+              <span className="max-w-36 border-l border-white/35 pl-4 text-xs leading-tight font-medium uppercase">
+                Engineering-Partner<br />für Ihre Produktion
+              </span>
+            </a>
+          </div>
+
+          {contactPerson && (
+            <address className="min-w-0 border-l-2 border-fs-accent pl-5 not-italic sm:pl-7">
+              <p className="mb-3 text-xs font-bold text-fs-accent uppercase">Ihr Ansprechpartner für DACH</p>
+              <h2 className="m-0 text-2xl leading-tight font-bold sm:text-3xl">{contactPerson.name}</h2>
+              <p className="mt-1.5 mb-5 text-sm text-white/60">{contactPerson.role}</p>
+              <a className="mb-2 block w-fit text-base font-medium text-white no-underline transition hover:text-fs-accent" href={contactPerson.phoneHref}>{contactPerson.phone}</a>
+              <a className="block w-fit max-w-full break-all text-base font-medium text-white no-underline transition hover:text-fs-accent" href={`mailto:${contactPerson.email}`}>{contactPerson.email}</a>
+            </address>
+          )}
+
+          <div className="min-w-0 xl:justify-self-end">
+            <h2 className="mb-4 text-base font-bold">Social Media</h2>
+            <div className="flex gap-2" aria-label="Social Media">
+              {socialLinks.map(({ name, href, Icon }) => (
+                <a
+                  className="grid size-9 place-items-center border border-white/25 text-fs-accent transition hover:border-fs-accent hover:text-white"
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={name}
+                  key={name}
+                >
+                  <Icon />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="min-w-0 xl:w-52 xl:justify-self-end">
+            <h2 className="mb-4 text-base font-bold">Informationen</h2>
+            <nav className="grid gap-2.5" aria-label="Fußzeilennavigation">
+              <a className="w-fit text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'factory-simulation-faq')}>{t.faq.breadcrumb}</a>
+              <a className="w-fit text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'privacy')}>{t.privacy.title}</a>
+              <a className="w-fit text-sm text-white/60 no-underline transition hover:text-fs-accent" href={`${getPagePath(language)}legal-notice/`}>Rechtliche Hinweise</a>
+              <a className="w-fit text-sm text-white/60 no-underline transition hover:text-fs-accent" href={`${getPagePath(language)}impressum/`}>Impressum</a>
+              <button className="w-fit border-0 bg-transparent p-0 text-left text-sm text-white/60 transition hover:text-fs-accent" type="button" onClick={requestPrivacySettings}>
+                {(consentContent[language] || consentContent.en).reopen}
+              </button>
+            </nav>
+          </div>
+        </div>
+
+        <div className="mt-11 flex flex-col gap-2 border-t border-white/12 pt-5 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+          <p className="m-0">Factory Simulation OÜ</p>
+          <p className="m-0">Last updated {lastUpdated} · {buildCommit} · v{appVersion}</p>
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <footer className={`grid items-center gap-8 border-t border-fs-line px-6 py-10 text-white lg:grid-cols-[180px_1fr_auto] lg:px-[7vw] ${darkSurfaceClass}`}>
       <img className="w-40" src={assetPath('/logo.svg')} alt="Factory Simulation" />
@@ -3871,12 +3941,6 @@ function OriginalFooter({ t, language }) {
         <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
         <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'factory-simulation-faq')}>{t.faq.breadcrumb}</a>
         <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={getPagePath(language, 'privacy')}>{t.privacy.title}</a>
-        {language === 'de' && (
-          <>
-            <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={`${getPagePath(language)}legal-notice/`}>Rechtliche Hinweise</a>
-            <a className="mb-1.5 block text-sm text-white/60 no-underline transition hover:text-fs-accent" href={`${getPagePath(language)}impressum/`}>Impressum</a>
-          </>
-        )}
         <button className="block border-0 bg-transparent p-0 text-left text-sm text-white/60 transition hover:text-fs-accent" type="button" onClick={requestPrivacySettings}>
           {(consentContent[language] || consentContent.en).reopen}
         </button>
@@ -4571,10 +4635,11 @@ createRoot(document.getElementById('root')).render(
         basePath={basePath}
         contactEndpoint={contactEndpoint}
         isDedicatedSite={isDedicatedGermanSite}
-        footer={<OriginalFooter t={content.de} language="de" />}
+        footer={<OriginalFooter t={content.de} language="de" contactPerson={dachContact} />}
         faqContent={<GermanFaqContent t={content.de} />}
         privacyDetails={germanPrivacyDetails}
         onLeadConversion={trackLeadConversion}
+        contactPerson={dachContact}
         t={content.de}
       >
         <GermanOriginalSections t={content.de} />

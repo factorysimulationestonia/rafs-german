@@ -97,6 +97,14 @@
     border-bottom: 1px solid rgb(255 255 255 / 0.28);
     padding: 16px clamp(20px, 5vw, 80px);
     color: white;
+    transition: background-color 160ms ease, border-color 160ms ease;
+  }
+
+  .de-header--floating {
+    position: fixed;
+    border-color: rgb(255 255 255 / 0.16);
+    background: rgb(21 23 19 / 0.96);
+    backdrop-filter: blur(12px);
   }
 
   .de-header--solid {
@@ -322,11 +330,17 @@
 
   .de-intro,
   .de-decisions,
-  .de-process,
-  .de-contact {
+  .de-process {
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
     gap: clamp(48px, 8vw, 140px);
+    padding: clamp(80px, 10vw, 150px) clamp(20px, 8vw, 130px);
+  }
+
+  .de-contact {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+    gap: clamp(48px, 6vw, 105px);
     padding: clamp(80px, 10vw, 150px) clamp(20px, 8vw, 130px);
   }
 
@@ -567,22 +581,96 @@
     color: white;
   }
 
-  .de-contact__intro > p:not(.de-kicker) {
+  .de-contact__prompt {
+    margin-top: 42px;
+    border-top: 1px solid rgb(255 255 255 / 0.18);
+    padding-top: 30px;
+  }
+
+  .de-contact .de-contact__prompt h2 {
     max-width: 620px;
-    margin: 30px 0 18px;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    line-height: 1.08;
+  }
+
+  .de-contact__prompt p {
+    max-width: 620px;
+    margin: 20px 0 0;
     color: rgb(255 255 255 / 0.7);
     font-size: 17px;
     line-height: 1.55;
   }
 
-  .de-contact__intro > a {
+  .de-contact-person {
+    display: grid;
+    width: 100%;
+    max-width: 760px;
+    grid-template-columns: minmax(200px, 0.82fr) minmax(0, 1.18fr);
+    margin-top: 18px;
+    border-top: 2px solid #e2ab19;
+    background: #151713;
+  }
+
+  .de-contact-person__portrait {
+    display: grid;
+    min-height: 300px;
+    place-items: center;
+    background:
+      linear-gradient(135deg, rgb(255 255 255 / 0.07), transparent),
+      #39413c;
+    color: rgb(255 255 255 / 0.52);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .de-contact-person__details {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(30px, 4vw, 48px);
+  }
+
+  .de-contact-person__details .de-contact-person__label {
+    margin: 0 0 12px;
     color: #e2ab19;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .de-contact-person h3 {
+    margin: 0;
+    font-size: clamp(2rem, 3.4vw, 3.25rem);
+    line-height: 1.1;
+  }
+
+  .de-contact-person__details .de-contact-person__role {
+    margin: 10px 0 26px;
+    color: rgb(255 255 255 / 0.62);
+    font-size: 16px;
+  }
+
+  .de-contact-person a {
+    width: fit-content;
+    max-width: 100%;
+    color: white;
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+    text-decoration-color: rgb(226 171 25 / 0.65);
+    text-underline-offset: 4px;
+  }
+
+  .de-contact-person a + a {
+    margin-top: 8px;
   }
 
   .de-form {
     min-width: 0;
     background: #e2ab19;
-    padding: clamp(24px, 4vw, 54px);
+    padding: clamp(22px, 2.5vw, 38px);
     color: #151713;
   }
 
@@ -617,6 +705,12 @@
   .de-form textarea:focus {
     border-color: #151713;
     box-shadow: 0 0 0 2px rgb(21 23 19 / 0.18);
+  }
+
+  .de-form input::placeholder,
+  .de-form textarea::placeholder {
+    color: rgb(21 23 19 / 0.48);
+    opacity: 1;
   }
 
   .de-form textarea {
@@ -902,6 +996,18 @@
     .de-form__row {
       grid-template-columns: 1fr;
       gap: 0;
+    }
+
+    .de-contact-person {
+      grid-template-columns: 1fr;
+    }
+
+    .de-contact-person__portrait {
+      min-height: 210px;
+    }
+
+    .de-contact-person__details {
+      padding: 25px 22px 28px;
     }
 
     .de-footer {
