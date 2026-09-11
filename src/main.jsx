@@ -17,11 +17,11 @@ const buildCommit = import.meta.env.VITE_COMMIT_SHA || '5ba3d0d';
 const lastUpdated = import.meta.env.VITE_LAST_UPDATED || '2026-05-06';
 const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || (import.meta.env.DEV ? '/api/contact.php' : '');
 const dachContact = {
-  name: 'Vorname Nachname',
-  role: 'Ansprechpartner DACH',
-  phone: '+49 000 00000000',
-  phoneHref: 'tel:+490000000000',
-  email: 'vorname.nachname@factorysimulation.eu'
+  name: 'Peter J. Fischer',
+  role: 'Business Market Developer - DACH',
+  phone: '+49 152 2924 5187',
+  phoneHref: 'tel:+4915229245187',
+  email: 'peter.fischer@factorysimulation.eu'
 };
 const analyticsTagId = 'G-JRKZJXK4DL';
 const adsTagId = 'AW-18241161030';
@@ -1850,7 +1850,8 @@ content.de = {
   team: [
     { ...content.en.team[0], role: 'CEO', credentials: 'Maschinenbauingenieur (BSc)' },
     { ...content.en.team[1], role: 'Simulationsingenieur', credentials: 'Wirtschaftsingenieurwesen und Management (MSc)' },
-    { ...content.en.team[2], role: 'Projektingenieur', credentials: 'Robotik- und Automatisierungsingenieur (MSc)' }
+    { ...content.en.team[2], role: 'Projektingenieur', credentials: 'Robotik- und Automatisierungsingenieur (MSc)' },
+    { name: 'Triinu Strandberg', role: 'Vertrags- und Dokumentenmanagerin' }
   ],
   partnersTitle: 'Partner und Netzwerk',
   reseller: 'Offizieller Vertriebspartner und Integrationspartner',
@@ -3987,15 +3988,16 @@ function GermanOriginalSections({ t }) {
           <h2 className={h2Class}>{t.aboutTitle}</h2>
           <div className="max-w-7xl">
             <h3 className={h3Class}>{t.teamTitle}</h3>
-            <div className="grid max-w-5xl gap-8 md:grid-cols-3 md:justify-between">
+            <div className="grid max-w-7xl gap-8 sm:grid-cols-2 xl:grid-cols-4 xl:justify-between">
               {t.team.map((person) => (
                 <article className="group md:max-w-64" key={person.name}>
                   <div className="mb-5 aspect-[4/5] max-w-48 overflow-hidden border border-fs-accent/35 bg-fs-panel sm:max-w-56 md:max-w-none">
                     {person.image ? (
                       <img className="h-full w-full object-cover grayscale transition duration-300 group-hover:grayscale-0" src={assetPath(person.image)} alt={person.name} loading="lazy" decoding="async" />
                     ) : (
-                      <div className="grid h-full place-items-center bg-fs-accent/10 text-fs-accent">
+                      <div className="flex h-full flex-col items-center justify-center gap-3 bg-fs-accent/10 text-fs-accent">
                         <PersonIcon />
+                        <span className="text-xs font-bold uppercase">Foto folgt</span>
                       </div>
                     )}
                   </div>
@@ -4003,7 +4005,7 @@ function GermanOriginalSections({ t }) {
                     <div>
                       <h4 className="mb-1 text-2xl font-semibold leading-tight text-white">{person.name}</h4>
                       <p className="mb-2 text-base font-medium leading-snug text-fs-accent">{person.role}</p>
-                      <p className="m-0 text-sm leading-snug text-white/72">{person.credentials}</p>
+                      {person.credentials && <p className="m-0 text-sm leading-snug text-white/72">{person.credentials}</p>}
                     </div>
                     {person.linkedin && (
                       <a

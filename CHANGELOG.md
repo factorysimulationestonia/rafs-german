@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-09-11
+
+### Changed
+- Replaced the German DACH contact placeholders with Peter J. Fischer's confirmed name, role, telephone number, and Factory Simulation email address.
+
+### Added
+- Added Triinu Strandberg as Vertrags- und Dokumentenmanagerin to the German team section with a temporary portrait placeholder.
+
 ## [1.4.0] - 2026-09-11
 
 ### Added

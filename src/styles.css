@@ -605,7 +605,7 @@
     display: grid;
     width: 100%;
     max-width: 760px;
-    grid-template-columns: minmax(200px, 0.82fr) minmax(0, 1.18fr);
+    grid-template-columns: minmax(170px, 0.58fr) minmax(0, 1.42fr);
     margin-top: 18px;
     border-top: 2px solid #e2ab19;
     background: #151713;
@@ -629,7 +629,7 @@
     min-width: 0;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(30px, 4vw, 48px);
+    padding: clamp(26px, 3vw, 38px);
   }
 
   .de-contact-person__details .de-contact-person__label {
@@ -658,7 +658,8 @@
     color: white;
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     font-weight: 600;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
+    word-break: normal;
     text-decoration-color: rgb(226 171 25 / 0.65);
     text-underline-offset: 4px;
   }
@@ -1008,6 +1009,11 @@
 
     .de-contact-person__details {
       padding: 25px 22px 28px;
+    }
+
+    .de-contact-person a {
+      font-size: 0.9rem;
+      overflow-wrap: anywhere;
     }
 
     .de-footer {

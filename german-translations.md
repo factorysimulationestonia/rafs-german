@@ -1,10 +1,11 @@
-# German Translation Draft
+# German Site Translation Review
 
-Source context: Estonian and English site copy in `src/main.jsx`.
+Source context: current German site copy in `src/main.jsx` and `src/GermanSite.jsx`.
 
-The section "German Market Site" contains the separate landing page draft in
-`src/GermanSite.jsx`. It supersedes the translated home page when the dedicated
-German site is launched.
+The German presentation is published under `/de/` in the combined site and can
+also be built independently for a future German domain. This document records
+the German text currently presented to visitors. The Wheel.me section remains
+excluded from the German version.
 
 ## German Market Site
 
@@ -32,26 +33,40 @@ German site is launched.
 - The Wheel.me reseller section and `/wheelme/` page are intentionally excluded from the German site.
 
 ### Contact
-- Kicker: Erster Schritt
+- Kicker: Ihr direkter Kontakt
+- Contact label: Ihr direkter Kontakt
+- Contact name: Peter J. Fischer
+- Contact role: Business Market Developer - DACH
+- Contact telephone: +49 152 2924 5187
+- Contact email: peter.fischer@factorysimulation.eu
+- Portrait placeholder: Foto folgt
 - Headline: Bringen Sie die offene Produktionsfrage mit.
 - Body: In einem kurzen Gespräch klären wir, welche Entscheidung ansteht, welche Daten vorhanden sind und ob eine Simulation den nächsten Schritt verbessern kann.
 - Fields: Name / E-Mail / Unternehmen / Worum geht es?
+- Name placeholder: Vor- und Nachname
+- Email placeholder: name@unternehmen.de
+- Company placeholder: Unternehmensname
+- Message placeholder: Welche Produktionsentscheidung möchten Sie absichern?
 - Submit: Anfrage senden
-- Sending: Wird gesendet...
+- Sending: Wird gesendet…
 - Success: Anfrage gesendet
 - Error: Die Nachricht konnte nicht gesendet werden. Bitte schreiben Sie an info@factorysimulation.eu.
-- Privacy note: Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Beantwortung der Anfrage zu.
+- Privacy note: Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Beantwortung der Anfrage zu. Datenschutz
 
 ### Footer
-- The German site uses the original shared footer.
-- Heading: Kontakt
-- Links: Factory Simulation FAQ / Datenschutzerklärung
-- Company line: Factory Simulation & Digital Twin solutions
+- Brand line: Engineering-Partner / für Ihre Produktion
+- DACH heading: Ihr Ansprechpartner für DACH
+- Contact: Peter J. Fischer / Business Market Developer - DACH / +49 152 2924 5187 / peter.fischer@factorysimulation.eu
+- Social heading: Social Media
+- Information heading: Informationen
+- Links: Factory Simulation FAQ / Datenschutzerklärung / Rechtliche Hinweise / Impressum / Datenschutzeinstellungen
+- Company line: Factory Simulation OÜ
 
 ### Privacy Page
 - Title: Datenschutzerklärung
-- Intro: Diese Datenschutzerklärung erläutert, wie Factory Simulation OÜ Informationen verarbeitet, die über die Kontaktformulare der Website übermittelt werden.
-- Section headings: Verantwortlicher / Welche Daten wir verarbeiten / Zweck und Rechtsgrundlage / Speicherdauer und Weitergabe / Ihre Rechte
+- Intro: Diese Datenschutzerklärung erläutert, wie Factory Simulation OÜ über Kontaktformulare übermittelte Angaben verarbeitet und mit Ihrer Einwilligung Webanalyse sowie die Messung der Werbeleistung einsetzt.
+- Updated: Zuletzt aktualisiert: 11.09.2026
+- The complete policy text is documented under "Privacy Policy" below.
 
 ## Metadata
 
@@ -74,6 +89,14 @@ German site is launched.
 ### FAQ
 - Title: Factory Simulation FAQ | Factory Simulation Leistungen
 - Description: Erfahren Sie, wie Fertigungssimulation hilft, Produktionsfluss, Kapazität, Layouts, Automatisierungskonzepte und Investitionsszenarien vor physischen Änderungen zu testen.
+
+### Impressum
+- Title: Impressum | Factory Simulation
+- Description: Impressum und Anbieterkennzeichnung von Factory Simulation OÜ.
+
+### Legal Notice
+- Title: Rechtliche Hinweise | Factory Simulation
+- Description: Rechtliche Hinweise zur Website von Factory Simulation OÜ.
 
 ## Shared Navigation
 
@@ -303,13 +326,16 @@ German site is launched.
 - Hans credentials: Wirtschaftsingenieurwesen und Management (MSc)
 - Markus role: Projektingenieur
 - Markus credentials: Robotik- und Automatisierungsingenieur (MSc)
+- Triinu Strandberg role: Vertrags- und Dokumentenmanagerin
+- Triinu portrait placeholder: Foto folgt
 - Partners title: Partner und Netzwerk
+
 ## Privacy Policy
 
 - Title: Datenschutzerklärung
 - Breadcrumb: Datenschutzerklärung
-- Updated: Zuletzt aktualisiert: 07.07.2026
-- Intro: Diese Datenschutzerklärung erklärt, wie Factory Simulation OÜ Informationen verarbeitet, die über die Kontaktformulare der Website gesendet werden.
+- Updated: Zuletzt aktualisiert: 11.09.2026
+- Intro: Diese Datenschutzerklärung erläutert, wie Factory Simulation OÜ über Kontaktformulare übermittelte Angaben verarbeitet und mit Ihrer Einwilligung Webanalyse sowie die Messung der Werbeleistung einsetzt.
 
 ### Verantwortlicher
 - Verantwortlicher: Factory Simulation OÜ.
@@ -334,6 +360,99 @@ German site is launched.
 
 ### Ihre Rechte
 - Sie haben das Recht, Auskunft über Ihre Daten zu verlangen, Berichtigung oder Löschung zu verlangen, die Verarbeitung einzuschränken und der Verarbeitung zu widersprechen. Außerdem haben Sie das Recht, eine Beschwerde bei der estnischen Datenschutzaufsichtsbehörde einzureichen.
+
+### Notwendige Website-Speicherung
+- Die Website speichert Ihre Sprachpräferenz und Datenschutzauswahl im lokalen Speicher des Browsers. Dies ist erforderlich, um angeforderte Funktionen bereitzustellen und Ihre Auswahl zu speichern; Rechtsgrundlage ist unser berechtigtes Interesse an einer funktionsfähigen Website, die Ihre Auswahl respektiert. Die Datenschutzauswahl läuft nach 12 Monaten ab. Google-Messdienste werden nur geladen, wenn Sie eingewilligt haben.
+
+### Sicherheit und Aufbewahrung des Kontaktformulars
+- Das Kontaktformular verwendet ein Honeypot-Feld, eine Herkunftsprüfung und Begrenzungen der Übermittlungshäufigkeit. Zur Missbrauchsabwehr speichert die Anwendung die IP-Adresse und Zeitpunkte der Sendeversuche höchstens eine Stunde lang in einer temporären Datei. Rechtsgrundlage dieser Sicherheitsverarbeitung ist unser berechtigtes Interesse am Schutz der Website und des Kontaktkanals. Die Formularinhalte werden über die Infrastruktur von Zone per E-Mail an Factory Simulation übermittelt.
+- Anfragen, die nicht zu einem Vertrags- oder sonstigen Geschäftsverhältnis führen, werden spätestens 24 Monate nach der letzten inhaltlichen Kommunikation gelöscht oder anonymisiert. Kommt eine Zusammenarbeit zustande, können relevante Angaben zur Vertragserfüllung sowie für die Dauer gesetzlicher Aufbewahrungsfristen gespeichert werden.
+
+### Google Analytics
+- Mit Ihrer Einwilligung verwenden wir Google Analytics 4 (Mess-ID G-JRKZJXK4DL), um zusammengefasste Statistiken über Nutzung und Leistung der Website zu erstellen. Verarbeitet werden können aufgerufene URLs und Seitentitel, verweisende Seiten, Browser- und Geräteinformationen, ein aus der IP-Adresse abgeleiteter ungefährer Standort, Nutzungsereignisse sowie mit Cookies verknüpfte Online-Kennungen.
+- Rechtsgrundlage ist Ihre Einwilligung nach Artikel 6 Absatz 1 Buchstabe a DSGVO. Die Google-Analytics-Cookies `_ga` und `_ga_<Mess-ID>` können bis zu 12 Monate bestehen; Ereignis- und Nutzerdaten werden in der Analytics-Property bis zu 14 Monate gespeichert.
+
+### Google-Ads-Conversion-Messung
+- Mit separater Einwilligung verwenden wir die Google-Ads-Messung (ID AW-18241161030), um die Leistung von Werbekampagnen zu bewerten. Nach erfolgreichem Absenden eines Kontaktformulars kann Google Ads ein Conversion-Ereignis erhalten und einem früheren Anzeigenklick zuordnen. Dabei können Anzeigenklick-Kennungen, Online-Kennungen, Geräte- und Browserinformationen sowie der Zeitpunkt der Conversion verarbeitet werden.
+- Rechtsgrundlage ist Ihre Einwilligung. Signale für personalisierte Werbung sind auf dieser Website deaktiviert. Cookies zur Werbemessung, deren Name mit `_gcl_` beginnt, können bis zu 90 Tage bestehen.
+
+### Dienstleister und internationale Übermittlungen
+- Google Analytics und Google Ads werden von Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, bereitgestellt. Google kann Informationen außerhalb des Europäischen Wirtschaftsraums, auch in den USA, verarbeiten. Google erklärt, erforderlichenfalls von der Europäischen Kommission anerkannte Garantien zu verwenden, darunter das EU-US Data Privacy Framework und Standardvertragsklauseln.
+- Unser Anbieter für Hosting und E-Mail-Versand des Kontaktformulars ist Zone Media OÜ (Zone.ee). Google-Datenschutzinformationen: https://policies.google.com/privacy; Cookie-Informationen: https://policies.google.com/technologies/cookies; Übermittlungsrahmen: https://policies.google.com/privacy/frameworks.
+
+### Ihre Analyse- und Werbeauswahl
+- Analyse und Werbemessung sind standardmäßig deaktiviert. Sie können separat einwilligen, ablehnen oder Ihre Auswahl später über die Schaltfläche „Datenschutzeinstellungen” ändern. Der Widerruf berührt nicht die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung und verhindert weder die Nutzung der Website noch des Kontaktformulars.
+
+## Privacy Consent Controls
+
+- Title: Datenschutzauswahl
+- Summary: Wir verwenden Google Analytics und die Google-Ads-Messung nur mit Ihrer Einwilligung. Eine Ablehnung beeinträchtigt weder die Website noch das Kontaktformular.
+- Accept all: Alle akzeptieren
+- Reject: Nicht notwendige ablehnen
+- Settings: Einstellungen
+- Settings title: Datenschutzeinstellungen
+- Necessary title: Notwendig
+- Necessary text: Speichert Sprach- und Datenschutzauswahl. Immer aktiv.
+- Analytics title: Analyse
+- Analytics text: Google Analytics hilft uns, Nutzung und Leistung der Website zu verstehen.
+- Advertising title: Werbemessung
+- Advertising text: Google Ads misst, ob eine Anzeige zum Absenden eines Kontaktformulars geführt hat. Personalisierte Werbung bleibt deaktiviert.
+- Save: Auswahl speichern
+- Cancel: Zurück
+- Privacy link: Datenschutzerklärung
+- Reopen settings: Datenschutzeinstellungen
+
+## Impressum
+
+- Kicker: Anbieterkennzeichnung
+- Title: Impressum
+- Lead: Angaben zum Anbieter dieser Website.
+
+### Anbieter
+- Factory Simulation OÜ
+- Rechtsform: Osaühing (estnische Gesellschaft mit beschränkter Haftung)
+- Okka tee 2
+- Piira küla, Vinni vald
+- Lääne-Viru maakond 46607
+- Estland
+
+### Vertretungsberechtigte Person
+- Vorstandsmitglied: Steven Strandberg
+
+### Kontakt
+- Telefon: +372 511 8303
+- E-Mail: info@factorysimulation.eu
+
+### Registereintrag
+- Estnisches Handelsregister (Äriregister)
+- Registernummer: 17384619
+
+### Umsatzsteuer-Identifikationsnummer
+- EE102941711
+
+### Verantwortlich für den Inhalt
+- Steven Strandberg, Anschrift wie oben.
+
+## Legal Notice
+
+- Kicker: Rechtliches
+- Title: Rechtliche Hinweise
+- Lead: Hinweise zur Nutzung und zu den Inhalten dieser Website.
+
+### Informationen auf dieser Website
+- Die Inhalte dieser Website dienen der allgemeinen Information über unsere Leistungen. Sie stellen kein verbindliches Angebot und keine technische, rechtliche oder wirtschaftliche Beratung für einen konkreten Anwendungsfall dar. Verbindliche Leistungen, Ergebnisse und Termine ergeben sich ausschließlich aus einer individuellen Vereinbarung.
+
+### Inhalte und Aktualität
+- Wir erstellen und pflegen die Inhalte mit angemessener Sorgfalt. Produktions-, Simulations- und Projektergebnisse hängen jedoch von den jeweiligen Eingangsdaten, Annahmen und Rahmenbedingungen ab. Bitte kontaktieren Sie uns, wenn Sie einen Fehler oder eine veraltete Angabe feststellen.
+
+### Urheber- und Nutzungsrechte
+- Texte, Grafiken, Simulationen, Bilder, Videos und sonstige eigene Inhalte dieser Website dürfen nur im gesetzlich zulässigen Umfang oder mit vorheriger Zustimmung von Factory Simulation OÜ verwendet werden. Rechte Dritter bleiben unberührt und werden, soweit erkennbar, entsprechend gekennzeichnet.
+
+### Externe Links
+- Diese Website enthält Links zu externen Angeboten. Für deren Inhalte und Datenschutzpraktiken sind die jeweiligen Anbieter verantwortlich. Wir prüfen externe Links bei ihrer Aufnahme, haben jedoch keinen fortlaufenden Einfluss auf spätere Änderungen fremder Inhalte.
+
+### Verfügbarkeit
+- Wir bemühen uns um einen zuverlässigen Betrieb der Website, können eine jederzeitige unterbrechungs- oder fehlerfreie Verfügbarkeit jedoch nicht gewährleisten.
 
 ## FAQ
 
