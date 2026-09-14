@@ -4670,16 +4670,12 @@ createRoot(document.getElementById('root')).render(
         basePath={basePath}
         contactEndpoint={contactEndpoint}
         isDedicatedSite={isDedicatedGermanSite}
-        footer={<OriginalFooter t={content.de} language="de" contactPerson={dachContact} />}
-        faqContent={<GermanFaqContent t={content.de} />}
         LinkedinIcon={LinkedinIcon}
         privacyDetails={germanPrivacyDetails}
         onLeadConversion={trackLeadConversion}
         contactPerson={dachContact}
         t={content.de}
-      >
-        <GermanOriginalSections t={content.de} />
-      </GermanSite>
+      />
     ) : (
       <App />
     )}

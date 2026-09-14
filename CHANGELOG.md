@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-09-14
+
+### Added
+- Added a fully isolated German brand concept with a new process-node identity, color system, navigation, and responsive page composition.
+- Added dedicated process and Estonia imagery optimized for the German concept.
+- Added an isolated GitHub Pages deployment target for `fs-home-demo-2`.
+
+### Changed
+- Reframed the German landing page around concise benefits, a four-step delivery process, the Estonia-based team, and direct DACH contact.
+- Updated German typography, button treatments, section spacing, and responsive behavior to match the new brand direction.
+- Temporarily removed the German services section and its navigation item from the concept.
+
 ## [1.5.0] - 2026-09-14
 
 ### Changed

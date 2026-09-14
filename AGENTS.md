@@ -1,5 +1,13 @@
 # Factory Simulation Website
 
+## Local German Rebrand Worktree
+
+- The `german-rebrand-v2` branch and `fs-home-german-v2` worktree contain a German brand exploration published only to the isolated `hansojuhan/fs-home-demo-2` GitHub Pages repository. Do not merge or push it to production without explicit approval.
+- Brand source material lives in the untracked `new-german-brand/` folder. Preserve those supplied files as references and do not include them in a release without explicit approval.
+- The rebrand uses the `#151a1b`, `#f4f3ec`, `#fafaf7`, and `#dcdf93` palette and the logo direction documented in `new-german-brand/new-brand-concept.md`.
+- Optimized rebrand page imagery lives under `public/de-v2/`; preserve the original concept images in `new-german-brand/` as untracked source references.
+- Run the isolated experience with `npm run dev:de`; deploy it only through the `demo2` remote and keep the ET/EN composition and production German branch unaffected.
+
 ## Project
 
 - This repository will contain two independently built site variants: the current Estonian/English site and a separate German-market site that may use a different structure and design.

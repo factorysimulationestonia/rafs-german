@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   build:
-    if: github.repository == 'hansojuhan/fs-home-demo'
+    if: github.repository == 'hansojuhan/fs-home-demo' || github.repository == 'hansojuhan/fs-home-demo-2'
     runs-on: ubuntu-latest
 
     steps:
@@ -39,7 +39,7 @@ jobs:
           npm run build:de
           cp dist/index.html dist/404.html
         env:
-          BASE_PATH: /fs-home-demo/
+          BASE_PATH: ${{ github.event.repository.name == 'fs-home-demo-2' && '/fs-home-demo-2/' || '/fs-home-demo/' }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -50,7 +50,7 @@ jobs:
           path: dist
 
   deploy:
-    if: github.repository == 'hansojuhan/fs-home-demo'
+    if: github.repository == 'hansojuhan/fs-home-demo' || github.repository == 'hansojuhan/fs-home-demo-2'
     needs: build
     runs-on: ubuntu-latest
     environment:

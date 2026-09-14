@@ -44,10 +44,11 @@ Vite proxies `/api` to the local PHP server on port `8787`. On Windows, the laun
 
 ## Deployment
 
-This repository has two remotes:
+This repository has three remotes:
 
 - `origin` — live production repository: `factorysimulationestonia/fs-home`
 - `demo` — GitHub Pages demo repository: `hansojuhan/fs-home-demo`
+- `demo2` — isolated German rebrand preview: `hansojuhan/fs-home-demo-2`
 
 ### Push to demo
 
@@ -62,6 +63,18 @@ Demo URL: <https://hansojuhan.github.io/fs-home-demo/>
 The demo workflow publishes the standalone German build with `BASE_PATH=/fs-home-demo/` and copies `dist/index.html` to `dist/404.html`, allowing its clean routes to work on GitHub Pages. The demo repository is intentionally separate from the ET/EN production deployment.
 
 Because GitHub Pages cannot run PHP, the demo contact form retains the `mailto:` fallback.
+
+### Push the German rebrand preview
+
+From the `german-rebrand-v2` worktree, publish only to the isolated second demo:
+
+```bash
+git push demo2 german-rebrand-v2:main
+```
+
+Preview URL: <https://hansojuhan.github.io/fs-home-demo-2/>
+
+This deployment uses `npm run build:de` with `BASE_PATH=/fs-home-demo-2/` and does not modify `origin/main` or the first demo repository.
 
 ### Push live
 
