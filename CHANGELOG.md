@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.1] - 2026-09-14
+
+### Changed
+- Reworked the isolated German rebrand with the Brand Estonia color palette across surfaces, actions, typography, logo nodes, responsive overlays, and privacy controls.
+- Added a full-width lower divider to the compact benefits strip.
+- Kept the process section on a clean white surface and retained the Estonia story below the team presentation.
+
 ## [1.6.0] - 2026-09-14
 
 ### Added

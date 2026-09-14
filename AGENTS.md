@@ -4,7 +4,7 @@
 
 - The `german-rebrand-v2` branch and `fs-home-german-v2` worktree contain a German brand exploration published only to the isolated `hansojuhan/fs-home-demo-2` GitHub Pages repository. Do not merge or push it to production without explicit approval.
 - Brand source material lives in the untracked `new-german-brand/` folder. Preserve those supplied files as references and do not include them in a release without explicit approval.
-- The rebrand uses the `#151a1b`, `#f4f3ec`, `#fafaf7`, and `#dcdf93` palette and the logo direction documented in `new-german-brand/new-brand-concept.md`.
+- The rebrand is currently testing the official Brand Estonia palette: Estonian blue `#0030DE`, Pärnu `#CEE2FD`, Liivi `#000087`, Paldiski `#0062F5`, Narva `#00C3FF`, Pahkla `#F1F5F9`, Mustkivi `#0F172A`, and Hellamaa `#CBD5E1`. The three process-logo nodes use Liivi, Paldiski, and Narva.
 - Optimized rebrand page imagery lives under `public/de-v2/`; preserve the original concept images in `new-german-brand/` as untracked source references.
 - Run the isolated experience with `npm run dev:de`; deploy it only through the `demo2` remote and keep the ET/EN composition and production German branch unaffected.
 

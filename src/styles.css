@@ -11,11 +11,16 @@
 
 @layer components {
   .de2-body {
-    --de2-ink: #151a1b;
-    --de2-paper: #f4f3ec;
-    --de2-white: #fafaf7;
-    --de2-lime: #dcdf93;
-    --de2-line: #d4d5ce;
+    --de2-primary: #0030de;
+    --de2-soft: #cee2fd;
+    --de2-deep: #000087;
+    --de2-bright: #0062f5;
+    --de2-cyan: #00c3ff;
+    --de2-warm: #fceec8;
+    --de2-ink: #0f172a;
+    --de2-paper: #f1f5f9;
+    --de2-white: #ffffff;
+    --de2-line: #cbd5e1;
     background: var(--de2-paper);
     color: var(--de2-ink);
   }
@@ -62,7 +67,7 @@
     z-index: 0;
     width: 20px;
     height: 2px;
-    background: #87918f;
+    background: #64748b;
     content: "";
     transform: rotate(-45deg);
     transform-origin: left center;
@@ -90,19 +95,19 @@
   .de2-logo__mark i:nth-child(1) {
     bottom: 0;
     left: 0;
-    background: #151a1b;
+    background: var(--de2-deep);
   }
 
   .de2-logo__mark i:nth-child(2) {
     top: 15px;
     left: 15px;
-    background: #87918f;
+    background: var(--de2-bright);
   }
 
   .de2-logo__mark i:nth-child(3) {
     top: 0;
     right: 0;
-    background: #dcdf93;
+    background: var(--de2-cyan);
   }
 
   .de2-logo__name {
@@ -116,7 +121,7 @@
   }
 
   .de2-logo--inverted .de2-logo__mark i:nth-child(1) {
-    background: #fafaf7;
+    background: var(--de2-white);
   }
 
   .de2-header {
@@ -129,7 +134,7 @@
     align-items: center;
     gap: 32px;
     border: 0;
-    background: rgb(244 243 236 / 0.96);
+    background: rgb(241 245 249 / 0.96);
     padding: 14px clamp(20px, 5vw, 84px);
     backdrop-filter: blur(14px);
   }
@@ -183,7 +188,7 @@
   }
 
   .de2-header__cta {
-    background: var(--de2-ink);
+    background: var(--de2-primary);
     color: var(--de2-white) !important;
     font-family: Inter, "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     font-weight: 600;
@@ -193,7 +198,7 @@
 
   .de2-header__cta:hover,
   .de2-button--dark:hover:not(:disabled) {
-    background: #303839;
+    background: var(--de2-bright);
   }
 
   .de2-header__cta svg,
@@ -238,7 +243,7 @@
     align-items: center;
     overflow: hidden;
     border-bottom: 1px solid var(--de2-line);
-    background: #e8e9e4;
+    background: var(--de2-paper);
   }
 
   .de2-hero__media,
@@ -256,7 +261,7 @@
   }
 
   .de2-hero__wash {
-    background: linear-gradient(90deg, rgb(244 243 236 / 0.99) 0%, rgb(244 243 236 / 0.94) 35%, rgb(244 243 236 / 0.5) 60%, rgb(244 243 236 / 0.08) 100%);
+    background: linear-gradient(90deg, rgb(241 245 249 / 0.99) 0%, rgb(241 245 249 / 0.94) 35%, rgb(241 245 249 / 0.5) 60%, rgb(241 245 249 / 0.08) 100%);
   }
 
   .de2-hero__content {
@@ -268,7 +273,7 @@
 
   .de2-eyebrow {
     margin: 0 0 28px;
-    color: #687071;
+    color: #64748b;
     font-family: Inter, "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     font-size: 11px;
     font-weight: 500;
@@ -287,13 +292,13 @@
   }
 
   .de2-hero h1 span {
-    color: #657073;
+    color: var(--de2-primary);
   }
 
   .de2-hero__content > p:not(.de2-eyebrow) {
     max-width: 610px;
     margin: 30px 0 0;
-    color: #475052;
+    color: #3d4b5e;
     font-size: 18px;
     line-height: 1.58;
   }
@@ -307,7 +312,7 @@
   }
 
   .de2-button--dark {
-    background: var(--de2-ink);
+    background: var(--de2-primary);
     color: var(--de2-white) !important;
     cursor: pointer;
   }
@@ -318,7 +323,7 @@
   }
 
   .de2-button--light:hover {
-    background: var(--de2-lime);
+    background: var(--de2-soft);
   }
 
   .de2-text-link {
@@ -342,8 +347,8 @@
     right: clamp(20px, 5vw, 84px);
     bottom: 30px;
     margin: 0;
-    border-left: 3px solid var(--de2-lime);
-    background: rgb(250 250 247 / 0.9);
+    border-left: 3px solid var(--de2-primary);
+    background: rgb(255 255 255 / 0.9);
     padding: 12px 16px;
     font-size: 12px;
     font-weight: 600;
@@ -352,6 +357,7 @@
   .de2-benefits {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-bottom: 1px solid var(--de2-line);
     background: var(--de2-white);
     padding: 0;
   }
@@ -376,7 +382,7 @@
   .de2-benefits svg {
     width: 28px;
     height: 28px;
-    color: #3f4849;
+    color: var(--de2-primary);
   }
 
   .de2-benefits h2 {
@@ -386,7 +392,7 @@
 
   .de2-benefits p {
     margin: 0;
-    color: #687071;
+    color: #64748b;
     font-size: 13px;
     line-height: 1.35;
   }
@@ -429,6 +435,8 @@
     font-size: 16px;
     line-height: 1.65;
   }
+
+
 
   .de2-service-list {
     border-top: 1px solid var(--de2-line);
@@ -481,7 +489,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     gap: clamp(28px, 4vw, 64px);
-    background: var(--de2-paper);
+    background: var(--de2-white);
     padding: 2rem clamp(20px, 6.5vw, 108px);
   }
 
@@ -499,7 +507,7 @@
   .de2-process__intro > h2 + p {
     max-width: 520px;
     margin: 18px 0 0;
-    color: #697172;
+    color: #64748b;
     font-size: 14px;
     line-height: 1.55;
   }
@@ -525,7 +533,8 @@
     top: 30px;
     left: 30px;
     margin: 0;
-    background: var(--de2-lime);
+    background: var(--de2-primary);
+    color: var(--de2-white);
     padding: 12px 15px;
     font-size: 14px;
     font-weight: 650;
@@ -550,7 +559,7 @@
     right: 8px;
     left: 35px;
     height: 1px;
-    background: #c8cac4;
+    background: var(--de2-line);
     content: "";
   }
 
@@ -559,9 +568,9 @@
     width: 27px;
     height: 27px;
     place-items: center;
-    border: 1px solid #abb0aa;
+    border: 1px solid #64748b;
     border-radius: 50%;
-    background: var(--de2-paper);
+    background: var(--de2-white);
     color: var(--de2-ink);
     font-size: 10px;
   }
@@ -614,7 +623,7 @@
 
   .de2-estonia__copy > p:not(.de2-eyebrow) {
     margin-top: 24px;
-    color: #747b7c;
+    color: #64748b;
     font-size: 17px;
     font-weight: 400;
   }
@@ -627,7 +636,7 @@
     margin: 55px 0;
     border-left: 1px solid var(--de2-line);
     padding: 35px clamp(30px, 5vw, 78px);
-    color: #5d6667;
+    color: #3d4b5e;
     font-size: 19px;
     line-height: 1.5;
   }
@@ -640,7 +649,7 @@
 
   .de2-estonia blockquote span {
     margin-top: 4px;
-    color: #737a7a;
+    color: #64748b;
     font-size: 12px;
   }
 
@@ -661,13 +670,13 @@
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: center top;
-    background: #e4e5de;
+    background: var(--de2-paper);
   }
 
   .de2-team__placeholder {
     display: grid;
     place-items: center;
-    color: #7e8583;
+    color: #64748b;
     font-size: 38px;
   }
 
@@ -679,14 +688,14 @@
 
   .de2-team__grid p {
     margin: 0;
-    color: #6d7474;
+    color: #64748b;
     font-size: 13px;
   }
 
   .de2-contact {
     display: grid;
     grid-template-columns: minmax(0, 0.85fr) minmax(440px, 1.15fr);
-    background: var(--de2-lime);
+    background: var(--de2-soft);
     padding: 120px clamp(20px, 6.5vw, 108px);
   }
 
@@ -698,12 +707,12 @@
   .de2-contact__intro > p:not(.de2-eyebrow) {
     max-width: 600px;
     margin-top: 25px;
-    color: #3f4747;
+    color: #3d4b5e;
   }
 
   .de2-contact address {
     margin-top: 55px;
-    border-top: 1px solid rgb(21 26 27 / 0.4);
+    border-top: 1px solid rgb(15 23 42 / 0.35);
     padding-top: 28px;
     font-style: normal;
   }
@@ -721,7 +730,7 @@
 
   .de2-contact address p {
     margin: 0 0 23px;
-    color: #485051;
+    color: #3d4b5e;
   }
 
   .de2-contact address a {
@@ -758,7 +767,7 @@
 
   .de2-form {
     min-width: 0;
-    border-left: 1px solid rgb(21 26 27 / 0.4);
+    border-left: 1px solid rgb(15 23 42 / 0.35);
     padding-left: clamp(30px, 6vw, 100px);
   }
 
@@ -780,7 +789,7 @@
     display: block;
     width: 100%;
     margin-top: 8px;
-    border: 1px solid rgb(21 26 27 / 0.52);
+    border: 1px solid rgb(15 23 42 / 0.45);
     border-radius: 3px;
     background: var(--de2-white);
     padding: 14px 15px;
@@ -792,7 +801,7 @@
   .de2-form input:focus,
   .de2-form textarea:focus {
     border-color: var(--de2-ink);
-    box-shadow: 0 0 0 2px rgb(21 26 27 / 0.18);
+    box-shadow: 0 0 0 2px rgb(0 48 222 / 0.2);
   }
 
   .de2-form textarea {
@@ -850,7 +859,7 @@
 
   .de2-footer__pitch span {
     margin-top: 5px;
-    color: rgb(250 250 247 / 0.58);
+    color: rgb(255 255 255 / 0.62);
     font-size: 13px;
   }
 
@@ -859,9 +868,9 @@
     min-width: 0;
     align-items: center;
     gap: 24px;
-    border-top: 1px solid rgb(250 250 247 / 0.17);
+    border-top: 1px solid rgb(255 255 255 / 0.17);
     padding-top: 24px;
-    color: rgb(250 250 247 / 0.55);
+    color: rgb(255 255 255 / 0.58);
     font-size: 12px;
   }
 
@@ -895,7 +904,7 @@
     width: 30px;
     height: 30px;
     place-items: center;
-    border: 1px solid rgb(250 250 247 / 0.28);
+    border: 1px solid rgb(255 255 255 / 0.28);
   }
 
   .de2-social svg {
@@ -1030,7 +1039,7 @@
       justify-content: center;
       margin-top: 8px;
       border-radius: 999px;
-      background: var(--de2-ink);
+      background: var(--de2-primary);
       color: var(--de2-white);
       padding: 12px 18px;
     }
@@ -1122,7 +1131,7 @@
     }
 
     .de2-form {
-      border-top: 1px solid rgb(21 26 27 / 0.4);
+      border-top: 1px solid rgb(15 23 42 / 0.35);
       border-left: 0;
       padding-top: 50px;
       padding-left: 0;
@@ -1198,7 +1207,7 @@
     }
 
     .de2-hero__wash {
-      background: linear-gradient(0deg, rgb(244 243 236 / 1) 0%, rgb(244 243 236 / 0.94) 44%, rgb(244 243 236 / 0.38) 80%, rgb(244 243 236 / 0.1) 100%);
+      background: linear-gradient(0deg, rgb(241 245 249 / 1) 0%, rgb(241 245 249 / 0.94) 44%, rgb(241 245 249 / 0.38) 80%, rgb(241 245 249 / 0.1) 100%);
     }
 
     .de2-hero__content {
@@ -2508,24 +2517,24 @@
 
 body.de2-body aside[aria-labelledby="privacy-choice-title"],
 body.de2-body section[aria-labelledby="privacy-settings-title"] {
-  border-color: rgb(250 250 247 / 0.2) !important;
+  border-color: rgb(206 226 253 / 0.3) !important;
   border-radius: 4px !important;
-  background: #151a1b !important;
-  color: #fafaf7 !important;
+  background: #0f172a !important;
+  color: #ffffff !important;
 }
 
 body.de2-body aside[aria-labelledby="privacy-choice-title"] a,
 body.de2-body section[aria-labelledby="privacy-settings-title"] a {
-  color: #dcdf93 !important;
+  color: #00c3ff !important;
 }
 
 body.de2-body aside[aria-labelledby="privacy-choice-title"] button:last-child,
 body.de2-body section[aria-labelledby="privacy-settings-title"] button:last-child {
-  border-color: #dcdf93 !important;
-  background: #dcdf93 !important;
-  color: #151a1b !important;
+  border-color: #0030de !important;
+  background: #0030de !important;
+  color: #ffffff !important;
 }
 
 body.de2-body section[aria-labelledby="privacy-settings-title"] input {
-  accent-color: #dcdf93 !important;
+  accent-color: #0062f5 !important;
 }
