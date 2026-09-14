@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-09-14
+
+### Changed
+- Applied the reviewed German hero wording and calls to action from `german-translations.md`.
+- Removed the general company contact block from the draft German Impressum.
+- Added Peter J. Fischer's LinkedIn profile to his German contact details.
+- Expanded all names in the German team section to their full names.
+- Reworked the German contact section and footer with icon-led contact links and the shared LinkedIn button treatment.
+- Added optimized German-team portraits for Steven Strandberg and Triinu Strandberg.
+- Temporarily hid the customer-logo section on the German site while retaining it on the Estonian and English sites.
+- Removed the three promotional fact panels from the German hero.
+
 ## [1.4.1] - 2026-09-11
 
 ### Changed

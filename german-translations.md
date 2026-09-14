@@ -20,25 +20,23 @@ excluded from the German version.
 - The German site has no language selector and is German-only.
 
 ### Hero
-- Headline: Vom Konzept zur sicheren Investitionsentscheidung
-- Body: Wir helfen Automatisierungsintegratoren und Produktionsunternehmen, Automatisierung vor Montage und Inbetriebnahme virtuell zu validieren - von Roboterbewegung und Zykluszeiten bis zu Produktionskapazität, PLC-Logik und Zusammenspiel der Anlagen. So können Sie Risiken reduzieren, kostspielige Fehler vermeiden und Zeit und Geld sparen.
-- Primary button: Kostenlose Beratung anfragen
-- Secondary button: Leistungen ansehen
-- Fact 1: Vor der Investition / Varianten objektiv vergleichen
-- Fact 2: Vor der Montage / Abläufe und Kapazität validieren
-- Fact 3: Vor dem Anlauf / Fehler und Verzögerungen reduzieren
+- Headline: Vom Konzept zur Investitionsentscheidung
+- Body: Wir helfen Automatisierungsintegratoren und Produktionsunternehmen, Automatisierung vor Montage und Inbetriebnahme virtuell zu validieren - von Roboterbewegung und Zykluszeiten bis zu Produktionskapazität, PLC-Logik und Zusammenspiel der Anlagen. So können Sie Risiken reduzieren, kostspielige Fehler vermeiden und Zeit sparen.
+- Primary button: Vereinbaren Sie noch heute eine kostenlose Beratung
+- Secondary button: Unsere Leistungen
 
 ### Main Content
-- The middle of the German landing page uses the translated Services, Software, Client logos, About, Team, and Partners sections documented below.
+- The middle of the German landing page uses the translated Services, Software, About, Team, and Partners sections documented below.
+- The customer-logo section is temporarily hidden on the German site.
 - The Wheel.me reseller section and `/wheelme/` page are intentionally excluded from the German site.
 
 ### Contact
-- Kicker: Ihr direkter Kontakt
 - Contact label: Ihr direkter Kontakt
 - Contact name: Peter J. Fischer
 - Contact role: Business Market Developer - DACH
 - Contact telephone: +49 152 2924 5187
 - Contact email: peter.fischer@factorysimulation.eu
+- Contact LinkedIn: https://www.linkedin.com/in/peter-j-f-52733a23b/
 - Portrait placeholder: Foto folgt
 - Headline: Bringen Sie die offene Produktionsfrage mit.
 - Body: In einem kurzen Gespräch klären wir, welche Entscheidung ansteht, welche Daten vorhanden sind und ob eine Simulation den nächsten Schritt verbessern kann.
@@ -56,7 +54,7 @@ excluded from the German version.
 ### Footer
 - Brand line: Engineering-Partner / für Ihre Produktion
 - DACH heading: Ihr Ansprechpartner für DACH
-- Contact: Peter J. Fischer / Business Market Developer - DACH / +49 152 2924 5187 / peter.fischer@factorysimulation.eu
+- Contact: Peter J. Fischer / Business Market Developer - DACH / +49 152 2924 5187 / peter.fischer@factorysimulation.eu / LinkedIn-Profil
 - Social heading: Social Media
 - Information heading: Informationen
 - Links: Factory Simulation FAQ / Datenschutzerklärung / Rechtliche Hinweise / Impressum / Datenschutzeinstellungen
@@ -109,11 +107,11 @@ excluded from the German version.
 
 ## Home Hero
 
-- Headline: Vom Konzept zur sicheren Investitionsentscheidung
-- Mobile headline: Vom Konzept zur sicheren Investitionsentscheidung
-- Body: Wir helfen Automatisierungsintegratoren und Produktionsunternehmen, Automatisierung vor Montage und Inbetriebnahme virtuell zu validieren - von Roboterbewegung und Zykluszeiten bis zu Produktionskapazität, PLC-Logik und Zusammenspiel der Anlagen. So können Sie Risiken reduzieren, kostspielige Fehler vermeiden und Zeit und Geld sparen.
-- Primary button: Kostenlose Beratung anfragen
-- Secondary button: Leistungen ansehen
+- Headline: Vom Konzept zur Investitionsentscheidung
+- Mobile headline: Vom Konzept zur Investitionsentscheidung
+- Body: Wir helfen Automatisierungsintegratoren und Produktionsunternehmen, Automatisierung vor Montage und Inbetriebnahme virtuell zu validieren - von Roboterbewegung und Zykluszeiten bis zu Produktionskapazität, PLC-Logik und Zusammenspiel der Anlagen. So können Sie Risiken reduzieren, kostspielige Fehler vermeiden und Zeit sparen.
+- Primary button: Vereinbaren Sie noch heute eine kostenlose Beratung
+- Secondary button: Unsere Leistungen
 
 ## Search
 
@@ -137,7 +135,7 @@ excluded from the German version.
 - Card label, results: Ergebnisse
 
 ### Kunststoffproduktion
-- Problem: Der Einfluss neuer Prüfanlagen auf die Produktion musste vor der Investition bewertet werden, um Engpässe, Stillstände und spätere Layoutänderungen zu vermeiden.
+- Challenge: Der Einfluss neuer Prüfanlagen auf die Produktion musste vor der Investition bewertet werden, um Engpässe, Stillstände und spätere Layoutänderungen zu vermeiden.
 - Solution: Die Montage, Prüfung und Verpackung von Steckdosen wurde modelliert, und verschiedene Produktionsszenarien wurden vor der Beschaffung der Anlagen simuliert.
 - Results:
   - Validierte Produktionskapazität vor Ankunft der Anlagen
@@ -147,7 +145,7 @@ excluded from the German version.
   - Kostspielige Änderungen nach der Umsetzung vermieden
 
 ### Schwerindustrie
-- Problem: Die Neuplanung einer 18.000 m² großen Produktionshalle erforderte einen genauen Überblick über die bestehende Umgebung und die Sicherheit, dass neue Anlagenlayouts vor der physischen Installation funktionieren.
+- Challenge: Die Neuplanung einer 18.000 m² großen Produktionshalle erforderte einen genauen Überblick über die bestehende Umgebung und die Sicherheit, dass neue Anlagenlayouts vor der physischen Installation funktionieren.
 - Solution: Die gesamte Fabrik wurde per Laserscan erfasst, eine genaue DWG-Grundlage erstellt und verschiedene Layout- und Logistikszenarien simuliert.
 - Results:
   - Genaue digitale Grundlage für die gesamte Engineering-Arbeit
@@ -157,7 +155,7 @@ excluded from the German version.
   - Solider technischer Überblick über die gesamte Produktionsumgebung
 
 ### Lebensmittelindustrie
-- Problem: Wartezeiten, ungleichmäßiger Fluss und Engpässe im Produktionsprozess begrenzten den Durchsatz und führten zu einem instabilen Produktionsrhythmus.
+- Challenge: Wartezeiten, ungleichmäßiger Fluss und Engpässe im Produktionsprozess begrenzten den Durchsatz und führten zu einem instabilen Produktionsrhythmus.
 - Solution: Der gesamte Produktionsprozess wurde modelliert, kritische Schritte wurden analysiert und verschiedene Automatisierungs- und Prozessausgleichsszenarien getestet.
 - Results:
   - Stabiler Materialfluss über den gesamten Prozess
@@ -167,7 +165,7 @@ excluded from the German version.
   - Virtuelle Umgebung für schnelles Testen von Szenarien
 
 ### Lagerlogistik
-- Problem: Materialbewegungen und interne Logistik verursachten unnötige Transporte, Wartezeiten und ungleichmäßige Auslastung im Produktionsprozess.
+- Challenge: Materialbewegungen und interne Logistik verursachten unnötige Transporte, Wartezeiten und ungleichmäßige Auslastung im Produktionsprozess.
 - Solution: AGV/AMR-Routen, Arbeitsabläufe der Bediener und Materialbewegungen wurden simuliert, um eine stabile interne Logistik ohne physische Testläufe zu erreichen.
 - Results:
   - Optimierte AGV/AMR-Fahrwege
@@ -177,7 +175,7 @@ excluded from the German version.
   - Validierte Logistik vor physischen Änderungen
 
 ### Pelletwerk
-- Problem: Der Fabrik fehlte ein aktueller digitaler Überblick über die Produktionsumgebung, wodurch künftige Entwicklungs- und Investitionsplanung langsam und riskant wurde.
+- Challenge: Der Fabrik fehlte ein aktueller digitaler Überblick über die Produktionsumgebung, wodurch künftige Entwicklungs- und Investitionsplanung langsam und riskant wurde.
 - Solution: Das gesamte Pelletwerk wurde per Laserscan erfasst und zu einem detaillierten digitalen Modell für Produktionsvisualisierung, Planung und Datenintegration modelliert.
 - Results:
   - Genaue Punktwolke, Modelle und Zeichnungen der gesamten Fabrikumgebung
@@ -201,7 +199,7 @@ excluded from the German version.
 - CTA: Projekt besprechen
 
 ### Planung einer neuen Fabrik oder Produktionslinie
-- Problem: Eine falsche Investitionsentscheidung kann nach dem Start teure Nacharbeit und Engpässe verursachen.
+- Challenge: Eine falsche Investitionsentscheidung kann nach dem Start teure Nacharbeit und Engpässe verursachen.
 - Lead: Wir erstellen eine 3D-Simulation der Produktion, um Anlagenlayout, Materialflüsse, Bedienerbewegungen und Produktionsvolumen zu testen.
 - Validation points:
   - Anlagenlayout, Materialflüsse und Bedienerbewegungen
@@ -231,7 +229,7 @@ excluded from the German version.
 - Overlay image alt: Detaillierte Analyse von Zykluszeit und Durchlaufzeit einer Produktionslinie
 
 ### Roboter und Automatisierung vor dem Rollout validieren
-- Problem: Schlecht umgesetzte Automatisierung kann Produktionsstillstände und teure Nacharbeit verursachen.
+- Challenge: Schlecht umgesetzte Automatisierung kann Produktionsstillstände und teure Nacharbeit verursachen.
 - Lead: Wir testen virtuell Roboterreichweite, Taktzeiten, Sequenzen und die Interaktion mit der restlichen Produktion.
 - Validation points:
   - Roboterreichweite und Zugänglichkeit
@@ -320,14 +318,15 @@ excluded from the German version.
 
 - Section title: Über uns
 - Team title: Team
-- Steven role: CEO
-- Steven credentials: Maschinenbauingenieur (BSc)
-- Hans role: Simulationsingenieur
-- Hans credentials: Wirtschaftsingenieurwesen und Management (MSc)
-- Markus role: Projektingenieur
-- Markus credentials: Robotik- und Automatisierungsingenieur (MSc)
+- Steven Strandberg role: CEO
+- Steven Strandberg credentials: Maschinenbauingenieur (BSc)
+- Steven Strandberg image: German team portrait
+- Hans Johan Erikson role: Simulationsingenieur
+- Hans Johan Erikson credentials: Wirtschaftsingenieurwesen und Management (MSc)
+- Markus Annilo role: Projektingenieur
+- Markus Annilo credentials: Robotik- und Automatisierungsingenieur (MSc)
 - Triinu Strandberg role: Vertrags- und Dokumentenmanagerin
-- Triinu portrait placeholder: Foto folgt
+- Triinu Strandberg image: German team portrait
 - Partners title: Partner und Netzwerk
 
 ## Privacy Policy
@@ -418,10 +417,6 @@ excluded from the German version.
 
 ### Vertretungsberechtigte Person
 - Vorstandsmitglied: Steven Strandberg
-
-### Kontakt
-- Telefon: +372 511 8303
-- E-Mail: info@factorysimulation.eu
 
 ### Registereintrag
 - Estnisches Handelsregister (Äriregister)

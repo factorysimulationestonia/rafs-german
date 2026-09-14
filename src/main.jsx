@@ -21,7 +21,8 @@ const dachContact = {
   role: 'Business Market Developer - DACH',
   phone: '+49 152 2924 5187',
   phoneHref: 'tel:+4915229245187',
-  email: 'peter.fischer@factorysimulation.eu'
+  email: 'peter.fischer@factorysimulation.eu',
+  linkedin: 'https://www.linkedin.com/in/peter-j-f-52733a23b/'
 };
 const analyticsTagId = 'G-JRKZJXK4DL';
 const adsTagId = 'AW-18241161030';
@@ -1528,8 +1529,8 @@ content.de = {
   languageLabel: 'Sprache wechseln',
   flagSrc: '/de-flag.svg',
   languageSwitcherLabel: 'Sprache auswählen',
-  heroHeadline: 'Vom Konzept zur sicheren Investitionsentscheidung',
-  heroHeadlineMobile: <>Vom Konzept zur sicheren<br />Investitionsentscheidung</>,
+  heroHeadline: 'Vom Konzept zur Investitionsentscheidung',
+  heroHeadlineMobile: <>Vom Konzept zur<br />Investitionsentscheidung</>,
   nav: ['Leistungen', 'Über uns', 'News & Blog', 'Wheel.me'],
   headerTagline: <>Engineering-Partner<br />für Ihre Produktion</>,
   heroSubline: {
@@ -1538,11 +1539,11 @@ content.de = {
     afterRisk: ', ',
     mistakes: 'kostspielige Fehler vermeiden',
     afterMistakes: ' und ',
-    savings: 'Zeit und Geld sparen',
+    savings: 'Zeit sparen',
     end: '.'
   },
-  heroButton: 'Kostenlose Beratung anfragen',
-  heroSecondary: 'Leistungen ansehen',
+  heroButton: 'Vereinbaren Sie noch heute eine kostenlose Beratung',
+  heroSecondary: 'Unsere Leistungen',
   contactButton: 'Kostenlose Beratung',
   search: {
     label: 'Suchen',
@@ -1848,10 +1849,10 @@ content.de = {
   aboutTitle: 'Über uns',
   teamTitle: 'Team',
   team: [
-    { ...content.en.team[0], role: 'CEO', credentials: 'Maschinenbauingenieur (BSc)' },
-    { ...content.en.team[1], role: 'Simulationsingenieur', credentials: 'Wirtschaftsingenieurwesen und Management (MSc)' },
-    { ...content.en.team[2], role: 'Projektingenieur', credentials: 'Robotik- und Automatisierungsingenieur (MSc)' },
-    { name: 'Triinu Strandberg', role: 'Vertrags- und Dokumentenmanagerin' }
+    { ...content.en.team[0], name: 'Steven Strandberg', role: 'CEO', credentials: 'Maschinenbauingenieur (BSc)', image: '/team/steven-de.webp' },
+    { ...content.en.team[1], name: 'Hans Johan Erikson', role: 'Simulationsingenieur', credentials: 'Wirtschaftsingenieurwesen und Management (MSc)' },
+    { ...content.en.team[2], name: 'Markus Annilo', role: 'Projektingenieur', credentials: 'Robotik- und Automatisierungsingenieur (MSc)' },
+    { name: 'Triinu Strandberg', role: 'Vertrags- und Dokumentenmanagerin', image: '/team/triinu-de.webp' }
   ],
   partnersTitle: 'Partner und Netzwerk',
   reseller: 'Offizieller Vertriebspartner und Integrationspartner',
@@ -3870,6 +3871,23 @@ function GermanFaqContent({ t }) {
   );
 }
 
+function FooterPhoneIcon() {
+  return (
+    <svg className="size-4 shrink-0 text-fs-accent" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7.2 3.8 9.6 8l-2.1 1.8c1.1 2.6 3.1 4.6 5.7 5.7l1.8-2.1 4.2 2.4c.4.2.6.7.5 1.1l-.5 2.7c-.1.5-.6.9-1.1.9C10 20.5 3.5 14 3.5 5.9c0-.5.4-1 .9-1.1l2.7-.5c.4-.1.9.1 1.1.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function FooterMailIcon() {
+  return (
+    <svg className="size-4 shrink-0 text-fs-accent" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3.5" y="5" width="17" height="14" rx="1" stroke="currentColor" strokeWidth="1.8" />
+      <path d="m4.5 7 7.5 6 7.5-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function OriginalFooter({ t, language, contactPerson }) {
   if (language === 'de') {
     return (
@@ -3889,8 +3907,25 @@ function OriginalFooter({ t, language, contactPerson }) {
               <p className="mb-3 text-xs font-bold text-fs-accent uppercase">Ihr Ansprechpartner für DACH</p>
               <h2 className="m-0 text-2xl leading-tight font-bold sm:text-3xl">{contactPerson.name}</h2>
               <p className="mt-1.5 mb-5 text-sm text-white/60">{contactPerson.role}</p>
-              <a className="mb-2 block w-fit text-base font-medium text-white no-underline transition hover:text-fs-accent" href={contactPerson.phoneHref}>{contactPerson.phone}</a>
-              <a className="block w-fit max-w-full break-all text-base font-medium text-white no-underline transition hover:text-fs-accent" href={`mailto:${contactPerson.email}`}>{contactPerson.email}</a>
+              <a className="mb-2 flex w-fit items-center gap-2.5 text-base font-medium text-white no-underline transition hover:text-fs-accent" href={contactPerson.phoneHref}>
+                <FooterPhoneIcon />
+                <span>{contactPerson.phone}</span>
+              </a>
+              <a className="flex w-fit max-w-full items-start gap-2.5 text-base font-medium text-white no-underline transition hover:text-fs-accent" href={`mailto:${contactPerson.email}`}>
+                <FooterMailIcon />
+                <span className="min-w-0 break-all">{contactPerson.email}</span>
+              </a>
+              {contactPerson.linkedin && (
+                <a
+                  className="mt-5 grid size-8 place-items-center border border-fs-accent/55 text-fs-accent transition hover:border-white/70 hover:text-white"
+                  href={contactPerson.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${contactPerson.name} LinkedIn`}
+                >
+                  <LinkedinIcon />
+                </a>
+              )}
             </address>
           )}
 
@@ -3979,8 +4014,6 @@ function GermanOriginalSections({ t }) {
       <ServicesSection t={t} onContactClick={navigateToGermanContact} />
 
       <SoftwareSection t={t} />
-
-      <ClientLogoCarousel title={t.clientLogosTitle} intro={t.clientLogosIntro} />
 
       <section className={`${sectionClass} relative min-h-[76vh] overflow-hidden`} id="about">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(0,0,0,0.62)_0%,rgba(0,0,0,0.22)_48%,transparent_100%)]" aria-hidden="true" />
@@ -4639,6 +4672,7 @@ createRoot(document.getElementById('root')).render(
         isDedicatedSite={isDedicatedGermanSite}
         footer={<OriginalFooter t={content.de} language="de" contactPerson={dachContact} />}
         faqContent={<GermanFaqContent t={content.de} />}
+        LinkedinIcon={LinkedinIcon}
         privacyDetails={germanPrivacyDetails}
         onLeadConversion={trackLeadConversion}
         contactPerson={dachContact}

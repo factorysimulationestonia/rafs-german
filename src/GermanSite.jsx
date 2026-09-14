@@ -1,5 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7.2 3.8 9.6 8l-2.1 1.8c1.1 2.6 3.1 4.6 5.7 5.7l1.8-2.1 4.2 2.4c.4.2.6.7.5 1.1l-.5 2.7c-.1.5-.6.9-1.1.9C10 20.5 3.5 14 3.5 5.9c0-.5.4-1 .9-1.1l2.7-.5c.4-.1.9.1 1.1.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3.5" y="5" width="17" height="14" rx="1" stroke="currentColor" strokeWidth="1.8" />
+      <path d="m4.5 7 7.5 6 7.5-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function GermanPrivacy({ assetPath, homePath, footer, privacy }) {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,13 +97,6 @@ function GermanImpressum({ assetPath, homePath, footer }) {
         <p>Vorstandsmitglied: Steven Strandberg</p>
       </section>
       <section>
-        <h2>Kontakt</h2>
-        <p>
-          Telefon: <a href="tel:+3725118303">+372 511 8303</a><br />
-          E-Mail: <a href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
-        </p>
-      </section>
-      <section>
         <h2>Registereintrag</h2>
         <p>
           Estnisches Handelsregister (Äriregister)<br />
@@ -139,7 +149,7 @@ function GermanLegalNotice({ assetPath, homePath, footer }) {
   );
 }
 
-export default function GermanSite({ assetPath, basePath, contactEndpoint, contactPerson, isDedicatedSite = false, children, footer, faqContent, onLeadConversion, privacyDetails, t }) {
+export default function GermanSite({ assetPath, basePath, contactEndpoint, contactPerson, isDedicatedSite = false, children, footer, faqContent, LinkedinIcon, onLeadConversion, privacyDetails, t }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formStatus, setFormStatus] = useState('idle');
   const [headerFloating, setHeaderFloating] = useState(false);
@@ -373,37 +383,34 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
               <a className="de-button de-button--quiet" href="#services">{t.heroSecondary}</a>
             </div>
           </div>
-          <div className="de-hero__facts" aria-label="Projektvorteile">
-            <p><strong>Vor der Investition</strong><span>Varianten objektiv vergleichen</span></p>
-            <p><strong>Vor der Montage</strong><span>Abläufe und Kapazität validieren</span></p>
-            <p><strong>Vor dem Anlauf</strong><span>Fehler und Verzögerungen reduzieren</span></p>
-          </div>
         </section>
 
         {children}
 
         <section className="de-contact" id="kontakt">
-          <div className="de-contact__intro">
-            <p className="de-kicker">Ihr direkter Kontakt</p>
-            {contactPerson && (
-              <article className="de-contact-person" aria-label="Ihr Ansprechpartner für die DACH-Region">
-                <div className="de-contact-person__portrait" role="img" aria-label="Platzhalter für das Portrait des Ansprechpartners">
-                  <span>Foto folgt</span>
-                </div>
-                <div className="de-contact-person__details">
-                  <p className="de-contact-person__label">Ihr direkter Kontakt</p>
-                  <h3>{contactPerson.name}</h3>
-                  <p className="de-contact-person__role">{contactPerson.role}</p>
-                  <a href={contactPerson.phoneHref}>{contactPerson.phone}</a>
-                  <a href={`mailto:${contactPerson.email}`}>{contactPerson.email}</a>
-                </div>
-              </article>
-            )}
-            <div className="de-contact__prompt">
-              <h2>Bringen Sie die offene Produktionsfrage mit.</h2>
-              <p>In einem kurzen Gespräch klären wir, welche Entscheidung ansteht, welche Daten vorhanden sind und ob eine Simulation den nächsten Schritt verbessern kann.</p>
-            </div>
+          <div className="de-contact__prompt">
+            <h2>Bringen Sie die offene Produktionsfrage mit.</h2>
+            <p>In einem kurzen Gespräch klären wir, welche Entscheidung ansteht, welche Daten vorhanden sind und ob eine Simulation den nächsten Schritt verbessern kann.</p>
           </div>
+          {contactPerson && (
+            <article className="de-contact-person" aria-label="Ihr Ansprechpartner für die DACH-Region">
+              <div className="de-contact-person__portrait" role="img" aria-label="Platzhalter für das Portrait des Ansprechpartners">
+                <span>Foto folgt</span>
+              </div>
+              <div className="de-contact-person__details">
+                <p className="de-contact-person__label">Ihr direkter Kontakt</p>
+                <h3>{contactPerson.name}</h3>
+                <p className="de-contact-person__role">{contactPerson.role}</p>
+                <a className="de-contact-person__link" href={contactPerson.phoneHref}><PhoneIcon /><span>{contactPerson.phone}</span></a>
+                <a className="de-contact-person__link" href={`mailto:${contactPerson.email}`}><MailIcon /><span>{contactPerson.email}</span></a>
+                {contactPerson.linkedin && LinkedinIcon && (
+                  <a className="de-contact-person__linkedin" href={contactPerson.linkedin} target="_blank" rel="noreferrer" aria-label={`${contactPerson.name} LinkedIn`}>
+                    <LinkedinIcon />
+                  </a>
+                )}
+              </div>
+            </article>
+          )}
           <form className="de-form" onSubmit={handleSubmit}>
             <div className="de-form__row">
               <label>Name<input name="name" autoComplete="name" placeholder="Vor- und Nachname" required /></label>
