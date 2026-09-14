@@ -212,7 +212,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
       <BrandHeader homePath={homePath} sectionHref={sectionHref} />
       <main>
         <section className="de2-hero">
-          <video className="de2-hero__media" poster={assetPath('/hero-simulation.svg')} autoPlay muted loop playsInline preload="metadata" aria-hidden="true"><source media="(max-width: 767px)" src={assetPath('/hero-mobile.webm')} type="video/webm" /><source src={assetPath('/hero-desktop.webm')} type="video/webm" /></video>
+          <div className="de2-hero__media-frame" aria-hidden="true"><img className="de2-hero__media" src={assetPath('/de-v2/stock-founder-video.png')} alt="" /></div>
           <div className="de2-hero__wash" aria-hidden="true" />
           <div className="de2-hero__content"><p className="de2-eyebrow">Factory Simulation Services</p><h1>Smarte Simulationen.<br /><span>Schnellere Entscheidungen.</span></h1><p>Wir helfen Maschinenbauern, Automatisierungsintegratoren und Produktionsunternehmen, ihre Systeme schneller, intelligenter und effizienter zu simulieren, zu optimieren und virtuell zu validieren.</p><div className="de2-actions"><a className="de2-button de2-button--dark" href="#kontakt">Projekt besprechen <ArrowIcon /></a><a className="de2-text-link" href="#prozess">So arbeiten wir <ArrowIcon /></a></div></div>
         </section>

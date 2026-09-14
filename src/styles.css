@@ -246,29 +246,47 @@
     background: var(--de2-paper);
   }
 
-  .de2-hero__media,
+  .de2-hero__media-frame,
   .de2-hero__wash {
     position: absolute;
-    inset: 0;
-    width: 100%;
+    top: 0;
+    bottom: 0;
+  }
+
+  .de2-hero__media-frame {
+    right: 0;
+    left: 43%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.18) 9%, rgb(0 0 0 / 0.62) 20%, #000 34%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.18) 9%, rgb(0 0 0 / 0.62) 20%, #000 34%);
+  }
+
+  .de2-hero__wash {
+    right: auto;
+    left: 0;
+    width: 60%;
     height: 100%;
   }
 
   .de2-hero__media {
-    object-fit: cover;
-    object-position: center;
+    position: absolute;
+    top: 0;
+    right: -16%;
+    width: auto;
+    max-width: none;
+    height: 100%;
     filter: saturate(0.75) brightness(1.12);
   }
 
   .de2-hero__wash {
-    background: linear-gradient(90deg, rgb(241 245 249 / 0.99) 0%, rgb(241 245 249 / 0.94) 35%, rgb(241 245 249 / 0.5) 60%, rgb(241 245 249 / 0.08) 100%);
+    background: linear-gradient(90deg, rgb(241 245 249 / 1) 0%, rgb(241 245 249 / 1) 62%, rgb(241 245 249 / 0.96) 70%, rgb(241 245 249 / 0.72) 80%, rgb(241 245 249 / 0.38) 89%, rgb(241 245 249 / 0.12) 96%, rgb(241 245 249 / 0) 100%);
   }
 
   .de2-hero__content {
     position: relative;
     z-index: 2;
-    width: min(760px, 60%);
-    padding: 110px clamp(20px, 6.5vw, 108px) 130px;
+    width: min(740px, 44%);
+    padding: 110px 24px 130px clamp(20px, 6.5vw, 108px);
   }
 
   .de2-eyebrow {
@@ -288,7 +306,8 @@
     font-size: 66px;
     font-weight: 500;
     line-height: 0.98;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
+    white-space: nowrap;
   }
 
   .de2-hero h1 span {
@@ -1054,7 +1073,7 @@
     }
 
     .de2-hero h1 {
-      font-size: 56px;
+      font-size: 48px;
     }
 
     .de2-benefits {
@@ -1202,11 +1221,21 @@
       align-items: flex-end;
     }
 
+    .de2-hero__media-frame {
+      left: 0;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
     .de2-hero__media {
-      object-position: 58% center;
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .de2-hero__wash {
+      right: 0;
+      width: auto;
       background: linear-gradient(0deg, rgb(241 245 249 / 1) 0%, rgb(241 245 249 / 0.94) 44%, rgb(241 245 249 / 0.38) 80%, rgb(241 245 249 / 0.1) 100%);
     }
 
@@ -1217,8 +1246,8 @@
 
     .de2-hero h1 {
       max-width: 100%;
-      font-size: 36px;
-      hyphens: auto;
+      font-size: 25px;
+      hyphens: none;
     }
 
     .de2-hero__content > p:not(.de2-eyebrow) {

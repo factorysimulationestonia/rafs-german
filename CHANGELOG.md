@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.2] - 2026-09-14
+
+### Changed
+- Replaced the German hero video with the supplied founder image for the rebrand concept.
+- Reworked the hero into a narrow copy area and a separate full-height right-side image panel.
+- Kept both hero-heading phrases on single lines and added a feathered transition between copy and image.
+
 ## [1.6.1] - 2026-09-14
 
 ### Changed
