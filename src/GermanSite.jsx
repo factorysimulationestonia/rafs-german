@@ -318,7 +318,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
             <Link className="de2-text-link" to={pricingPath}>Preise und Leistungsumfang <ArrowIcon /></Link>
           </div>
           <figure className="de2-process__visual de2-services__visual">
-            <img src={assetPath('/de-v2/services-kuka-v1.webp')} alt="KUKA-Roboter mit Greifer an einem Arbeitstisch" width="960" height="1280" loading="lazy" decoding="async" />
+            <img src={assetPath('/de-v2/services-kuka-v2.webp')} alt="KUKA-Roboter mit Greifer an einem Arbeitstisch" width="960" height="1280" loading="lazy" decoding="async" />
           </figure>
         </section>
 
