@@ -51,14 +51,24 @@ Vite proxies `/api` to the local PHP server on port `8787`. On Windows, the laun
 internal navigation uses `Link` and router-relative destinations, including
 links back to homepage sections such as the contact form.
 
-`.github/workflows/deploy.yml` builds the German site and copies
-`dist/index.html` to `dist/404.html` before uploading the Pages artifact.
-This lets direct URLs and refreshes such as `/rafs-german/pricing/` load
-the SPA without changing clean URLs. GitHub Pages still returns HTTP 404
-for these fallback requests, then the app renders the requested page.
+Vite explicitly uses SPA mode for development. Run `npm run dev:de` and open
+`http://localhost:5173/rafs-german/` or `/rafs-german/pricing/` directly.
+Use German mode; the regular `dev` command runs the separate ET/EN composition.
+
+The German build plugin in `scripts/german-pages.mjs` copies the built
+`index.html` to every known route directory and to `404.html`. Known routes
+therefore load directly with HTTP 200 on Pages, including after hard refresh.
+Keep the route list in this plugin aligned when adding pages. Unknown paths
+still use the SPA fallback with HTTP 404. Clean URLs and the base stay unchanged.
+The deployment workflow also retains its explicit `dist/404.html` copy step.
 
 Run `node scripts/check-german-routing.mjs` for route/link regression checks
 and `npm run build:de` to validate the production bundle.
+After building, run `npm run test:routing` for real Chrome direct-load,
+cache-disabled refresh, navigation, contact-anchor, and browser-history tests.
+These reuse the running Vite server when present and start a temporary static
+server for the Pages artifact, without Vite preview's automatic SPA fallback.
+Tests use installed Chrome (`npx playwright install chrome` if needed).
 
 This repository has three remotes:
 

@@ -9,6 +9,7 @@
     "dev:contact-api": "node scripts/dev-contact-api.mjs",
     "build": "vite build",
     "build:de": "vite build --mode german",
+    "test:routing": "playwright test",
     "build:zone": "node scripts/build-zone.mjs",
     "preview": "vite preview"
   },
@@ -20,5 +21,8 @@
     "react-router-dom": "^7.18.4",
     "tailwindcss": "^4.0.0",
     "vite": "^7.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
   }
 }

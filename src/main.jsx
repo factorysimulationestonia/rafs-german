@@ -1854,7 +1854,7 @@ content.de = {
     { ...content.en.team[0], name: 'Steven Strandberg', role: 'CEO', credentials: 'Maschinenbauingenieur (BSc)', image: '/team/steven-de-grey-v2.jpg' },
     { ...content.en.team[1], name: 'Hans Johan Erikson', role: 'Simulationsingenieur', credentials: 'Wirtschaftsingenieurwesen und Management (MSc)' },
     { ...content.en.team[2], name: 'Markus Annilo', role: 'Projektingenieur', credentials: 'Robotik- und Automatisierungsingenieur (MSc)', image: '/team/markus-de-grey.jpg' },
-    { name: 'Triinu Strandberg', role: 'Vertrags- und Dokumentenmanagerin', image: '/team/triinu-de-grey.jpg' }
+    { name: 'Triinu Strandberg', role: 'Vertrags- und Dokumentenmanagerin', credentials: 'Rechtswissenschaften (BSc)', image: '/team/triinu-de-grey.jpg' }
   ],
   partnersTitle: 'Partner und Netzwerk',
   reseller: 'Offizieller Vertriebspartner und Integrationspartner',
@@ -1950,8 +1950,8 @@ content.de = {
     eyebrow: 'Factory Simulation FAQ',
     title: 'FAQ zur Fertigungssimulation',
     intro: [
-      'Simulation hilft Produktionsunternehmen, Produktionslayouts, Materialflüsse, Automatisierungskonzepte und Kapazitätsszenarien zu testen, bevor physische Änderungen oder Investitionsentscheidungen getroffen werden.',
-      'Unten finden Sie Antworten auf häufige Fragen dazu, wie Simulation funktioniert, wie genau sie ist und wann sie den größten Wert schafft.'
+      'Simulation hilft Produktionsunternehmen, Produktionslayouts, Materialflüsse, Automatisierungskonzepte und Kapazitätsszenarien zu prüfen, bevor Änderungen umgesetzt oder Investitionsentscheidungen getroffen werden.',
+      'Hier finden Sie Antworten auf häufige Fragen dazu, wie Simulation funktioniert, wie genau sie ist und wann sie den größten Nutzen bietet.'
     ],
     teaser: {
       eyebrow: 'Häufig gestellte Fragen',
@@ -1969,14 +1969,14 @@ content.de = {
       {
         question: 'Was ist Simulation in der Fertigung?',
         answer: [
-          'Simulation in der Fertigung bedeutet, ein digitales Modell eines Produktionsprozesses, einer Linie, Zelle oder eines Fabrikbereichs zu erstellen.',
+          'Bei der Fertigungssimulation wird ein digitales Modell eines Produktionsprozesses, einer Produktionslinie, einer Fertigungszelle oder eines Fabrikbereichs erstellt.',
           'Das Modell wird genutzt, um zu testen, wie Materialien, Menschen, Maschinen, Puffer und Transportsysteme zusammenarbeiten, bevor Änderungen in der realen Produktion umgesetzt werden. Ziel ist es, Produktionsfluss, Kapazität, Engpässe und Investitionsrisiken zu verstehen, bevor Zeit und Geld gebunden werden.'
         ]
       },
       {
         question: 'Wie funktioniert Simulation?',
         answer: [
-          'Eine Produktionssimulation beginnt üblicherweise mit Prozessaufnahme, Layoutinformationen und Eingangsdaten.',
+          'Eine Produktionssimulation beginnt üblicherweise mit der Aufnahme der Prozesse und der Erfassung von Layoutinformationen und Eingangsdaten.',
           'Typische Eingangsdaten sind Zykluszeiten, Produktmix, Bedieneraufgaben, Maschinenkapazität, Transportrouten, Schichtmodelle, Puffer und Umrüstungen. Diese Eingaben werden genutzt, um ein digitales Modell zu erstellen, in dem verschiedene Produktionsszenarien getestet und verglichen werden können.',
           'Das Ergebnis ist nicht nur ein visuelles Modell. Es ist ein Werkzeug zur Entscheidungsunterstützung, das hilft zu verstehen, was passiert, wenn sich Layout, Ressourcen, Prozesslogik oder Automatisierungskonzept ändern.'
         ]
@@ -1993,8 +1993,8 @@ content.de = {
       {
         question: 'Verkaufen Sie Simulationssoftware oder bieten Sie Simulationsleistungen an?',
         answer: [
-          'Wir bieten Engineering- und Simulationsleistungen an, nicht unsere eigene Simulationssoftware.',
-          'Unsere Arbeit umfasst das Verstehen des Produktionsproblems, das Sammeln von Eingangsdaten, den Aufbau des Simulationsmodells, das Testen von Szenarien, die Interpretation der Ergebnisse und die Ableitung praktischer Engineering-Empfehlungen.',
+          'Wir bieten Ingenieur- und Simulationsleistungen an. Wir verkaufen keine eigene Simulationssoftware.',
+          'Unsere Arbeit umfasst die Analyse der Produktionsaufgabe, die Erfassung der Eingangsdaten, den Aufbau des Simulationsmodells, die Prüfung von Szenarien, die Auswertung der Ergebnisse und die Ableitung konkreter technischer Empfehlungen.',
           'Simulationssoftware ist das Werkzeug. Der Wert entsteht dadurch, wie das Modell aufgebaut wird, welche Szenarien getestet werden und wie die Ergebnisse zur Unterstützung von Layout-, Automatisierungs-, Kapazitäts- oder Investitionsentscheidungen genutzt werden.'
         ]
       },
@@ -2002,7 +2002,7 @@ content.de = {
         question: 'Wann sollte man Fertigungssimulation einsetzen?',
         answer: [
           'Fertigungssimulation ist nützlich vor größeren Layoutänderungen, Automatisierungsinvestitionen, Kapazitätserhöhungen, Fabrikumzügen, der Einführung neuer Produkte oder Änderungen im Produktmix.',
-          'Sie ist besonders wertvoll, wenn die Entscheidung teuer, schwer rückgängig zu machen ist oder mehrere unsichere Variablen enthält. Simulation hilft, die Idee zu testen, bevor physische Änderungen umgesetzt oder Lieferantenangebote angefragt werden.',
+          'Sie ist besonders wertvoll, wenn eine Entscheidung mit hohen Kosten verbunden ist, sich nur schwer rückgängig machen lässt oder von mehreren unsicheren Faktoren abhängt. Simulation hilft, das Vorhaben zu prüfen, bevor Änderungen umgesetzt oder Lieferantenangebote eingeholt werden.',
           'Typische Anwendungsfälle sind:'
         ],
         points: [
@@ -2035,7 +2035,7 @@ content.de = {
         question: 'Können Sie remote mit internationalen Kunden arbeiten?',
         answer: [
           'Ja. Wir können Produktionsunternehmen remote unterstützen, unabhängig davon, wo sich der Produktionsstandort befindet.',
-          'Der erste Schritt ist meist ein Online-Gespräch, um die Produktionsherausforderung, geplante Investition oder Automatisierungsidee zu verstehen. Danach kann der Kunde verfügbare Eingaben teilen, zum Beispiel Layoutzeichnungen, Prozessvideos, Fotos, Zykluszeiten, Produktmix, Bedieneraufgaben und Produktionsdaten.',
+          'Der erste Schritt ist meist ein Online-Gespräch, um die Aufgabenstellung in der Produktion, die geplante Investition oder die Automatisierungsidee zu verstehen. Anschließend kann der Kunde vorhandene Unterlagen und Daten bereitstellen, zum Beispiel Layoutzeichnungen, Prozessvideos, Fotos, Zykluszeiten sowie Angaben zum Produktmix, zu Bedieneraufgaben und zur Produktion.',
           'Auf Basis dieser Informationen können wir ein erstes Simulationsmodell aufbauen, Szenarien vergleichen und die Ergebnisse gemeinsam online besprechen. So versteht der Kunde Engpässe, Kapazitätsgrenzen und Verbesserungsoptionen, bevor er sich auf physische Änderungen, Lieferantenangebote oder Anlageninvestitionen festlegt.',
           'Wenn mehr Detailtiefe erforderlich ist, kann der nächste Schritt zusätzliche Datenerfassung, genauere Prozessmessungen oder Zusammenarbeit mit dem Engineering-, Produktions- oder Automatisierungsteam des Kunden umfassen.',
           'Wir arbeiten außerdem mit Engineering- und Automatisierungspartnern in Europa zusammen, einschließlich Italien und der Schweiz. Wenn ein Projekt lokales Know-how, Unterstützung bei der Umsetzung oder zusätzliche technische Expertise benötigt, können wir je nach Projektumfang und Kundenbedarf vertrauenswürdige Partner einbeziehen.'
@@ -2044,7 +2044,7 @@ content.de = {
       {
         question: 'Können Sie Simulation mit einem Praxisbeispiel erklären?',
         answer: [
-          'Wenn ein Team den besten Stürmer kauft, wird es dadurch automatisch zum besten Team? Nicht unbedingt. Der Stürmer kann hervorragend sein, aber das Ergebnis hängt weiterhin davon ab, wie das Mittelfeld Chancen erzeugt, wie die Abwehr mit Druck umgeht, wie sich das Team gemeinsam bewegt und ob das gesamte System funktioniert.',
+          'Wenn eine Fußballmannschaft den besten Stürmer verpflichtet, wird sie dadurch automatisch zur besten Mannschaft? Nicht unbedingt. Der Stürmer kann hervorragend sein, aber das Ergebnis hängt weiterhin davon ab, wie das Mittelfeld Chancen herausspielt, wie die Abwehr mit Druck umgeht und wie gut die Mannschaft zusammenspielt.',
           'Die gleiche Logik gilt in der Fertigung.',
           'Der Kauf einer teuren Maschine, eines Roboters oder eines Automatisierungssystems verbessert nicht automatisch den gesamten Produktionsfluss. Wenn der nächste Prozess zu langsam ist, die Materialversorgung instabil ist oder Bediener zwischen Schritten warten, kann die neue Maschine den Engpass einfach an eine andere Stelle verschieben.',
           'Simulation hilft, vor der Investition auf das Gesamtsystem zu schauen. Sie zeigt, wie Maschinen, Menschen, Puffer, Transport und Prozessschritte zusammenarbeiten, damit das Unternehmen versteht, ob die geplante Änderung die gesamte Produktionskette verbessert - und nicht nur einen isolierten Arbeitsschritt.'
@@ -2055,13 +2055,13 @@ content.de = {
         answer: [
           'Automation 2.0 bedeutet den Schritt von isolierten Automatisierungsprojekten hin zu einem stärker vernetzten, simulationsgetriebenen und lebenszyklusorientierten Ansatz für industrielle Automatisierung.',
           'In der Praxis bedeutet das, dass Automatisierung nicht erst während der Umsetzung entworfen und getestet wird. Sie wird bereits früher durch Simulation, digitale Modelle, Roboterkonzepte, Zykluszeitanalyse, virtuelle Inbetriebnahme und Tests des Produktionsflusses validiert.',
-          'Ziel ist es, späte Änderungen zu reduzieren, kostspielige Fehler zu vermeiden und Automatisierungsentscheidungen mit größerer Sicherheit zu treffen, bevor Systeme live gehen.'
+          'Ziel ist es, späte Änderungen zu reduzieren, kostspielige Fehler zu vermeiden und Automatisierungsentscheidungen mit größerer Sicherheit zu treffen, bevor die Anlagen in Betrieb genommen werden.'
         ]
       },
       {
         question: 'Was ist ein digitaler Zwilling?',
         answer: [
-          'Ein digitaler Zwilling ist eine digitale Darstellung eines realen Produktionsprozesses, einer Linie, Maschine, eines Fabrikbereichs oder sogar einer ganzen Fabrik.',
+          'Ein digitaler Zwilling ist eine digitale Darstellung eines realen Produktionsprozesses, einer Produktionslinie, einer Maschine, eines Fabrikbereichs oder einer ganzen Fabrik.',
           'In der Fertigung kann ein digitaler Zwilling genutzt werden, um Produktionsdaten zu visualisieren, Leistung zu überwachen, Materialfluss zu verstehen und verschiedene Verbesserungsideen in einer digitalen Umgebung zu testen. Je nach Detailgrad kann er Layoutinformationen, Maschinen, Bediener, Zykluszeiten, Transportrouten, Puffer, Sensordaten, OEE-Daten oder ERP/MES-Informationen enthalten.',
           'Ein einfaches Simulationsmodell wird üblicherweise erstellt, um Szenarien zu testen und Entscheidungen zu unterstützen. Ein digitaler Zwilling kann einen Schritt weiter gehen, indem er das Modell mit realen Produktionsdaten verbindet und für Datenvisualisierung, Monitoring, Analyse und kontinuierliche Verbesserung genutzt wird.',
           'Der Hauptwert liegt darin, dass Manager, Ingenieure und Produktionsteams klarer sehen, was im Produktionssystem passiert - nicht nur über Tabellen, sondern über ein visuelles und datenbasiertes Modell.'
@@ -3979,7 +3979,10 @@ function OriginalFooter({ t, language, contactPerson }) {
 
   return (
     <footer className={`grid items-center gap-8 border-t border-fs-line px-6 py-10 text-white lg:grid-cols-[180px_1fr_auto] lg:px-[7vw] ${darkSurfaceClass}`}>
-      <img className="w-40" src={assetPath('/logo.svg')} alt="Factory Simulation" />
+      <div className="flex min-w-0 items-center gap-3 lg:flex-col lg:items-start">
+        <img className="w-22 shrink-0 sm:w-28 lg:w-40" src={assetPath('/logo.svg')} alt="" aria-hidden="true" />
+        <span className="min-w-0 text-sm font-bold leading-tight">Robotics and<br />Factory Simulation</span>
+      </div>
       <div>
         <h2 className="mb-2.5 text-xl font-bold">{t.contacts}</h2>
         <a className="mb-1.5 block text-white" href="mailto:info@factorysimulation.eu">info@factorysimulation.eu</a>
@@ -4402,10 +4405,10 @@ function App() {
   return (
     <div className={`min-h-screen ${darkSurfaceClass} text-white`}>
       <header className="sticky top-0 z-40 flex min-h-16 min-w-0 items-center justify-between gap-3 border-b-3 border-fs-accent bg-black/92 px-5 py-3 backdrop-blur sm:gap-5 sm:px-6 lg:min-h-20 lg:gap-4 lg:px-[5vw] min-[1320px]:gap-8 min-[1320px]:px-[7vw]">
-        <a className="inline-flex min-w-0 items-end gap-2.5 no-underline min-[1320px]:gap-3" href={getLanguagePath(language, '')} aria-label="Factory Simulation home">
+        <a className="inline-flex min-w-0 items-end gap-2.5 no-underline min-[1320px]:gap-3" href={getLanguagePath(language, '')} aria-label="Robotics and Factory Simulation home">
           <img className="block h-auto w-22 shrink-0 sm:w-26 lg:w-28 min-[1320px]:w-32" src={assetPath('/logo.svg')} alt="" aria-hidden="true" />
           <span className="min-w-0 max-w-32 break-words pb-0.5 text-[0.65rem] leading-tight font-bold uppercase tracking-[0.08em] text-white sm:max-w-none sm:text-sm sm:tracking-[0.1em] lg:text-[0.78rem] min-[1320px]:text-base">
-            {t.headerTagline}
+            Robotics and<br />Factory Simulation
           </span>
         </a>
         <button

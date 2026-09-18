@@ -13,7 +13,7 @@ const benefits = [
 const processSteps = [
   ['1', 'Ihre Angaben', 'Sie stellen Ihre Fragen, Daten und Projektanforderungen bereit.'],
   ['2', 'Wir analysieren', 'Wir prüfen Ihre Angaben und untersuchen Ihr Vorhaben anhand eines Simulationsmodells.'],
-  ['3', 'Erste Ergebnisse', 'Innerhalb von 36 Stunden erhalten Sie die ersten dokumentierten Ergebnisse sowie eine 90-sekündige Videozusammenfassung.'],
+  ['3', 'Erste Ergebnisse', 'Innerhalb von 48 Stunden nach Eingang der vollständigen Angaben erhalten Sie die ersten dokumentierten Ergebnisse sowie eine 90-sekündige Videozusammenfassung.'],
   ['4', 'Vorläufige Entscheidung', 'Die ersten Ergebnisse bieten eine fundierte Grundlage für Ihre vorläufige Entscheidung.'],
   ['5', 'Investition vollständig validieren', 'In Phase 2 validieren wir Ihre Investition im Detail, beziehen zusätzliche Angaben ein und reduzieren Unsicherheiten, bevor Sie die endgültige Entscheidung treffen.']
 ];
@@ -159,16 +159,16 @@ function PricingPage({ contactPerson, homePath, paths, LinkedinIcon }) {
         </section>
         <section className="de2-pricing__packages" aria-label="Pakete und Preise">
           <article className="de2-pricing__package">
-            <div><p className="de2-eyebrow">Phase 1</p><h2>Erste Ergebnisse</h2><p className="de2-pricing__price">990 € Festpreis</p></div>
-            <div><p>Sie liefern die Angaben. Wir liefern das Ergebnis der ersten Phase in 36 Stunden.</p><ul><li>Direkter Austausch mit dem Ingenieurteam</li><li>Ergebnis der ersten Phase auf Basis Ihrer Angaben</li><li>90-Sekunden-Video mit den Ergebnissen</li><li>Ergebnisdokumentation</li></ul><Link className="de2-button de2-button--dark" to={`${homePath}#kontakt`}>Phase 1 anfragen <ArrowIcon /></Link></div>
+            <div><p className="de2-eyebrow">Phase 1</p><h2>Erste Ergebnisse</h2><p className="de2-pricing__price">Festpreis: 990 €</p></div>
+            <div><ul><li>Direkter Austausch mit dem Ingenieurteam</li><li>Dokumentierte Fragestellung, Datengrundlage und Modellannahmen</li><li>90-Sekunden-Video mit den Ergebnissen</li><li>Erste Simulationsergebnisse mit Einordnung, Grenzen der Aussagekraft und empfohlenen nächsten Schritten</li></ul><Link className="de2-button de2-button--dark" to={`${homePath}#kontakt`}>Phase 1 anfragen <ArrowIcon /></Link></div>
           </article>
           <article className="de2-pricing__package">
             <div><p className="de2-eyebrow">Phase 2</p><h2>Weiterentwicklung</h2><p className="de2-pricing__price">Projektabhängig</p></div>
-            <div><p>In Phase 2 entwickeln wir das Ergebnis aus Phase 1 weiter.</p><ul><li>Weiterentwicklung auf Basis von Phase 1</li><li>Rabatt nach Abschluss von Phase 1 möglich</li><li>Umfang und Preis nach Projektanforderungen</li></ul><Link className="de2-button de2-button--dark" to={`${homePath}#kontakt`}>Phase 2 besprechen <ArrowIcon /></Link></div>
+            <div><ul><li>Weiterentwicklung auf Basis von Phase 1</li><li>Rabatt nach Abschluss von Phase 1</li><li>Umfang und Preis nach Projektanforderungen</li></ul><Link className="de2-button de2-button--dark" to={`${homePath}#kontakt`}>Phase 2 besprechen <ArrowIcon /></Link></div>
           </article>
           <article className="de2-pricing__package">
             <div><p className="de2-eyebrow">Gesamtpaket</p><h2>Beide Phasen & Betreuung</h2><p className="de2-pricing__price">Individuelles Angebot</p></div>
-            <div><p>Verbinden Sie beide Projektstufen mit einer Vereinbarung für zukünftige Änderungen Ihrer Eingangsdaten.</p><ul><li>Rabatt auf Phase 1 und Phase 2</li><li>Betreuungsvereinbarung mit festgelegten Leistungen und Reaktionszeiten für zukünftige Änderungen der Eingangsdaten</li><li>Leistungsumfang und Betreuungsbedingungen individuell vereinbart</li></ul><Link className="de2-button de2-button--dark" to={`${homePath}#kontakt`}>Gesamtpaket besprechen <ArrowIcon /></Link></div>
+            <div><ul><li>Rabatt auf Phase 1 und Phase 2</li><li>Betreuungsvereinbarung mit festgelegten Leistungen und Reaktionszeiten für zukünftige Änderungen der Eingangsdaten</li><li>Leistungsumfang und Betreuungsbedingungen individuell vereinbart</li></ul><Link className="de2-button de2-button--dark" to={`${homePath}#kontakt`}>Gesamtpaket besprechen <ArrowIcon /></Link></div>
           </article>
         </section>
       </main>
@@ -269,7 +269,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
         <section className="de2-hero">
           <div className="de2-hero__media-frame" aria-hidden="true"><img className="de2-hero__media" src={assetPath('/de-v2/steven-hero-v2.png')} alt="" fetchPriority="high" /></div>
           <div className="de2-hero__wash" aria-hidden="true" />
-          <div className="de2-hero__content"><p className="de2-eyebrow">Services</p><h1>Smarte Simulationen.<br /><span>Schnellere Entscheidungen.</span></h1><p>Wir helfen Maschinenbauern, Automatisierungsintegratoren und Produktionsunternehmen, ihre Systeme schneller, intelligenter und effizienter zu simulieren, zu optimieren und virtuell zu validieren.</p><div className="de2-actions"><Link className="de2-button de2-button--dark" to="#kontakt">Projekt besprechen <ArrowIcon /></Link><Link className="de2-text-link" to="#prozess">So arbeiten wir <ArrowIcon /></Link></div></div>
+          <div className="de2-hero__content"><p className="de2-eyebrow">Leistungen</p><h1>Smarte Simulationen.<br /><span>Schnellere Entscheidungen.</span></h1><p>Wir helfen Maschinenbauern, Automatisierungsintegratoren und Produktionsunternehmen, ihre Systeme schneller, intelligenter und effizienter zu simulieren, zu optimieren und virtuell zu validieren.</p><div className="de2-actions"><Link className="de2-button de2-button--dark" to="#kontakt">Projekt besprechen <ArrowIcon /></Link><Link className="de2-text-link" to="#prozess">So arbeiten wir <ArrowIcon /></Link></div></div>
         </section>
 
         <section className="de2-benefits" id="warum" aria-label="Warum Factory Simulation">{benefits.map(([icon, title, text]) => <article key={title}><BenefitIcon type={icon} /><h2>{title}</h2><p>{text}</p></article>)}</section>
@@ -287,8 +287,43 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
           <div className="de2-process__visual"><img src={assetPath('/de-v2/steven-laptop-v2.png')} alt="Steven Strandberg arbeitet mit einem Laptop in einer Produktionshalle" width="1109" height="1418" loading="lazy" decoding="async" /></div>
         </section>
 
+        <section className="de2-process de2-services" id="leistungen" aria-labelledby="services-title">
+          <div className="de2-process__intro">
+            <p className="de2-eyebrow">Unsere Leistungen</p>
+            <h2 id="services-title">Zwei Wege zu einer fundierten Erstentscheidung.</h2>
+            <div className="de2-services__list">
+              <article>
+                <span className="de2-services__number" aria-hidden="true">01</span>
+                <div>
+                  <h3>Machbarkeitsprüfung für Automatisierung</h3>
+                  <p>Für einzelne Prozesszellen und Automatisierungsinvestitionen: Roboter, Cobots, AMR oder den Ersatz manueller Arbeit.</p>
+                  <p>Wir prüfen Taktzeiten, Mengen, Anlagen- und Personalkapazitäten sowie Abläufe, Puffer und Engpässe – und vergleichen manuelle mit automatisierten Prozessen.</p>
+                  <p><strong>Ihr Ergebnis:</strong> Eine erste Einschätzung, ob sich die Weiterentwicklung vor Detailplanung und Lieferantengesprächen lohnt.</p>
+                </div>
+              </article>
+              <article>
+                <span className="de2-services__number" aria-hidden="true">02</span>
+                <div>
+                  <h3>Validierung von Fabrikkonzepten</h3>
+                  <p>Für neue Produktionslinien oder Standorte, Erweiterungen, Layoutänderungen und zusätzliche Produkte oder Mengen.</p>
+                  <p>Wir untersuchen Produktionsfluss, Materialwege, Anlagen- und Personalbedarf sowie Engpässe und vergleichen alternative Konzepte.</p>
+                  <p><strong>Ihr Ergebnis:</strong> Eine fundierte Grundlage, um das Konzept weiterzuverfolgen, anzupassen oder vertieft zu prüfen.</p>
+                </div>
+              </article>
+            </div>
+            <div className="de2-services__delivery">
+              <h3>Erste Ergebnisse in 48 Stunden</h3>
+              <p>Nach Eingang der vollständigen Angaben erhalten Sie erste simulationsbasierte Erkenntnisse, dokumentierte Annahmen und Ergebnisse mit ihren Grenzen, zentrale Risiken und offene Fragen sowie eine Empfehlung zur weiteren Validierung – inklusive 90-Sekunden-Video.</p>
+            </div>
+            <Link className="de2-text-link" to={pricingPath}>Preise und Leistungsumfang <ArrowIcon /></Link>
+          </div>
+          <figure className="de2-process__visual de2-services__visual">
+            <img src={assetPath('/de-v2/services-kuka-v1.webp')} alt="KUKA-Roboter mit Greifer an einem Arbeitstisch" width="960" height="1280" loading="lazy" decoding="async" />
+          </figure>
+        </section>
+
         <section className="de2-team" id="team">
-          <div className="de2-team__grid">{t.team.map((person) => <article key={person.name}>{person.image ? <img src={assetPath(person.image)} alt={person.name} loading="lazy" decoding="async" /> : <div className="de2-team__placeholder" aria-hidden="true">{person.name.split(' ').map((part) => part[0]).join('')}</div>}<h3>{person.name}</h3><p>{person.role}</p></article>)}</div>
+          <div className="de2-team__grid">{t.team.map((person) => <article key={person.name}>{person.image ? <img src={assetPath(person.image)} alt={person.name} loading="lazy" decoding="async" /> : <div className="de2-team__placeholder" aria-hidden="true">{person.name.split(' ').map((part) => part[0]).join('')}</div>}<h3>{person.name}</h3><p>{person.role}</p>{person.credentials && <p>{person.credentials}</p>}</article>)}</div>
         </section>
 
         <section className="de2-contact" id="kontakt">

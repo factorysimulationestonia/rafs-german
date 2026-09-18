@@ -28,8 +28,8 @@ try {
   );
   const render = (router) => renderToStaticMarkup(React.createElement(RouterProvider, { router }));
   for (const [route, expected] of [
-    ['/', 'id="kontakt"'], ['/pricing/', '990 € Festpreis'],
-    ['/pricing', '990 € Festpreis'], ['/privacy/', 'Datenschutz'],
+    ['/', 'id="kontakt"'], ['/pricing/', 'Festpreis: 990 €'],
+    ['/pricing', 'Festpreis: 990 €'], ['/privacy/', 'Datenschutz'],
     ['/impressum/', 'Anbieter'], ['/legal-notice/', 'Rechtliche Hinweise'],
     ['/factory-simulation-faq/', 'FAQ']
   ]) {
@@ -46,7 +46,7 @@ try {
   assert.ok(render(router).includes('id="kontakt"'));
   assert.equal(router.state.location.hash, '#kontakt');
   await router.navigate(-1);
-  assert.ok(render(router).includes('990 € Festpreis'));
+  assert.ok(render(router).includes('Festpreis: 990 €'));
   router.dispose();
   const combined = makeRouter('/rafs-german/de/pricing/', { isDedicatedSite: false });
   assert.ok(render(combined).includes('href="/rafs-german/de/#kontakt"'));
