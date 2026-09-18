@@ -271,11 +271,10 @@
   .de2-hero__media {
     position: absolute;
     top: 0;
-    right: -16%;
+    right: 0;
     width: auto;
     max-width: none;
     height: 100%;
-    filter: saturate(0.75) brightness(1.12);
   }
 
   .de2-hero__wash {
@@ -375,7 +374,7 @@
 
   .de2-benefits {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     border-bottom: 1px solid var(--de2-line);
     background: var(--de2-white);
     padding: 0;
@@ -506,6 +505,7 @@
 
   .de2-process {
     display: grid;
+    border-bottom: 1px solid var(--de2-line);
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     gap: clamp(28px, 4vw, 64px);
     background: var(--de2-white);
@@ -535,16 +535,20 @@
     position: relative;
     width: 100%;
     min-height: 0;
-    max-width: 100%;
+    max-width: 480px;
+    justify-self: center;
     align-self: center;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 0;
   }
 
   .de2-process__visual img {
     display: block;
     width: 100%;
     height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
   }
 
   .de2-process__visual p {
@@ -562,7 +566,7 @@
 
   .de2-process__steps {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     margin-top: 38px;
   }
 
@@ -616,17 +620,38 @@
 
   .de2-estonia {
     display: grid;
+    padding-block: 24px;
     min-height: 380px;
     grid-template-columns: minmax(320px, 1.05fr) minmax(360px, 1.1fr) minmax(300px, 0.85fr);
     border-top: 1px solid var(--de2-line);
     border-bottom: 1px solid var(--de2-line);
   }
 
-  .de2-estonia > img {
+  .de2-estonia__photo {
+    position: relative;
+    min-width: 0;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    align-self: center;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .de2-process__visual,
+  .de2-estonia__photo {
+    width: clamp(260px, 28vw, 440px);
+    max-width: 100%;
+    justify-self: center;
+  }
+
+  .de2-estonia__photo img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
 
   .de2-estonia__copy {
     display: flex;
@@ -685,7 +710,7 @@
 
   .de2-team__grid img,
   .de2-team__placeholder {
-    width: 100%;
+    width: min(100%, clamp(150px, 18vw, 250px));
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: center top;
@@ -734,6 +759,17 @@
     border-top: 1px solid rgb(15 23 42 / 0.35);
     padding-top: 28px;
     font-style: normal;
+  }
+
+  .de2-contact__portrait {
+    display: block;
+    width: clamp(150px, 18vw, 250px);
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 24px;
   }
 
   .de2-contact address > span {
@@ -934,6 +970,111 @@
   .de2-legal {
     min-height: 72vh;
     padding: 80px clamp(20px, 14vw, 230px) 120px;
+  }
+
+  .de2-pricing {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 70px clamp(20px, 6.5vw, 108px) 100px;
+  }
+
+  .de2-pricing h1 {
+    margin: 0 0 28px;
+    font-size: clamp(34px, 4.5vw, 64px);
+    line-height: 1.08;
+    font-weight: 500;
+  }
+
+  .de2-pricing__lead {
+    max-width: 800px;
+    color: #64748b;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .de2-pricing__workflow {
+    padding: 50px 0 60px;
+  }
+
+  .de2-pricing__workflow h2 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .de2-pricing__steps {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .de2-process__steps article:nth-child(4)::after {
+    height: 0;
+    border-top: 2px dashed var(--de2-primary);
+    background: none;
+  }
+
+  .de2-process__steps article:last-child > span {
+    border-color: var(--de2-primary);
+    background: var(--de2-primary);
+    color: var(--de2-white);
+  }
+
+  .de2-process__steps article:last-child h3 {
+    color: var(--de2-primary);
+  }
+
+  .de2-pricing__steps article {
+    padding-right: 24px;
+  }
+
+  .de2-pricing__steps h3 {
+    max-width: none;
+    font-size: 16px;
+  }
+
+  .de2-pricing__steps p {
+    display: block;
+    margin: 12px 0 0;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .de2-pricing__package {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 40px;
+    padding: 44px 0;
+    border-top: 1px solid var(--de2-line);
+  }
+
+  .de2-pricing__package > div {
+    min-width: 0;
+  }
+
+  .de2-pricing__package h2 {
+    margin: 0;
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1.15;
+    font-weight: 500;
+  }
+
+  .de2-pricing__price {
+    margin: 24px 0 0;
+    color: var(--de2-primary);
+    font-size: clamp(23px, 2.5vw, 32px);
+  }
+
+  .de2-pricing__package ul {
+    margin: 20px 0 28px;
+    padding-left: 20px;
+    color: #64748b;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 720px) {
+    .de2-pricing__package {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
   }
 
   .de2-back {
@@ -1177,6 +1318,10 @@
   }
 
   @media (max-width: 720px) {
+    .de2-process__visual,
+    .de2-estonia__photo {
+      width: min(440px, calc(100vw - 40px));
+    }
     .de2-header {
       min-height: 72px;
       padding: 10px 20px;
@@ -1217,23 +1362,30 @@
     }
 
     .de2-hero {
-      min-height: 700px;
-      align-items: flex-end;
+      min-height: 0;
+      flex-direction: column;
+      align-items: stretch;
     }
 
     .de2-hero__media-frame {
+      position: relative;
       left: 0;
       -webkit-mask-image: none;
       mask-image: none;
     }
 
     .de2-hero__media {
+      position: static;
+      display: block;
+      width: 100%;
+      height: auto;
       right: auto;
-      left: 50%;
-      transform: translateX(-50%);
+      left: auto;
+      transform: none;
     }
 
     .de2-hero__wash {
+      display: none;
       right: 0;
       width: auto;
       background: linear-gradient(0deg, rgb(241 245 249 / 1) 0%, rgb(241 245 249 / 0.94) 44%, rgb(241 245 249 / 0.38) 80%, rgb(241 245 249 / 0.1) 100%);
@@ -1241,7 +1393,7 @@
 
     .de2-hero__content {
       width: 100%;
-      padding: 250px 20px 95px;
+      padding: 36px 20px 70px;
     }
 
     .de2-hero h1 {
@@ -1376,8 +1528,8 @@
       grid-template-columns: 1fr;
     }
 
-    .de2-estonia > img {
-      aspect-ratio: 16 / 9;
+    .de2-estonia__photo {
+      aspect-ratio: 4 / 5;
     }
 
     .de2-estonia__copy {

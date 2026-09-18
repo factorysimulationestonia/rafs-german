@@ -18,7 +18,8 @@ const lastUpdated = import.meta.env.VITE_LAST_UPDATED || '2026-05-06';
 const contactEndpoint = import.meta.env.VITE_CONTACT_ENDPOINT || (import.meta.env.DEV ? '/api/contact.php' : '');
 const dachContact = {
   name: 'Peter J. Fischer',
-  role: 'Business Market Developer - DACH',
+  image: '/team/peter-fischer-de-grey.jpg',
+  role: 'Geschäftsentwicklung – DACH',
   phone: '+49 152 2924 5187',
   phoneHref: 'tel:+4915229245187',
   email: 'peter.fischer@factorysimulation.eu',
@@ -1849,10 +1850,10 @@ content.de = {
   aboutTitle: 'Über uns',
   teamTitle: 'Team',
   team: [
-    { ...content.en.team[0], name: 'Steven Strandberg', role: 'CEO', credentials: 'Maschinenbauingenieur (BSc)', image: '/team/steven-de.webp' },
+    { ...content.en.team[0], name: 'Steven Strandberg', role: 'CEO', credentials: 'Maschinenbauingenieur (BSc)', image: '/team/steven-de-grey-v2.jpg' },
     { ...content.en.team[1], name: 'Hans Johan Erikson', role: 'Simulationsingenieur', credentials: 'Wirtschaftsingenieurwesen und Management (MSc)' },
-    { ...content.en.team[2], name: 'Markus Annilo', role: 'Projektingenieur', credentials: 'Robotik- und Automatisierungsingenieur (MSc)' },
-    { name: 'Triinu Strandberg', role: 'Vertrags- und Dokumentenmanagerin', image: '/team/triinu-de.webp' }
+    { ...content.en.team[2], name: 'Markus Annilo', role: 'Projektingenieur', credentials: 'Robotik- und Automatisierungsingenieur (MSc)', image: '/team/markus-de-grey.jpg' },
+    { name: 'Triinu Strandberg', role: 'Vertrags- und Dokumentenmanagerin', image: '/team/triinu-de-grey.jpg' }
   ],
   partnersTitle: 'Partner und Netzwerk',
   reseller: 'Offizieller Vertriebspartner und Integrationspartner',
