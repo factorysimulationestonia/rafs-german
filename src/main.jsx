@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Link } from 'react-router-dom';
 import { version as appVersion } from '../package.json';
 import GermanSite from './GermanSite';
 import './styles.css';
@@ -2422,6 +2423,12 @@ const getSearchPath = (language, query) => `${getPagePath(language)}?q=${encodeU
 
 const getLanguagePath = (language, hash = window.location.hash) => getPagePath(language, 'home', hash);
 
+function ConsentPrivacyLink({ href, ...props }) {
+  return renderGermanSite
+    ? <Link to={href.slice(basePathPrefix.length)} {...props} />
+    : <a href={href} {...props} />;
+}
+
 function ConsentManager({ initialLanguage }) {
   const [language, setLanguage] = useState(initialLanguage);
   const [decision, setDecision] = useState(readConsent);
@@ -2488,7 +2495,7 @@ function ConsentManager({ initialLanguage }) {
             <div className="min-w-0">
               <h2 className="mb-2 text-xl font-bold" id="privacy-choice-title">{copy.title}</h2>
               <p className="m-0 max-w-3xl text-sm leading-relaxed text-white/76">{copy.summary}</p>
-              <a className="mt-3 inline-block text-sm font-semibold text-fs-accent" href={privacyPath}>{copy.privacy}</a>
+              <ConsentPrivacyLink className="mt-3 inline-block text-sm font-semibold text-fs-accent" href={privacyPath}>{copy.privacy}</ConsentPrivacyLink>
             </div>
             <div className="flex flex-wrap gap-2">
               <button className="min-h-11 border border-white/35 px-4 py-2 text-sm font-bold text-white transition hover:border-white" type="button" onClick={() => applyChoice({ analytics: false, advertising: false })}>{copy.reject}</button>
@@ -2517,7 +2524,7 @@ function ConsentManager({ initialLanguage }) {
                 <span className="min-w-0"><strong className="block">{copy.advertisingTitle}</strong><span className="mt-1 block text-sm leading-relaxed text-white/65">{copy.advertisingText}</span></span>
               </label>
             </div>
-            <a className="mt-4 inline-block text-sm font-semibold text-fs-accent" href={privacyPath}>{copy.privacy}</a>
+            <ConsentPrivacyLink className="mt-4 inline-block text-sm font-semibold text-fs-accent" href={privacyPath}>{copy.privacy}</ConsentPrivacyLink>
             <div className="mt-6 flex flex-wrap justify-end gap-2">
               <button className="min-h-11 border border-white/35 px-4 py-2 text-sm font-bold text-white transition hover:border-white" type="button" onClick={() => setSettingsOpen(false)}>{copy.cancel}</button>
               <button className="min-h-11 border border-fs-accent bg-fs-accent px-4 py-2 text-sm font-bold text-black transition hover:border-white hover:bg-white" type="button" onClick={() => applyChoice({ analytics, advertising })}>{copy.save}</button>
@@ -4664,7 +4671,7 @@ const germanPrivacyDetails = {
 };
 
 createRoot(document.getElementById('root')).render(
-  <>
+  <BrowserRouter basename={basePathPrefix || '/'}>
     {renderGermanSite ? (
       <GermanSite
         assetPath={assetPath}
@@ -4681,5 +4688,5 @@ createRoot(document.getElementById('root')).render(
       <App />
     )}
     <ConsentManager initialLanguage={renderGermanSite ? 'de' : getLanguageFromPath()} />
-  </>
+  </BrowserRouter>
 );

@@ -44,6 +44,22 @@ Vite proxies `/api` to the local PHP server on port `8787`. On Windows, the laun
 
 ## Deployment
 
+### Current `/rafs-german/` GitHub Pages site
+
+`vite.config.js` keeps `base: '/rafs-german/'`. React Router's
+`BrowserRouter` derives its basename `/rafs-german` from that base. German
+internal navigation uses `Link` and router-relative destinations, including
+links back to homepage sections such as the contact form.
+
+`.github/workflows/deploy.yml` builds the German site and copies
+`dist/index.html` to `dist/404.html` before uploading the Pages artifact.
+This lets direct URLs and refreshes such as `/rafs-german/pricing/` load
+the SPA without changing clean URLs. GitHub Pages still returns HTTP 404
+for these fallback requests, then the app renders the requested page.
+
+Run `node scripts/check-german-routing.mjs` for route/link regression checks
+and `npm run build:de` to validate the production bundle.
+
 This repository has three remotes:
 
 - `origin` — live production repository: `factorysimulationestonia/fs-home`

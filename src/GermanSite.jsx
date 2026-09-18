@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const benefits = [
   ['speed', 'Schneller', 'Direkte Kommunikation und kurze Wege.'],
@@ -49,18 +50,20 @@ function BenefitIcon({ type }) {
 
 function BrandHeader({ homePath, sectionHref }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  useEffect(() => setMenuOpen(false), [location.key]);
   return (
     <header className="de2-header">
-      <a className="de2-header__brand" href={homePath} aria-label="Robotics and Factory Simulation Startseite"><BrandLogo /></a>
+      <Link className="de2-header__brand" to={homePath} aria-label="Robotics and Factory Simulation Startseite"><BrandLogo /></Link>
       <nav className={menuOpen ? 'is-open' : ''} aria-label="Hauptnavigation">
-        <a href={sectionHref('warum')} onClick={() => setMenuOpen(false)}>Warum wir</a>
-        <a href={sectionHref('prozess')} onClick={() => setMenuOpen(false)}>Prozess</a>
-        <a href={sectionHref('team')} onClick={() => setMenuOpen(false)}>Über uns</a>
-        <a href={sectionHref('kontakt')} onClick={() => setMenuOpen(false)}>Kontakt</a>
-        <a href={`${homePath}pricing/`} onClick={() => setMenuOpen(false)}>Preise</a>
-        <a className="de2-nav-mobile-cta" href={sectionHref('kontakt')} onClick={() => setMenuOpen(false)}>Projekt besprechen <ArrowIcon /></a>
+        <Link to={sectionHref('warum')} onClick={() => setMenuOpen(false)}>Warum wir</Link>
+        <Link to={sectionHref('prozess')} onClick={() => setMenuOpen(false)}>Prozess</Link>
+        <Link to={sectionHref('team')} onClick={() => setMenuOpen(false)}>Über uns</Link>
+        <Link to={sectionHref('kontakt')} onClick={() => setMenuOpen(false)}>Kontakt</Link>
+        <Link to={`${homePath}pricing/`} onClick={() => setMenuOpen(false)}>Preise</Link>
+        <Link className="de2-nav-mobile-cta" to={sectionHref('kontakt')} onClick={() => setMenuOpen(false)}>Projekt besprechen <ArrowIcon /></Link>
       </nav>
-      <a className="de2-header__cta" href={sectionHref('kontakt')}>Projekt besprechen <ArrowIcon /></a>
+      <Link className="de2-header__cta" to={sectionHref('kontakt')}>Projekt besprechen <ArrowIcon /></Link>
       <button className="de2-menu" type="button" aria-label="Menü öffnen" aria-expanded={menuOpen} onClick={() => setMenuOpen((open) => !open)}><span /><span /></button>
     </header>
   );
@@ -71,15 +74,15 @@ function BrandFooter({ contactPerson, homePath, impressumPath, legalNoticePath, 
   return (
     <footer className="de2-footer">
       <div className="de2-footer__main">
-        <a href={homePath} aria-label="Robotics and Factory Simulation Startseite"><BrandLogo inverted /></a>
+        <Link to={homePath} aria-label="Robotics and Factory Simulation Startseite"><BrandLogo inverted /></Link>
         <div className="de2-footer__pitch"><strong>Lassen Sie uns über Ihre Produktion sprechen.</strong><span>Eine klare Frage ist der beste Start für ein gutes Modell.</span></div>
-        <a className="de2-button de2-button--light" href={`${homePath}#kontakt`}>Kontakt aufnehmen <ArrowIcon /></a>
+        <Link className="de2-button de2-button--light" to={`${homePath}#kontakt`}>Kontakt aufnehmen <ArrowIcon /></Link>
       </div>
       <div className="de2-footer__meta">
         <span>Factory Simulation OÜ · Estland</span>
         {contactPerson && <a href={`mailto:${contactPerson.email}`}>{contactPerson.email}</a>}
         <nav aria-label="Fußzeilennavigation">
-          <a href={faqPath}>FAQ</a><a href={privacyPath}>Datenschutz</a><a href={legalNoticePath}>Rechtliche Hinweise</a><a href={impressumPath}>Impressum</a>
+          <Link to={faqPath}>FAQ</Link><Link to={privacyPath}>Datenschutz</Link><Link to={legalNoticePath}>Rechtliche Hinweise</Link><Link to={impressumPath}>Impressum</Link>
           <button type="button" onClick={openPrivacySettings}>Privatsphäre-Einstellungen</button>
           {contactPerson?.linkedin && LinkedinIcon && <a className="de2-social" href={contactPerson.linkedin} target="_blank" rel="noreferrer" aria-label={`${contactPerson.name} LinkedIn`}><LinkedinIcon /></a>}
         </nav>
@@ -89,12 +92,11 @@ function BrandFooter({ contactPerson, homePath, impressumPath, legalNoticePath, 
 }
 
 function LegalShell({ children, contactPerson, homePath, paths, kicker, title, lead, LinkedinIcon }) {
-  useEffect(() => window.scrollTo(0, 0), []);
   const sectionHref = (id) => `${homePath}#${id}`;
   return (
     <div className="de2-site">
       <BrandHeader homePath={homePath} sectionHref={sectionHref} />
-      <main className="de2-legal"><a className="de2-back" href={homePath}>← Zurück zur Startseite</a><p className="de2-eyebrow">{kicker}</p><h1>{title}</h1><p className="de2-legal__lead">{lead}</p>{children}</main>
+      <main className="de2-legal"><Link className="de2-back" to={homePath}>← Zurück zur Startseite</Link><p className="de2-eyebrow">{kicker}</p><h1>{title}</h1><p className="de2-legal__lead">{lead}</p>{children}</main>
       <BrandFooter contactPerson={contactPerson} homePath={homePath} {...paths} LinkedinIcon={LinkedinIcon} />
     </div>
   );
@@ -147,7 +149,7 @@ function PricingPage({ contactPerson, homePath, paths, LinkedinIcon }) {
     <div className="de2-site">
       <BrandHeader homePath={homePath} sectionHref={(id) => `${homePath}#${id}`} />
       <main className="de2-pricing">
-        <a className="de2-back" href={homePath}>← Zurück zur Startseite</a>
+        <Link className="de2-back" to={homePath}>← Zurück zur Startseite</Link>
         <p className="de2-eyebrow">Preise & Zusammenarbeit</p>
         <h1>Ihre Angaben. Unsere Ingenieurarbeit.<br />Ein klares Ergebnis.</h1>
         <p className="de2-pricing__lead">Starten Sie mit Phase 1 zum Festpreis von 990 €. Entwickeln Sie das Ergebnis in Phase 2 weiter oder verbinden Sie beide Stufen mit einer Betreuungsvereinbarung für zukünftige Änderungen.</p>
@@ -158,15 +160,15 @@ function PricingPage({ contactPerson, homePath, paths, LinkedinIcon }) {
         <section className="de2-pricing__packages" aria-label="Pakete und Preise">
           <article className="de2-pricing__package">
             <div><p className="de2-eyebrow">Phase 1</p><h2>Erste Ergebnisse</h2><p className="de2-pricing__price">990 € Festpreis</p></div>
-            <div><p>Sie liefern die Angaben. Wir liefern das Ergebnis der ersten Phase in 36 Stunden.</p><ul><li>Direkter Austausch mit dem Ingenieurteam</li><li>Ergebnis der ersten Phase auf Basis Ihrer Angaben</li><li>90-Sekunden-Video mit den Ergebnissen</li><li>Ergebnisdokumentation</li></ul><a className="de2-button de2-button--dark" href={`${homePath}#kontakt`}>Phase 1 anfragen <ArrowIcon /></a></div>
+            <div><p>Sie liefern die Angaben. Wir liefern das Ergebnis der ersten Phase in 36 Stunden.</p><ul><li>Direkter Austausch mit dem Ingenieurteam</li><li>Ergebnis der ersten Phase auf Basis Ihrer Angaben</li><li>90-Sekunden-Video mit den Ergebnissen</li><li>Ergebnisdokumentation</li></ul><Link className="de2-button de2-button--dark" to={`${homePath}#kontakt`}>Phase 1 anfragen <ArrowIcon /></Link></div>
           </article>
           <article className="de2-pricing__package">
             <div><p className="de2-eyebrow">Phase 2</p><h2>Weiterentwicklung</h2><p className="de2-pricing__price">Projektabhängig</p></div>
-            <div><p>In Phase 2 entwickeln wir das Ergebnis aus Phase 1 weiter.</p><ul><li>Weiterentwicklung auf Basis von Phase 1</li><li>Rabatt nach Abschluss von Phase 1 möglich</li><li>Umfang und Preis nach Projektanforderungen</li></ul><a className="de2-button de2-button--dark" href={`${homePath}#kontakt`}>Phase 2 besprechen <ArrowIcon /></a></div>
+            <div><p>In Phase 2 entwickeln wir das Ergebnis aus Phase 1 weiter.</p><ul><li>Weiterentwicklung auf Basis von Phase 1</li><li>Rabatt nach Abschluss von Phase 1 möglich</li><li>Umfang und Preis nach Projektanforderungen</li></ul><Link className="de2-button de2-button--dark" to={`${homePath}#kontakt`}>Phase 2 besprechen <ArrowIcon /></Link></div>
           </article>
           <article className="de2-pricing__package">
             <div><p className="de2-eyebrow">Gesamtpaket</p><h2>Beide Phasen & Betreuung</h2><p className="de2-pricing__price">Individuelles Angebot</p></div>
-            <div><p>Verbinden Sie beide Projektstufen mit einer Vereinbarung für zukünftige Änderungen Ihrer Eingangsdaten.</p><ul><li>Rabatt auf Phase 1 und Phase 2</li><li>Betreuungsvereinbarung mit festgelegten Leistungen und Reaktionszeiten für zukünftige Änderungen der Eingangsdaten</li><li>Leistungsumfang und Betreuungsbedingungen individuell vereinbart</li></ul><a className="de2-button de2-button--dark" href={`${homePath}#kontakt`}>Gesamtpaket besprechen <ArrowIcon /></a></div>
+            <div><p>Verbinden Sie beide Projektstufen mit einer Vereinbarung für zukünftige Änderungen Ihrer Eingangsdaten.</p><ul><li>Rabatt auf Phase 1 und Phase 2</li><li>Betreuungsvereinbarung mit festgelegten Leistungen und Reaktionszeiten für zukünftige Änderungen der Eingangsdaten</li><li>Leistungsumfang und Betreuungsbedingungen individuell vereinbart</li></ul><Link className="de2-button de2-button--dark" to={`${homePath}#kontakt`}>Gesamtpaket besprechen <ArrowIcon /></Link></div>
           </article>
         </section>
       </main>
@@ -177,17 +179,20 @@ function PricingPage({ contactPerson, homePath, paths, LinkedinIcon }) {
 
 export default function GermanSite({ assetPath, basePath, contactEndpoint, contactPerson, isDedicatedSite = false, LinkedinIcon, onLeadConversion, privacyDetails, t }) {
   const [formStatus, setFormStatus] = useState('idle');
+  const location = useLocation();
+  const navigate = useNavigate();
   const mainSiteOrigin = import.meta.env.VITE_MAIN_SITE_ORIGIN || '';
   const resolvedMainSiteOrigin = mainSiteOrigin || (isDedicatedSite ? '' : `${window.location.origin}${basePath.replace(/\/$/, '')}`);
   const germanOrigin = (import.meta.env.VITE_GERMAN_SITE_ORIGIN || import.meta.env.VITE_PUBLIC_ORIGIN || '').replace(/\/$/, '');
-  const homePath = isDedicatedSite ? basePath : `${basePath}de/`;
+  // React Router adds the Vite base via BrowserRouter's basename.
+  const homePath = isDedicatedSite ? '/' : '/de/';
   const pricingPath = `${homePath}pricing/`;
-  const privacyPath = isDedicatedSite ? `${basePath}privacy/` : `${basePath}de/privacy/`;
-  const faqPath = isDedicatedSite ? `${basePath}factory-simulation-faq/` : `${basePath}de/factory-simulation-faq/`;
-  const impressumPath = isDedicatedSite ? `${basePath}impressum/` : `${basePath}de/impressum/`;
-  const legalNoticePath = isDedicatedSite ? `${basePath}legal-notice/` : `${basePath}de/legal-notice/`;
+  const privacyPath = `${homePath}privacy/`;
+  const faqPath = `${homePath}factory-simulation-faq/`;
+  const impressumPath = `${homePath}impressum/`;
+  const legalNoticePath = `${homePath}legal-notice/`;
   const paths = { privacyPath, faqPath, impressumPath, legalNoticePath };
-  const pathParts = window.location.pathname.slice(basePath.length).split('/').filter(Boolean);
+  const pathParts = location.pathname.split('/').filter(Boolean);
   const activeRoute = isDedicatedSite ? pathParts[0] : pathParts[1];
   const isPrivacy = activeRoute === 'privacy';
   const isPricing = activeRoute === 'pricing';
@@ -196,7 +201,16 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
   const isLegalNotice = activeRoute === 'legal-notice';
   const isLegalPage = isImpressum || isLegalNotice;
 
-  useEffect(() => { if (activeRoute === 'wheelme') window.history.replaceState(null, '', homePath); }, [activeRoute, homePath]);
+  useEffect(() => { if (activeRoute === 'wheelme') navigate(homePath, { replace: true }); }, [activeRoute, homePath, navigate]);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      const target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+      if (target) target.scrollIntoView({ block: 'start' });
+      else window.scrollTo(0, 0);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.key, location.pathname, location.hash]);
 
   useEffect(() => {
     document.documentElement.lang = 'de';
@@ -207,7 +221,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
     document.querySelector('meta[name="description"]')?.setAttribute('content', pageDescription);
     const currentOrigin = germanOrigin || window.location.origin;
     const canonicalPath = isPricing ? pricingPath : isImpressum ? impressumPath : isLegalNotice ? legalNoticePath : isPrivacy ? privacyPath : isFaq ? faqPath : homePath;
-    const canonicalUrl = `${currentOrigin}${canonicalPath}`;
+    const canonicalUrl = `${currentOrigin}${basePath.replace(/\/$/, '')}${canonicalPath}`;
     [['meta[property="og:title"]', pageTitle], ['meta[property="og:description"]', pageDescription], ['meta[property="og:url"]', canonicalUrl], ['meta[name="twitter:title"]', pageTitle], ['meta[name="twitter:description"]', pageDescription]].forEach(([selector, value]) => document.querySelector(selector)?.setAttribute('content', value));
     document.querySelectorAll('link[data-language-link="true"]').forEach((link) => link.remove());
     const links = [['canonical', '', canonicalUrl], ['alternate', 'de', canonicalUrl]];
@@ -217,7 +231,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
     }
     links.forEach(([rel, hrefLang, href]) => { const link = document.createElement('link'); link.rel = rel; if (hrefLang) link.setAttribute('hreflang', hrefLang); link.href = href; link.dataset.languageLink = 'true'; document.head.appendChild(link); });
     return () => { document.body.classList.remove('de-body', 'de2-body'); document.querySelectorAll('link[data-language-link="true"]').forEach((link) => link.remove()); };
-  }, [isPricing, pricingPath, faqPath, germanOrigin, homePath, impressumPath, isFaq, isImpressum, isLegalNotice, isLegalPage, isPrivacy, legalNoticePath, privacyPath, resolvedMainSiteOrigin, t.faq.metaDescription, t.faq.metaTitle]);
+  }, [basePath, isPricing, pricingPath, faqPath, germanOrigin, homePath, impressumPath, isFaq, isImpressum, isLegalNotice, isLegalPage, isPrivacy, legalNoticePath, privacyPath, resolvedMainSiteOrigin, t.faq.metaDescription, t.faq.metaTitle]);
 
   if (isPrivacy) return <PrivacyPage contactPerson={contactPerson} homePath={homePath} paths={paths} privacy={privacyDetails} LinkedinIcon={LinkedinIcon} />;
   if (isPricing) return <PricingPage contactPerson={contactPerson} homePath={homePath} paths={paths} LinkedinIcon={LinkedinIcon} />;
@@ -255,7 +269,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
         <section className="de2-hero">
           <div className="de2-hero__media-frame" aria-hidden="true"><img className="de2-hero__media" src={assetPath('/de-v2/steven-hero-v2.png')} alt="" fetchPriority="high" /></div>
           <div className="de2-hero__wash" aria-hidden="true" />
-          <div className="de2-hero__content"><p className="de2-eyebrow">Services</p><h1>Smarte Simulationen.<br /><span>Schnellere Entscheidungen.</span></h1><p>Wir helfen Maschinenbauern, Automatisierungsintegratoren und Produktionsunternehmen, ihre Systeme schneller, intelligenter und effizienter zu simulieren, zu optimieren und virtuell zu validieren.</p><div className="de2-actions"><a className="de2-button de2-button--dark" href="#kontakt">Projekt besprechen <ArrowIcon /></a><a className="de2-text-link" href="#prozess">So arbeiten wir <ArrowIcon /></a></div></div>
+          <div className="de2-hero__content"><p className="de2-eyebrow">Services</p><h1>Smarte Simulationen.<br /><span>Schnellere Entscheidungen.</span></h1><p>Wir helfen Maschinenbauern, Automatisierungsintegratoren und Produktionsunternehmen, ihre Systeme schneller, intelligenter und effizienter zu simulieren, zu optimieren und virtuell zu validieren.</p><div className="de2-actions"><Link className="de2-button de2-button--dark" to="#kontakt">Projekt besprechen <ArrowIcon /></Link><Link className="de2-text-link" to="#prozess">So arbeiten wir <ArrowIcon /></Link></div></div>
         </section>
 
         <section className="de2-benefits" id="warum" aria-label="Warum Factory Simulation">{benefits.map(([icon, title, text]) => <article key={title}><BenefitIcon type={icon} /><h2>{title}</h2><p>{text}</p></article>)}</section>
@@ -269,7 +283,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
         </section>
 
         <section className="de2-process" id="prozess">
-          <div className="de2-process__intro"><p className="de2-eyebrow">So arbeiten wir</p><h2>Von Ihrer Herausforderung zur validierten Lösung. Schnell.</h2><p>Keine unnötigen Umwege, keine unklaren Übergaben und kein tagelanges Warten auf eine Antwort. Sie sprechen direkt mit dem Team, das Ihr Modell erstellt und die Ergebnisse bewertet.</p><div className="de2-process__steps">{processSteps.map(([number, title, text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div><a className="de2-text-link" href={pricingPath}>Unser Prozess <ArrowIcon /></a></div>
+          <div className="de2-process__intro"><p className="de2-eyebrow">So arbeiten wir</p><h2>Von Ihrer Herausforderung zur validierten Lösung. Schnell.</h2><p>Keine unnötigen Umwege, keine unklaren Übergaben und kein tagelanges Warten auf eine Antwort. Sie sprechen direkt mit dem Team, das Ihr Modell erstellt und die Ergebnisse bewertet.</p><div className="de2-process__steps">{processSteps.map(([number, title, text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div><Link className="de2-text-link" to={pricingPath}>Unser Prozess <ArrowIcon /></Link></div>
           <div className="de2-process__visual"><img src={assetPath('/de-v2/steven-laptop-v2.png')} alt="Steven Strandberg arbeitet mit einem Laptop in einer Produktionshalle" width="1109" height="1418" loading="lazy" decoding="async" /></div>
         </section>
 
@@ -279,7 +293,7 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
 
         <section className="de2-contact" id="kontakt">
           <div className="de2-contact__intro"><p className="de2-eyebrow">Projektstart</p><h2>Was möchten Sie sicher entscheiden?</h2><p>Beschreiben Sie kurz Ihre Produktionsfrage. Wir melden uns persönlich und klären, welche Daten und welcher Simulationsumfang wirklich sinnvoll sind.</p>{contactPerson && <address>{contactPerson.image && <img className="de2-contact__portrait" src={assetPath(contactPerson.image)} alt={contactPerson.name} width="768" height="512" loading="lazy" decoding="async" />}<span>Ihr Ansprechpartner für DACH</span><h3>{contactPerson.name}</h3><p>{contactPerson.role}</p><a href={contactPerson.phoneHref}><PhoneIcon />{contactPerson.phone}</a><a href={`mailto:${contactPerson.email}`}><MailIcon />{contactPerson.email}</a>{contactPerson.linkedin && LinkedinIcon && <a className="de2-contact__social" href={contactPerson.linkedin} target="_blank" rel="noreferrer" aria-label={`${contactPerson.name} LinkedIn`}><LinkedinIcon /></a>}</address>}</div>
-          <form className="de2-form" onSubmit={handleSubmit}><div className="de2-form__row"><label>Name<input name="name" autoComplete="name" placeholder="Vor- und Nachname" required /></label><label>E-Mail<input name="email" type="email" autoComplete="email" placeholder="name@unternehmen.de" required /></label></div><label>Unternehmen<input name="organization" autoComplete="organization" placeholder="Unternehmensname" /></label><label>Ihre Produktionsfrage<textarea name="description" rows="6" minLength="5" placeholder="Welche Entscheidung möchten Sie mit Simulation absichern?" required /></label><input className="de2-honeypot" name="company" tabIndex="-1" autoComplete="off" aria-hidden="true" /><p className="de2-form__privacy">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Beantwortung der Anfrage zu. <a href={privacyPath}>Datenschutz</a></p><button className="de2-button de2-button--dark" type="submit" disabled={formStatus === 'sending' || formStatus === 'success'}>{formStatus === 'sending' ? 'Wird gesendet…' : formStatus === 'success' ? 'Anfrage gesendet' : 'Anfrage senden'} <ArrowIcon /></button>{formStatus === 'error' && <p className="de2-form__status" role="alert">Die Nachricht konnte nicht gesendet werden. Bitte schreiben Sie an info@factorysimulation.eu.</p>}</form>
+          <form className="de2-form" onSubmit={handleSubmit}><div className="de2-form__row"><label>Name<input name="name" autoComplete="name" placeholder="Vor- und Nachname" required /></label><label>E-Mail<input name="email" type="email" autoComplete="email" placeholder="name@unternehmen.de" required /></label></div><label>Unternehmen<input name="organization" autoComplete="organization" placeholder="Unternehmensname" /></label><label>Ihre Produktionsfrage<textarea name="description" rows="6" minLength="5" placeholder="Welche Entscheidung möchten Sie mit Simulation absichern?" required /></label><input className="de2-honeypot" name="company" tabIndex="-1" autoComplete="off" aria-hidden="true" /><p className="de2-form__privacy">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur Beantwortung der Anfrage zu. <Link to={privacyPath}>Datenschutz</Link></p><button className="de2-button de2-button--dark" type="submit" disabled={formStatus === 'sending' || formStatus === 'success'}>{formStatus === 'sending' ? 'Wird gesendet…' : formStatus === 'success' ? 'Anfrage gesendet' : 'Anfrage senden'} <ArrowIcon /></button>{formStatus === 'error' && <p className="de2-form__status" role="alert">Die Nachricht konnte nicht gesendet werden. Bitte schreiben Sie an info@factorysimulation.eu.</p>}</form>
         </section>
       </main>
       <BrandFooter contactPerson={contactPerson} homePath={homePath} {...paths} LinkedinIcon={LinkedinIcon} />
