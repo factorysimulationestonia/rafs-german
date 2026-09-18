@@ -600,6 +600,7 @@
 
   .de2-process__steps h3 {
     max-width: 90px;
+    overflow-wrap: anywhere;
     margin: 14px 0 0;
     font-size: 12px;
     font-weight: 600;

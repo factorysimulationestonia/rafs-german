@@ -10,11 +10,11 @@ const benefits = [
 ];
 
 const processSteps = [
-  ['1', 'Verstehen', 'Wir klären die Entscheidung, die Datenlage und den sinnvollen Modellumfang.'],
-  ['2', 'Modellieren', 'Wir bilden den relevanten Produktionsfluss präzise und nachvollziehbar ab.'],
-  ['3', 'Validieren', 'Wir vergleichen Szenarien, Kapazitäten und technische Risiken.'],
-  ['4', 'Entscheiden', 'Sie erhalten klare Ergebnisse und eine belastbare Empfehlung für den nächsten Schritt.'],
-  ['5', 'Investition validieren', 'Mit Phase 2 die Investitionsentscheidung fundiert absichern.']
+  ['1', 'Ihre Angaben', 'Sie stellen Ihre Fragen, Daten und Projektanforderungen bereit.'],
+  ['2', 'Wir analysieren', 'Wir prüfen Ihre Angaben und untersuchen Ihr Vorhaben anhand eines Simulationsmodells.'],
+  ['3', 'Erste Ergebnisse', 'Innerhalb von 36 Stunden erhalten Sie die ersten dokumentierten Ergebnisse sowie eine 90-sekündige Videozusammenfassung.'],
+  ['4', 'Vorläufige Entscheidung', 'Die ersten Ergebnisse bieten eine fundierte Grundlage für Ihre vorläufige Entscheidung.'],
+  ['5', 'Investition vollständig validieren', 'In Phase 2 validieren wir Ihre Investition im Detail, beziehen zusätzliche Angaben ein und reduzieren Unsicherheiten, bevor Sie die endgültige Entscheidung treffen.']
 ];
 
 function BrandLogo({ inverted = false }) {
@@ -142,13 +142,7 @@ function FaqPage({ contactPerson, homePath, paths, t, LinkedinIcon }) {
 }
 
 function PricingPage({ contactPerson, homePath, paths, LinkedinIcon }) {
-  const steps = [
-    ['Schnelle Kommunikation', 'Direkter Austausch mit unserem Ingenieurteam.'],
-    ['Ihre Angaben', 'Sie teilen Ihre Fragestellung, Daten und Anforderungen.'],
-    ['Phase 1 in 36 Stunden', 'Aus Ihren Angaben entsteht das erste Ergebnis.'],
-    ['Ergebnis auf den Punkt', '90-Sekunden-Video und Ergebnisdokumentation.'],
-    ['Investition validieren', 'Mit Phase 2 die Investitionsentscheidung fundiert absichern.']
-  ];
+  const steps = processSteps.map(([, title, description]) => [title, description]);
   return (
     <div className="de2-site">
       <BrandHeader homePath={homePath} sectionHref={(id) => `${homePath}#${id}`} />
@@ -168,7 +162,7 @@ function PricingPage({ contactPerson, homePath, paths, LinkedinIcon }) {
           </article>
           <article className="de2-pricing__package">
             <div><p className="de2-eyebrow">Phase 2</p><h2>Weiterentwicklung</h2><p className="de2-pricing__price">Projektabhängig</p></div>
-            <div><p>In Phase 2 entwickeln wir das Ergebnis aus Phase 1 weiter.</p><ul><li>Weiterentwicklung auf Basis von Phase 1</li><li>Rabatt, wenn sich die Annahmen aus Phase 1 bestätigen</li><li>Umfang und Preis nach Projektanforderungen</li></ul><a className="de2-button de2-button--dark" href={`${homePath}#kontakt`}>Phase 2 besprechen <ArrowIcon /></a></div>
+            <div><p>In Phase 2 entwickeln wir das Ergebnis aus Phase 1 weiter.</p><ul><li>Weiterentwicklung auf Basis von Phase 1</li><li>Rabatt nach Abschluss von Phase 1 möglich</li><li>Umfang und Preis nach Projektanforderungen</li></ul><a className="de2-button de2-button--dark" href={`${homePath}#kontakt`}>Phase 2 besprechen <ArrowIcon /></a></div>
           </article>
           <article className="de2-pricing__package">
             <div><p className="de2-eyebrow">Gesamtpaket</p><h2>Beide Phasen & Betreuung</h2><p className="de2-pricing__price">Individuelles Angebot</p></div>
@@ -270,12 +264,12 @@ export default function GermanSite({ assetPath, basePath, contactEndpoint, conta
           <div className="de2-estonia">
             <figure className="de2-estonia__photo"><img src={assetPath('/de-v2/estonia-bog.jpeg')} alt="Moorlandschaft in Estland mit einer Wandergruppe" loading="lazy" decoding="async" /></figure>
             <div className="de2-estonia__copy"><p className="de2-eyebrow">Mehr als eine Dienstleistung</p><h2>Wir sind ein Team von Machern. Aus Estland.</h2><p>Kein großer Apparat mit Büros und Ebenen. Wir sind ein kleines, fokussiertes Team, das komplexe Produktionsfragen mit digitalen Werkzeugen löst. Wir arbeiten remote, handeln schnell und bleiben nah an den Menschen, mit denen wir arbeiten.</p></div>
-            <blockquote>„Ich habe Robotics and Factory Simulation gegründet, um Engineering schlanker, flexibler und näher an den Menschen zu machen, mit denen wir arbeiten.“<strong>Steven Strandberg</strong><span>Gründer & Maschinenbauingenieur</span></blockquote>
+            <blockquote>„Ich habe Robotics and Factory Simulation gegründet, um den Unternehmen, mit denen wir zusammenarbeiten, als Ingenieurpartner zur Seite zu stehen und dabei umfassende Erfahrung mit frischen Ideen und modernster Technologie zu verbinden.“<strong>Steven Strandberg</strong><span>Gründer & Maschinenbauingenieur</span></blockquote>
           </div>
         </section>
 
         <section className="de2-process" id="prozess">
-          <div className="de2-process__intro"><p className="de2-eyebrow">So arbeiten wir</p><h2>Von Ihrer Herausforderung zur validierten Lösung. Schnell.</h2><p>Keine unnötigen Schleifen, keine unklare Übergabe. Sie sprechen direkt mit dem Team, das Ihr Modell baut und die Ergebnisse bewertet.</p><div className="de2-process__steps">{processSteps.map(([number, title, text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div><a className="de2-text-link" href={pricingPath}>Unser Prozess <ArrowIcon /></a></div>
+          <div className="de2-process__intro"><p className="de2-eyebrow">So arbeiten wir</p><h2>Von Ihrer Herausforderung zur validierten Lösung. Schnell.</h2><p>Keine unnötigen Umwege, keine unklaren Übergaben und kein tagelanges Warten auf eine Antwort. Sie sprechen direkt mit dem Team, das Ihr Modell erstellt und die Ergebnisse bewertet.</p><div className="de2-process__steps">{processSteps.map(([number, title, text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div><a className="de2-text-link" href={pricingPath}>Unser Prozess <ArrowIcon /></a></div>
           <div className="de2-process__visual"><img src={assetPath('/de-v2/steven-laptop-v2.png')} alt="Steven Strandberg arbeitet mit einem Laptop in einer Produktionshalle" width="1109" height="1418" loading="lazy" decoding="async" /></div>
         </section>
 
