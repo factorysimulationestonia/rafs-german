@@ -14,7 +14,7 @@ const processSteps = [
   ['2', 'Modellieren', 'Wir bilden den relevanten Produktionsfluss präzise und nachvollziehbar ab.'],
   ['3', 'Validieren', 'Wir vergleichen Szenarien, Kapazitäten und technische Risiken.'],
   ['4', 'Entscheiden', 'Sie erhalten klare Ergebnisse und eine belastbare Empfehlung für den nächsten Schritt.'],
-  ['5', 'Investition validieren', 'Mit Stage 2 die Investitionsentscheidung fundiert absichern.']
+  ['5', 'Investition validieren', 'Mit Phase 2 die Investitionsentscheidung fundiert absichern.']
 ];
 
 function BrandLogo({ inverted = false }) {
@@ -143,11 +143,11 @@ function FaqPage({ contactPerson, homePath, paths, t, LinkedinIcon }) {
 
 function PricingPage({ contactPerson, homePath, paths, LinkedinIcon }) {
   const steps = [
-    ['Schnelle Kommunikation', 'Direkter Austausch mit unserem Engineering-Team.'],
-    ['Ihr Input', 'Sie teilen Ihre Fragestellung, Daten und Anforderungen.'],
-    ['Stage 1 in 36 Stunden', 'Aus Ihrem Input entsteht das erste Ergebnis.'],
+    ['Schnelle Kommunikation', 'Direkter Austausch mit unserem Ingenieurteam.'],
+    ['Ihre Angaben', 'Sie teilen Ihre Fragestellung, Daten und Anforderungen.'],
+    ['Phase 1 in 36 Stunden', 'Aus Ihren Angaben entsteht das erste Ergebnis.'],
     ['Ergebnis auf den Punkt', '90-Sekunden-Video und Ergebnisdokumentation.'],
-    ['Investition validieren', 'Mit Stage 2 die Investitionsentscheidung fundiert absichern.']
+    ['Investition validieren', 'Mit Phase 2 die Investitionsentscheidung fundiert absichern.']
   ];
   return (
     <div className="de2-site">
@@ -155,24 +155,24 @@ function PricingPage({ contactPerson, homePath, paths, LinkedinIcon }) {
       <main className="de2-pricing">
         <a className="de2-back" href={homePath}>← Zurück zur Startseite</a>
         <p className="de2-eyebrow">Preise & Zusammenarbeit</p>
-        <h1>Ihr Input. Unser Engineering.<br />Ein klares Ergebnis.</h1>
-        <p className="de2-pricing__lead">Starten Sie mit Stage 1 ab 990 €. Entwickeln Sie das Ergebnis in Stage 2 weiter oder verbinden Sie beide Stufen mit einem SLA für zukünftige Änderungen.</p>
+        <h1>Ihre Angaben. Unsere Ingenieurarbeit.<br />Ein klares Ergebnis.</h1>
+        <p className="de2-pricing__lead">Starten Sie mit Phase 1 zum Festpreis von 990 €. Entwickeln Sie das Ergebnis in Phase 2 weiter oder verbinden Sie beide Stufen mit einer Betreuungsvereinbarung für zukünftige Änderungen.</p>
         <section className="de2-pricing__workflow" aria-labelledby="pricing-workflow">
           <h2 id="pricing-workflow">Von Ihrer Frage zum Ergebnis</h2>
           <div className="de2-process__steps de2-pricing__steps">{steps.map(([title, description], index) => <article key={title}><span>{index + 1}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
         </section>
         <section className="de2-pricing__packages" aria-label="Pakete und Preise">
           <article className="de2-pricing__package">
-            <div><p className="de2-eyebrow">Paket 1 · Stage 1</p><h2>Ihr Input.<br />Unser erstes Ergebnis.</h2><p className="de2-pricing__price">ab 990 €</p></div>
-            <div><p>Sie liefern den Input. Wir liefern das Stage-1-Ergebnis in 36 Stunden.</p><ul><li>Direkter Austausch mit dem Engineering-Team</li><li>Stage-1-Ergebnis auf Basis Ihrer Angaben</li><li>90-Sekunden-Video mit den Ergebnissen</li><li>Ergebnisdokumentation</li></ul><a className="de2-button de2-button--dark" href={`${homePath}#kontakt`}>Stage 1 anfragen <ArrowIcon /></a></div>
+            <div><p className="de2-eyebrow">Phase 1</p><h2>Erste Ergebnisse</h2><p className="de2-pricing__price">990 € Festpreis</p></div>
+            <div><p>Sie liefern die Angaben. Wir liefern das Ergebnis der ersten Phase in 36 Stunden.</p><ul><li>Direkter Austausch mit dem Ingenieurteam</li><li>Ergebnis der ersten Phase auf Basis Ihrer Angaben</li><li>90-Sekunden-Video mit den Ergebnissen</li><li>Ergebnisdokumentation</li></ul><a className="de2-button de2-button--dark" href={`${homePath}#kontakt`}>Phase 1 anfragen <ArrowIcon /></a></div>
           </article>
           <article className="de2-pricing__package">
-            <div><p className="de2-eyebrow">Paket 2 · Stage 2</p><h2>Das Ergebnis<br />weiterentwickeln.</h2><p className="de2-pricing__price">Projektabhängig</p></div>
-            <div><p>In Stage 2 entwickeln wir das Ergebnis aus Stage 1 weiter.</p><ul><li>Weiterentwicklung auf Basis von Stage 1</li><li>Rabatt, wenn sich die Annahmen aus Stage 1 bestätigen</li><li>Umfang und Preis nach Projektanforderungen</li></ul><a className="de2-text-link" href={`${homePath}#kontakt`}>Stage 2 besprechen <ArrowIcon /></a></div>
+            <div><p className="de2-eyebrow">Phase 2</p><h2>Weiterentwicklung</h2><p className="de2-pricing__price">Projektabhängig</p></div>
+            <div><p>In Phase 2 entwickeln wir das Ergebnis aus Phase 1 weiter.</p><ul><li>Weiterentwicklung auf Basis von Phase 1</li><li>Rabatt, wenn sich die Annahmen aus Phase 1 bestätigen</li><li>Umfang und Preis nach Projektanforderungen</li></ul><a className="de2-button de2-button--dark" href={`${homePath}#kontakt`}>Phase 2 besprechen <ArrowIcon /></a></div>
           </article>
           <article className="de2-pricing__package">
-            <div><p className="de2-eyebrow">Bundle · Stage 1 + Stage 2 + SLA</p><h2>Zusammen starten.<br />Langfristig weiterarbeiten.</h2><p className="de2-pricing__price">Individuelles Angebot</p></div>
-            <div><p>Verbinden Sie beide Projektstufen mit einer Vereinbarung für zukünftige Änderungen Ihrer Eingangsdaten.</p><ul><li>Rabatt auf Stage 1 und Stage 2</li><li>Service-Level-Agreement (SLA) für zukünftige Input-Änderungen</li><li>Leistungsumfang und Servicebedingungen individuell vereinbart</li></ul><a className="de2-text-link" href={`${homePath}#kontakt`}>Bundle besprechen <ArrowIcon /></a></div>
+            <div><p className="de2-eyebrow">Gesamtpaket</p><h2>Beide Phasen & Betreuung</h2><p className="de2-pricing__price">Individuelles Angebot</p></div>
+            <div><p>Verbinden Sie beide Projektstufen mit einer Vereinbarung für zukünftige Änderungen Ihrer Eingangsdaten.</p><ul><li>Rabatt auf Phase 1 und Phase 2</li><li>Betreuungsvereinbarung mit festgelegten Leistungen und Reaktionszeiten für zukünftige Änderungen der Eingangsdaten</li><li>Leistungsumfang und Betreuungsbedingungen individuell vereinbart</li></ul><a className="de2-button de2-button--dark" href={`${homePath}#kontakt`}>Gesamtpaket besprechen <ArrowIcon /></a></div>
           </article>
         </section>
       </main>
